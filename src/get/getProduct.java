@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import connect.DBConnect;
 import model.Product;
 
-public class getProduct {
+public class GetProduct {
 	DBConnect mydb = new DBConnect();
 	Connection conn = mydb.getConnecttion();
 

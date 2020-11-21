@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-<%@page import="get.getProduct" %>    
+<%@page import="get.GetProduct" %>    
 <%@page import="model.Product" %>
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
     </head>
 
     <body>
-    <%getProduct p = new getProduct(); %>
+    <%GetProduct p = new GetProduct(); %>
     <jsp:include page="header.jsp"></jsp:include>
         <!-- Product List Start -->
         <div class="product-view">
