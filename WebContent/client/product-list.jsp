@@ -1,5 +1,13 @@
+<%@page import="java.util.List"%>
+<%@page import="com.sun.org.apache.bcel.internal.generic.NEW"%>
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@page import="get.GetProduct" %>    
+<%@page import="model.Product" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,6 +34,7 @@
     </head>
 
     <body>
+    <%GetProduct p = new GetProduct(); %>
     <jsp:include page="header.jsp"></jsp:include>
         <!-- Product List Start -->
         <div class="product-view">
@@ -77,195 +86,34 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Tên sản phẩm</a>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.jsp">
-                                            <img src="./static/img/product-1.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Tên sản phẩm</a>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.jsp">
-                                            <img src="./static/img/product-2.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Tên sản phẩm</a>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.jsp">
-                                            <img src="./static/img/product-3.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Tên sản phẩm</a>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.jsp">
-                                            <img src="./static/img/product-4.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Tên sản phẩm</a>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.jsp">
-                                            <img src="./static/img/product-5.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Tên sản phẩm</a>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.jsp">
-                                            <img src="./static/img/product-6.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Tên sản phẩm</a>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.jsp">
-                                            <img src="./static/img/product-7.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Tên sản phẩm</a>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.jsp">
-                                            <img src="./static/img/product-8.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="#">Tên sản phẩm</a>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.jsp">
-                                            <img src="./static/img/product-9.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="#"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
-                                    </div>
-                                </div>
-                            </div>
+                           
+                            <%
+							
+							ArrayList<Product> list = new ArrayList<Product>();
+							list = p.getAllProduct(0, 9);
+                       		for(Product l : list){%>
+	                       		<div class="col-md-4">
+	                                <div class="product-item">
+	                                    <div class="product-title">
+	                                        <a href=""><%=l.getName() %></a>
+	                                    </div>
+	                                    <div class="product-image">
+	                                        <a href="product-detail.jsp">
+	                                            <img src="<%=l.getImgFirst() %>" alt="Product Image">
+	                                        </a>
+	                                        <div class="product-action">
+	                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
+	                                            <a href="#"><i class="fa fa-heart"></i></a>
+	                                            <a href="#"><i class="fa fa-search"></i></a>
+	                                        </div>
+	                                    </div>
+	                                    <div class="product-price">
+	                                        <h3><span>$</span><%=l.getPrice() %></h3>
+	                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
+	                                    </div>
+	                                </div>
+	                            </div>
+                       		<%}%>
                         </div>
                         
                         <!-- Pagination Start -->
@@ -275,9 +123,14 @@
                                     <li class="page-item disabled">
                                         <a class="page-link" href="#" tabindex="-1">Previous</a>
                                     </li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <%
+                                    int tong = p.totalPage();
+                                    if(tong > 1){
+                                    for(int i=0 ; i < tong;i ++ ){%>
+                                    <li class="page-item active"><a class="page-link" href="#"><%=i %></a></li>                                    	
+                                    <% }%>
+                                    	
+                                    <% }%>
                                     <li class="page-item">
                                         <a class="page-link" href="#">Next</a>
                                     </li>
