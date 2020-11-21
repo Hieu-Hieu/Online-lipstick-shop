@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./static/css/login.css">
+    <link rel="stylesheet" href="./client/static/css/login.css">
 </head>
 <body>
     <div class="hero">
@@ -33,6 +33,6 @@
             </form>  
         </div>
     </div>
-	<script src="./static/js/login.js"></script>
+	<script src="./client/static/js/login.js"></script>
 </body>
 </html>

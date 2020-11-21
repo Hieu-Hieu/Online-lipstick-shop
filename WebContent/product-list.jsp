@@ -104,12 +104,12 @@
 	                                        <div class="product-action">
 	                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
 	                                            <a href="#"><i class="fa fa-heart"></i></a>
-	                                            <a href="#"><i class="fa fa-search"></i></a>
+	                                            <a href="${pageContext.request.contextPath}/ProductDetailController?productID=<%=l.getProductID()%>">Chi Tiết</a>
 	                                        </div>
 	                                    </div>
 	                                    <div class="product-price">
 	                                        <h3><span>$</span><%=l.getPrice() %></h3>
-	                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Mua ngay</a>
+	                                        <a class="btn" href="#"><i class="fa fa-shopping-cart"></i>Mua ngay</a>
 	                                    </div>
 	                                </div>
 	                            </div>
