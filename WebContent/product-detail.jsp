@@ -65,7 +65,7 @@
                                             <div class="qty">
                                                 <button class="btn-minus"><i class="fa fa-minus"></i></button>
                                                 <input type="text" value="1">
-                                                <button class="btn-plus"><i class="fas fa-info-circle"></i></button>
+                                                <button class="btn-plus"><i class="fa fa-plus"></i></button>
                                             </div>
                                         </div>
                                         <div class="action">

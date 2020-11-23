@@ -72,7 +72,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="user">
-                            <a href="cart.jsp" class="btn cart">
+                            <a href="${pageContext.request.contextPath }/CartController?userID=1" class="btn cart">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>(0)</span>
                             </a>

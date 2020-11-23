@@ -2,6 +2,8 @@ package controller.user;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,20 +12,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import get.GetProduct;
-import model.Product;
+import get.GetCart;
 
 /**
- * Servlet implementation class ProductDetailController
+ * Servlet implementation class CartController
  */
-@WebServlet(urlPatterns = { "/ProductDetailController" })
-public class ProductDetailController extends HttpServlet {
+@WebServlet("/CartController")
+public class CartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ProductDetailController() {
+	public CartController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -35,30 +36,34 @@ public class ProductDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
 		doPost(request, response);
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String productID = request.getParameter("productID");
-		Product p = new Product();
-		GetProduct getProduct = new GetProduct();
+		String userID = request.getParameter("userID");
+		userID = "1";
+		System.out.println("lan1");
+		GetCart getCart = new GetCart();
+		ArrayList<List> listCart = new ArrayList<List>();
 		String url = "";
-
 		try {
-			p = getProduct.getProductByID(productID);
-			if (p != null) {
-				request.setAttribute("product", p);
-				url = "/product-detail.jsp";
+
+			if (getCart.checkUserExist(userID)) {
+				listCart = getCart.getCartByUserID(userID);
+				request.setAttribute("listCart", listCart);
+				url = "/cart.jsp";
 			}
-		} catch (SQLException e) {
+		} catch (
+
+		SQLException e) {
 			// TODO Auto-generated catch block
+//			System.out.println(e);
 			e.printStackTrace();
 		}
+		url = "/cart.jsp";
+//		RequestDispatcher dipatcher = getServletContext().requestDi
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);
-
-//		response.sendRedirect(request.getContextPath() + url);
 	}
 
 	/**
