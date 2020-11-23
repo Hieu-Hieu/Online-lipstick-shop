@@ -8,7 +8,7 @@
 <title>Header</title>
 
 <!-- Favicon -->
-<link href="./static/img/favicon.ico" rel="icon">
+<link href="./client/static/img/favicon.ico" rel="icon">
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
@@ -16,11 +16,11 @@
 <!-- CSS Libraries -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-<link href="./static/lib/slick/slick.css" rel="stylesheet">
-<link href="./static/lib/slick/slick-theme.css" rel="stylesheet">
+<link href="./client/static/lib/slick/slick.css" rel="stylesheet">
+<link href="./client/static/lib/slick/slick-theme.css" rel="stylesheet">
 
 <!-- Template Stylesheet -->
-<link href="./static/css/style.css" rel="stylesheet">    
+<link href="./client/static/css/style.css" rel="stylesheet">    
 </head>
 <body> 
     <!-- Nav Bar Start -->
@@ -60,7 +60,7 @@
                     <div class="col-md-3">
                         <div class="logo">
                             <a href="index.jsp">
-                                <img src="./static/img/logo.png" alt="Logo">
+                                <img src="./client/static/img/logo.png" alt="Logo">
                             </a>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="user">
-                            <a href="cart.jsp" class="btn cart">
+                            <a href="${pageContext.request.contextPath }/CartController?userID=1" class="btn cart">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>(0)</span>
                             </a>

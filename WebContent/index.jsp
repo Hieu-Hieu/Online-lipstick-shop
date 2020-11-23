@@ -13,7 +13,7 @@
         <meta content="eCommerce HTML Template Free Download" name="description">
 
         <!-- Favicon -->
-        <link href="./static/img/favicon.ico" rel="icon">
+        <link href="./client/static/img/favicon.ico" rel="icon">
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
@@ -21,11 +21,11 @@
         <!-- CSS Libraries -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-        <link href="./static/lib/slick/slick.css" rel="stylesheet">
-        <link href="./static/lib/slick/slick-theme.css" rel="stylesheet">
+        <link href="./client/static/lib/slick/slick.css" rel="stylesheet">
+        <link href="./client/static/lib/slick/slick-theme.css" rel="stylesheet">
 
         <!-- Template Stylesheet -->
-        <link href="./static/css/style.css" rel="stylesheet">
+        <link href="./client/static/css/style.css" rel="stylesheet">
     </head>
 
     <body>
@@ -69,21 +69,21 @@
                     <div class="col-md-6">
                         <div class="header-slider normal-slider">
                             <div class="header-slider-item">
-                                <img src="./static/img/slider-1.jpg" alt="Slider Image" />
+                                <img src="./client/static/img/slider-1.jpg" alt="Slider Image" />
                                 <div class="header-slider-caption">
                                     <p>Some text goes here that describes the image</p>
                                     <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
                                 </div>
                             </div>
                             <div class="header-slider-item">
-                                <img src="./static/img/slider-2.jpg" alt="Slider Image" />
+                                <img src="./client/static/img/slider-2.jpg" alt="Slider Image" />
                                 <div class="header-slider-caption">
                                     <p>Some text goes here that describes the image</p>
                                     <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
                                 </div>
                             </div>
                             <div class="header-slider-item">
-                                <img src="./static/img/slider-3.jpg" alt="Slider Image" />
+                                <img src="./client/static/img/slider-3.jpg" alt="Slider Image" />
                                 <div class="header-slider-caption">
                                     <p>Some text goes here that describes the image</p>
                                     <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
@@ -94,13 +94,13 @@
                     <div class="col-md-3">
                         <div class="header-img">
                             <div class="img-item">
-                                <img src="./static/img/category-1.jpg" />
+                                <img src="./client/static/img/category-1.jpg" />
                                 <a class="img-text" href="">
                                     <p>Some text goes here that describes the image</p>
                                 </a>
                             </div>
                             <div class="img-item">
-                                <img src="./static/img/category-2.jpg" />
+                                <img src="./client/static/img/category-2.jpg" />
                                 <a class="img-text" href="">
                                     <p>Some text goes here that describes the image</p>
                                 </a>
@@ -163,7 +163,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="category-item ch-400">
-                            <img src="./static/img/category-3.jpg" />
+                            <img src="./client/static/img/category-3.jpg" />
                             <a class="category-name" href="">
                                 <p>Some text goes here that describes the image</p>
                             </a>
@@ -171,13 +171,13 @@
                     </div>
                     <div class="col-md-3">
                         <div class="category-item ch-250">
-                            <img src="./static/img/category-4.jpg" />
+                            <img src="./client/static/img/category-4.jpg" />
                             <a class="category-name" href="">
                                 <p>Some text goes here that describes the image</p>
                             </a>
                         </div>
                         <div class="category-item ch-150">
-                            <img src="./static/img/category-5.jpg" />
+                            <img src="./client/static/img/category-5.jpg" />
                             <a class="category-name" href="">
                                 <p>Some text goes here that describes the image</p>
                             </a>
@@ -185,13 +185,13 @@
                     </div>
                     <div class="col-md-3">
                         <div class="category-item ch-150">
-                            <img src="./static/img/category-6.jpg" />
+                            <img src="./client/static/img/category-6.jpg" />
                             <a class="category-name" href="">
                                 <p>Some text goes here that describes the image</p>
                             </a>
                         </div>
                         <div class="category-item ch-250">
-                            <img src="./static/img/category-7.jpg" />
+                            <img src="./client/static/img/category-7.jpg" />
                             <a class="category-name" href="">
                                 <p>Some text goes here that describes the image</p>
                             </a>
@@ -199,7 +199,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="category-item ch-400">
-                            <img src="./static/img/category-8.jpg" />
+                            <img src="./client/static/img/category-8.jpg" />
                             <a class="category-name" href="">
                                 <p>Some text goes here that describes the image</p>
                             </a>
@@ -224,7 +224,7 @@
                             </div>
                             <div class="product-image">
                                 <a href="product-detail.jsp">
-                                    <img src="./static/img/product-6.jpg" alt="Product Image">
+                                    <img src="./client/static/img/product-6.jpg" alt="Product Image">
                                 </a>
                                 <div class="product-action">
                                     <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -245,7 +245,7 @@
                             </div>
                             <div class="product-image">
                                 <a href="product-detail.jsp">
-                                    <img src="./static/img/product-7.jpg" alt="Product Image">
+                                    <img src="./client/static/img/product-7.jpg" alt="Product Image">
                                 </a>
                                 <div class="product-action">
                                     <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -266,7 +266,7 @@
                             </div>
                             <div class="product-image">
                                 <a href="product-detail.jsp">
-                                    <img src="./static/img/product-8.jpg" alt="Product Image">
+                                    <img src="./client/static/img/product-8.jpg" alt="Product Image">
                                 </a>
                                 <div class="product-action">
                                     <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -287,7 +287,7 @@
                             </div>
                             <div class="product-image">
                                 <a href="product-detail.jsp">
-                                    <img src="./static/img/product-9.jpg" alt="Product Image">
+                                    <img src="./client/static/img/product-9.jpg" alt="Product Image">
                                 </a>
                                 <div class="product-action">
                                     <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -308,7 +308,7 @@
                             </div>
                             <div class="product-image">
                                 <a href="product-detail.jsp">
-                                    <img src="./static/img/product-10.jpg" alt="Product Image">
+                                    <img src="./client/static/img/product-10.jpg" alt="Product Image">
                                 </a>
                                 <div class="product-action">
                                     <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -334,10 +334,10 @@
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <script src="./static/lib/easing/easing.min.js"></script>
-        <script src="./static/lib/slick/slick.min.js"></script>
+        <script src="./client/static/lib/easing/easing.min.js"></script>
+        <script src="./client/static/lib/slick/slick.min.js"></script>
         
         <!-- Template Javascript -->
-        <script src="./static/js/main.js"></script>
+        <script src="./client/static/js/main.js"></script>
     </body>
 </html>

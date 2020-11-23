@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,7 +11,7 @@
         <meta content="eCommerce HTML Template Free Download" name="description">
 
         <!-- Favicon -->
-        <link href="./static/img/favicon.ico" rel="icon">
+        <link href="./client/static/img/favicon.ico" rel="icon">
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
@@ -18,11 +19,11 @@
         <!-- CSS Libraries -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-        <link href="./static/lib/slick/slick.css" rel="stylesheet">
-        <link href="./static/lib/slick/slick-theme.css" rel="stylesheet">
+        <link href="./client/static/lib/slick/slick.css" rel="stylesheet">
+        <link href="./client/static/lib/slick/slick-theme.css" rel="stylesheet">
 
         <!-- Template Stylesheet -->
-        <link href="./static/css/style.css" rel="stylesheet">
+        <link href="./client/static/css/style.css" rel="stylesheet">
     </head>
 
     <body>
@@ -45,96 +46,31 @@
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">
+                                    <c:forEach items="${listCart}" var="cart">
                                         <tr>
                                             <td>
                                                 <div class="img">
-                                                    <a href="#"><img src="./static/img/product-1.jpg" alt="Image"></a>
-                                                    <p>Product Name</p>
+                                                    <a href="#"><img src="${cart.get(1) }" alt="Image"></a>
+                                                    <p>${cart.get(2) }</p>
                                                 </div>
                                             </td>
-                                            <td>$99</td>
+                                            <td>${cart.get(3) }</td>
                                             <td>
                                                 <div class="qty">
                                                     <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
+                                                    <input type="text" value="${cart.get(4) }">
                                                     <button class="btn-plus"><i class="fa fa-plus"></i></button>
                                                 </div>
                                             </td>
-                                            <td>$99</td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
+                                            <td>${cart.get(3) * cart.get(4) }</td>
+                                            <td>
+                                            <a href="${pageContext.request.contextPath }/AddToCartController?command=remove&userID=1&productID=${cart.get(0)}">
+                                            <i class="fa fa-trash"></i>
+                                            </a>
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="img">
-                                                    <a href="#"><img src="./static/img/product-2.jpg" alt="Image"></a>
-                                                    <p>Product Name</p>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="img">
-                                                    <a href="#"><img src="./static/img/product-3.jpg" alt="Image"></a>
-                                                    <p>Product Name</p>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="img">
-                                                    <a href="#"><img src="./static/img/product-4.jpg" alt="Image"></a>
-                                                    <p>Product Name</p>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="img">
-                                                    <a href="#"><img src="./static/img/product-5.jpg" alt="Image"></a>
-                                                    <p>Product Name</p>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
-                                            <td>$99</td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
+                                    </c:forEach>
+                                       
                                     </tbody>
                                 </table>
                             </div>
@@ -200,10 +136,10 @@
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <script src="./static/lib/easing/easing.min.js"></script>
-        <script src="./static/lib/slick/slick.min.js"></script>
+        <script src="./client/static/lib/easing/easing.min.js"></script>
+        <script src="./client/static/lib/slick/slick.min.js"></script>
         
         <!-- Template Javascript -->
-        <script src="./static/js/main.js"></script>
+        <script src="./client/static/js/main.js"></script>
     </body>
 </html>

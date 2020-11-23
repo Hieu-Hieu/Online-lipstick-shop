@@ -34,11 +34,11 @@ public class GetProduct {
 		st.setString(1, p.getProductID());
 		st.setString(2, p.getName());
 		st.setString(3, p.getCategoryID());
-		st.setString(4, p.getBrandID());
-		st.setString(5, p.getImgFirst());
-		st.setString(6, p.getImgLast());
-		st.setDouble(7, p.getPrice());
-		st.setString(8, p.getDescription());
+		st.setString(4, p.getImgFirst());
+		st.setString(5, p.getImgLast());
+		st.setDouble(6, p.getPrice());
+		st.setString(7, p.getDescription());
+		st.setString(8, p.getBrandID());
 		st.setInt(9, p.getQuantity());
 		if (st.executeUpdate() > 0) {
 			return true;
@@ -67,15 +67,34 @@ public class GetProduct {
 			product.setProductID(rs.getString("productID"));
 			product.setName(rs.getString("name"));
 			product.setCategoryID(rs.getString("categoryID"));
-			product.setBrandID(rs.getString("brandID"));
 			product.setImgFirst(rs.getString("imgFirst"));
 			product.setImgLast(rs.getString("imgLast"));
 			product.setPrice(rs.getDouble("price"));
 			product.setDescription(rs.getString("description"));
+			product.setBrandID(rs.getString("brandID"));
 			product.setQuantity(rs.getInt("quantity"));
 			list.add(product);
 		}
 		return list;
+	}
+
+	public Product getProductByID(String productID) throws SQLException {
+		Product product = new Product();
+		PreparedStatement st = conn.prepareStatement("select * from product where productID = ?");
+		st.setString(1, productID);
+		ResultSet rs = st.executeQuery();
+		while (rs.next()) {
+			product.setProductID(rs.getString("productID"));
+			product.setName(rs.getString("name"));
+			product.setCategoryID(rs.getString("categoryID"));
+			product.setImgFirst(rs.getString("imgFirst"));
+			product.setImgLast(rs.getString("imgLast"));
+			product.setPrice(rs.getDouble("price"));
+			product.setDescription(rs.getString("description"));
+			product.setBrandID(rs.getString("brandID"));
+			product.setQuantity(rs.getInt("quantity"));
+		}
+		return product;
 	}
 
 	public ArrayList<Product> getProductByCategoryID(String categoryID, int firstResult, int lastResult)
@@ -92,11 +111,11 @@ public class GetProduct {
 			product.setProductID(rs.getString("productID"));
 			product.setName(rs.getString("name"));
 			product.setCategoryID(rs.getString("categoryID"));
-			product.setBrandID(rs.getString("brandID"));
 			product.setImgFirst(rs.getString("imgFirst"));
 			product.setImgLast(rs.getString("imgLast"));
 			product.setPrice(rs.getDouble("price"));
 			product.setDescription(rs.getString("description"));
+			product.setBrandID(rs.getString("brandID"));
 			product.setQuantity(rs.getInt("quantity"));
 			list.add(product);
 		}
@@ -115,11 +134,11 @@ public class GetProduct {
 			product.setProductID(rs.getString("productID"));
 			product.setName(rs.getString("name"));
 			product.setCategoryID(rs.getString("categoryID"));
-			product.setBrandID(rs.getString("brandID"));
 			product.setImgFirst(rs.getString("imgFirst"));
 			product.setImgLast(rs.getString("imgLast"));
 			product.setPrice(rs.getDouble("price"));
 			product.setDescription(rs.getString("description"));
+			product.setBrandID(rs.getString("brandID"));
 			product.setQuantity(rs.getInt("quantity"));
 			list.add(product);
 		}

@@ -10,7 +10,7 @@
         <meta content="eCommerce HTML Template Free Download" name="description">
 
         <!-- Favicon -->
-        <link href="./static/img/favicon.ico" rel="icon">
+        <link href="./client/static/img/favicon.ico" rel="icon">
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
@@ -18,11 +18,11 @@
         <!-- CSS Libraries -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-        <link href="./static/lib/slick/slick.css" rel="stylesheet">
-        <link href="./static/lib/slick/slick-theme.css" rel="stylesheet">
+        <link href="./client/static/lib/slick/slick.css" rel="stylesheet">
+        <link href="./client/static/lib/slick/slick-theme.css" rel="stylesheet">
 
         <!-- Template Stylesheet -->
-        <link href="./static/css/style.css" rel="stylesheet">
+        <link href="./client/static/css/style.css" rel="stylesheet">
     </head>
 
     <body>
@@ -132,10 +132,10 @@
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <script src="./static/lib/easing/easing.min.js"></script>
-        <script src="./static/lib/slick/slick.min.js"></script>
+        <script src="./client/static/lib/easing/easing.min.js"></script>
+        <script src="./client/static/lib/slick/slick.min.js"></script>
         
         <!-- Template Javascript -->
-        <script src="./static/js/main.js"></script>
+        <script src="./client/static/js/main.js"></script>
     </body>
 </html>
