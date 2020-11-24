@@ -3,7 +3,6 @@ package controller.user;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,12 +47,13 @@ public class AddToCartController extends HttpServlet {
 		try {
 			switch (command) {
 			case "add":
+				int quantity = Integer.parseInt(request.getParameter("quantity"));
 				if (getCart.checkExist(userID, productID)) {
-					if (getCart.updateProductQuantity(userID, productID, 1)) {
+					if (getCart.updateProductQuantity(userID, productID, quantity)) {
 						url = "/product-list.jsp";
 					}
 				} else {
-					if (getCart.addToCart(userID, productID, 1)) {
+					if (getCart.addToCart(userID, productID, quantity)) {
 						url = "/product-list.jsp";
 					}
 				}
@@ -69,8 +69,9 @@ public class AddToCartController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-		dispatcher.forward(request, response);
+		response.sendRedirect(request.getContextPath() + url);
+//		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+//		dispatcher.forward(request, response);
 	}
 
 	/**

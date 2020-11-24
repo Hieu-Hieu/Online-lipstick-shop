@@ -24,6 +24,16 @@ public class GetCart {
 		return false;
 	}
 
+	public int totalProduct(String userID) throws SQLException {
+		PreparedStatement pst = conn.prepareStatement("select sum(quantity) as quantity from cart where userID = ?");
+		pst.setString(1, userID);
+		ResultSet rs = pst.executeQuery();
+		while (rs.next()) {
+			return rs.getInt("quantity");
+		}
+		return 0;
+	}
+
 	public boolean delete(String userID, String productID) throws SQLException {
 		PreparedStatement pst = conn.prepareStatement("delete from cart where userID = ? and productID = ?");
 		pst.setString(1, userID);
