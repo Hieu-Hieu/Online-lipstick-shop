@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="get.GetCart" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,7 +75,12 @@
                         <div class="user">
                             <a href="${pageContext.request.contextPath }/CartController?userID=1" class="btn cart">
                                 <i class="fa fa-shopping-cart"></i>
-                                <span>(0)</span>
+                                <span>
+								<%GetCart gc = new GetCart();
+								
+								%>
+								<%=gc.totalProduct("1") %>
+								</span>
                             </a>
                         </div>
                     </div>

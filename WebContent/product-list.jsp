@@ -102,7 +102,7 @@
 	                                            <img src="<%=l.getImgFirst() %>" alt="Product Image">
 	                                        </a>
 	                                        <div class="product-action">
-	                                            <a href="${pageContext.request.contextPath}/AddToCartController?command=add&userID=1&productID=<%=l.getProductID()%>"><i class="fa fa-cart-plus"></i></a>
+	                                            <a href="${pageContext.request.contextPath}/AddToCartController?command=add&userID=1&productID=<%=l.getProductID()%>&quantity=1"><i class="fa fa-cart-plus"></i></a>
 	                                            <a href="#"><i class="fa fa-heart"></i></a>
 	                                            <a href="${pageContext.request.contextPath}/ProductDetailController?productID=<%=l.getProductID()%>">Chi Tiết</a>
 	                                        </div>
