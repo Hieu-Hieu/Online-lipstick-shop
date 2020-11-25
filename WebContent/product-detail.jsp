@@ -70,23 +70,25 @@
 											<span>$149</span>
 										</p>
 									</div>
-									<div class="quantity">
-										<h4>Số lượng:</h4>
-										<div class="qty">
-											<button class="btn-minus">
-												<i class="fa fa-minus"></i>
-											</button>
-											<input type="text" value="1" name="quantity">
-											<button class="btn-plus">
-												<i class="fa fa-plus"></i>
-											</button>
+									<form action="${pageContext.request.contextPath }/AddToCartController?command=add&userID=1&productID=${product.getProductID()}" method="post">
+										<div class="quantity">
+											<h4>Số lượng:</h4>
+											<div class="qty">
+												<button class="btn-minus" type="button">
+													<i class="fa fa-minus"></i>
+												</button>
+												<input type="text" value="1" name="quantity">
+												<button class="btn-plus" type="button">
+													<i class="fa fa-plus"></i>
+												</button>
+											</div>
 										</div>
-									</div>
-									<div class="action">
-										<a class="btn"
-											href="${pageContext.request.contextPath }/AddToCartController?command=add&userID=1&productID=${product.getProductID()}&quantity=5"><i
-											class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
-									</div>
+										<div class="action">
+											<button class="btn" type="submit"
+												href=""><i
+												class="fa fa-shopping-cart"></i>Thêm vào giỏ</button>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>

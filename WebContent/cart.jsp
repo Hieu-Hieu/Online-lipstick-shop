@@ -56,19 +56,22 @@
                                             </td>
                                             <td>${cart.get(3) }</td>
                                             <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="${cart.get(4) }">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
+                                            <form action="${pageContext.request.contextPath }/AddToCartController?command=update&userID=1&productID=${cart.get(0)}" method="post">
+                                                <div class="qty"">
+                                                    <button class="btn-minus" type="button"><i class="fa fa-minus"></i></button>
+                                                    <input type="text" value="${cart.get(4) }" name="quantity">
+                                                    <button class="btn-plus" type="button"><i class="fa fa-plus"></i></button>
                                                 </div>
+                                                    <button class="" type="submit"><i class="far fa-save"></i></button>
+                                            </form>
                                             </td>
                                             <td>${cart.get(3) * cart.get(4) }</td>
                                             <td>
-                                            <a href="${pageContext.request.contextPath }/AddToCartController?command=remove&userID=1&productID=${cart.get(0)}">
-                                            <i class="fa fa-trash"></i>
-                                            </a>
-                                            </td>
-                                        </tr>
+												<a href="${pageContext.request.contextPath }/AddToCartController?command=remove&userID=1&productID=${cart.get(0)}">
+													<i class="fa fa-trash"></i>
+												</a>
+											</td>
+										</tr>
                                     </c:forEach>
                                        
                                     </tbody>
@@ -76,7 +79,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                     <div class="col-lg-4">
                         <div class="cart-page-inner">
                             <div class="row">
                                 <div class="col-md-12">
@@ -126,6 +129,7 @@
                             </div>
                         </div>
                     </div>
+                   
                 </div>
             </div>
         </div>

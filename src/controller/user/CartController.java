@@ -42,7 +42,6 @@ public class CartController extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String userID = request.getParameter("userID");
 		userID = "1";
-		System.out.println("lan1");
 		GetCart getCart = new GetCart();
 		ArrayList<List> listCart = new ArrayList<List>();
 		String url = "";
