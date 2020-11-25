@@ -101,9 +101,19 @@ public class GetCart {
 
 	public boolean updateProductQuantity(String userID, String productID, int quantity) throws SQLException {
 		int q = productQuantity(userID, productID) + quantity;
-		System.out.println(q);
 		PreparedStatement pst = conn.prepareCall("update cart set quantity = ? where userID = ? and productID = ?");
 		pst.setInt(1, q);
+		pst.setString(2, userID);
+		pst.setString(3, productID);
+		if (pst.executeUpdate() > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean updateProductQuantityInCart(String userID, String productID, int quantity) throws SQLException {
+		PreparedStatement pst = conn.prepareCall("update cart set quantity = ? where userID = ? and productID = ?");
+		pst.setInt(1, quantity);
 		pst.setString(2, userID);
 		pst.setString(3, productID);
 		if (pst.executeUpdate() > 0) {

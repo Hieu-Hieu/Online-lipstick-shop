@@ -1,7 +1,6 @@
 package controller.user;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,6 +34,19 @@ public class AddToCartController extends HttpServlet {
 			throws ServletException, IOException {
 		doPost(request, response);
 		// TODO Auto-generated method stub
+
+//		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+//		dispatcher.forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+//		doGet(request, response);
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -59,29 +71,23 @@ public class AddToCartController extends HttpServlet {
 				}
 				break;
 			case "remove":
-				System.out.println("remove");
 				getCart.delete(userID, productID);
 				url = "/CartController";
 				break;
+			case "update":
+				System.out.println("sdfs");
+				int quantity1 = Integer.parseInt(request.getParameter("quantity"));
+				if (getCart.updateProductQuantityInCart(userID, productID, quantity1)) {
+					url = "/CartController";
+				}
 			}
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.print(e);
+//			e.printStackTrace();
 		}
 		response.sendRedirect(request.getContextPath() + url);
-//		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-//		dispatcher.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		doGet(request, response);
 	}
 
 }
