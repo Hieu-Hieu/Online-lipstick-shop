@@ -64,6 +64,20 @@ public class GetCart {
 		return ListCart;
 	}
 
+	public double totalCart(String userID) throws SQLException {
+		PreparedStatement pst = conn.prepareStatement(
+				"SELECT c.quantity as quantity, p.price as price FROM (select productID, quantity from cart where userID = ?) as c inner join product p on c.productID= p.productID");
+		pst.setString(1, userID);
+		ResultSet rs = pst.executeQuery();
+		double totalCart = 0;
+
+		while (rs.next()) {
+			totalCart += rs.getDouble("price") * rs.getInt("quantity");
+		}
+		System.out.println(totalCart);
+		return totalCart;
+
+	}
 //	public ArrayList<Cart> getCartByUserID(String userID) throws SQLException {
 //		ArrayList<Cart> ListCart = new ArrayList<Cart>();
 //		PreparedStatement pst = conn.prepareStatement("select * from cart where userID = ?");
