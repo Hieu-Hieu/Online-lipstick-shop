@@ -50,6 +50,8 @@ public class CartController extends HttpServlet {
 			if (getCart.checkUserExist(userID)) {
 				listCart = getCart.getCartByUserID(userID);
 				request.setAttribute("listCart", listCart);
+				request.setAttribute("totalCart", getCart.totalCart(userID));
+				System.out.println("dai");
 				url = "/cart.jsp";
 			}
 		} catch (
@@ -59,7 +61,7 @@ public class CartController extends HttpServlet {
 //			System.out.println(e);
 			e.printStackTrace();
 		}
-		url = "/cart.jsp";
+//		url = "/cart.jsp";
 //		RequestDispatcher dipatcher = getServletContext().requestDi
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);

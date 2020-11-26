@@ -1,3 +1,4 @@
+<%@page import="model.Cart"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -46,6 +47,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">
+                             
                                     <c:forEach items="${listCart}" var="cart">
                                         <tr>
                                             <td>
@@ -85,7 +87,8 @@
                                 <div class="col-md-12">
                                     <div class="cart-summary">
                                         <div class="cart-content">
-                                            <h1>Tổng thanh toán<span>   $100</span></h1>
+                                            <h1>Tổng thanh toán<span> ${totalCart }</span></h1>
+                                            
                                             <hr>
                                         </div>
                                         <div class="cart-btn">

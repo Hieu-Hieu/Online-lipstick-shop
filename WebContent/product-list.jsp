@@ -126,8 +126,8 @@
                                     <%
                                     int tong = p.totalPage();
                                     if(tong > 1){
-                                    for(int i=0 ; i < tong;i ++ ){%>
-                                    <li class="page-item active"><a class="page-link" href="#"><%=i %></a></li>                                    	
+                                    for(int i=1 ; i <= tong;i ++ ){%>
+                                    <li class="page-item"><a class="page-link" href="#"><%=i %></a></li>                                    	
                                     <% }%>
                                     	
                                     <% }%>

@@ -1,6 +1,7 @@
 package controller.user;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -75,17 +76,16 @@ public class AddToCartController extends HttpServlet {
 				url = "/CartController";
 				break;
 			case "update":
-				System.out.println("sdfs");
 				int quantity1 = Integer.parseInt(request.getParameter("quantity"));
 				if (getCart.updateProductQuantityInCart(userID, productID, quantity1)) {
 					url = "/CartController";
 				}
 			}
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.print(e);
-//			e.printStackTrace();
+//			System.out.print(e);
+			e.printStackTrace();
 		}
 		response.sendRedirect(request.getContextPath() + url);
 	}
