@@ -36,7 +36,7 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto">
                         <a href="index.jsp" class="nav-item nav-link active">Trang chủ</a>
-                        <a href="product-list.jsp" class="nav-item nav-link">Danh sách sản phẩm</a>
+                        <a href="${pageContext.request.contextPath }/ProductList?currentPage=1" class="nav-item nav-link">Danh sách sản phẩm</a>
                         <a href="product-detail.jsp" class="nav-item nav-link">Sản phẩm chi tiết</a>
                         <a href="cart.jsp" class="nav-item nav-link">Giỏ hàng</a>
                         <a href="my-account.jsp" class="nav-item nav-link">Tài khoản</a>

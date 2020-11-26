@@ -11,6 +11,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <title>E Store - eCommerce HTML Template</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -86,53 +87,74 @@
                                 </div>
                             </div>
                             
-                           
-                            <%
-							
-							ArrayList<Product> list = new ArrayList<Product>();
-							list = p.getAllProduct(0, 9);
-                       		for(Product l : list){%>
-	                       		<div class="col-md-4">
-	                                <div class="product-item">
-	                                    <div class="product-title">
-	                                        <a href=""><%=l.getName() %></a>
-	                                    </div>
-	                                    <div class="product-image">
-	                                        <a href="product-detail.jsp">
-	                                            <img src="<%=l.getImgFirst() %>" alt="Product Image">
-	                                        </a>
-	                                        <div class="product-action">
-	                                            <a href="${pageContext.request.contextPath}/AddToCartController?command=add&userID=1&productID=<%=l.getProductID()%>&quantity=1"><i class="fa fa-cart-plus"></i></a>
-	                                            <a href="#"><i class="fa fa-heart"></i></a>
-	                                            <a href="${pageContext.request.contextPath}/ProductDetailController?productID=<%=l.getProductID()%>">Chi Tiết</a>
-	                                        </div>
-	                                    </div>
-	                                    <div class="product-price">
-	                                        <h3><span>$</span><%=l.getPrice() %></h3>
-	                                        <a class="btn" href="${pageContext.request.contextPath}/AddToCartController?command=add&userID=1&productID=<%=l.getProductID()%>"><i class="fa fa-shopping-cart"></i>Mua ngay</a>
-	                                    </div>
-	                                </div>
-	                            </div>
-                       		<%}%>
+                       		<c:forEach items="${listProduct}" var="p">
+								<div class="col-md-4">
+									<div class="product-item">
+										<div class="product-title">
+											<a href="">${p.getName() }</a>
+										</div>
+										<div class="product-image">
+											<a href="product-detail.jsp"> <img
+												src="${p.getImgFirst() }" alt="Product Image">
+											</a>
+											<div class="product-action">
+												<a
+													href="${pageContext.request.contextPath}/AddToCartController?command=add&userID=1&productID=${p.getProductID() }&quantity=1"><i
+													class="fa fa-cart-plus"></i></a> <a href="#"><i
+													class="fa fa-heart"></i></a> <a
+													href="${pageContext.request.contextPath}/ProductDetailController?productID=${p.getProductID() }">Chi
+													Tiết</a>
+											</div>
+										</div>
+										<div class="product-price">
+											<h3>
+												<span>$</span>${p.getPrice() }</h3>
+											<a class="btn"
+												href="${pageContext.request.contextPath}/AddToCartController?command=add&userID=1&productID=${p.getProductID() }"><i
+												class="fa fa-shopping-cart"></i>Mua ngay</a>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
                         </div>
                         
                         <!-- Pagination Start -->
                         <div class="col-md-12">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                <%String currentPage = request.getParameter("currentPage");%>
+                                    	<%
+                                    	if(Integer.parseInt(currentPage) > 1){%>
+                                    	<li class="page-item">
+                                    	
+                                    	<%}else{ %>
+                                    	  <li class="page-item disabled">
+                                    	<%} %>
+	                                        <a class="page-link" href="${pageContext.request.contextPath }/ProductList?currentPage=<%=Integer.parseInt(currentPage) - 1 %>" tabindex="-1">Previous</a>
                                     </li>
                                     <%
                                     int tong = p.totalPage();
+                                    if (currentPage == null){
+                                    	request.setAttribute("currentPage", "1");
+                                    }
                                     if(tong > 1){
-                                    for(int i=1 ; i <= tong;i ++ ){%>
-                                    <li class="page-item"><a class="page-link" href="#"><%=i %></a></li>                                    	
+                                    for(int i = 1 ; i <= tong;i ++ ){%>
+                                    <li class="page-item <%if(i == Integer.parseInt(request.getParameter("currentPage"))){
+                                    %>
+                                    active
+                                    <%}%>>"><a class="page-link" href="${pageContext.request.contextPath }/ProductList?currentPage=<%=i %>"><%=i %></a></li>                                    	
                                     <% }%>
                                     	
                                     <% }%>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
+                                    
+                                    <%
+                                    	if(Integer.parseInt(currentPage) < tong){%>
+                                    	<li class="page-item">
+                                    	
+                                    	<%}else{ %>
+                                    	  <li class="page-item disabled">
+                                    	<%} %>
+	                                        <a class="page-link" href="${pageContext.request.contextPath }/ProductList?currentPage=<%=Integer.parseInt(currentPage) + 1 %>">Next</a>
                                     </li>
                                 </ul>
                             </nav>
