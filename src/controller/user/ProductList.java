@@ -3,7 +3,6 @@ package controller.user;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,19 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import get.GetCart;
+import get.GetProduct;
+import model.Product;
 
 /**
- * Servlet implementation class CartController
+ * Servlet implementation class ProductList
  */
-@WebServlet("/CartController")
-public class CartController extends HttpServlet {
+@WebServlet("/ProductList")
+public class ProductList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CartController() {
+	public ProductList() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -36,34 +36,24 @@ public class CartController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doPost(request, response);
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String userID = request.getParameter("userID");
-		userID = "1";
-		GetCart getCart = new GetCart();
-		ArrayList<List> listCart = new ArrayList<List>();
+		String currentPage = request.getParameter("currentPage");
+		GetProduct gp = new GetProduct();
+		ArrayList<Product> listProduct = new ArrayList<Product>();
 		String url = "";
 		try {
-
-			if (getCart.checkUserExist(userID)) {
-				listCart = getCart.getCartByUserID(userID);
-				request.setAttribute("listCart", listCart);
-				request.setAttribute("totalCart", getCart.totalCart(userID));
-				url = "/cart.jsp";
-			}
-		} catch (
-
-		SQLException e) {
+			listProduct = gp.getAllProduct(Integer.parseInt(currentPage) * 9 - 9, 9);
+			request.setAttribute("listProduct", listProduct);
+			url = "/product-list.jsp";
+		} catch (NumberFormatException | SQLException e) {
 			// TODO Auto-generated catch block
-//			System.out.println(e);
 			e.printStackTrace();
 		}
-//		url = "/cart.jsp";
-//		RequestDispatcher dipatcher = getServletContext().requestDi
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);
+//		response.sendRedirect(request.getContextPath() + url);
 	}
 
 	/**
@@ -73,8 +63,7 @@ public class CartController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		doGet(request, response);
-
+		doGet(request, response);
 	}
 
 }
