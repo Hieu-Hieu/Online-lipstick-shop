@@ -1,10 +1,15 @@
 package model;
 
+import model.Category;
+import model.Brand;
+
 public class Product {
 	private String productID;
 	private String name;
 	private String categoryID;
+	private Category category;
 	private String brandID;
+	private Brand brand;
 	private String imgFirst;
 	private String imgLast;
 	private double price;
@@ -14,19 +19,23 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(String productID, String name, String categoryID, String brandID, String imgFirst, String imgLast,
-			double price, String description, int quantity) {
+
+	public Product(String productID, String name, String categoryID, Category category, String brandID, Brand brand,
+			String imgFirst, String imgLast, double price, String description, int quantity) {
 		super();
 		this.productID = productID;
 		this.name = name;
 		this.categoryID = categoryID;
+		this.category = category;
 		this.brandID = brandID;
+		this.brand = brand;
 		this.imgFirst = imgFirst;
 		this.imgLast = imgLast;
 		this.price = price;
 		this.description = description;
 		this.quantity = quantity;
 	}
+
 
 	public String getProductID() {
 		return productID;
@@ -98,5 +107,21 @@ public class Product {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public Brand getBrand() {
+		return brand;
+	}
+
+	public void setBrand(Brand brand) {
+		this.brand = brand;
 	}
 }

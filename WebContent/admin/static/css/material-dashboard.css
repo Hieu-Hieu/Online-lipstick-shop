@@ -50,6 +50,21 @@ section {
   display: block;
 }
 
+.ttt {
+  width: 150vh;
+  margin-left: auto;
+  margin-right: auto;
+}
+textarea {
+  width: 100%;
+  height: 150px;
+  margin: 0;
+  border: 1px solid #CCC;
+  border-radius: 10px;
+  font-size: 13px;
+  font-family: monospace;  
+}
+
 body {
   margin: 0;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;

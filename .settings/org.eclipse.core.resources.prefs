@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//WebContent/admin/addProduct.jsp=UTF-8
 encoding//src/connect/DBConnect.java=UTF-8
 encoding//src/controller/user/UserController.java=UTF-8
 encoding//src/get/GetUser.java=UTF-8
