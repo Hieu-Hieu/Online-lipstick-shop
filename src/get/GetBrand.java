@@ -66,4 +66,20 @@ public class GetBrand {
 	        }
 	        return list;
 	    }
+	 
+	 public Brand getBrandByID(String brandID) throws SQLException {
+	        Connection connection = DBConnect.getConnecttion();
+	        String sql =  "SELECT * FROM brand WHERE brandID = ?";
+	        PreparedStatement ps = connection.prepareStatement(sql);
+	        ps.setString(1, brandID);
+	        ResultSet rs = ps.executeQuery();
+	        Brand brand = new Brand();
+	        while (rs.next()) {
+	            
+	            brand.setBrandID(rs.getString("brandID"));
+	            brand.setBrandName(rs.getString("brandName"));
+	           
+	        }
+	        return brand;
+	    }
 }

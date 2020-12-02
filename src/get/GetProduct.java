@@ -5,14 +5,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import get.GetCategory;
+import get.GetBrand;
+import model.Brand;
+import model.Category;
 
 import connect.DBConnect;
 import model.Product;
 
 public class GetProduct {
+	
 	DBConnect mydb = new DBConnect();
 	Connection conn = mydb.getConnecttion();
-
+	GetCategory getCategory=new GetCategory();
+	GetBrand getBrand =new GetBrand();
+	
 	public int totalPage() throws SQLException {
 		int total = 0;
 		float result = 0;
@@ -63,15 +70,19 @@ public class GetProduct {
 		st.setInt(2, lastResult);
 		ResultSet rs = st.executeQuery();
 		while (rs.next()) {
+			Category category = getCategory.getCategoryByID(rs.getString("categoryID"));
+			Brand brand = getBrand.getBrandByID(rs.getString("brandID"));
 			Product product = new Product();
 			product.setProductID(rs.getString("productID"));
 			product.setName(rs.getString("name"));
 			product.setCategoryID(rs.getString("categoryID"));
+			product.setCategory(category);
 			product.setImgFirst(rs.getString("imgFirst"));
 			product.setImgLast(rs.getString("imgLast"));
 			product.setPrice(rs.getDouble("price"));
 			product.setDescription(rs.getString("description"));
 			product.setBrandID(rs.getString("brandID"));
+			product.setBrand(brand);
 			product.setQuantity(rs.getInt("quantity"));
 			list.add(product);
 		}
@@ -146,5 +157,7 @@ public class GetProduct {
 		return list;
 
 	}
-
+	
+	
+	
 }

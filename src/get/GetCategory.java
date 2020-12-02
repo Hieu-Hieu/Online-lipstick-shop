@@ -72,5 +72,22 @@ public class GetCategory {
 	        }
 	        return false;
 	    }
+	 public Category getCategoryByID(String categoryID) throws SQLException{
+		 String sql = "Select * FROM category WHERE categoryID = ?";
+		
+	            PreparedStatement ps = connection.prepareStatement(sql);
+	            ps.setString(1, categoryID);
+	            ResultSet rs = ps.executeQuery();
+	            Category category = new Category();
+	            while (rs.next()) {
+	        
+	                category.setCategoryID(rs.getString("categoryID"));
+	                category.setCategoryName(rs.getString("categoryName"));
+	               
+	            }
+	            return category;
+	 }
+	       
+
 	 
 }

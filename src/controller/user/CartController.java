@@ -55,8 +55,6 @@ public class CartController extends HttpServlet {
 		} catch (
 
 		SQLException e) {
-			// TODO Auto-generated catch block
-//			System.out.println(e);
 			e.printStackTrace();
 		}
 		url = "/cart.jsp";
