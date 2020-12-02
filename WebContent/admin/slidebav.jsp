@@ -45,6 +45,18 @@
               </a>
             </li>
             <li class="nav-item ">
+              <a class="nav-link" href="./brandmanager.jsp">
+                <i class="fa fa-university" aria-hidden="true"></i>
+                <p>Quản lí nhà sản xuất</p>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="./catelogymanager.jsp">
+                <i class="fa fa-adjust" aria-hidden="true"></i>
+                <p>Quản lí loại sản phẩm</p>
+              </a>
+            </li>
+            <li class="nav-item ">
               <a class="nav-link" href="./profile.jsp">
                 <i class="fa fa-cog" aria-hidden="true"></i>
                 <p>Tài khoản</p>
