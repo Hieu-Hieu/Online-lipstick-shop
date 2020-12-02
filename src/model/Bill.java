@@ -5,27 +5,28 @@ import java.sql.Date;
 import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
 
 public class Bill {
-	private String billID;
+	private int billID;
 	private String userID;
 	private String address;
 	private Date date;
 	private double total;
+	private int paid; //values 0 or 1
 	
-
-	public Bill(String billID, String userID, double total ,String address, Date date) {
+	public Bill(int billID, String userID, String address, Date date, double total, int paid) {
 		super();
 		this.billID = billID;
 		this.userID = userID;
 		this.address = address;
 		this.date = date;
 		this.total = total;
+		this.paid = paid;
 	}
-	public Bill() {}
-	public String getBillID() {
+
+	public int getBillID() {
 		return billID;
 	}
 
-	public void setBillID(String billID) {
+	public void setBillID(int billID) {
 		this.billID = billID;
 	}
 
@@ -59,5 +60,13 @@ public class Bill {
 
 	public void setTotal(double total) {
 		this.total = total;
-	}	
+	}
+
+	public int getPaid() {
+		return paid;
+	}
+
+	public void setPaid(int paid) {
+		this.paid = paid;
+	}
 }
