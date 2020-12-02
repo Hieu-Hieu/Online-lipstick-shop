@@ -12,6 +12,8 @@ public class Bill {
 	private double total;
 	private int paid; //values 0 or 1
 	
+	public Bill() {}
+	
 	public Bill(int billID, String userID, String address, Date date, double total, int paid) {
 		super();
 		this.billID = billID;
