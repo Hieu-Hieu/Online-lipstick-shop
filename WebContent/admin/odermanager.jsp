@@ -1,5 +1,8 @@
+<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="model.*"%>
+<%@page import="get.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +20,11 @@
 </head>
 
 <body class="">
+<% 
+GetBill getbill =new GetBill();
+List <Bill> listBill =new ArrayList<Bill>();
+listBill= getbill.getListBill();
+%>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="slidebav.jsp"></jsp:include>
   <div class="wrapper ">
@@ -54,126 +62,33 @@
                         </th>
                       </thead>
                       <tbody>
+                      <% for(Bill b : listBill){ %>
                         <tr>
                           <td>
-                            123
+                            <%=b.getBillID() %>
                           </td>
                           <td>
-                            Nguyễn Văn A 
+                            <%=b.getUserID()%>
                           </td>
                           <td>
-                            Dĩ An
+                            <%= b.getAddress() %>
                           </td>
                           <td>
-                            300,000 vnđ
+                            <%= b.getTotal() %>VNĐ
                           </td>
                           <td>
-                            Đã giao
+                            <% if(b.getPaid()==1)
+                            	%>
+                            	Đã thanh toán
+                            
+                            <% if(b.getPaid()==0)
+                            	%> Chưa thanh toán
                           </td>
                           <td>
                             <a>Xem chi tiết</a>
-                          </td>
+                          </td>   
                         </tr>
-                        <tr>
-                          <td>
-                            123
-                          </td>
-                          <td>
-                            Nguyễn Văn A 
-                          </td>
-                          <td>
-                            Dĩ An
-                          </td>
-                          <td>
-                            300,000 vnđ
-                          </td>
-                          <td>
-                            Đã giao
-                          </td>
-                          <td>
-                            <a>Xem chi tiết</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            123
-                          </td>
-                          <td>
-                            Nguyễn Văn A 
-                          </td>
-                          <td>
-                            Dĩ An
-                          </td>
-                          <td>
-                            300,000 vnđ
-                          </td>
-                          <td>
-                            Đã giao
-                          </td>
-                          <td>
-                            <a>Xem chi tiết</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            123
-                          </td>
-                          <td>
-                            Nguyễn Văn A 
-                          </td>
-                          <td>
-                            Dĩ An
-                          </td>
-                          <td>
-                            300,000 vnđ
-                          </td>
-                          <td>
-                            Đã giao
-                          </td>
-                          <td>
-                            <a>Xem chi tiết</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            123
-                          </td>
-                          <td>
-                            Nguyễn Văn A 
-                          </td>
-                          <td>
-                            Dĩ An
-                          </td>
-                          <td>
-                            300,000 vnđ
-                          </td>
-                          <td>
-                            Đã giao
-                          </td>
-                          <td>
-                            <a>Xem chi tiết</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            123
-                          </td>
-                          <td>
-                            Nguyễn Văn A 
-                          </td>
-                          <td>
-                            Dĩ An
-                          </td>
-                          <td>
-                            300,000 vnđ
-                          </td>
-                          <td>
-                            Đã giao
-                          </td>
-                          <td>
-                            <a>Xem chi tiết</a>
-                          </td>
-                        </tr>
+                        <%} %>
                         
                       </tbody>
                     </table>
