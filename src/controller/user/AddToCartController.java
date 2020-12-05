@@ -63,11 +63,15 @@ public class AddToCartController extends HttpServlet {
 				int quantity = Integer.parseInt(request.getParameter("quantity"));
 				if (getCart.checkExist(userID, productID)) {
 					if (getCart.updateProductQuantity(userID, productID, quantity)) {
-						url = "/product-list.jsp";
+						if (request.getParameter("cart").equals("no"))
+							url = "/ProductList?currentPage=" + request.getParameter("currentPage");
+						else {
+							url = "/CartController";
+						}
 					}
 				} else {
 					if (getCart.addToCart(userID, productID, quantity)) {
-						url = "/product-list.jsp";
+						url = "/ProductList?currentPage=" + request.getParameter("currentPage");
 					}
 				}
 				break;

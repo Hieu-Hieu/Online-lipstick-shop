@@ -5,9 +5,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="get.GetProduct" %>    
 <%@page import="model.Product" %>
-
+<%@page import="java.text.DecimalFormat" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -36,6 +37,9 @@
 
     <body>
     <%GetProduct p = new GetProduct(); %>
+    <%String currentPage = request.getParameter("currentPage");
+    DecimalFormat format = new DecimalFormat("###,###,###");
+    %>
     <jsp:include page="header.jsp"></jsp:include>
         <!-- Product List Start -->
         <div class="product-view">
@@ -98,11 +102,10 @@
 												src="${p.getImgFirst() }" alt="Product Image">
 											</a>
 											<div class="product-action">
-												<a
-													href="${pageContext.request.contextPath}/AddToCartController?command=add&userID=1&productID=${p.getProductID() }&quantity=1"><i
-													class="fa fa-cart-plus"></i></a> <a href="#"><i
-													class="fa fa-heart"></i></a> <a
-													href="${pageContext.request.contextPath}/ProductDetailController?productID=${p.getProductID() }">Chi
+												<a href="${pageContext.request.contextPath}/AddToCartController?cart=no&command=add&userID=1&productID=${p.getProductID() }&quantity=1&currentPage=<%=currentPage%>"><i
+													class="fa fa-cart-plus"></i></a> 
+													<a href="#"><i class="fa fa-heart"></i></a> 
+													<a href="${pageContext.request.contextPath}/ProductDetailController?productID=${p.getProductID() }">Chi
 													Tiết</a>
 											</div>
 										</div>
@@ -110,7 +113,7 @@
 											<h3>
 												<span>$</span>${p.getPrice() }</h3>
 											<a class="btn"
-												href="${pageContext.request.contextPath}/AddToCartController?command=add&userID=1&productID=${p.getProductID() }"><i
+												href="${pageContext.request.contextPath}/AddToCartController?cart=open&command=add&userID=1&productID=${p.getProductID() }&quantity=1&currentPage=<%=currentPage%>"><i
 												class="fa fa-shopping-cart"></i>Mua ngay</a>
 										</div>
 									</div>
@@ -122,7 +125,7 @@
                         <div class="col-md-12">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center">
-                                <%String currentPage = request.getParameter("currentPage");%>
+                                
                                     	<%
                                     	if(Integer.parseInt(currentPage) > 1){%>
                                     	<li class="page-item">

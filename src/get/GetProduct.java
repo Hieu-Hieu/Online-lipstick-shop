@@ -58,6 +58,7 @@ public class GetProduct {
 
 	public ArrayList<Product> getAllProduct(int firstResult, int lastResult) throws SQLException {
 		ArrayList<Product> list = new ArrayList<Product>();
+
 		PreparedStatement st = conn.prepareStatement("select * from product limit ?, ?");
 		st.setInt(1, firstResult);
 		st.setInt(2, lastResult);

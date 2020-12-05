@@ -60,7 +60,7 @@ public class CartController extends HttpServlet {
 //			System.out.println(e);
 			e.printStackTrace();
 		}
-//		url = "/cart.jsp";
+		url = "/cart.jsp";
 //		RequestDispatcher dipatcher = getServletContext().requestDi
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);
