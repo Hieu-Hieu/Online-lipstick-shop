@@ -148,4 +148,26 @@ public class GetProduct {
 
 	}
 
+	// search
+	public ArrayList<Product> search(String input) throws SQLException {
+		ArrayList<Product> list = new ArrayList<Product>();
+		PreparedStatement pst = conn.prepareStatement("select * from product where name like % ? %");
+		pst.setString(1, input);
+		ResultSet rs = pst.executeQuery();
+		while (rs.next()) {
+			Product product = new Product();
+			product.setProductID(rs.getString("productID"));
+			product.setName(rs.getString("name"));
+			product.setCategoryID(rs.getString("categoryID"));
+			product.setImgFirst(rs.getString("imgFirst"));
+			product.setImgLast(rs.getString("imgLast"));
+			product.setPrice(rs.getDouble("price"));
+			product.setDescription(rs.getString("description"));
+			product.setBrandID(rs.getString("brandID"));
+			product.setQuantity(rs.getInt("quantity"));
+			list.add(product);
+		}
+		return list;
+	}
+
 }

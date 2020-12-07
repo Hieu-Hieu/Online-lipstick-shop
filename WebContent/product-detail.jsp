@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@page import="model.Product"%>
 <%@page import="get.GetProduct"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,7 +67,9 @@
 									</div>
 									<div class="price">
 										<h4>Giá:</h4>
-										<p>${product.getPrice() }
+										<fmt:formatNumber var="price" type="number" pattern="###,###,###" value="${product.getPrice() }"/>
+										<p>
+										${price }Đ
 											<span>$149</span>
 										</p>
 									</div>

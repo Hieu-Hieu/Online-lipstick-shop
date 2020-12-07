@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@page import="get.GetProduct" %>    
 <%@page import="model.Product" %>
 <%@page import="java.text.DecimalFormat" %>
@@ -36,10 +36,7 @@
     </head>
 
     <body>
-    <%GetProduct p = new GetProduct(); %>
-    <%String currentPage = request.getParameter("currentPage");
-    DecimalFormat format = new DecimalFormat("###,###,###");
-    %>
+  
     <jsp:include page="header.jsp"></jsp:include>
         <!-- Product List Start -->
         <div class="product-view">
@@ -102,7 +99,7 @@
 												src="${p.getImgFirst() }" alt="Product Image">
 											</a>
 											<div class="product-action">
-												<a href="${pageContext.request.contextPath}/AddToCartController?cart=no&command=add&userID=1&productID=${p.getProductID() }&quantity=1&currentPage=<%=currentPage%>"><i
+												<a href="${pageContext.request.contextPath}/AddToCartController?cart=no&command=add&userID=1&productID=${p.getProductID() }&quantity=1&currentPage=${currentPage}"><i
 													class="fa fa-cart-plus"></i></a> 
 													<a href="#"><i class="fa fa-heart"></i></a> 
 													<a href="${pageContext.request.contextPath}/ProductDetailController?productID=${p.getProductID() }">Chi
@@ -111,9 +108,10 @@
 										</div>
 										<div class="product-price">
 											<h3>
-												<span>$</span>${p.getPrice() }</h3>
+											<fmt:formatNumber var="price" type="number " pattern = "###,###,###" value="${p.getPrice()}" />
+												${price}<span>Đ</span></h3>
 											<a class="btn"
-												href="${pageContext.request.contextPath}/AddToCartController?cart=open&command=add&userID=1&productID=${p.getProductID() }&quantity=1&currentPage=<%=currentPage%>"><i
+												href="${pageContext.request.contextPath}/AddToCartController?cart=open&command=add&userID=1&productID=${p.getProductID() }&quantity=1&currentPage=${currentPage}"><i
 												class="fa fa-shopping-cart"></i>Mua ngay</a>
 										</div>
 									</div>
@@ -125,40 +123,50 @@
                         <div class="col-md-12">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center">
-                                
-                                    	<%
-                                    	if(Integer.parseInt(currentPage) > 1){%>
-                                    	<li class="page-item">
-                                    	
-                                    	<%}else{ %>
-                                    	  <li class="page-item disabled">
-                                    	<%} %>
-	                                        <a class="page-link" href="${pageContext.request.contextPath }/ProductList?currentPage=<%=Integer.parseInt(currentPage) - 1 %>" tabindex="-1">Previous</a>
+                                <c:choose>
+                                	<c:when test="${currentPage > 1}">
+                                		<li class="page-item">
+                                		 <a class="page-link" href="${pageContext.request.contextPath }/ProductList?currentPage=${currentPage - 1}" tabindex="-1">Previous</a>
                                     </li>
-                                    <%
-                                    int tong = p.totalPage();
-                                    if (currentPage == null){
-                                    	request.setAttribute("currentPage", "1");
-                                    }
-                                    if(tong > 1){
-                                    for(int i = 1 ; i <= tong;i ++ ){%>
-                                    <li class="page-item <%if(i == Integer.parseInt(request.getParameter("currentPage"))){
-                                    %>
-                                    active
-                                    <%}%>>"><a class="page-link" href="${pageContext.request.contextPath }/ProductList?currentPage=<%=i %>"><%=i %></a></li>                                    	
-                                    <% }%>
+                                	</c:when>
+                                	<c:otherwise>
+                                		<li class="page-item disabled">
+                                		 <a class="page-link" href="${pageContext.request.contextPath }/ProductList?currentPage=${currentPage - 1}" tabindex="-1">Previous</a>
+                                    </li>
+                                	</c:otherwise>
+                                </c:choose>
                                     	
-                                    <% }%>
+	                               
+                                    <c:if test="${totalPage > 1 }">
+                                    	<c:forEach begin="1" end="${totalPage }" var="page">
+                                    		<c:choose>
+                                    			<c:when test="${currentPage == page }">
+                                    				<li class="page-item active">
+                                    					<a class="page-link" href="${pageContext.request.contextPath }/ProductList?currentPage=${page}">${page }</a>
+                                    				</li> 
+                                    			</c:when>
+                                    			<c:otherwise>
+                                    				<li class="page-item">
+                                    					<a class="page-link" href="${pageContext.request.contextPath }/ProductList?currentPage=${page}">${page }</a>
+                                    				</li> 
+                                    			</c:otherwise>
+                                    		</c:choose>
+                                    	</c:forEach>
+                                    </c:if>
+                                   
+                                    <c:choose>
+                                    	<c:when test="${currentPage < totalPage }">
+                                    		<li class="page-item">
+                                    		<a class="page-link" href="${pageContext.request.contextPath }/ProductList?currentPage=${currentPage +1}">Next</a>
+                                    </li>
+                                    	</c:when>
+                                    	<c:otherwise>
+                                    		<li class="page-item disabled">
+                                    		<a class="page-link" href="${pageContext.request.contextPath }/ProductList?currentPage=${currentPage +1}">Next</a>
+                                    </li>
+                                    	</c:otherwise>
+                                    </c:choose>
                                     
-                                    <%
-                                    	if(Integer.parseInt(currentPage) < tong){%>
-                                    	<li class="page-item">
-                                    	
-                                    	<%}else{ %>
-                                    	  <li class="page-item disabled">
-                                    	<%} %>
-	                                        <a class="page-link" href="${pageContext.request.contextPath }/ProductList?currentPage=<%=Integer.parseInt(currentPage) + 1 %>">Next</a>
-                                    </li>
                                 </ul>
                             </nav>
                         </div>

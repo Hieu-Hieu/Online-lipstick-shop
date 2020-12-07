@@ -45,6 +45,9 @@ public class ProductList extends HttpServlet {
 		String url = "";
 		try {
 			listProduct = gp.getAllProduct(Integer.parseInt(currentPage) * 9 - 9, 9);
+			request.setAttribute("currentPage", currentPage);
+			request.setAttribute("totalPage", gp.totalPage());
+
 			request.setAttribute("listProduct", listProduct);
 			url = "/product-list.jsp";
 		} catch (NumberFormatException | SQLException e) {

@@ -80,9 +80,15 @@ public class AddToCartController extends HttpServlet {
 				url = "/CartController";
 				break;
 			case "update":
+				// nếu số lượng lớn hơn 1 thì cập nhật giỏ hàng ngược lại bằng 0 thì xóa khỏi
+				// giỏ hàng
 				int quantity1 = Integer.parseInt(request.getParameter("quantity"));
-				if (getCart.updateProductQuantityInCart(userID, productID, quantity1)) {
+				if (getCart.updateProductQuantityInCart(userID, productID, quantity1) && quantity1 > 0) {
 					url = "/CartController";
+				} else {
+					if (getCart.delete(userID, productID)) {
+						url = "/CartController";
+					}
 				}
 			}
 

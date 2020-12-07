@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -56,18 +57,22 @@
                                                     <p>${cart.get(2) }</p>
                                                 </div>
                                             </td>
-                                            <td>${cart.get(3) }</td>
+                                            
+                                            <td>
+                                            <fmt:formatNumber var="price" type="number" pattern="###,###,###" value="${cart.get(3)}"/>
+                                            ${price }Đ</td>
                                             <td>
                                             <form action="${pageContext.request.contextPath }/AddToCartController?command=update&userID=1&productID=${cart.get(0)}" method="post">
                                                 <div class="qty"">
                                                     <button class="btn-minus" type="button"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="${cart.get(4) }" name="quantity">
+                                                    <input type="text" value="${cart.get(4) }" name="quantity" >
                                                     <button class="btn-plus" type="button"><i class="fa fa-plus"></i></button>
                                                 </div>
                                                     <button class="" type="submit"><i class="far fa-save"></i></button>
                                             </form>
                                             </td>
-                                            <td>${cart.get(3) * cart.get(4) }</td>
+                                            <fmt:formatNumber var="totalPrice" type="number" pattern="###,###,###" value="${cart.get(3) * cart.get(4) }"/>
+                                            <td>${totalPrice }Đ</td>
                                             <td>
 												<a href="${pageContext.request.contextPath }/AddToCartController?command=remove&userID=1&productID=${cart.get(0)}">
 													<i class="fa fa-trash"></i>
@@ -87,7 +92,9 @@
                                 <div class="col-md-12">
                                     <div class="cart-summary">
                                         <div class="cart-content">
-                                            <h1>Tổng thanh toán<span> ${totalCart }</span></h1>
+                                            <h1>Tổng thanh toán
+                                            <fmt:formatNumber var="total" type="number" pattern="###,###,###" value="${totalCart }"/>
+                                            <span> ${total }Đ</span></h1>
                                             
                                             <hr>
                                         </div>

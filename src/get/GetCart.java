@@ -74,7 +74,6 @@ public class GetCart {
 		while (rs.next()) {
 			totalCart += rs.getDouble("price") * rs.getInt("quantity");
 		}
-		System.out.println(totalCart);
 		return totalCart;
 
 	}
