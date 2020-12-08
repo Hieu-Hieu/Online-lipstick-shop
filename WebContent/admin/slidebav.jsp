@@ -45,13 +45,13 @@
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="./brandmanager.jsp">
+              <a class="nav-link" href="/LipStickShop/brand-manager">
                 <i class="fa fa-university" aria-hidden="true"></i>
                 <p>Quản lí nhà sản xuất</p>
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="./catelogymanager.jsp">
+              <a class="nav-link" href="/LipStickShop/category-manager">
                 <i class="fa fa-adjust" aria-hidden="true"></i>
                 <p>Quản lí loại sản phẩm</p>
               </a>

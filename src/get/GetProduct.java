@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import get.GetCategory;
-import get.GetBrand;
+import get.CategoryDAO;
+import get.BrandDAO;
 import model.Brand;
 import model.Category;
 
@@ -17,8 +17,8 @@ public class GetProduct {
 	
 	DBConnect mydb = new DBConnect();
 	Connection conn = mydb.getConnecttion();
-	GetCategory getCategory=new GetCategory();
-	GetBrand getBrand =new GetBrand();
+	CategoryDAO getCategory=new CategoryDAO();
+	BrandDAO getBrand =new BrandDAO();
 	
 	public int totalPage() throws SQLException {
 		int total = 0;
@@ -70,8 +70,8 @@ public class GetProduct {
 		st.setInt(2, lastResult);
 		ResultSet rs = st.executeQuery();
 		while (rs.next()) {
-			Category category = getCategory.getCategoryByID(rs.getString("categoryID"));
-			Brand brand = getBrand.getBrandByID(rs.getString("brandID"));
+			Category category = getCategory.getByID(rs.getString("categoryID"));
+			Brand brand = getBrand.getByID(rs.getString("brandID"));
 			Product product = new Product();
 			product.setProductID(rs.getString("productID"));
 			product.setName(rs.getString("name"));

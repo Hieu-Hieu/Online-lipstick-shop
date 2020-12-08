@@ -1,10 +1,10 @@
-<%@page import="get.GetCategory"%>
-<%@page import="get.GetBrand"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@page import="model.*"%>
-<%@page import="get.GetProduct"%>
-<%@ page import="java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@page import="model.Category"%>
+<%@page import="get.CategoryDAO"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +26,9 @@
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:include page="slidebav.jsp"></jsp:include>
 
+<%
+	List<Category> categories = (ArrayList<Category>)request.getAttribute("categories");
+%>
 	<div class="wrapper ">
 		<div class="main-panel">
 			<div class="content">
@@ -46,31 +49,13 @@
 												<th>Action</th>
 											</thead>
 											<tbody>
+											<c:forEach items="${categories}" var="item">
 												<tr>
-													<td>123</td>
-													<td>3CE</td>
+													<td>${item.toString()}</td>
+													<td>${item.getCategoryName()}</td>
 													<td><a href="#">Xóa</a></td>
 												</tr>
-												<tr>
-													<td>123</td>
-													<td>3CE</td>
-													<td><a href="#">Xóa</a></td>
-												</tr>
-												<tr>
-													<td>123</td>
-													<td>3CE</td>
-													<td><a href="#">Xóa</a></td>
-												</tr>
-												<tr>
-													<td>123</td>
-													<td>3CE</td>
-													<td><a href="#">Xóa</a></td>
-												</tr>
-												<tr>
-													<td>123</td>
-													<td>3CE</td>
-													<td><a href="#">Xóa</a></td>
-												</tr>
+											</c:forEach>
 											</tbody>
 										</table>
 									</div>
@@ -90,6 +75,14 @@
 											<div class="card-body">
 												<form>
 													<div class="col-md-12">
+														<div class="row">
+															<div class="col-md-12">
+																<div class="form-group">
+																	<label class="bmd-label-floating">ID</label>
+																	<input type="text" class="form-control">
+																</div>
+															</div>
+														</div>
 														<div class="row">
 															<div class="col-md-12">
 																<div class="form-group">

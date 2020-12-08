@@ -1,16 +1,16 @@
-<%@page import="get.GetCategory"%>
-<%@page import="get.GetBrand"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@page import="model.*"%>
-<%@page import="get.GetProduct"%>
-<%@ page import="java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@page import="model.Brand"%>
+<%@page import="get.BrandDAO"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>Quản lí sản phẩm</title>
+<title>Quản lí nhà sản xuất</title>
 <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no'
 	name='viewport' />
 <!--     Fonts and icons     -->
@@ -26,11 +26,9 @@
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:include page="slidebav.jsp"></jsp:include>
 
-	<%
-		GetProduct getProduct = new GetProduct();
-	List<Product> list = new ArrayList<Product>();
-	list = getProduct.getAllProduct(0, 9);
-	%>
+<%
+	List<Brand> categories = (ArrayList<Brand>)request.getAttribute("brandes");
+%>
 	<div class="wrapper ">
 		<div class="main-panel">
 			<div class="content">
@@ -39,7 +37,7 @@
 						<div class="col-md-12">
 							<div class="card card-plain">
 								<div class="card-header card-header-primary">
-									<h4 class="card-title mt-0">Quản lí nhà sản xuất</h4>
+									<h4 class="card-title mt-0">Quản lí loại sản phẩm</h4>
 									<p class="card-category"></p>
 								</div>
 								<div class="card-body">
@@ -51,31 +49,13 @@
 												<th>Action</th>
 											</thead>
 											<tbody>
+											<c:forEach items="${brandes}" var="item">
 												<tr>
-													<td>123</td>
-													<td>3CE</td>
+													<td>${item.toString()}</td>
+													<td>${item.getBrandName()}</td>
 													<td><a href="#">Xóa</a></td>
 												</tr>
-												<tr>
-													<td>123</td>
-													<td>3CE</td>
-													<td><a href="#">Xóa</a></td>
-												</tr>
-												<tr>
-													<td>123</td>
-													<td>3CE</td>
-													<td><a href="#">Xóa</a></td>
-												</tr>
-												<tr>
-													<td>123</td>
-													<td>3CE</td>
-													<td><a href="#">Xóa</a></td>
-												</tr>
-												<tr>
-													<td>123</td>
-													<td>3CE</td>
-													<td><a href="#">Xóa</a></td>
-												</tr>
+											</c:forEach>
 											</tbody>
 										</table>
 									</div>
