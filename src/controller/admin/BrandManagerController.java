@@ -31,6 +31,13 @@ public class BrandManagerController extends HttpServlet{
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String brandId = request.getParameter("brand_id");
+		String deleteId = request.getParameter("delete_id");
+
+		if (brandId != null && deleteId != null) {		
+			brandDAO.delete(brandId);
+		}
+		
 		String currentPage = (request.getParameter("currentPage") == null ||request.getParameter("currentPage").isBlank() || request.getParameter("currentPage").isEmpty()) ? "1" : request.getParameter("currentPage");
 		ArrayList<Brand> brandes = null;
 		String url = "";
@@ -48,7 +55,45 @@ public class BrandManagerController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+		
+		Brand brand = null;
+		String brandId = request.getParameter("brand_id");
+		String brandName = request.getParameter("brand_name");
+		
+		try {
+			brand = brandDAO.getByID(brandId);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+				
+		if (brand != null)//update
+		{
+			brand.setBrandName(brandName);
+			try {	
+				boolean result = brandDAO.update(brandId, brand);
+				if (result) {
+					doGet(request, response);
+				} else {
+					
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else {//insert
+			try {
+				brand = new Brand(brandId, brandName);			
+				boolean result = brandDAO.insert(brand);
+				if (result) {
+					doGet(request, response);
+				} else {
+					
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
+		}
 	}
 }

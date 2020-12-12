@@ -10,12 +10,13 @@ import java.util.logging.Logger;
 
 import connect.DBConnect;
 import model.Brand;
+import model.Category;
 import model.Product;
 
 public class BrandDAO {
-	
+
 	private Connection connection = null;
-	
+
 	public BrandDAO() {
 		connection = DBConnect.getConnecttion();
 	}
@@ -24,7 +25,7 @@ public class BrandDAO {
 	private String sqlGetNoParams = "select * from brand order by brandName asc";
 	private String sqlGet = "select * from brand where brandId = ?";
 	private String sqlInsert = "insert into brand values(?,?)";
-	private String sqlUpdate = "update brand set brandName = ? WHERE brandID = ?";
+	private String sqlUpdate = "update brand set brandName = ? where brandID = ?";
 	private String sqlDelete = "delete from brand where brandID = ?";
 
 	public ArrayList<Brand> getListBrand() throws SQLException {
@@ -59,19 +60,22 @@ public class BrandDAO {
 	}
 	
 	public Brand getByID(String brandID) throws SQLException {
-		PreparedStatement preparedStatement = connection.prepareStatement(sqlGet);
-		preparedStatement.setString(1, brandID);
-		ResultSet resultSet = preparedStatement.executeQuery();
-		Brand brand = new Brand();
-		while (resultSet.next()) {
-
-			brand.setBrandID(resultSet.getString("brandID"));
-			brand.setBrandName(resultSet.getString("brandName"));
-
+		Brand brand = null;
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(sqlGet);
+			preparedStatement.setString(1, brandID);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				brand = new Brand();
+				brand.setBrandID(resultSet.getString("brandID"));
+				brand.setBrandName(resultSet.getString("brandName"));
+			}
+		} catch (Exception e) {
+			brand = null;
 		}
 		return brand;
 	}
-	
+
 	public boolean insert(Brand c) {
 		int result = 0;
 		try {
@@ -85,13 +89,13 @@ public class BrandDAO {
 		}
 		return false;
 	}
-	
-	public boolean update(int id, Brand brand) throws SQLException {
+
+	public boolean update(String brandID, Brand brand) throws SQLException {
 		int result = 0; 
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sqlUpdate);
 			preparedStatement.setString(1, brand.getBrandName());
-			preparedStatement.setString(2, brand.getBrandID());
+			preparedStatement.setString(2, brandID);
 			result = preparedStatement.executeUpdate();
 			return result == 1;
 		} catch (SQLException ex) {
@@ -99,7 +103,7 @@ public class BrandDAO {
 		}
 		return false;
 	}
-	
+
 	public boolean delete(String brandID) {
 		int result = 0; 
 		try {
@@ -112,5 +116,5 @@ public class BrandDAO {
 		}
 		return false;
 	}
-
 }
+

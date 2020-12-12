@@ -19,7 +19,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <!-- CSS Files -->
-<link href="./static/css/material-dashboard.css" rel="stylesheet" />
+<link href="../static/css/material-dashboard.css" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -70,7 +70,7 @@
 													</td>
 													<td><%=l.getPrice()%> VNĐ</td>
 													<td><%=l.getQuantity()%></td>
-													<td><a href="#">Xem/Sửa</a></td>
+													<td><a href="addProduct.jsp">Xem/Sửa</a></td>
 												</tr>
 												<%
 													}
@@ -239,6 +239,9 @@
 			integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 			crossorigin="anonymous"></script>
 		<script src="js/bootstrap.js"></script>
+		<script>
+			
+		</script>
 </body>
 
 </html>

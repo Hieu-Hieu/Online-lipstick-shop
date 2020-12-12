@@ -27,7 +27,7 @@
 	<jsp:include page="slidebav.jsp"></jsp:include>
 
 <%
-	List<Brand> categories = (ArrayList<Brand>)request.getAttribute("brandes");
+	List<Brand> brandes = (ArrayList<Brand>)request.getAttribute("brandes");
 %>
 	<div class="wrapper ">
 		<div class="main-panel">
@@ -37,7 +37,7 @@
 						<div class="col-md-12">
 							<div class="card card-plain">
 								<div class="card-header card-header-primary">
-									<h4 class="card-title mt-0">Quản lí loại sản phẩm</h4>
+									<h4 class="card-title mt-0">Quản lí nhà sản xuất</h4>
 									<p class="card-category"></p>
 								</div>
 								<div class="card-body">
@@ -51,9 +51,16 @@
 											<tbody>
 											<c:forEach items="${brandes}" var="item">
 												<tr>
-													<td>${item.toString()}</td>
-													<td>${item.getBrandName()}</td>
-													<td><a href="#">Xóa</a></td>
+													<td >${item.getBrandID()}</td>
+													<td >${item.getBrandName()}</td>
+													<td>
+														<form action="${pageContext.request.contextPath}/brand-manager" method="get">
+														  <input type="hidden" name="brand_id" value="${item.getBrandID()}">
+														  <input type="hidden" name="delete_id" value="1">
+														  <button type="submit" class="btn btn-primary pull-right">Xóa</button>
+														</form>
+														<button class="btn btn-primary pull-right" onclick="showData('${item.getBrandID()}','${item.getBrandName()}')">Update</button>
+													</td>
 												</tr>
 											</c:forEach>
 											</tbody>
@@ -70,21 +77,29 @@
 									<div class="col-md-12">
 										<div class="card">
 											<div class="card-header card-header-primary">
-												<h4 class="card-title">Thêm nhà sản xuất</h4>
+												<h4 class="card-title">Thông tin loại sản phẩm</h4>
 											</div>
 											<div class="card-body">
-												<form>
+												<form action="${pageContext.request.contextPath}/brand-manager" method="post">
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-12">
 																<div class="form-group">
-																	<label class="bmd-label-floating">Nhà sản xuất</label>
-																	<input type="text" class="form-control">
+																	<label class="bmd-label-floating">ID</label>
+																	<input type="text" id="brand_id" name="brand_id" class="form-control">
 																</div>
 															</div>
 														</div>
-														<button type="submit" class="btn btn-primary pull-right">Thêm</button>
-														<button type="submit" class="btn btn-primary pull-right">Hủy</button>
+														<div class="row">
+															<div class="col-md-12">
+																<div class="form-group">
+																	<label class="bmd-label-floating">Nhà sản xuất</label>
+																	<input type="text" id="brand_name" name="brand_name" class="form-control">
+																</div>
+															</div>
+														</div>
+														<button type="submit" class="btn btn-primary pull-right">Lưu</button>
+														<button class="btn btn-primary pull-right">Hủy</button>
 													</div>
 											</div>
 										</div>
@@ -100,7 +115,6 @@
 	</div>
 	</div>
 	</div>
-
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>
@@ -109,6 +123,12 @@
 		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 		crossorigin="anonymous"></script>
 	<script src="js/bootstrap.js"></script>
+	<script>
+		function showData (id, name) {
+			$('#brand_id').val(id);
+			$('#brand_name').val(name);
+		}
+	</script>
 </body>
 
 </html>

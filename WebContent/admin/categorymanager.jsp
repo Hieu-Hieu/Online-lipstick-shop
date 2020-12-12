@@ -51,9 +51,16 @@
 											<tbody>
 											<c:forEach items="${categories}" var="item">
 												<tr>
-													<td>${item.toString()}</td>
-													<td>${item.getCategoryName()}</td>
-													<td><a href="#">Xóa</a></td>
+													<td >${item.getCategoryID()}</td>
+													<td >${item.getCategoryName()}</td>
+													<td>
+														<form action="${pageContext.request.contextPath}/category-manager" method="get">
+														  <input type="hidden" name="category_id" value="${item.getCategoryID()}">
+														  <input type="hidden" name="delete_id" value="1">
+														  <button type="submit" class="btn btn-primary pull-right">Xóa</button>
+														</form>
+														<button class="btn btn-primary pull-right" onclick="showData('${item.getCategoryID()}','${item.getCategoryName()}')">Update</button>
+													</td>
 												</tr>
 											</c:forEach>
 											</tbody>
@@ -70,29 +77,29 @@
 									<div class="col-md-12">
 										<div class="card">
 											<div class="card-header card-header-primary">
-												<h4 class="card-title">Thêm loại sản phẩm</h4>
+												<h4 class="card-title">Thông tin loại sản phẩm</h4>
 											</div>
 											<div class="card-body">
-												<form>
+												<form action="${pageContext.request.contextPath}/category-manager" method="post">
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-12">
 																<div class="form-group">
 																	<label class="bmd-label-floating">ID</label>
-																	<input type="text" class="form-control">
+																	<input type="text" id="category_id" name="category_id" class="form-control">
 																</div>
 															</div>
 														</div>
 														<div class="row">
 															<div class="col-md-12">
 																<div class="form-group">
-																	<label class="bmd-label-floating">Loại sản phẩm</label>
-																	<input type="text" class="form-control">
+																	<label class="bmd-label-floating">Tên loại sản phẩm</label>
+																	<input type="text" id="category_name" name="category_name" class="form-control">
 																</div>
 															</div>
 														</div>
-														<button type="submit" class="btn btn-primary pull-right">Thêm</button>
-														<button type="submit" class="btn btn-primary pull-right">Hủy</button>
+														<button type="submit" class="btn btn-primary pull-right">Lưu</button>
+														<button class="btn btn-primary pull-right">Hủy</button>
 													</div>
 											</div>
 										</div>
@@ -116,6 +123,12 @@
 		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
 		crossorigin="anonymous"></script>
 	<script src="js/bootstrap.js"></script>
+	<script>
+		function showData (id, name) {
+			$('#category_id').val(id);
+			$('#category_name').val(name);
+		}
+	</script>
 </body>
 
 </html>

@@ -25,7 +25,7 @@ public class CategoryDAO {
 	private String sqlGetNoParams = "select * from category order by categoryName asc";
 	private String sqlGet = "select * from category where categoryId = ?";
 	private String sqlInsert = "insert into category values(?,?)";
-	private String sqlUpdate = "update category set categoryName = ? WHERE categoryID = ?";
+	private String sqlUpdate = "update category set categoryName = ? where categoryID = ?";
 	private String sqlDelete = "delete from category where categoryID = ?";
 
 	public ArrayList<Category> getListCategory() throws SQLException {
@@ -60,15 +60,18 @@ public class CategoryDAO {
 	}
 	
 	public Category getByID(String categoryID) throws SQLException {
-		PreparedStatement preparedStatement = connection.prepareStatement(sqlGet);
-		preparedStatement.setString(1, categoryID);
-		ResultSet resultSet = preparedStatement.executeQuery();
-		Category category = new Category();
-		while (resultSet.next()) {
-
-			category.setCategoryID(resultSet.getString("categoryID"));
-			category.setCategoryName(resultSet.getString("categoryName"));
-
+		Category category = null;
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(sqlGet);
+			preparedStatement.setString(1, categoryID);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				category = new Category();
+				category.setCategoryID(resultSet.getString("categoryID"));
+				category.setCategoryName(resultSet.getString("categoryName"));
+			}
+		} catch (Exception e) {
+			category = null;
 		}
 		return category;
 	}
@@ -87,12 +90,12 @@ public class CategoryDAO {
 		return false;
 	}
 
-	public boolean update(int id, Category category) throws SQLException {
+	public boolean update(String categoryID, Category category) throws SQLException {
 		int result = 0; 
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sqlUpdate);
 			preparedStatement.setString(1, category.getCategoryName());
-			preparedStatement.setString(2, category.getCategoryID());
+			preparedStatement.setString(2, categoryID);
 			result = preparedStatement.executeUpdate();
 			return result == 1;
 		} catch (SQLException ex) {
