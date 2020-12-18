@@ -31,14 +31,14 @@ public class GetProduct {
 	public boolean addProduct(Product p) throws SQLException {
 
 		PreparedStatement st = conn.prepareStatement("insert into product values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
-		st.setString(1, p.getProductID());
+		st.setInt(1, p.getProductID());
 		st.setString(2, p.getName());
-		st.setString(3, p.getCategoryID());
+		st.setInt(3, p.getCategoryID());
 		st.setString(4, p.getImgFirst());
 		st.setString(5, p.getImgLast());
 		st.setDouble(6, p.getPrice());
 		st.setString(7, p.getDescription());
-		st.setString(8, p.getBrandID());
+		st.setInt(8, p.getBrandID());
 		st.setInt(9, p.getQuantity());
 		if (st.executeUpdate() > 0) {
 			return true;
@@ -65,14 +65,14 @@ public class GetProduct {
 		ResultSet rs = st.executeQuery();
 		while (rs.next()) {
 			Product product = new Product();
-			product.setProductID(rs.getString("productID"));
+			product.setProductID(rs.getInt("productID"));
 			product.setName(rs.getString("name"));
-			product.setCategoryID(rs.getString("categoryID"));
+			product.setCategoryID(rs.getInt("categoryID"));
 			product.setImgFirst(rs.getString("imgFirst"));
 			product.setImgLast(rs.getString("imgLast"));
 			product.setPrice(rs.getDouble("price"));
 			product.setDescription(rs.getString("description"));
-			product.setBrandID(rs.getString("brandID"));
+			product.setBrandID(rs.getInt("brandID"));
 			product.setQuantity(rs.getInt("quantity"));
 			list.add(product);
 		}
@@ -85,14 +85,14 @@ public class GetProduct {
 		st.setString(1, productID);
 		ResultSet rs = st.executeQuery();
 		while (rs.next()) {
-			product.setProductID(rs.getString("productID"));
+			product.setProductID(rs.getInt("productID"));
 			product.setName(rs.getString("name"));
-			product.setCategoryID(rs.getString("categoryID"));
+			product.setCategoryID(rs.getInt("categoryID"));
 			product.setImgFirst(rs.getString("imgFirst"));
 			product.setImgLast(rs.getString("imgLast"));
 			product.setPrice(rs.getDouble("price"));
 			product.setDescription(rs.getString("description"));
-			product.setBrandID(rs.getString("brandID"));
+			product.setBrandID(rs.getInt("brandID"));
 			product.setQuantity(rs.getInt("quantity"));
 		}
 		return product;
@@ -109,14 +109,14 @@ public class GetProduct {
 		ResultSet rs = st.executeQuery();
 		while (rs.next()) {
 			Product product = new Product();
-			product.setProductID(rs.getString("productID"));
+			product.setProductID(rs.getInt("productID"));
 			product.setName(rs.getString("name"));
-			product.setCategoryID(rs.getString("categoryID"));
+			product.setCategoryID(rs.getInt("categoryID"));
 			product.setImgFirst(rs.getString("imgFirst"));
 			product.setImgLast(rs.getString("imgLast"));
 			product.setPrice(rs.getDouble("price"));
 			product.setDescription(rs.getString("description"));
-			product.setBrandID(rs.getString("brandID"));
+			product.setBrandID(rs.getInt("brandID"));
 			product.setQuantity(rs.getInt("quantity"));
 			list.add(product);
 		}
@@ -132,14 +132,14 @@ public class GetProduct {
 		ResultSet rs = pst.executeQuery();
 		while (rs.next()) {
 			Product product = new Product();
-			product.setProductID(rs.getString("productID"));
+			product.setProductID(rs.getInt("productID"));
 			product.setName(rs.getString("name"));
-			product.setCategoryID(rs.getString("categoryID"));
+			product.setCategoryID(rs.getInt("categoryID"));
 			product.setImgFirst(rs.getString("imgFirst"));
 			product.setImgLast(rs.getString("imgLast"));
 			product.setPrice(rs.getDouble("price"));
 			product.setDescription(rs.getString("description"));
-			product.setBrandID(rs.getString("brandID"));
+			product.setBrandID(rs.getInt("brandID"));
 			product.setQuantity(rs.getInt("quantity"));
 			list.add(product);
 		}
@@ -156,14 +156,14 @@ public class GetProduct {
 		ResultSet rs = pst.executeQuery();
 		while (rs.next()) {
 			Product product = new Product();
-			product.setProductID(rs.getString("productID"));
+			product.setProductID(rs.getInt("productID"));
 			product.setName(rs.getString("name"));
-			product.setCategoryID(rs.getString("categoryID"));
+			product.setCategoryID(rs.getInt("categoryID"));
 			product.setImgFirst(rs.getString("imgFirst"));
 			product.setImgLast(rs.getString("imgLast"));
 			product.setPrice(rs.getDouble("price"));
 			product.setDescription(rs.getString("description"));
-			product.setBrandID(rs.getString("brandID"));
+			product.setBrandID(rs.getInt("brandID"));
 			product.setQuantity(rs.getInt("quantity"));
 			list.add(product);
 		}

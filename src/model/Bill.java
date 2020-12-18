@@ -2,38 +2,48 @@ package model;
 
 import java.sql.Date;
 
-import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
-
 public class Bill {
-	private String billID;
-	private String userID;
+	private int billID;
+	private int userID;
 	private String address;
 	private Date date;
 	private double total;
-	
+	private boolean paid;
 
-	public Bill(String billID, String userID, double total ,String address, Date date) {
+	public Bill(int billID, int userID, double total, String address, Date date, boolean paid) {
 		super();
 		this.billID = billID;
 		this.userID = userID;
 		this.address = address;
 		this.date = date;
 		this.total = total;
+		this.paid = paid;
 	}
-	public Bill() {}
-	public String getBillID() {
+
+	public boolean getPaid() {
+		return paid;
+	}
+
+	public void setPaid(boolean paid) {
+		this.paid = paid;
+	}
+
+	public Bill() {
+	}
+
+	public int getBillID() {
 		return billID;
 	}
 
-	public void setBillID(String billID) {
+	public void setBillID(int billID) {
 		this.billID = billID;
 	}
 
-	public String getUserID() {
+	public int getUserID() {
 		return userID;
 	}
 
-	public void setUserID(String userID) {
+	public void setUserID(int userID) {
 		this.userID = userID;
 	}
 
@@ -59,5 +69,5 @@ public class Bill {
 
 	public void setTotal(double total) {
 		this.total = total;
-	}	
+	}
 }

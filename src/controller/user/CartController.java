@@ -40,8 +40,9 @@ public class CartController extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String userID = request.getParameter("userID");
-		userID = "1";
+		int userID = Integer.parseInt(request.getParameter("userID"));
+
+		userID = 1;
 		GetCart getCart = new GetCart();
 		ArrayList<List> listCart = new ArrayList<List>();
 		String url = "";

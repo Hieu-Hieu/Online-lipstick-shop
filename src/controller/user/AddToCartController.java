@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import get.GetCart;
-import model.Cart;
+import model.BillDetail;
 
 /**
  * Servlet implementation class AddToCartController
@@ -52,11 +52,12 @@ public class AddToCartController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String command = request.getParameter("command");
-		String userID = request.getParameter("userID");
-		String productID = request.getParameter("productID");
+		int userID = Integer.parseInt(request.getParameter("userID"));
+		int productID = Integer.parseInt(request.getParameter("productID"));
+
 		GetCart getCart = new GetCart();
 		String url = "/";
-		Cart cart = new Cart(userID, productID, 1);
+		BillDetail cart = new BillDetail(userID, productID, 1);
 		try {
 			switch (command) {
 			case "add":
@@ -80,8 +81,9 @@ public class AddToCartController extends HttpServlet {
 				url = "/CartController";
 				break;
 			case "update":
-				// nếu số lượng lớn hơn 1 thì cập nhật giỏ hàng ngược lại bằng 0 thì xóa khỏi
-				// giỏ hàng
+				// náº¿u sá»‘ lÆ°á»£ng lá»›n hÆ¡n 1 thÃ¬ cáº­p nháº­t giá»� hÃ ng ngÆ°á»£c láº¡i
+				// báº±ng 0 thÃ¬ xÃ³a khá»�i
+				// giá»� hÃ ng
 				int quantity1 = Integer.parseInt(request.getParameter("quantity"));
 				if (getCart.updateProductQuantityInCart(userID, productID, quantity1) && quantity1 > 0) {
 					url = "/CartController";
