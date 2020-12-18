@@ -36,7 +36,7 @@ public class GetCategory {
 		String sql = "INSERT INTO category VALUES(?,?)";
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
-			ps.setString(1, c.getCategoryID());
+			ps.setInt(1, c.getCategoryID());
 			ps.setString(2, c.getCategoryName());
 			return ps.executeUpdate() == 1;
 		} catch (SQLException ex) {

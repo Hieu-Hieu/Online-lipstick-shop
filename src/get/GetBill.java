@@ -17,7 +17,7 @@ public class GetBill {
 	Connection conn = mydb.getConnecttion();
 
 	public boolean addBill(Bill bill) throws SQLException {
-		String sql = "Insert into bill values(?,?,?,?,?, ?)";
+		String sql = "Insert into bill values(?,?,?,?,?,?)";
 		PreparedStatement ps = conn.prepareStatement(sql);
 
 		ps.setInt(1, bill.getBillID());
@@ -47,7 +47,7 @@ public class GetBill {
 				bill.setDate(rs.getDate("date"));
 				bill.setAddress(rs.getString("address"));
 				bill.setTotal(rs.getDouble("total"));
-
+				bill.setPaid(rs.getBoolean("paid"));
 				list.add(bill);
 			}
 			return list;
