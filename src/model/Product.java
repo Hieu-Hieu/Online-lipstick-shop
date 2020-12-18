@@ -1,10 +1,10 @@
 package model;
 
 public class Product {
-	private String productID;
+	private int productID;
 	private String name;
-	private String categoryID;
-	private String brandID;
+	private int categoryID;
+	private int brandID;
 	private String imgFirst;
 	private String imgLast;
 	private double price;
@@ -14,7 +14,7 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(String productID, String name, String categoryID, String brandID, String imgFirst, String imgLast,
+	public Product(int productID, String name, int categoryID, int brandID, String imgFirst, String imgLast,
 			double price, String description, int quantity) {
 		super();
 		this.productID = productID;
@@ -28,11 +28,11 @@ public class Product {
 		this.quantity = quantity;
 	}
 
-	public String getProductID() {
+	public int getProductID() {
 		return productID;
 	}
 
-	public void setProductID(String productID) {
+	public void setProductID(int productID) {
 		this.productID = productID;
 	}
 
@@ -44,19 +44,19 @@ public class Product {
 		this.name = name;
 	}
 
-	public String getCategoryID() {
+	public int getCategoryID() {
 		return categoryID;
 	}
 
-	public void setCategoryID(String categoryID) {
+	public void setCategoryID(int categoryID) {
 		this.categoryID = categoryID;
 	}
 
-	public String getBrandID() {
+	public int getBrandID() {
 		return brandID;
 	}
 
-	public void setBrandID(String brandID) {
+	public void setBrandID(int brandID) {
 		this.brandID = brandID;
 	}
 

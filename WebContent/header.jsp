@@ -76,10 +76,7 @@
                             <a href="${pageContext.request.contextPath }/CartController?userID=1" class="btn cart">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>
-								<%GetCart gc = new GetCart();
 								
-								%>
-								<%=gc.totalProduct("1") %>
 								</span>
                             </a>
                         </div>

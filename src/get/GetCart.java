@@ -13,10 +13,10 @@ public class GetCart {
 	DBConnect mydb = new DBConnect();
 	Connection conn = mydb.getConnecttion();
 
-	public boolean checkExist(String userID, String productID) throws SQLException {
-		PreparedStatement pst = conn.prepareStatement("select * from cart where userID = ? and productID = ?");
-		pst.setString(1, userID);
-		pst.setString(2, productID);
+	public boolean checkExist(int billID, int productID) throws SQLException {
+		PreparedStatement pst = conn.prepareStatement("select * from billdetail where billID = ? and productID = ?");
+		pst.setInt(1, billID);
+		pst.setInt(2, productID);
 		ResultSet rs = pst.executeQuery();
 		if (rs.next()) {
 			return true;
@@ -24,20 +24,22 @@ public class GetCart {
 		return false;
 	}
 
-	public int totalProduct(String userID) throws SQLException {
-		PreparedStatement pst = conn.prepareStatement("select sum(quantity) as quantity from cart where userID = ?");
-		pst.setString(1, userID);
+	public int totalProduct(int billID) throws SQLException {
+		PreparedStatement pst = conn
+				.prepareStatement("select sum(quantity) as quantity from billdetail where billID = ?");
+		pst.setInt(1, billID);
 		ResultSet rs = pst.executeQuery();
 		while (rs.next()) {
 			return rs.getInt("quantity");
+
 		}
 		return 0;
 	}
 
-	public boolean delete(String userID, String productID) throws SQLException {
-		PreparedStatement pst = conn.prepareStatement("delete from cart where userID = ? and productID = ?");
-		pst.setString(1, userID);
-		pst.setString(2, productID);
+	public boolean delete(int billID, int productID) throws SQLException {
+		PreparedStatement pst = conn.prepareStatement("delete from billdetail where billID = ? and productID = ?");
+		pst.setInt(1, billID);
+		pst.setInt(2, productID);
 
 		if (pst.executeUpdate() > 0) {
 			return true;
@@ -45,11 +47,11 @@ public class GetCart {
 		return false;
 	}
 
-	public ArrayList<List> getCartByUserID(String userID) throws SQLException {
+	public ArrayList<List> getCartByUserID(int userID) throws SQLException {
 		ArrayList<List> ListCart = new ArrayList<List>();
 		PreparedStatement pst = conn.prepareStatement(
-				"SELECT c.productID, p.imgFirst, p.name, c.quantity, p.price FROM (select productID, quantity from cart where userID = ?) as c inner join product p on c.productID= p.productID");
-		pst.setString(1, userID);
+				"select c.productID, p.imgFirst, p.name, c.quantity, p.price from product p, (SELECT bd.productID, bd.quantity FROM bill b inner join billdetail bd on b.billID = bd.billID where b.userID = ?) c where p.productID = c.productID");
+		pst.setInt(1, userID);
 		ResultSet rs = pst.executeQuery();
 		List listInfoProduct = new ArrayList();
 		while (rs.next()) {
@@ -64,10 +66,10 @@ public class GetCart {
 		return ListCart;
 	}
 
-	public double totalCart(String userID) throws SQLException {
+	public double totalCart(int userID) throws SQLException {
 		PreparedStatement pst = conn.prepareStatement(
-				"SELECT c.quantity as quantity, p.price as price FROM (select productID, quantity from cart where userID = ?) as c inner join product p on c.productID= p.productID");
-		pst.setString(1, userID);
+				"select c.quantity as quantity, p.price as price from product p, (SELECT bd.productID, bd.quantity FROM bill b inner join billdetail bd on b.billID = bd.billID where b.userID = ?) c where p.productID = c.productID");
+		pst.setInt(1, userID);
 		ResultSet rs = pst.executeQuery();
 		double totalCart = 0;
 
@@ -91,10 +93,10 @@ public class GetCart {
 //		return ListCart;
 //	}
 
-	public boolean addToCart(String userID, String productID, int quantity) throws SQLException {
-		PreparedStatement pst = conn.prepareStatement("insert into cart values (?, ?, ?)");
-		pst.setString(1, userID);
-		pst.setString(2, productID);
+	public boolean addToCart(int billID, int productID, int quantity) throws SQLException {
+		PreparedStatement pst = conn.prepareStatement("insert into billDetail values (?, ?, ?)");
+		pst.setInt(1, billID);
+		pst.setInt(2, productID);
 		pst.setInt(3, quantity);
 		if (pst.executeUpdate() > 0) {
 			return true;
@@ -102,9 +104,9 @@ public class GetCart {
 		return false;
 	}
 
-	public boolean checkUserExist(String userID) throws SQLException {
-		PreparedStatement pst = conn.prepareStatement("select * from cart where userID = ?");
-		pst.setString(1, userID);
+	public boolean checkUserExist(int userID) throws SQLException {
+		PreparedStatement pst = conn.prepareStatement("select * from bill where userID = ?");
+		pst.setInt(1, userID);
 		ResultSet rs = pst.executeQuery();
 		if (rs.next()) {
 			return true;
@@ -112,33 +114,35 @@ public class GetCart {
 		return false;
 	}
 
-	public boolean updateProductQuantity(String userID, String productID, int quantity) throws SQLException {
+	public boolean updateProductQuantity(int userID, int productID, int quantity) throws SQLException {
 		int q = productQuantity(userID, productID) + quantity;
-		PreparedStatement pst = conn.prepareCall("update cart set quantity = ? where userID = ? and productID = ?");
+		PreparedStatement pst = conn
+				.prepareCall("update billDetail set quantity = ? where billID = ? and productID = ?");
 		pst.setInt(1, q);
-		pst.setString(2, userID);
-		pst.setString(3, productID);
+		pst.setInt(2, userID);
+		pst.setInt(3, productID);
 		if (pst.executeUpdate() > 0) {
 			return true;
 		}
 		return false;
 	}
 
-	public boolean updateProductQuantityInCart(String userID, String productID, int quantity) throws SQLException {
-		PreparedStatement pst = conn.prepareCall("update cart set quantity = ? where userID = ? and productID = ?");
+	public boolean updateProductQuantityInCart(int userID, int productID, int quantity) throws SQLException {
+		PreparedStatement pst = conn.prepareCall("update cart set quantity = ? where billID = ? and productID = ?");
 		pst.setInt(1, quantity);
-		pst.setString(2, userID);
-		pst.setString(3, productID);
+		pst.setInt(2, userID);
+		pst.setInt(3, productID);
 		if (pst.executeUpdate() > 0) {
 			return true;
 		}
 		return false;
 	}
 
-	public int productQuantity(String userID, String productID) throws SQLException {
-		PreparedStatement pst = conn.prepareStatement("select quantity from cart where userID = ? and productID =?");
-		pst.setString(1, userID);
-		pst.setString(2, productID);
+	public int productQuantity(int billID, int productID) throws SQLException {
+		PreparedStatement pst = conn
+				.prepareStatement("select quantity from billdetail where billID = ? and productID =?");
+		pst.setInt(1, billID);
+		pst.setInt(2, productID);
 		ResultSet rs = pst.executeQuery();
 		int total = 0;
 		while (rs.next()) {
