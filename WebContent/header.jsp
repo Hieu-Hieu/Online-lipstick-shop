@@ -43,7 +43,7 @@
                     </div>
                     <div class="navbar-nav ml-auto">
                         <div class="nav-item dropdown">
-                            <a href="#" class="dropdown-item">Sign In</a>
+                            <a href="signin.jsp" class="dropdown-item">Sign In</a>
                             <a href="#" class="dropdown-item">Sign Up</a>
                         </div>
                     </div>

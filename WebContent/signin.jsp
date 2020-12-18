@@ -17,9 +17,9 @@
                     <button type="button" class="toggle-btn" onclick="login()">Log In</button>
                     <button type="button" class="toggle-btn" onclick="register()">Register</button>               
             </div>       
-            <form id="login" class="input-group">
-                <input type="text" class="input-field" placeholder="Username">
-                <input type="text" class="input-field" placeholder="Enter Password">
+            <form id="login" class="input-group" action="${pageContext.request.contextPath}/UserController" method="post">
+                <input type="text" class="input-field" placeholder="Username" name="username">
+                <input type="password" class="input-field" placeholder="Enter Password" name="password">
                 <input type="checkbox" class="check-box"><span>Remember Password</span>
                 <button type="submit" class="submit-btn">Log In</button>
             </form>
