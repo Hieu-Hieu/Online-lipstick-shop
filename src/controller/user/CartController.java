@@ -47,7 +47,6 @@ public class CartController extends HttpServlet {
 		ArrayList<List> listCart = new ArrayList<List>();
 		String url = "";
 		try {
-
 			if (getCart.checkUserExist(userID)) {
 				listCart = getCart.getCartByUserID(userID);
 				request.setAttribute("listCart", listCart);
