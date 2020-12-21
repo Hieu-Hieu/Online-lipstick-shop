@@ -22,12 +22,12 @@
           <ul class="nav">
             <li class="nav-item active  ">
               <a class="nav-link" href="./dashboard.jsp">
-                <i class="material-icons">dashboard</i>
-                <p>Dashboard</p>
+                <i class="material-icons"></i>
+					<p>Dashboard</p>
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="./productmanager.jsp">
+              <a class="nav-link" href="./list?currentPage=1">
                 <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                 <p>Quản lí sản phẩm</p>
               </a>
@@ -42,6 +42,18 @@
               <a class="nav-link" href="./odermanager.jsp">
                 <i class="fa fa-truck" aria-hidden="true"></i>
                 <p>Quản lí đơn hàng</p>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="./brandmanager.jsp">
+                <i class="fa fa-university" aria-hidden="true"></i>
+                <p>Quản lí nhà sản xuất</p>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="./catelogymanager.jsp">
+                <i class="fa fa-adjust" aria-hidden="true"></i>
+                <p>Quản lí loại sản phẩm</p>
               </a>
             </li>
             <li class="nav-item ">

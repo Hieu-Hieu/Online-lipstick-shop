@@ -27,7 +27,7 @@
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-lg-3 col-md-6 col-sm-6">
-							<a href="./productmanager.jsp">
+							<a href="${pageContext.request.contextPath}/admin/product/list?currentPage=1">
 								<div class="card card-stats">
 									<div class="card-header card-header-warning card-header-icon">
 										<div class="card-icon">
@@ -58,7 +58,7 @@
 							</a>
 						</div>
 						<div class="col-lg-3 col-md-6 col-sm-6">
-							<a href="./odermanager.jsp">
+							<a href="">
 								<div class="card card-stats">
 									<div class="card-header card-header-success card-header-icon">
 										<div class="card-icon">
