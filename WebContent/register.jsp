@@ -5,19 +5,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập</title>
+    <title>Đăng kí</title>
     <link rel="stylesheet" href="./client/static/css/login.css">
 </head>
 <body>
     <div class="container">
-        <h1>Đăng nhập</h1>
+        <h1>Đăng kí</h1>
         <form class="form">
-            <input type="text" placeholder="Email">
+            <input type="text" placeholder="Tên">
+            <input type="text" placeholder="Địa chỉ">
+            <input type="number" placeholder="Số điện thoại">
+            <input type="email" placeholder="Email">
             <input type="password" placeholder="Mật khẩu">
-            <button type="submit"><a href="./register.jsp">Đăng nhập</a></button>
+            <input type="password" placeholder="Xác nhận mật khẩu">
+            <button type="submit"><a href="index.jsp">Đăng kí</a></button>
         </form>
-        <a href="register.jsp" class="register">Đăng kí</a>
-        <a href="#" class="forget">Quên mật khẩu ?</a>
     </div>
 </body>
 </html>

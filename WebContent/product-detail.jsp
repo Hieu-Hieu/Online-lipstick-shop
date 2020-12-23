@@ -41,10 +41,10 @@
 	<div class="product-detail">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-lg-8">
+				<div class="col-lg-12">
 					<div class="product-detail-top">
 						<div class="row align-items-center">
-							<div class="col-md-5">
+							<div class="col-md-7">
 								<div class="product-slider-single normal-slider">
 									<img src="${product.getImgFirst() }" alt="Product Image">
 									<img src="${product.getImgLast() }" alt="Product Image">
@@ -60,7 +60,7 @@
 
 								</div>
 							</div>
-							<div class="col-md-7">
+							<div class="col-md-5">
 								<div class="product-content">
 									<div class="title">
 										<h2>${product.getName()}</h2>

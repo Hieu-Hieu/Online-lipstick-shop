@@ -35,17 +35,13 @@
 
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto">
-                        <a href="index.jsp" class="nav-item nav-link active">Trang chủ</a>
-                        <a href="${pageContext.request.contextPath }/ProductList?currentPage=1" class="nav-item nav-link">Danh sách sản phẩm</a>
-                        <a href="product-detail.jsp" class="nav-item nav-link">Sản phẩm chi tiết</a>
-                        <a href="cart.jsp" class="nav-item nav-link">Giỏ hàng</a>
+                    	<a></a>
+                        <a href="index.jsp" class="nav-item nav-link">Trang chủ</a>
                         <a href="my-account.jsp" class="nav-item nav-link">Tài khoản</a>
                     </div>
                     <div class="navbar-nav ml-auto">
-                        <div class="nav-item dropdown">
-                            <a href="signin.jsp" class="dropdown-item">Sign In</a>
-                            <a href="#" class="dropdown-item">Sign Up</a>
-                        </div>
+                        <a href="signin.jsp" class="nav-item nav-link">Đăng nhập</a>
+                       	<a href="signin.jsp" class="nav-item nav-link">Đăng kí</a>
                     </div>
                 </div>
             </nav>

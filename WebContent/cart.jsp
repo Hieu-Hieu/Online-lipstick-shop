@@ -34,7 +34,7 @@
         <div class="cart-page">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
                         <div class="cart-page-inner">
                             <div class="table-responsive">
                                 <table class="table table-bordered">
@@ -86,26 +86,6 @@
                             </div>
                         </div>
                     </div>
-                     <div class="col-lg-4">
-                        <div class="cart-page-inner">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="cart-summary">
-                                        <div class="cart-content">
-                                            <h1>Tổng thanh toán
-                                            <fmt:formatNumber var="total" type="number" pattern="###,###,###" value="${totalCart }"/>
-                                            <span> ${total }Đ</span></h1>
-                                            
-                                            <hr>
-                                        </div>
-                                        <div class="cart-btn">
-                                            <button>Đặt hàng</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -139,7 +119,28 @@
                             </div>
                         </div>
                     </div>
-                   
+                    <div class="cart-page">
+                    	<div class="col-lg-12">
+	                        <div class="cart-page-inner">
+	                            <div class="row">
+	                                <div class="col-md-12">
+	                                    <div class="cart-summary">
+	                                        <div class="cart-content">
+	                                            <h1>Tổng thanh toán
+	                                            <fmt:formatNumber var="total" type="number" pattern="###,###,###" value="${totalCart }"/>
+	                                            <span> ${total }Đ</span></h1>
+	                                            
+	                                            <hr>
+	                                        </div>
+	                                        <div class="cart-btn">
+	                                            <button>Đặt hàng</button>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+                    	</div>
+                    </div>
                 </div>
             </div>
         </div>

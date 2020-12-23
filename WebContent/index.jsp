@@ -38,7 +38,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-3">
-                        <nav class="navbar bg-light">
+                        <nav class="navbar bg-light" style="align-items: flex-start;">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"><i class="fa fa-home"></i>Home</a>
@@ -67,236 +67,134 @@
                             </ul>
                         </nav>
                     </div>
-                    <div class="col-md-6">
-                        <div class="header-slider normal-slider">
-                            <div class="header-slider-item">
-                                <img src="./client/static/img/slider-1.jpg" alt="Slider Image" />
-                                <div class="header-slider-caption">
-                                    <p>Some text goes here that describes the image</p>
-                                    <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
-                                </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="product-view">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="product-item">
+                                                <div class="product-title">
+                                                    <a href="#">Son Nữ Hoàng</a>
+                                                </div>
+                                                <div class="product-image">
+                                                    <a href="product-detail.jsp">
+                                                        <img src="./client/static/img/son1.png" alt="Product Image">
+                                                    </a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <h3>300000<span>vnđ</span></h3>
+                                                    <a class="btn" href="cart.jsp"><i class="fa fa-shopping-cart"></i>Thêm</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="product-item">
+                                                <div class="product-title">
+                                                    <a href="#">Son Nữ Hoàng</a>
+                                                </div>
+                                                <div class="product-image">
+                                                    <a href="product-detail.jsp">
+                                                        <img src="./client/static/img/son1.png" alt="Product Image">
+                                                    </a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <h3>300000<span>vnđ</span></h3>
+                                                    <a class="btn" href="cart.jsp"><i class="fa fa-shopping-cart"></i>Thêm</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="product-item">
+                                                <div class="product-title">
+                                                    <a href="#">Son Nữ Hoàng</a>
+                                                </div>
+                                                <div class="product-image">
+                                                    <a href="product-detail.jsp">
+                                                        <img src="./client/static/img/son1.png" alt="Product Image">
+                                                    </a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <h3>300000<span>vnđ</span></h3>
+                                                    <a class="btn" href="cart.jsp"><i class="fa fa-shopping-cart"></i>Thêm</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="product-item">
+                                                <div class="product-title">
+                                                    <a href="#">Son Nữ Hoàng</a>
+                                                </div>
+                                                <div class="product-image">
+                                                    <a href="product-detail.jsp">
+                                                        <img src="./client/static/img/son1.png" alt="Product Image">
+                                                    </a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <h3>300000<span>vnđ</span></h3>
+                                                    <a class="btn" href="cart.jsp"><i class="fa fa-shopping-cart"></i>Thêm</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="product-item">
+                                                <div class="product-title">
+                                                    <a href="#">Son Nữ Hoàng</a>
+                                                </div>
+                                                <div class="product-image">
+                                                    <a href="product-detail.jsp">
+                                                        <img src="./client/static/img/son1.png" alt="Product Image">
+                                                    </a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <h3>300000<span>vnđ</span></h3>
+                                                    <a class="btn" href="cart.jsp"><i class="fa fa-shopping-cart"></i>Thêm</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="product-item">
+                                                <div class="product-title">
+                                                    <a href="#">Son Nữ Hoàng</a>
+                                                </div>
+                                                <div class="product-image">
+                                                    <a href="product-detail.jsp">
+                                                        <img src="./client/static/img/son1.png" alt="Product Image">
+                                                    </a>
+                                                </div>
+                                                <div class="product-price">
+                                                    <h3>300000<span>vnđ</span></h3>
+                                                    <a class="btn" href="cart.jsp"><i class="fa fa-shopping-cart"></i>Thêm</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- Pagination Start -->
+                                    <div class="col-md-12">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination justify-content-center">
+                                                <li class="page-item disabled">
+                                                    <a class="page-link" href="#" tabindex="-1">Trước	</a>
+                                                </li>
+                                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#">Sau</a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <!-- Pagination Start -->
+                                </div>              
                             </div>
-                            <div class="header-slider-item">
-                                <img src="./client/static/img/slider-2.jpg" alt="Slider Image" />
-                                <div class="header-slider-caption">
-                                    <p>Some text goes here that describes the image</p>
-                                    <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
-                                </div>
-                            </div>
-                            <div class="header-slider-item">
-                                <img src="./client/static/img/slider-3.jpg" alt="Slider Image" />
-                                <div class="header-slider-caption">
-                                    <p>Some text goes here that describes the image</p>
-                                    <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
-                                </div>
-                            </div>
+                            <!-- Product List End -->  
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="header-img">
-                            <div class="img-item">
-                                <img src="./client/static/img/category-1.jpg" />
-                                <a class="img-text" href="">
-                                    <p>Some text goes here that describes the image</p>
-                                </a>
-                            </div>
-                            <div class="img-item">
-                                <img src="./client/static/img/category-2.jpg" />
-                                <a class="img-text" href="">
-                                    <p>Some text goes here that describes the image</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            
             </div>
         </div>
-        <!-- Main Slider End -->        
+        <!-- Main Slider End -->      
 
-        <!-- Featured Product Start -->
-        <div class="featured-product product">
-            <div class="container-fluid">
-                <div class="section-header">
-                    <h1>Featured Product</h1>
-                </div>
-                <div class="row align-items-center product-slider product-slider-4">
-               
-                    
-                    
-                </div>
-            </div>
-        </div>
-        <!-- Featured Product End -->   
-        
-        <!-- Category Start-->
-        <div class="category">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="category-item ch-400">
-                            <img src="./client/static/img/category-3.jpg" />
-                            <a class="category-name" href="">
-                                <p>Some text goes here that describes the image</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="category-item ch-250">
-                            <img src="./client/static/img/category-4.jpg" />
-                            <a class="category-name" href="">
-                                <p>Some text goes here that describes the image</p>
-                            </a>
-                        </div>
-                        <div class="category-item ch-150">
-                            <img src="./client/static/img/category-5.jpg" />
-                            <a class="category-name" href="">
-                                <p>Some text goes here that describes the image</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="category-item ch-150">
-                            <img src="./client/static/img/category-6.jpg" />
-                            <a class="category-name" href="">
-                                <p>Some text goes here that describes the image</p>
-                            </a>
-                        </div>
-                        <div class="category-item ch-250">
-                            <img src="./client/static/img/category-7.jpg" />
-                            <a class="category-name" href="">
-                                <p>Some text goes here that describes the image</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="category-item ch-400">
-                            <img src="./client/static/img/category-8.jpg" />
-                            <a class="category-name" href="">
-                                <p>Some text goes here that describes the image</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Category End-->              
-        
-        <!-- Recent Product Start -->
-        <div class="recent-product product">
-            <div class="container-fluid">
-                <div class="section-header">
-                    <h1>Recent Product</h1>
-                </div>
-                <div class="row align-items-center product-slider product-slider-4">
-                    <div class="col-lg-3">
-                        <div class="product-item">
-                            <div class="product-title">
-                                <a href="#">Product Name</a>
-                            </div>
-                            <div class="product-image">
-                                <a href="product-detail.jsp">
-                                    <img src="./client/static/img/product-6.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h3><span>$</span>99</h3>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="product-item">
-                            <div class="product-title">
-                                <a href="#">Product Name</a>
-                            </div>
-                            <div class="product-image">
-                                <a href="product-detail.jsp">
-                                    <img src="./client/static/img/product-7.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h3><span>$</span>99</h3>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="product-item">
-                            <div class="product-title">
-                                <a href="#">Product Name</a>
-                            </div>
-                            <div class="product-image">
-                                <a href="product-detail.jsp">
-                                    <img src="./client/static/img/product-8.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h3><span>$</span>99</h3>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="product-item">
-                            <div class="product-title">
-                                <a href="#">Product Name</a>
-                            </div>
-                            <div class="product-image">
-                                <a href="product-detail.jsp">
-                                    <img src="./client/static/img/product-9.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h3><span>$</span>99</h3>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="product-item">
-                            <div class="product-title">
-                                <a href="#">Product Name</a>
-                            </div>
-                            <div class="product-image">
-                                <a href="product-detail.jsp">
-                                    <img src="./client/static/img/product-10.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h3><span>$</span>99</h3>
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Recent Product End -->
 	
 		<jsp:include page="footer.jsp"></jsp:include>
         <!-- Back to Top -->
