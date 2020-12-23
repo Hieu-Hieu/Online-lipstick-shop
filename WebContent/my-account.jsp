@@ -35,7 +35,7 @@
                         <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
                             <a class="nav-link" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i>Lịch sử đặt hàng</a>
                             <a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i class="fa fa-user"></i>Thông tin chi tiết</a>
-                            <a class="nav-link" href="index.jsp"><i class="fa fa-sign-out-alt"></i>Đăng xuất</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/UserLogout"><i class="fa fa-sign-out-alt"></i>Đăng xuất</a>
                         </div>
                     </div>
                     <div class="col-md-9">
