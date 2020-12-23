@@ -11,11 +11,11 @@
 <body>
     <div class="container">
         <h1>Đăng nhập</h1>
-        <form class="form">
-            <input type="text" placeholder="Email">
-            <input type="password" placeholder="Mật khẩu">
-            <button type="submit"><a href="./register.jsp">Đăng nhập</a></button>
-        </form>
+         	<form id="login" action="${pageContext.request.contextPath}/UserController" method="post">
+                <input type="text" class="input-field" placeholder="Tên đăng nhập" name="username">
+                <input type="password" class="input-field" placeholder="Nhập mật khẩu" name="password">
+                <button type="submit" class="submit-btn">Đăng nhập</button>
+         	</form>
         <a href="register.jsp" class="register">Đăng kí</a>
         <a href="#" class="forget">Quên mật khẩu ?</a>
     </div>
