@@ -62,7 +62,7 @@
                                             <fmt:formatNumber var="price" type="number" pattern="###,###,###" value="${cart.get(3)}"/>
                                             ${price }Đ</td>
                                             <td>
-                                            <form action="${pageContext.request.contextPath }/AddToCartController?command=update&userID=1&productID=${cart.get(0)}" method="post">
+                                            <form action="${pageContext.request.contextPath }/AddToCartController?command=update&productID=${cart.get(0)}" method="post">
                                                 <div class="qty"">
                                                     <button class="btn-minus" type="button"><i class="fa fa-minus"></i></button>
                                                     <input type="text" value="${cart.get(4) }" name="quantity" >
@@ -74,7 +74,7 @@
                                             <fmt:formatNumber var="totalPrice" type="number" pattern="###,###,###" value="${cart.get(3) * cart.get(4) }"/>
                                             <td>${totalPrice }Đ</td>
                                             <td>
-												<a href="${pageContext.request.contextPath }/AddToCartController?command=remove&userID=1&productID=${cart.get(0)}">
+												<a href="${pageContext.request.contextPath }/AddToCartController?command=remove&productID=${cart.get(0)}">
 													<i class="fa fa-trash"></i>
 												</a>
 											</td>

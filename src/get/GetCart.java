@@ -36,12 +36,16 @@ public class GetCart {
 		return false;
 	}
 
-	public boolean createBill(int userID) throws SQLException {
-		PreparedStatement pst = conn.prepareStatement("insert into bill(userID, paid) values(?, false)");
-		pst.setInt(1, userID);
-		ResultSet rs = pst.executeQuery();
-		if (rs.next()) {
-			return true;
+	public boolean createBill(int userID) {
+		try {
+			PreparedStatement pst = conn.prepareStatement("insert into bill (userID, paid) values(?, false)");
+			pst.setInt(1, userID);
+			if (pst.executeUpdate() > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return false;
 

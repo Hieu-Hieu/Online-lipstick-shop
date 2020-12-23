@@ -99,7 +99,7 @@
 												src="${p.getImgFirst() }" alt="Product Image">
 											</a>
 											<div class="product-action">
-												<a href="${pageContext.request.contextPath}/AddToCartController?cart=no&command=add&userID=1&productID=${p.getProductID() }&quantity=1&currentPage=${currentPage}"><i
+												<a href="${pageContext.request.contextPath}/AddToCartController?cart=no&command=add&productID=${p.getProductID() }&quantity=1&currentPage=${currentPage}"><i
 													class="fa fa-cart-plus"></i></a> 
 													<a href="#"><i class="fa fa-heart"></i></a> 
 													<a href="${pageContext.request.contextPath}/ProductDetailController?productID=${p.getProductID() }">Chi
@@ -111,7 +111,7 @@
 											<fmt:formatNumber var="price" type="number " pattern = "###,###,###" value="${p.getPrice()}" />
 												${price}<span>Đ</span></h3>
 											<a class="btn"
-												href="${pageContext.request.contextPath}/AddToCartController?cart=open&command=add&userID=1&productID=${p.getProductID() }&quantity=1&currentPage=${currentPage}"><i
+												href="${pageContext.request.contextPath}/AddToCartController?cart=open&command=add&productID=${p.getProductID() }&quantity=1&currentPage=${currentPage}"><i
 												class="fa fa-shopping-cart"></i>Mua ngay</a>
 										</div>
 									</div>
