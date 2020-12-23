@@ -12,10 +12,11 @@ import connect.DBConnect;
 public class GetCart {
 	DBConnect mydb = new DBConnect();
 	Connection conn = mydb.getConnecttion();
+	String sql = "select billID from bill where userID = ? and paid = false";
 
-	public boolean checkExist(int userID, int productID) throws SQLException {
-		PreparedStatement pst = conn.prepareStatement(
-				"select * from billdetail where billID = (select billID from bill where userID = ? and paid = false) and productID = ?");
+	public boolean checkProductExist(int userID, int productID) throws SQLException {
+		PreparedStatement pst = conn
+				.prepareStatement("select * from billdetail where billID = (" + sql + ") and productID = ?");
 		pst.setInt(1, userID);
 		pst.setInt(2, productID);
 		ResultSet rs = pst.executeQuery();
@@ -25,9 +26,30 @@ public class GetCart {
 		return false;
 	}
 
+	public boolean checkBillExist(int userID) throws SQLException {
+		PreparedStatement pst = conn.prepareStatement("select * from bill where userID = ? and paid = false");
+		pst.setInt(1, userID);
+		ResultSet rs = pst.executeQuery();
+		if (rs.next()) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean createBill(int userID) throws SQLException {
+		PreparedStatement pst = conn.prepareStatement("insert into bill(userID, paid) values(?, false)");
+		pst.setInt(1, userID);
+		ResultSet rs = pst.executeQuery();
+		if (rs.next()) {
+			return true;
+		}
+		return false;
+
+	}
+
 	public int totalProduct(int userID) throws SQLException {
-		PreparedStatement pst = conn.prepareStatement(
-				"select sum(quantity) as quantity from billdetail where billID = (select billID from bill where userID = ? and paid = false)");
+		PreparedStatement pst = conn
+				.prepareStatement("select sum(quantity) as quantity from billdetail where billID = (" + sql + ")");
 		pst.setInt(1, userID);
 		ResultSet rs = pst.executeQuery();
 		while (rs.next()) {
@@ -38,8 +60,8 @@ public class GetCart {
 	}
 
 	public boolean delete(int userID, int productID) throws SQLException {
-		PreparedStatement pst = conn.prepareStatement(
-				"delete from billdetail where billID = (select billID from bill where userID = ? and paid = false) and productID = ?");
+		PreparedStatement pst = conn
+				.prepareStatement("delete from billdetail where billID = (" + sql + ") and productID = ?");
 		pst.setInt(1, userID);
 		pst.setInt(2, productID);
 
@@ -82,16 +104,25 @@ public class GetCart {
 
 	}
 
-	public boolean addToCart(int billID, int productID, int quantity) throws SQLException {
-		PreparedStatement pst = conn.prepareStatement(
-				"insert into billdetail values (?, ?, ?) where billID = (select billID from bill where userID = ? and paid = false)");
-		pst.setInt(1, billID);
+	public boolean addNewProductToCart(int userID, int productID, int quantity) throws SQLException {
+		PreparedStatement pst = conn.prepareStatement("insert into billdetail values (?, ?, ?)");
+		pst.setInt(1, billID(userID));
 		pst.setInt(2, productID);
 		pst.setInt(3, quantity);
 		if (pst.executeUpdate() > 0) {
 			return true;
 		}
 		return false;
+	}
+
+	public int billID(int userID) throws SQLException {
+		PreparedStatement pst = conn.prepareStatement("select billID from bill where userID = ? and paid = false");
+		pst.setInt(1, userID);
+		ResultSet rs = pst.executeQuery();
+		if (rs.next()) {
+			return rs.getInt("billID");
+		}
+		return 0;
 	}
 
 	public boolean checkUserExist(int userID) throws SQLException {
@@ -106,8 +137,8 @@ public class GetCart {
 
 	public boolean updateProductQuantity(int userID, int productID, int quantity) throws SQLException {
 		int q = productQuantity(userID, productID) + quantity;
-		PreparedStatement pst = conn.prepareCall(
-				"update billdetail set quantity = ? where billID = (select billID from bill where userID = ? and paid = false) and productID = ?");
+		PreparedStatement pst = conn
+				.prepareCall("update billdetail set quantity = ? where billID = (" + sql + ") and productID = ?");
 		pst.setInt(1, q);
 		pst.setInt(2, userID);
 		pst.setInt(3, productID);
@@ -118,8 +149,8 @@ public class GetCart {
 	}
 
 	public boolean updateProductQuantityInCart(int userID, int productID, int quantity) throws SQLException {
-		PreparedStatement pst = conn.prepareCall(
-				"update billdetail set quantity = ? where billID = (select billID from bill where userID = ? and paid = false) and productID = ?");
+		PreparedStatement pst = conn
+				.prepareCall("update billdetail set quantity = ? where billID = (" + sql + ") and productID = ?");
 		pst.setInt(1, quantity);
 		pst.setInt(2, userID);
 		pst.setInt(3, productID);
@@ -130,8 +161,8 @@ public class GetCart {
 	}
 
 	public int productQuantity(int userID, int productID) throws SQLException {
-		PreparedStatement pst = conn.prepareStatement(
-				"select quantity from billdetail where billID = (select billID from bill where userID = ? and paid = false) and productID =?");
+		PreparedStatement pst = conn
+				.prepareStatement("select quantity from billdetail where billID = (" + sql + ") and productID = ?");
 		pst.setInt(1, userID);
 		pst.setInt(2, productID);
 		ResultSet rs = pst.executeQuery();

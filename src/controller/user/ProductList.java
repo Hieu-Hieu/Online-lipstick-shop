@@ -49,7 +49,7 @@ public class ProductList extends HttpServlet {
 			request.setAttribute("totalPage", gp.totalPage());
 
 			request.setAttribute("listProduct", listProduct);
-			url = "/product-list.jsp";
+			url = "/index.jsp";
 		} catch (NumberFormatException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

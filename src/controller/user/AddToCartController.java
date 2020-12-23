@@ -56,23 +56,32 @@ public class AddToCartController extends HttpServlet {
 		int productID = Integer.parseInt(request.getParameter("productID"));
 
 		GetCart getCart = new GetCart();
-		String url = "/";
+		String url = "";
 		BillDetail cart = new BillDetail(userID, productID, 1);
 		try {
 			switch (command) {
 			case "add":
 				int quantity = Integer.parseInt(request.getParameter("quantity"));
-				if (getCart.checkExist(userID, productID)) {
-					if (getCart.updateProductQuantity(userID, productID, quantity)) {
-						if (request.getParameter("cart").equals("no"))
+				if (getCart.checkBillExist(userID)) {
+					if (getCart.checkProductExist(userID, productID)) {
+						if (getCart.updateProductQuantity(userID, productID, quantity)) {
+							if (request.getParameter("cart").equals("no"))
+								url = "/ProductList?currentPage=" + request.getParameter("currentPage");
+							else {
+								url = "/CartController";
+							}
+						}
+					} else {
+						if (getCart.addNewProductToCart(userID, productID, quantity)) {
 							url = "/ProductList?currentPage=" + request.getParameter("currentPage");
-						else {
-							url = "/CartController";
 						}
 					}
+
 				} else {
-					if (getCart.addToCart(userID, productID, quantity)) {
-						url = "/ProductList?currentPage=" + request.getParameter("currentPage");
+					if (getCart.createBill(userID)) {
+						if (getCart.addNewProductToCart(userID, productID, quantity)) {
+							url = "/ProductList?currentPage=" + request.getParameter("currentPage");
+						}
 					}
 				}
 				break;
@@ -81,9 +90,6 @@ public class AddToCartController extends HttpServlet {
 				url = "/CartController";
 				break;
 			case "update":
-				// náº¿u sá»‘ lÆ°á»£ng lá»›n hÆ¡n 1 thÃ¬ cáº­p nháº­t giá»� hÃ ng ngÆ°á»£c láº¡i
-				// báº±ng 0 thÃ¬ xÃ³a khá»�i
-				// giá»� hÃ ng
 				int quantity1 = Integer.parseInt(request.getParameter("quantity"));
 				if (getCart.updateProductQuantityInCart(userID, productID, quantity1) && quantity1 > 0) {
 					url = "/CartController";

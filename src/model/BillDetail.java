@@ -5,6 +5,10 @@ public class BillDetail {
 	private int productID;
 	private int quantity;
 
+	public BillDetail() {
+
+	}
+
 	public BillDetail(int billID, int productID, int quantity) {
 		super();
 		this.billID = billID;
