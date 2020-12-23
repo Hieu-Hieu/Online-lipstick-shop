@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="get.GetCart" %>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,10 +41,19 @@
                         <a href="index.jsp" class="nav-item nav-link">Trang chủ</a>
                         <a href="my-account.jsp" class="nav-item nav-link">Tài khoản</a>
                     </div>
-                    <div class="navbar-nav ml-auto">
-                        <a href="signin.jsp" class="nav-item nav-link">Đăng nhập</a>
-                       	<a href="signin.jsp" class="nav-item nav-link">Đăng kí</a>
-                    </div>
+                    <c:choose>
+                    	<c:when test="${user.getUsername() == null}">
+		                    <div class="navbar-nav ml-auto">
+		                        <a href="signin.jsp" class="nav-item nav-link">Đăng nhập</a>
+		                       	<a href="signin.jsp" class="nav-item nav-link">Đăng kí</a>
+		                    </div>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<div class="navbar-nav ml-auto">
+		                        ${user.getUsername()}
+		                    </div>
+                    	</c:otherwise>
+                    </c:choose>
                 </div>
             </nav>
         </div>
