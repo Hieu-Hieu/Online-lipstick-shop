@@ -45,10 +45,27 @@ public class GetProduct {
 		}
 		return false;
 	}
+	
+	public boolean updateProduct(Product p) throws SQLException {
+		PreparedStatement st = conn.prepareStatement("update product set categoryID=?, Name=?, brandID=?, imgFirst=?, imgLast=?,price=?, description=?,quantity=? where  productID=?");
+		st.setInt(1, p.getProductID());
+		st.setString(2, p.getName());
+		st.setInt(3, p.getCategoryID());
+		st.setString(4, p.getImgFirst());
+		st.setString(5, p.getImgLast());
+		st.setDouble(6, p.getPrice());
+		st.setString(7, p.getDescription());
+		st.setInt(8, p.getBrandID());
+		st.setInt(9, p.getQuantity());
+		if (st.executeUpdate() > 0) {
+			return true;
+		}
+		return false;
+	}
 
-	public boolean deleteProduct(String productID) throws SQLException {
+	public boolean deleteProduct(int productID) throws SQLException {
 		PreparedStatement st = conn.prepareStatement("delete from product where productID = ?");
-		st.setString(1, productID);
+		st.setInt(1, productID);
 
 		if (st.executeUpdate() > 0) {
 			return true;
