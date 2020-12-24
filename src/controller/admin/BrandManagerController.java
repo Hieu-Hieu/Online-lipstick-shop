@@ -17,7 +17,7 @@ import get.GetProduct;
 import model.Brand;
 import model.Product;
 
-@WebServlet("admin/brandManager")
+@WebServlet("/brandManager")
 public class BrandManagerController extends HttpServlet{
 	
 	
@@ -33,8 +33,8 @@ public class BrandManagerController extends HttpServlet{
 		if ( deleteId != null) {		
 			brandDAO.delete(brandId);
 		}
-		String currentPage = request.getParameter("currentPage");
-		//String currentPage = (request.getParameter("currentPage") == null ||request.getParameter("currentPage").isEmpty() || request.getParameter("currentPage").isEmpty()) ? "1" : request.getParameter("currentPage");
+		
+		String currentPage = (request.getParameter("currentPage") == null ||request.getParameter("currentPage").isEmpty() || request.getParameter("currentPage").isEmpty()) ? "1" : request.getParameter("currentPage");
 		ArrayList<Brand> brandes = null;
 		String url = "";
 		try {

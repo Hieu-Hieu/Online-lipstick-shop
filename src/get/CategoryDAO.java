@@ -13,7 +13,6 @@ import model.Brand;
 import model.Category;
 import model.Product;
 
-
 public class CategoryDAO {
 
 	private Connection connection = null;
@@ -36,7 +35,7 @@ public class CategoryDAO {
 		Category category = null;
 		while (resultSet.next()) {
 			category = new Category();
-			category.setCategoryID(resultSet.getInt("categoryID"));
+			category.setCategoryID(resultSet.getString("categoryID"));
 			category.setCategoryName(resultSet.getString("categoryName"));
 			categories.add(category);
 		}
@@ -53,22 +52,22 @@ public class CategoryDAO {
 		Category category = null;
 		while (resultSet.next()) {
 			category = new Category();
-			category.setCategoryID(Integer.parseInt(resultSet.getString("categoryID")));
+			category.setCategoryID(resultSet.getString("categoryID"));
 			category.setCategoryName(resultSet.getString("categoryName"));
 			categories.add(category);
 		}
 		return categories;
 	}
 	
-	public Category getByID(int categoryID) throws SQLException {
+	public Category getByID(String categoryID) throws SQLException {
 		Category category = null;
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sqlGet);
-			preparedStatement.setInt(1, categoryID);
+			preparedStatement.setString(1, categoryID);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				category = new Category();
-				category.setCategoryID(Integer.parseInt(resultSet.getString("categoryID")));
+				category.setCategoryID(resultSet.getString("categoryID"));
 				category.setCategoryName(resultSet.getString("categoryName"));
 			}
 		} catch (Exception e) {
@@ -81,7 +80,7 @@ public class CategoryDAO {
 		int result = 0;
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sqlInsert);
-			preparedStatement.setInt(1, c.getCategoryID());
+			preparedStatement.setString(1, c.getCategoryID());
 			preparedStatement.setString(2, c.getCategoryName());
 			result = preparedStatement.executeUpdate();
 			return result == 1;
@@ -91,12 +90,12 @@ public class CategoryDAO {
 		return false;
 	}
 
-	public boolean update(int categoryID, Category category) throws SQLException {
+	public boolean update(String categoryID, Category category) throws SQLException {
 		int result = 0; 
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sqlUpdate);
 			preparedStatement.setString(1, category.getCategoryName());
-			preparedStatement.setInt(2, categoryID);
+			preparedStatement.setString(2, categoryID);
 			result = preparedStatement.executeUpdate();
 			return result == 1;
 		} catch (SQLException ex) {
@@ -105,11 +104,11 @@ public class CategoryDAO {
 		return false;
 	}
 
-	public boolean delete(int categoryID) {
+	public boolean delete(String categoryID) {
 		int result = 0; 
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sqlDelete);
-			preparedStatement.setInt(1, categoryID);
+			preparedStatement.setString(1, categoryID);
 			result = preparedStatement.executeUpdate();
 			return result == 1;
 		} catch (SQLException ex) {

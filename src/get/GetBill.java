@@ -59,12 +59,12 @@ public class GetBill {
 		return null;
 	}
 
-	public ArrayList<Bill> getListBillByUserID(int userID) {
+	public ArrayList<Bill> getListBillByUserID(String userID) {
 
 		try {
-			String sql = "Select * from bill WHERE userID = ? and paid = true";
+			String sql = "Select * from bill WHERE userID = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, userID);
+			ps.setString(1, userID);
 			ResultSet rs = ps.executeQuery();
 			ArrayList<Bill> list = new ArrayList<>();
 

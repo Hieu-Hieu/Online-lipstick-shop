@@ -36,9 +36,7 @@ public class UserLogout extends HttpServlet {
 		Object user = session.getAttribute("user");
 		if (user != null) {
 			session.removeAttribute("user");
-			response.sendRedirect(request.getContextPath() + "/index.jsp");
-		} else {
-			response.sendRedirect(request.getContextPath() + "/my-account.jsp");
+			response.sendRedirect("index.jsp");
 		}
 	}
 
