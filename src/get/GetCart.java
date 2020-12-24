@@ -91,6 +91,7 @@ public class GetCart {
 			cart.add(rs.getInt("quantity"));
 			ListCart.add(cart);
 		}
+		System.out.println(ListCart);
 		return ListCart;
 	}
 
@@ -107,6 +108,19 @@ public class GetCart {
 		return totalCart;
 
 	}
+//	public ArrayList<Cart> getCartByUserID(String userID) throws SQLException {
+//		ArrayList<Cart> ListCart = new ArrayList<Cart>();
+//		PreparedStatement pst = conn.prepareStatement("select * from cart where userID = ?");
+//		ResultSet rs = pst.executeQuery();
+//		while (rs.next()) {
+//			Cart cart = new Cart();
+//			cart.setUserID(rs.getString("userID"));
+//			cart.setProductID(rs.getString("productID"));
+//			cart.setQuantity(rs.getInt("quantity"));
+//			ListCart.add(cart);
+//		}
+//		return ListCart;
+//	}
 
 	public boolean addNewProductToCart(int userID, int productID, int quantity) throws SQLException {
 		PreparedStatement pst = conn.prepareStatement("insert into billdetail values (?, ?, ?)");
@@ -133,6 +147,7 @@ public class GetCart {
 		PreparedStatement pst = conn.prepareStatement("select * from bill where userID = ? and paid = false");
 		pst.setInt(1, userID);
 		ResultSet rs = pst.executeQuery();
+		System.out.println("sdfsd");
 		if (rs.next()) {
 			return true;
 		}
