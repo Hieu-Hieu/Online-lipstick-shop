@@ -27,7 +27,7 @@
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="./list?currentPage=1">
+              <a class="nav-link" href="list?currentPage=1">
                 <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                 <p>Quản lí sản phẩm</p>
               </a>
