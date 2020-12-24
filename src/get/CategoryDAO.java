@@ -9,9 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import connect.DBConnect;
-import model.Brand;
 import model.Category;
-import model.Product;
 
 public class CategoryDAO {
 
@@ -20,7 +18,7 @@ public class CategoryDAO {
 	public CategoryDAO() {
 		connection = DBConnect.getConnecttion();
 	}
-	
+
 	private String sqlGetAll = "select * from category order by categoryName asc limit ?, ? ";
 	private String sqlGetNoParams = "select * from category order by categoryName asc";
 	private String sqlGet = "select * from category where categoryId = ?";
@@ -35,13 +33,13 @@ public class CategoryDAO {
 		Category category = null;
 		while (resultSet.next()) {
 			category = new Category();
-			category.setCategoryID(resultSet.getString("categoryID"));
+			category.setCategoryID(resultSet.getInt("categoryID"));
 			category.setCategoryName(resultSet.getString("categoryName"));
 			categories.add(category);
 		}
 		return categories;
 	}
-	
+
 	public ArrayList<Category> getAll(int firesultSettResult, int lastResult) throws SQLException {
 		PreparedStatement preparedStatement = connection.prepareStatement(sqlGetAll);
 		preparedStatement.setInt(1, firesultSettResult);
@@ -52,22 +50,22 @@ public class CategoryDAO {
 		Category category = null;
 		while (resultSet.next()) {
 			category = new Category();
-			category.setCategoryID(resultSet.getString("categoryID"));
+			category.setCategoryID(resultSet.getInt("categoryID"));
 			category.setCategoryName(resultSet.getString("categoryName"));
 			categories.add(category);
 		}
 		return categories;
 	}
-	
-	public Category getByID(String categoryID) throws SQLException {
+
+	public Category getByID(int categoryId) throws SQLException {
 		Category category = null;
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sqlGet);
-			preparedStatement.setString(1, categoryID);
+			preparedStatement.setInt(1, categoryId);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				category = new Category();
-				category.setCategoryID(resultSet.getString("categoryID"));
+				category.setCategoryID(resultSet.getInt("categoryID"));
 				category.setCategoryName(resultSet.getString("categoryName"));
 			}
 		} catch (Exception e) {
@@ -80,7 +78,7 @@ public class CategoryDAO {
 		int result = 0;
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sqlInsert);
-			preparedStatement.setString(1, c.getCategoryID());
+			preparedStatement.setInt(1, c.getCategoryID());
 			preparedStatement.setString(2, c.getCategoryName());
 			result = preparedStatement.executeUpdate();
 			return result == 1;
@@ -90,25 +88,25 @@ public class CategoryDAO {
 		return false;
 	}
 
-	public boolean update(String categoryID, Category category) throws SQLException {
-		int result = 0; 
+	public boolean update(int categoryID, Category category) throws SQLException {
+		int result = 0;
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sqlUpdate);
 			preparedStatement.setString(1, category.getCategoryName());
-			preparedStatement.setString(2, categoryID);
+			preparedStatement.setInt(2, categoryID);
 			result = preparedStatement.executeUpdate();
 			return result == 1;
 		} catch (SQLException ex) {
-			Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE,  "Update category: " + result, ex);
+			Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, "Update category: " + result, ex);
 		}
 		return false;
 	}
 
-	public boolean delete(String categoryID) {
-		int result = 0; 
+	public boolean delete(int categoryID) {
+		int result = 0;
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sqlDelete);
-			preparedStatement.setString(1, categoryID);
+			preparedStatement.setInt(1, categoryID);
 			result = preparedStatement.executeUpdate();
 			return result == 1;
 		} catch (SQLException ex) {

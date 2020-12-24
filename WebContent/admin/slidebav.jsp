@@ -27,7 +27,7 @@
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="./list?currentPage=1">
+              <a class="nav-link" href="${pageContext.request.contextPath }/admin/product/list?currentPage=1">
                 <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                 <p>Quản lí sản phẩm</p>
               </a>
@@ -45,7 +45,7 @@
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="./brandmanager.jsp">
+              <a class="nav-link" href="${pageContext.request.contextPath }/admin/brand">
                 <i class="fa fa-university" aria-hidden="true"></i>
                 <p>Quản lí nhà sản xuất</p>
               </a>
