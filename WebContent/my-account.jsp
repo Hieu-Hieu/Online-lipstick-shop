@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i>Lịch sử đặt hàng</a>
+                            <a class="nav-link" id="orders-nav" data-toggle="pill" href="${pageContext.request.contextPath}/HistoryController" role="tab"><i class="fa fa-shopping-bag"></i>Lịch sử đặt hàng</a>
                             <a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i class="fa fa-user"></i>Thông tin chi tiết</a>
                             <a class="nav-link" href="${pageContext.request.contextPath}/UserLogout"><i class="fa fa-sign-out-alt"></i>Đăng xuất</a>
                         </div>
@@ -83,19 +83,21 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
-                                <h4>Thông tin chi tiết</h4>
-                                <div class="row">
+								<h4>
+									 Thông tin chi tiết 
+								</h4>
+								<div class="row">
                                     <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Tên">
+                                        <input class="form-control" type="text" placeholder="Tên" value="${user.getUsername() }">
                                     </div>
                                     <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Số điện thoại">
+                                        <input class="form-control" type="text" placeholder="Số điện thoại" value="${user.getPhone() }">
                                     </div>
                                     <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Email">
+                                        <input class="form-control" type="text" placeholder="Email" value="${user.getEmail() }">
                                     </div>
                                     <div class="col-md-12">
-                                        <input class="form-control" type="text" placeholder="Địa chỉ">
+                                        <input class="form-control" type="text" placeholder="Địa chỉ" value="${user.getAddress() }">
                                     </div>
                                     <div class="col-md-12">
                                         <button class="btn">Cập nhật</button>
