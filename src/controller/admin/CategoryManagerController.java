@@ -17,7 +17,7 @@ import get.GetProduct;
 import model.Category;
 import model.Product;
 
-@WebServlet("/category-manager")
+@WebServlet("admin/category-manager")
 public class CategoryManagerController extends HttpServlet{
 	
 	CategoryDAO categoryDAO = null;
@@ -38,7 +38,7 @@ public class CategoryManagerController extends HttpServlet{
 		String deleteId = request.getParameter("delete_id");
 
 		if ( deleteId != null) {		
-			categoryDAO.deleteCategory(categoryId);
+			categoryDAO.delete(categoryId);
 		}
 		
 		ArrayList<Category> categories = null;
