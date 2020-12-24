@@ -71,9 +71,10 @@ public class AddToCartController extends HttpServlet {
 					if (getCart.checkBillExist(userID)) {
 						if (getCart.checkProductExist(userID, productID)) {
 							if (getCart.updateProductQuantity(userID, productID, quantity)) {
-								if (request.getParameter("cart").equals("no"))
+								if (request.getParameter("cart").equals("no")) {
+									System.out.println(request.getParameter("currentPage"));
 									url = "/ProductList?currentPage=" + request.getParameter("currentPage");
-								else {
+								} else {
 									url = "/CartController";
 								}
 							}

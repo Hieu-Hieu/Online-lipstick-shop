@@ -103,13 +103,13 @@
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label class="bmd-label-floating">Link hình ảnh 1</label> <input
-																				type="text" class="form-control" name="ImgFirst">
+																				type="text" class="form-control" name="imgFirst">
 																		</div>
 																	</div>
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label class="bmd-label-floating">Link hình ảnh 2</label> <input
-																				type="text" class="form-control" name="ImgLast">
+																				type="text" class="form-control" name="imgLast">
 																		</div>
 																	</div>
 																</div>
@@ -119,7 +119,7 @@
 																			<label class="bmd-label-floating">Mô tả sản
 																				phẩm</label>
 																		</div>
-																		<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+																		<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
                                                                 </textarea>
 																		
 																		<button type="submit"
