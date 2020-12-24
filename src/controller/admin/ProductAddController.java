@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import connect.DBConnect;
-import get.GetBrand;
-import get.GetCategory;
+import get.BrandDAO;
+import get.CategoryDAO;
 import model.Brand;
 import model.Category;
 import model.Product;
@@ -28,14 +28,12 @@ public class ProductAddController extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static final String SAVE_DIRECTORY = "images";
-
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ArrayList<Category> cate = new ArrayList<Category>();
-		GetCategory getCate = new GetCategory();
+		CategoryDAO getCate = new CategoryDAO();
 
 		ArrayList<Brand> brand = new ArrayList<Brand>();
-		GetBrand getBrand = new GetBrand();
+		BrandDAO getBrand = new BrandDAO();
 
 		try {
 			brand = getBrand.getListBrand();
