@@ -10,8 +10,6 @@ import java.util.logging.Logger;
 
 import connect.DBConnect;
 import model.Brand;
-import model.Category;
-import model.Product;
 
 public class BrandDAO {
 
@@ -20,7 +18,7 @@ public class BrandDAO {
 	public BrandDAO() {
 		connection = DBConnect.getConnecttion();
 	}
-	
+
 	private String sqlGetAll = "select * from brand order by brandName asc limit ?, ? ";
 	private String sqlGetNoParams = "select * from brand order by brandName asc";
 	private String sqlGet = "select * from brand where brandId = ?";
@@ -35,13 +33,13 @@ public class BrandDAO {
 		Brand brand = null;
 		while (resultSet.next()) {
 			brand = new Brand();
-			brand.setBrandID(resultSet.getInt(Integer.parseInt("brandID")));
+			brand.setBrandID(resultSet.getInt("brandID"));
 			brand.setBrandName(resultSet.getString("brandName"));
 			brandes.add(brand);
 		}
 		return brandes;
 	}
-	
+
 	public ArrayList<Brand> getAll(int firesultSettResult, int lastResult) throws SQLException {
 		PreparedStatement preparedStatement = connection.prepareStatement(sqlGetAll);
 		preparedStatement.setInt(1, firesultSettResult);
@@ -58,7 +56,7 @@ public class BrandDAO {
 		}
 		return brandes;
 	}
-	
+
 	public Brand getByID(int brandId) throws SQLException {
 		Brand brand = null;
 		try {
@@ -91,7 +89,7 @@ public class BrandDAO {
 	}
 
 	public boolean update(int brandID, Brand brand) throws SQLException {
-		int result = 0; 
+		int result = 0;
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sqlUpdate);
 			preparedStatement.setString(1, brand.getBrandName());
@@ -99,13 +97,13 @@ public class BrandDAO {
 			result = preparedStatement.executeUpdate();
 			return result == 1;
 		} catch (SQLException ex) {
-			Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE,  "Update brand: " + result, ex);
+			Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, "Update brand: " + result, ex);
 		}
 		return false;
 	}
 
 	public boolean delete(int brandID) {
-		int result = 0; 
+		int result = 0;
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sqlDelete);
 			preparedStatement.setInt(1, brandID);

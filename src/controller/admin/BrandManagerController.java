@@ -25,17 +25,23 @@ public class BrandManagerController extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		int brandId = Integer.parseInt(request.getParameter("brand_id"));
-		String deleteId = request.getParameter("delete_id");
+		try {
+			int brandId = Integer.parseInt(request.getParameter("brand_id"));
+			String deleteId = request.getParameter("delete_id");
 
-		if (deleteId != null) {
-			brandDAO.delete(brandId);
+			if (deleteId != null) {
+				brandDAO.delete(brandId);
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
 		}
 
 		String currentPage = (request.getParameter("currentPage") == null
 				|| request.getParameter("currentPage").isEmpty() || request.getParameter("currentPage").isEmpty()) ? "1"
 						: request.getParameter("currentPage");
-		ArrayList<Brand> brandes = null;
+		ArrayList<Brand> brandes = new ArrayList<Brand>();
 		String url = "";
 		try {
 			brandes = brandDAO.getAll(Integer.parseInt(currentPage) * 9 - 9, 9);
@@ -91,5 +97,6 @@ public class BrandManagerController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		// doGet(request, response);
 	}
 }

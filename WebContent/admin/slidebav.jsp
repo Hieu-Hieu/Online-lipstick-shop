@@ -45,13 +45,13 @@
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="${pageContext.request.contextPath }/admin/brand">
+              <a class="nav-link" href="${pageContext.request.contextPath }/admin/brandManager">
                 <i class="fa fa-university" aria-hidden="true"></i>
                 <p>Quản lí nhà sản xuất</p>
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="./catelogymanager.jsp">
+              <a class="nav-link" href="${pageContext.request.contextPath }/admin/categoryManager">
                 <i class="fa fa-adjust" aria-hidden="true"></i>
                 <p>Quản lí loại sản phẩm</p>
               </a>

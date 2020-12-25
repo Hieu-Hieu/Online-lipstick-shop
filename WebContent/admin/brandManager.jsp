@@ -26,10 +26,6 @@
 <body class="">
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:include page="slidebav.jsp"></jsp:include>
-
-<%
-	List<Brand> brandes = (ArrayList<Brand>)request.getAttribute("brandes");
-%>
 	<div class="wrapper ">
 		<div class="main-panel">
 			<div class="content">
@@ -55,7 +51,7 @@
 													<td >${item.getBrandID()}</td>
 													<td >${item.getBrandName()}</td>
 													<td>
-														<form action="${pageContext.request.contextPath}/brandManager" method="get">
+														<form action="${pageContext.request.contextPath}/admin/brandManager" method="get">
 														  <input type="hidden" name="brand_id" value="${item.getBrandID()}">
 														  <input type="hidden" name="delete_id" value="1">
 														  <button type="submit" class="btn btn-primary pull-right">Xóa</button>
@@ -81,7 +77,7 @@
 												<h4 class="card-title">Thông tin loại sản phẩm</h4>
 											</div>
 											<div class="card-body">
-												<form action="${pageContext.request.contextPath}/brand-manager" method="post">
+												<form action="${pageContext.request.contextPath}/admin/brandManager" method="post">
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-12">

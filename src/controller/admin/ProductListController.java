@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import get.GetProduct;
 import model.Product;
 
-@WebServlet(urlPatterns = {"/admin/product/list"})
+@WebServlet(urlPatterns = { "/admin/product/list" })
 public class ProductListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,14 +27,16 @@ public class ProductListController extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String currentPage = request.getParameter("currentPage");
-		System.out.println(currentPage);
-		
+
 		GetProduct gp = new GetProduct();
 		ArrayList<Product> listProduct = new ArrayList<Product>();
 		String url = "";
@@ -42,22 +44,18 @@ public class ProductListController extends HttpServlet {
 			listProduct = gp.getAllProduct(Integer.parseInt(currentPage) * 9 - 9, 9);
 			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("totalPage", gp.totalPage());
-			
-			System.out.println( gp.totalPage());
-			
 			request.setAttribute("listProduct", listProduct);
 			url = "/admin/productmanager.jsp";
 		} catch (NumberFormatException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 
 	}
 
-	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

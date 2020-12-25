@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import get.CategoryDAO;
 import model.Category;
 
-@WebServlet("/category-manager")
+@WebServlet("/admin/categoryManager")
 public class CategoryManagerController extends HttpServlet {
 
 	CategoryDAO categoryDAO = null;
@@ -30,20 +30,24 @@ public class CategoryManagerController extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		try {
+			int categoryId = Integer.parseInt(request.getParameter("category_id"));
+			String deleteId = request.getParameter("delete_id");
 
-		int categoryId = Integer.parseInt(request.getParameter("category_id"));
-		String deleteId = request.getParameter("delete_id");
-
-		if (deleteId != null) {
-			categoryDAO.delete(categoryId);
+			if (deleteId != null) {
+				categoryDAO.delete(categoryId);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println();
 		}
 
-		ArrayList<Category> categories = null;
+		ArrayList<Category> categories = new ArrayList<Category>();
 		String url = "";
 		try {
 			categories = categoryDAO.getListCategory();
-
-			url = "/admin/categorymanager.jsp";
+			request.setAttribute("categories", categories);
+			url = "/admin/categoryManager.jsp";
 		} catch (NumberFormatException | SQLException e) {
 			e.printStackTrace();
 		}

@@ -29,7 +29,6 @@ public class GetProduct {
 	}
 
 	public boolean addProduct(Product p) throws SQLException {
-
 		PreparedStatement st = conn.prepareStatement("insert into product values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		st.setInt(1, p.getProductID());
 		st.setString(2, p.getName());

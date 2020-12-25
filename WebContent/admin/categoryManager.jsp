@@ -54,7 +54,7 @@
 													<td >${item.getCategoryID()}</td>
 													<td >${item.getCategoryName()}</td>
 													<td>
-														<form action="${pageContext.request.contextPath}/category-manager" method="get">
+														<form action="${pageContext.request.contextPath}/admin/categoryManager" method="get">
 														  <input type="hidden" name="category_id" value="${item.getCategoryID()}">
 														  <input type="hidden" name="delete_id" value="1">
 														  <button type="submit" class="btn btn-primary pull-right">Xóa</button>
@@ -80,7 +80,7 @@
 												<h4 class="card-title">Thông tin loại sản phẩm</h4>
 											</div>
 											<div class="card-body">
-												<form action="${pageContext.request.contextPath}/category-manager" method="post">
+												<form action="${pageContext.request.contextPath}/admin/categoryManager" method="post">
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-12">
