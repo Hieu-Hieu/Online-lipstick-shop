@@ -21,7 +21,7 @@
         <div class="sidebar-wrapper">
           <ul class="nav">
             <li class="nav-item active  ">
-              <a class="nav-link" href="./dashboard.jsp">
+              <a class="nav-link" href="${pageContext.request.contextPath }/admin/dashboard.jsp">
                 <i class="material-icons"></i>
 					<p>Dashboard</p>
               </a>
@@ -33,13 +33,13 @@
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="./usermanager.jsp">
+              <a class="nav-link" href="${pageContext.request.contextPath }/admin/usermanager.jsp">
                 <i class="fa fa-address-book" aria-hidden="true"></i>
                 <p>Quản lí người dùng</p>
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="./odermanager.jsp">
+              <a class="nav-link" href="${pageContext.request.contextPath }/admin/odermanager.jsp">
                 <i class="fa fa-truck" aria-hidden="true"></i>
                 <p>Quản lí đơn hàng</p>
               </a>
@@ -57,7 +57,7 @@
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="./profile.jsp">
+              <a class="nav-link" href="${pageContext.request.contextPath }/admin/profile.jsp">
                 <i class="fa fa-cog" aria-hidden="true"></i>
                 <p>Tài khoản</p>
               </a>

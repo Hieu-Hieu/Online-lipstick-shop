@@ -1,35 +1,63 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "billDetail")
 public class BillDetail {
-	private int billID;
-	private int productID;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "billDetailID")
+	private int billDetailID;
+	
+	@ManyToOne
+	@JoinColumn(name="billID", referencedColumnName="billID")
+	private Bill bill;
+	
+	@ManyToOne
+	@JoinColumn(name = "productID", referencedColumnName="productID")
+	private Product product;
+	
+	@Column(name = "quantity")
 	private int quantity;
 
-	public BillDetail() {
-
-	}
-
-	public BillDetail(int billID, int productID, int quantity) {
+	public BillDetail(int billDetailID, Bill bill, Product product, int quantity) {
 		super();
-		this.billID = billID;
-		this.productID = productID;
+		this.billDetailID = billDetailID;
+		this.bill = bill;
+		this.product = product;
 		this.quantity = quantity;
 	}
 
-	public int getBillID() {
-		return billID;
+	public int getBillDetailID() {
+		return billDetailID;
 	}
 
-	public void setBillID(int billID) {
-		this.billID = billID;
+	public void setBillDetailID(int billDetailID) {
+		this.billDetailID = billDetailID;
 	}
 
-	public int getProductID() {
-		return productID;
+	public Bill getBill() {
+		return bill;
 	}
 
-	public void setProductID(int productID) {
-		this.productID = productID;
+	public void setBill(Bill bill) {
+		this.bill = bill;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public int getQuantity() {

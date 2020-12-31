@@ -46,7 +46,7 @@ public class ProductDetailController extends HttpServlet {
 		String url = "";
 
 		try {
-			p = getProduct.getProductByID(productID);
+			p = getProduct.getProductByID(Integer.parseInt(productID));
 			if (p != null) {
 				request.setAttribute("product", p);
 				url = "/product-detail.jsp";

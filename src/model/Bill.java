@@ -1,35 +1,41 @@
 package model;
 
 import java.sql.Date;
+import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "bill")
 public class Bill {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "billID")
 	private int billID;
-	private int userID;
+
+	@Column(name = "address")
 	private String address;
+
+	@Column(name = "date")
+	// @Temporal(TemporalType.DATE)
 	private Date date;
+
+	@Column(name = "total")
 	private double total;
+
+	@Column(name = "paid")
 	private boolean paid;
 
-	public Bill(int billID, int userID, double total, String address, Date date, boolean paid) {
-		super();
-		this.billID = billID;
-		this.userID = userID;
-		this.address = address;
-		this.date = date;
-		this.total = total;
-		this.paid = paid;
-	}
+	@Column(name = "state")
+	private boolean state;
 
-	public boolean getPaid() {
-		return paid;
-	}
-
-	public void setPaid(boolean paid) {
-		this.paid = paid;
-	}
-
-	public Bill() {
-	}
+//	@OneToMany(mappedBy="bill",cascade=CascadeType.ALL)
+//	private Set<BillDetail> billDetail;
 
 	public int getBillID() {
 		return billID;
@@ -37,14 +43,6 @@ public class Bill {
 
 	public void setBillID(int billID) {
 		this.billID = billID;
-	}
-
-	public int getUserID() {
-		return userID;
-	}
-
-	public void setUserID(int userID) {
-		this.userID = userID;
 	}
 
 	public String getAddress() {
@@ -69,5 +67,43 @@ public class Bill {
 
 	public void setTotal(double total) {
 		this.total = total;
+	}
+
+	public boolean isPaid() {
+		return paid;
+	}
+
+	public void setPaid(boolean paid) {
+		this.paid = paid;
+	}
+
+	public boolean isState() {
+		return state;
+	}
+
+	public void setState(boolean state) {
+		this.state = state;
+	}
+
+//	public Set<BillDetail> getBillDetail() {
+//		return billDetail;
+//	}
+//
+//	public void setBillDetail(Set<BillDetail> billDetail) {
+//		this.billDetail = billDetail;
+//	}
+
+	public Bill(int billID, String address, Date date, double total, boolean paid, boolean state) {
+		super();
+		this.billID = billID;
+		this.address = address;
+		this.date = date;
+		this.total = total;
+		this.paid = paid;
+		this.state = state;
+//		this.billDetail = billDetail;
+	}
+
+	public Bill() {
 	}
 }
