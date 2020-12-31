@@ -3,6 +3,7 @@ package controller.user;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,15 +36,17 @@ public class ProductList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String currentPage = request.getParameter("currentPage");
 		GetProduct gp = new GetProduct();
-		ArrayList<Product> listProduct = new ArrayList<Product>();
+		List<Product> listProduct = null;
 		String url = "";
 		try {
+			System.out.println("Vao toi try catch");
 			listProduct = gp.getAllProduct(Integer.parseInt(currentPage) * 9 - 9, 9);
 			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("totalPage", gp.totalPage());
@@ -55,7 +58,7 @@ public class ProductList extends HttpServlet {
 		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);
-//		response.sendRedirect(request.getContextPath() + url);
+		System.out.println(request.getContextPath() + url);
 	}
 
 	/**

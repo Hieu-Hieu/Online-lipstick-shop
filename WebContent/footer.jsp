@@ -20,64 +20,32 @@
 <link href="./client/static/lib/slick/slick-theme.css" rel="stylesheet">
 
 <!-- Template Stylesheet -->
-<link href="./client/static/css/style.css" rel="stylesheet">
+<link href="./client/static/css/footer.css" rel="stylesheet">
 </head>
 <body>
     <!-- Footer Start -->
-    <div class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-widget">
-                        <h2>Get in Touch</h2>
-                        <div class="contact-info">
-                            <p><i class="fa fa-map-marker"></i>123 E Store, Los Angeles, USA</p>
-                            <p><i class="fa fa-envelope"></i>email@example.com</p>
-                            <p><i class="fa fa-phone"></i>+123-456-7890</p>
-                        </div>
-                    </div>
-                </div>
-                    
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-widget">
-                        <h2>Follow Us</h2>
-                        <div class="contact-info">
-                            <div class="social">
-                                <a href=""><i class="fab fa-twitter"></i></a>
-                                <a href=""><i class="fab fa-facebook-f"></i></a>
-                                <a href=""><i class="fab fa-linkedin-in"></i></a>
-                                <a href=""><i class="fab fa-instagram"></i></a>
-                                <a href=""><i class="fab fa-youtube"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-widget">
-                        <h2>Company Info</h2>
-                        <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms & Condition</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-widget">
-                        <h2>Purchase Info</h2>
-                        <ul>
-                            <li><a href="#">Pyament Policy</a></li>
-                            <li><a href="#">Shipping Policy</a></li>
-                            <li><a href="#">Return Policy</a></li>
-                        </ul>
-                    </div>
-                </div>
+   <div class="grid wide">
+   <hr>
+        <div class="row no-gutters">
+            <div class="c-12">
+                <img class="logo" src="./client/static/img/logo1.png" alt="#">
             </div>
         </div>
-    </div>
-    <!-- Footer End -->
+        <div class="row no-gutters">
+            <div class="c-6">
+                <h2 style="color: #000;"><strong>4guysellingsliptick.com</strong></h2>
+                <ul>
+                    <li><i class="fas fa-home"></i></i>Address: Đại học SPKT</li>
+                    <li><i class="fas fa-phone-alt"></i>Hotline: + 84972220XXX - + 84972220XXX</i></li>
+                    <li><i class="fas fa-envelope"></i>Email: 4guysellinglipstick@gmail.com</i></li>
+                    <li><i class="fab fa-facebook-messenger"></i><a href="https://www.facebook.com/4guysellinglipstick">Fanpage: 4guysellinglipstick</a></li>
+                </ul>
+            </div>
+            <div class="c-6">
+                <h2>ĐỊA CHỈ</h2>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.480424582181!2d106.77006551440977!3d10.85101709227095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752763f23816ab%3A0x282f711441b6916f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBTxrAgcGjhuqFtIEvhu7kgdGh14bqtdCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1608783999514!5m2!1svi!2s" width="400" height="180" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+        
     
     <!-- Load Facebook SDK for JavaScript -->
     <div id="fb-root"></div>
