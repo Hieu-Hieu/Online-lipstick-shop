@@ -1,18 +1,12 @@
 //package get;
 //
-//import java.sql.Connection;
 //import java.sql.PreparedStatement;
 //import java.sql.ResultSet;
 //import java.sql.SQLException;
 //import java.util.ArrayList;
 //import java.util.List;
 //
-//import connect.DBConnect;
-//
 //public class GetCart {
-//	DBConnect mydb = new DBConnect();
-//	Connection conn = mydb.getConnecttion();
-//	String sql = "select billID from bill where userID = ? and paid = false";
 //
 //	public boolean checkProductExist(int userID, int productID) throws SQLException {
 //		PreparedStatement pst = conn
