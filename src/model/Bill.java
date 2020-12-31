@@ -2,15 +2,43 @@ package model;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "bill")
 public class Bill {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "billID")
 	private int billID;
-	private int userID;
+
+	@ManyToOne
+	@Column(name = "userID")
+	private User userID;
+
+	@Column(name = "address")
 	private String address;
+
+//	@Temporal(TemporalType.DATE)
+	@Column(name = "date")
 	private Date date;
+
+	@Column(name = "total")
 	private double total;
+
+	@Column(name = "paid")
 	private boolean paid;
 
-	public Bill(int billID, int userID, double total, String address, Date date, boolean paid) {
+	@Column(name = "state")
+	private boolean state;
+
+	public Bill(int billID, User userID, String address, Date date, double total, boolean paid, boolean state) {
 		super();
 		this.billID = billID;
 		this.userID = userID;
@@ -18,14 +46,15 @@ public class Bill {
 		this.date = date;
 		this.total = total;
 		this.paid = paid;
+		this.state = state;
 	}
 
-	public boolean getPaid() {
-		return paid;
+	public User getUserID() {
+		return userID;
 	}
 
-	public void setPaid(boolean paid) {
-		this.paid = paid;
+	public void setUserID(User userID) {
+		this.userID = userID;
 	}
 
 	public Bill() {
@@ -37,14 +66,6 @@ public class Bill {
 
 	public void setBillID(int billID) {
 		this.billID = billID;
-	}
-
-	public int getUserID() {
-		return userID;
-	}
-
-	public void setUserID(int userID) {
-		this.userID = userID;
 	}
 
 	public String getAddress() {
@@ -69,5 +90,21 @@ public class Bill {
 
 	public void setTotal(double total) {
 		this.total = total;
+	}
+
+	public boolean isPaid() {
+		return paid;
+	}
+
+	public void setPaid(boolean paid) {
+		this.paid = paid;
+	}
+
+	public boolean isState() {
+		return state;
+	}
+
+	public void setState(boolean state) {
+		this.state = state;
 	}
 }

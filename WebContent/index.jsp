@@ -2,9 +2,6 @@
 <%@ page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="model.Product"%>
-<%@page import="get.GetProduct"%>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
@@ -50,21 +47,9 @@
 					<nav class="navbar bg-light" style="align-items: flex-start;">
 						<ul class="navbar-nav">
 							<li class="nav-item"><a class="nav-link" href="#"><i
-									class="fa fa-home"></i>Home</a></li>
+									class="fa fa-home"></i>Nhà sản xuất</a></li>
 							<li class="nav-item"><a class="nav-link" href="#"><i
-									class="fa fa-shopping-bag"></i>Best Selling</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"><i
-									class="fa fa-plus-square"></i>New Arrivals</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"><i
-									class="fa fa-female"></i>Fashion & Beauty</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"><i
-									class="fa fa-child"></i>Kids & Babies Clothes</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"><i
-									class="fa fa-tshirt"></i>Men & Women Clothes</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"><i
-									class="fa fa-mobile-alt"></i>Gadgets & Accessories</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"><i
-									class="fa fa-microchip"></i>Electronics & Accessories</a></li>
+									class="fa fa-shopping-bag"></i>Loại sản xuất</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -93,7 +78,7 @@
 																${price}<span>Đ</span>
 															</h3>
 															<a class="btn"
-																href="${pageContext.request.contextPath}/AddToCartController?cart=no&command=add&productID=${p.getProductID() }&quantity=1&currentPage=${currentPage}""><i
+																href="${pageContext.request.contextPath}/AddToCartController?cart=no&command=add&productID=${p.getProductID() }&quantity=1&currentPage=${currentPage}"><i
 																class="fa fa-shopping-cart"></i>Thêm</a>
 														</div>
 													</div>
@@ -114,12 +99,12 @@
 												<c:when test="${currentPage > 1}">
 													<li class="page-item"><a class="page-link"
 														href="${pageContext.request.contextPath }/ProductList?currentPage=${currentPage - 1}"
-														tabindex="-1">Previous</a></li>
+														tabindex="-1">Trang trước</a></li>
 												</c:when>
 												<c:otherwise>
 													<li class="page-item disabled"><a class="page-link"
 														href="${pageContext.request.contextPath }/ProductList?currentPage=${currentPage - 1}"
-														tabindex="-1">Previous</a></li>
+														tabindex="-1">Trang trước</a></li>
 												</c:otherwise>
 											</c:choose>
 
@@ -144,12 +129,12 @@
 											<c:choose>
 												<c:when test="${currentPage < totalPage }">
 													<li class="page-item"><a class="page-link"
-														href="${pageContext.request.contextPath }/ProductList?currentPage=${currentPage +1}">Next</a>
+														href="${pageContext.request.contextPath }/ProductList?currentPage=${currentPage +1}">Trang sau</a>
 													</li>
 												</c:when>
 												<c:otherwise>
 													<li class="page-item disabled"><a class="page-link"
-														href="${pageContext.request.contextPath }/ProductList?currentPage=${currentPage +1}">Next</a>
+														href="${pageContext.request.contextPath }/ProductList?currentPage=${currentPage +1}">Trang sau</a>
 													</li>
 												</c:otherwise>
 											</c:choose>

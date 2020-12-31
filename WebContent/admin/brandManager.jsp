@@ -3,7 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@page import="model.Brand"%>
-<%@page import="get.BrandDAO"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
