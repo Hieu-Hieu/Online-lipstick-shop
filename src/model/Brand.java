@@ -1,14 +1,10 @@
 package model;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,15 +14,15 @@ public class Brand {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "brandID")
 	private int brandID;
-	
+
 	@Column(name = "brandName")
 	private String brandName;
 
-	//Mapping
-	
-		@OneToMany(mappedBy = "brand" , cascade=CascadeType.ALL)
-		private Set<Product> products;
-		
+	// Mapping
+//	
+//		@OneToMany(mappedBy = "brand" , cascade=CascadeType.ALL)
+//		private Set<Product> products;
+//		
 	public Brand() {
 	}
 
@@ -46,20 +42,19 @@ public class Brand {
 		this.brandName = brandName;
 	}
 
-	public Set<Product> getProducts() {
-		return products;
-	}
+//	public Set<Product> getProducts() {
+//		return products;
+//	}
+//
+//	public void setProducts(Set<Product> products) {
+//		this.products = products;
+//	}
 
-	public void setProducts(Set<Product> products) {
-		this.products = products;
-	}
-
-	public Brand(int brandID, String brandName, Set<Product> products) {
+	public Brand(int brandID, String brandName) {
 		super();
 		this.brandID = brandID;
 		this.brandName = brandName;
-		this.products = products;
+//		this.products = products;
 	}
 
-	
 }

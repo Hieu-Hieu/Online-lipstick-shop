@@ -3,16 +3,11 @@ package model;
 import java.sql.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,26 +17,25 @@ public class Bill {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "billID")
 	private int billID;
-	
+
 	@Column(name = "address")
 	private String address;
-	
+
 	@Column(name = "date")
-	//@Temporal(TemporalType.DATE)
+	// @Temporal(TemporalType.DATE)
 	private Date date;
-	
+
 	@Column(name = "total")
 	private double total;
-	
+
 	@Column(name = "paid")
 	private boolean paid;
-	
+
 	@Column(name = "state")
 	private boolean state;
-	
-	
-	@OneToMany(mappedBy="bill",cascade=CascadeType.ALL)
-	private Set<BillDetail> billDetail;
+
+//	@OneToMany(mappedBy="bill",cascade=CascadeType.ALL)
+//	private Set<BillDetail> billDetail;
 
 	public int getBillID() {
 		return billID;
@@ -91,16 +85,15 @@ public class Bill {
 		this.state = state;
 	}
 
-	public Set<BillDetail> getBillDetail() {
-		return billDetail;
-	}
+//	public Set<BillDetail> getBillDetail() {
+//		return billDetail;
+//	}
+//
+//	public void setBillDetail(Set<BillDetail> billDetail) {
+//		this.billDetail = billDetail;
+//	}
 
-	public void setBillDetail(Set<BillDetail> billDetail) {
-		this.billDetail = billDetail;
-	}
-
-	public Bill(int billID, String address, Date date, double total, boolean paid, boolean state,
-			Set<BillDetail> billDetail) {
+	public Bill(int billID, String address, Date date, double total, boolean paid, boolean state) {
 		super();
 		this.billID = billID;
 		this.address = address;
@@ -108,7 +101,9 @@ public class Bill {
 		this.total = total;
 		this.paid = paid;
 		this.state = state;
-		this.billDetail = billDetail;
+//		this.billDetail = billDetail;
 	}
-	public Bill() {}
+
+	public Bill() {
+	}
 }

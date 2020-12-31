@@ -10,10 +10,27 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cart")
+@Table(name = "cart")
 public class Cart {
-	public Cart() {}
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "cartID")
+	private int cartID;
+
+	@Column
+	private int quantity;
+
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "userID", referencedColumnName = "userID")
+	private User user;
+
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "productID", referencedColumnName = "productID")
+	private Product product;
+
+	public Cart() {
+	}
+
 	public int getQuantity() {
 		return quantity;
 	}
@@ -45,20 +62,4 @@ public class Cart {
 		this.product = product;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "cartID")
-	private int cartID;
-	
-	@Column
-	private int quantity;
-	
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "userID",referencedColumnName="userID")
-	private User user;
-	
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "productID",referencedColumnName="productID")
-	private Product product;
-	
 }
