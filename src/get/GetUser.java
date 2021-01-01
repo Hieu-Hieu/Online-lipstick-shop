@@ -97,7 +97,7 @@ public class GetUser {
 		return u;
 	}
 
-	public User getUser(int id) throws SQLException {
+	public User getUserByID(int id) throws SQLException {
 		User u = new User();
 		Transaction transaction = null;
 		try {
