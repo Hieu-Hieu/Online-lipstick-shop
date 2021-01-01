@@ -59,7 +59,7 @@ public class GetBill {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("select * from Bill where userID =: uId");
+			Query query = session.createQuery("from Bill where userID =: uId");
 			query.setParameter("uId", userID);
 			listBill = (ArrayList<Bill>) query.getResultList();
 

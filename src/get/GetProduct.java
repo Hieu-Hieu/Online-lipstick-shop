@@ -40,11 +40,9 @@ public class GetProduct {
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Query query = session.createQuery("select count(*) as tongTrang from Product");
-			List results = query.list();
-			for (Object tong : results) {
-				result = (float) ((List) tong).get(0);
-			}
-			result = (float) (results.get(0));
+			List listResult = query.list();
+			Number number = (Number) listResult.get(0);
+			total = (int) number.intValue();
 			result = (float) total / 9;
 			if (result > (total / 9)) {
 				return (int) (result + 1);
@@ -163,7 +161,6 @@ public class GetProduct {
 			Query query = session.createQuery("from Product");
 			query.setFirstResult(firstResult);
 			query.setMaxResults(lastResult);
-
 			listOfProduct = (ArrayList<Product>) query.getResultList();
 			// commit transaction
 			transaction.commit();

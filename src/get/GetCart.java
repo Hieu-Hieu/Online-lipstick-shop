@@ -19,12 +19,11 @@ public class GetCart {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("select * from Cart where userID = :uID and productID = :pID");
-			query.setParameter("uID", userID);
-			query.setParameter("pID", productID);
-			List p = (List) query.list().get(0);
-
-			if (p != null) {
+			Query query = session.createQuery("from Cart where userID = :userID and productID = :productID");
+			query.setParameter("userID", userID);
+			query.setParameter("productID", productID);
+			List p = query.list();
+			if (!p.isEmpty()) {
 				return true;
 			}
 			// commit transaction
@@ -44,11 +43,11 @@ public class GetCart {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("select * from Cart where userID = :uID");
-			query.setParameter("uID", userID);
-			List p = (List) query.list().get(0);
+			Query query = session.createQuery("from Cart where userID = :userID");
+			query.setParameter("userID", userID);
+			List p = query.list();
 
-			if (p != null) {
+			if (!p.isEmpty()) {
 				return true;
 			}
 			// commit transaction
@@ -62,22 +61,23 @@ public class GetCart {
 		return false;
 	}
 
-	public boolean addToCart(Cart c) {
+	public void addToCart(Cart c) {
 		Transaction transaction = null;
 		try {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
+			System.out.println("add to cart");
 			session.save(c);
 			// commit transaction
 			transaction.commit();
+
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 			e.printStackTrace();
 		}
-		return false;
 	}
 
 	public int totalProduct(int userID) throws SQLException {
@@ -86,14 +86,13 @@ public class GetCart {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("select sum(quantity) as quantity from Cart where userID =:uID");
-			query.setParameter("uID", userID);
-			String p = (String) query.list().get(0);
-			if (p != null) {
-				return Integer.parseInt(p);
-			}
+			Query query = session.createQuery("select sum(quantity) as quantity from Cart where userID = :userID");
+			query.setParameter("userID", userID);
+			List p = query.list();
+			Number number = (Number) p.get(0);
 			// commit transaction
 			transaction.commit();
+			return (int) number.intValue();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
@@ -109,9 +108,9 @@ public class GetCart {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("delete from Cart where userID =:uID and productID: pID");
-			query.setParameter("uID", userID);
-			query.setParameter("pID", productID);
+			Query query = session.createQuery("delete from Cart where userID = :userID and productID = :productID");
+			query.setParameter("userID", userID);
+			query.setParameter("productID", productID);
 			if (query.executeUpdate() > 0)
 				return true;
 			// commit transaction
@@ -132,8 +131,8 @@ public class GetCart {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("select * from Cart where userID: uID");
-			query.setParameter("uID", userID);
+			Query query = session.createQuery("from Cart where userID = :userID");
+			query.setParameter("userID", userID);
 			ListCart = (ArrayList<Cart>) query.getResultList();
 			// commit transaction
 			transaction.commit();
@@ -154,12 +153,13 @@ public class GetCart {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("select * from Cart where userID: uID");
-			query.setParameter("uID", userID);
+			Query query = session.createQuery("from Cart where userID = :userID");
+			query.setParameter("userID", userID);
 			list = (ArrayList<Cart>) query.getResultList();
 			for (Cart l : list) {
 				tong = l.getQuantity() + l.getProduct().getPrice();
 			}
+			System.out.println(tong);
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
@@ -179,10 +179,36 @@ public class GetCart {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("update Cart set quantity = : q where userID: uID and productID = :pID");
-			query.setParameter("uID", userID);
-			query.setParameter("q", quantity);
-			query.setParameter("pID", productID);
+			Query query = session.createQuery(
+					"update Cart set quantity = :quantity where userID = :userID and productID = :productID");
+			query.setParameter("userID", userID);
+			query.setParameter("quantity", q);
+			query.setParameter("productID", productID);
+			if (query.executeUpdate() > 0) {
+				return true;
+			}
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean updateProductQuantityInCart(int userID, int productID, int quantity) throws SQLException {
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(
+					"update Cart set quantity = :quantity where userID = :userID and productID = :productID");
+			query.setParameter("userID", userID);
+			query.setParameter("quantity", quantity);
+			query.setParameter("productID", productID);
 			if (query.executeUpdate() > 0) {
 				return true;
 			}
@@ -204,17 +230,15 @@ public class GetCart {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session
-					.createQuery("select sum(quantity) as quantity from Cart where userID =:uID and productID = : p");
-			query.setParameter("uID", userID);
-			query.setParameter("p", productID);
-			String q = (String) query.list().get(0);
-			if (q != null) {
-				quantity = Integer.parseInt(q);
-				return quantity;
-			}
+			Query query = session.createQuery(
+					"select sum(quantity) as quantity from Cart where userID = :userID and productID = :productID");
+			query.setParameter("userID", userID);
+			query.setParameter("productID", productID);
+			List p = query.list();
+			Number number = (Number) p.get(0);
 			// commit transaction
 			transaction.commit();
+			return (int) number.intValue();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();

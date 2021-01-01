@@ -51,21 +51,17 @@ public class CartController extends HttpServlet {
 			GetCart getCart = new GetCart();
 			ArrayList<Cart> listCart = new ArrayList<Cart>();
 			try {
-				if (getCart.checkCartExist(userID)) {
-					listCart = getCart.getCartByUserID(userID);
-					request.setAttribute("listCart", listCart);
-					request.setAttribute("totalCart", getCart.totalCart(userID));
-					url = "/cart.jsp";
-				}
+				listCart = getCart.getCartByUserID(userID);
+				request.setAttribute("listCart", listCart);
+				request.setAttribute("totalCart", getCart.totalCart(userID));
+				url = "/cart.jsp";
 			} catch (
 
 			SQLException e) {
 				// TODO Auto-generated catch block
-//				System.out.println(e);
 				e.printStackTrace();
 			}
 			url = "/cart.jsp";
-//			RequestDispatcher dipatcher = getServletContext().requestDi
 		} else {
 			url = "/cart.jsp";
 		}

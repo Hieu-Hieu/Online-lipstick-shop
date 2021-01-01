@@ -42,7 +42,13 @@ public class Product {
 	@Column(name = "quantity")
 	private int quantity;
 
+	// maping
+
+//	@OneToMany(mappedBy="product", cascade=CascadeType.ALL)
+//	private Set<BillDetail> billDetail;
+//	
 	public Product() {
+
 	}
 
 	public int getProductID() {
