@@ -20,7 +20,7 @@ public class Bill {
 
 	@ManyToOne
 	@Column(name = "userID")
-	private User userID;
+	private User user;
 
 	@Column(name = "address")
 	private String address;
@@ -38,10 +38,10 @@ public class Bill {
 	@Column(name = "state")
 	private boolean state;
 
-	public Bill(int billID, User userID, String address, Date date, double total, boolean paid, boolean state) {
+	public Bill(int billID, User user, String address, Date date, double total, boolean paid, boolean state) {
 		super();
 		this.billID = billID;
-		this.userID = userID;
+		this.user = user;
 		this.address = address;
 		this.date = date;
 		this.total = total;
@@ -49,15 +49,13 @@ public class Bill {
 		this.state = state;
 	}
 
-	public User getUserID() {
-		return userID;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserID(User userID) {
-		this.userID = userID;
+	public void setUser(User userID) {
+		this.user = userID;
 	}
-//	@OneToMany(mappedBy="bill",cascade=CascadeType.ALL)
-//	private Set<BillDetail> billDetail;
 
 	public int getBillID() {
 		return billID;
@@ -107,25 +105,4 @@ public class Bill {
 		this.state = state;
 	}
 
-//	public Set<BillDetail> getBillDetail() {
-//		return billDetail;
-//	}
-//
-//	public void setBillDetail(Set<BillDetail> billDetail) {
-//		this.billDetail = billDetail;
-//	}
-
-	public Bill(int billID, String address, Date date, double total, boolean paid, boolean state) {
-		super();
-		this.billID = billID;
-		this.address = address;
-		this.date = date;
-		this.total = total;
-		this.paid = paid;
-		this.state = state;
-//		this.billDetail = billDetail;
-	}
-
-	public Bill() {
-	}
 }

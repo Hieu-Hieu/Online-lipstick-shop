@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "billDetail")
+@Table(name = "billdetail")
 public class BillDetail {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

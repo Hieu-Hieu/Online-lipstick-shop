@@ -63,12 +63,10 @@ public class AddToCartController extends HttpServlet {
 		int productID = 0;
 		int quantity = 0;
 		String url = "";
-		System.out.println("sdfsdfsdfs");
 		userID = u.getUserID();
 		productID = Integer.parseInt(request.getParameter("productID"));
 		if (u != null) {
 			try {
-				System.out.println("abc");
 				GetCart getCart = new GetCart();
 				GetUser getUser = new GetUser();
 				GetProduct getProduct = new GetProduct();
@@ -90,7 +88,6 @@ public class AddToCartController extends HttpServlet {
 					}
 					break;
 				case "remove":
-					System.out.println("sdfsdfsdfs");
 					getCart.deleteProductInCart(userID, productID);
 					url = "/CartController";
 					break;

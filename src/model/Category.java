@@ -17,10 +17,6 @@ public class Category {
 	@Column(name = "categoryName")
 	private String categoryName;
 
-	// Mapping
-//	@OneToMany(mappedBy="category",cascade=CascadeType.ALL)
-//	private Set<Product> product;
-
 	public Category() {
 	}
 

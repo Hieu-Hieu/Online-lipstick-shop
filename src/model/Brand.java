@@ -18,11 +18,6 @@ public class Brand {
 	@Column(name = "brandName")
 	private String brandName;
 
-	// Mapping
-//	
-//		@OneToMany(mappedBy = "brand" , cascade=CascadeType.ALL)
-//		private Set<Product> products;
-//		
 	public Brand() {
 	}
 
