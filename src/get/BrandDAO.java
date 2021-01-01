@@ -1,45 +1,41 @@
-//package get;
-//
-//import java.sql.Connection;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-//import java.util.ArrayList;
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
-//
-//import connect.DBConnect;
-//import model.Brand;
-//
-//public class BrandDAO {
-//
-//	private Connection connection = null;
-//
-//	public BrandDAO() {
-//		connection = DBConnect.getConnecttion();
-//	}
-//
-//	private String sqlGetAll = "select * from brand order by brandName asc limit ?, ? ";
-//	private String sqlGetNoParams = "select * from brand order by brandName asc";
-//	private String sqlGet = "select * from brand where brandId = ?";
-//	private String sqlInsert = "insert into brand values(?,?)";
-//	private String sqlUpdate = "update brand set brandName = ? where brandID = ?";
-//	private String sqlDelete = "delete from brand where brandID = ?";
-//
-//	public ArrayList<Brand> getListBrand() throws SQLException {
-//		PreparedStatement preparedStatement = connection.prepareStatement(sqlGetNoParams);
-//		ResultSet resultSet = preparedStatement.executeQuery();
-//		ArrayList<Brand> brandes = new ArrayList<>();
-//		Brand brand = null;
-//		while (resultSet.next()) {
-//			brand = new Brand();
-//			brand.setBrandID(resultSet.getInt("brandID"));
-//			brand.setBrandName(resultSet.getString("brandName"));
-//			brandes.add(brand);
-//		}
-//		return brandes;
-//	}
-//
+package get;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
+import model.Brand;
+import util.Utill;
+
+public class BrandDAO {
+
+	private Connection connection = null;
+
+	public ArrayList<Brand> getListBrand() throws SQLException {
+		Transaction transaction = null;
+		ArrayList<Brand> listBrand = new ArrayList<Brand>();
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("from Bill");
+			listBrand = (ArrayList<Brand>) query.getResultList();
+
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return listBrand;
+	}
+
 //	public ArrayList<Brand> getAll(int firesultSettResult, int lastResult) throws SQLException {
 //		PreparedStatement preparedStatement = connection.prepareStatement(sqlGetAll);
 //		preparedStatement.setInt(1, firesultSettResult);
@@ -56,62 +52,89 @@
 //		}
 //		return brandes;
 //	}
-//
-//	public Brand getByID(int brandId) throws SQLException {
-//		Brand brand = null;
-//		try {
-//			PreparedStatement preparedStatement = connection.prepareStatement(sqlGet);
-//			preparedStatement.setInt(1, brandId);
-//			ResultSet resultSet = preparedStatement.executeQuery();
-//			if (resultSet.next()) {
-//				brand = new Brand();
-//				brand.setBrandID(resultSet.getInt("brandID"));
-//				brand.setBrandName(resultSet.getString("brandName"));
-//			}
-//		} catch (Exception e) {
-//			brand = null;
-//		}
-//		return brand;
-//	}
-//
-//	public boolean insert(Brand c) {
-//		int result = 0;
-//		try {
-//			PreparedStatement preparedStatement = connection.prepareStatement(sqlInsert);
-//			preparedStatement.setInt(1, c.getBrandID());
-//			preparedStatement.setString(2, c.getBrandName());
-//			result = preparedStatement.executeUpdate();
-//			return result == 1;
-//		} catch (SQLException ex) {
-//			Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, "Insert brand: " + result, ex);
-//		}
-//		return false;
-//	}
-//
-//	public boolean update(int brandID, Brand brand) throws SQLException {
-//		int result = 0;
-//		try {
-//			PreparedStatement preparedStatement = connection.prepareStatement(sqlUpdate);
-//			preparedStatement.setString(1, brand.getBrandName());
-//			preparedStatement.setInt(2, brandID);
-//			result = preparedStatement.executeUpdate();
-//			return result == 1;
-//		} catch (SQLException ex) {
-//			Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, "Update brand: " + result, ex);
-//		}
-//		return false;
-//	}
-//
-//	public boolean delete(int brandID) {
-//		int result = 0;
-//		try {
-//			PreparedStatement preparedStatement = connection.prepareStatement(sqlDelete);
-//			preparedStatement.setInt(1, brandID);
-//			result = preparedStatement.executeUpdate();
-//			return result == 1;
-//		} catch (SQLException ex) {
-//			Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, "Delete brand: " + result, ex);
-//		}
-//		return false;
-//	}
-//}
+
+	public Brand getByID(int brandId) throws SQLException {
+		Transaction transaction = null;
+		Brand Brand = new Brand();
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("select * from Brand where categoryID=: cID");
+			query.setParameter("cID", brandId);
+			Brand = (Brand) query.list().get(0);
+//			session.get(Brand.class, brandId);
+
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return Brand;
+	}
+
+	public boolean insert(Brand b) {
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			session.save(b);
+			// commit transaction
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean update(Brand brand) throws SQLException {
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("update Brand set brandName = : bName where brandID: bID");
+			query.setParameter("nName", brand.getBrandName());
+			query.setParameter("bID", brand.getBrandID());
+			if (query.executeUpdate() > 0)
+				return true;
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean delete(int brandID) {
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("delete from Brand where brandID: bID");
+			query.setParameter("bID", brandID);
+			if (query.executeUpdate() > 0)
+				return true;
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return false;
+	}
+}
