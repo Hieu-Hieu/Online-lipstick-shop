@@ -60,7 +60,7 @@ public class BrandDAO {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("select * from Brand where categoryID=: cID");
+			Query query = session.createQuery("from Brand where categoryID=: cID");
 			query.setParameter("cID", brandId);
 			Brand = (Brand) query.list().get(0);
 //			session.get(Brand.class, brandId);

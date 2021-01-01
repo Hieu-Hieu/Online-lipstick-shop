@@ -1,8 +1,5 @@
 package model;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,40 +16,40 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "productID")
 	private int productID;
-	
+
 	@Column(name = "name")
 	private String name;
 
 	@ManyToOne
-	@JoinColumn(name="categoryID")
+	@JoinColumn(name = "categoryID")
 	private Category category;
-	
+
 	@ManyToOne
-	@JoinColumn(name="brandID")
+	@JoinColumn(name = "brandID")
 	private Brand brand;
-	
+
 	@Column(name = "imgFirst")
 	private String imgFirst;
-	
+
 	@Column(name = "imgLast")
 	private String imgLast;
-	
+
 	@Column(name = "price")
 	private double price;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "quantity")
 	private int quantity;
-	
-	//maping
-	
+
+	// maping
+
 //	@OneToMany(mappedBy="product", cascade=CascadeType.ALL)
 //	private Set<BillDetail> billDetail;
 //	
 	public Product() {
-		
+
 	}
 
 	public int getProductID() {
@@ -151,5 +147,4 @@ public class Product {
 //		this.bill = bill;
 	}
 
-	
 }

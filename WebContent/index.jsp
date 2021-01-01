@@ -81,7 +81,7 @@
 																${price}<span>Đ</span>
 															</h3>
 															<a class="btn"
-																href="${pageContext.request.contextPath}/AddToCartController?cart=no&command=add&productID=${p.getProductID() }&quantity=1&currentPage=${currentPage}""><i
+																href="${pageContext.request.contextPath}/AddToCartController?cart=no&command=add&productID=${p.getProductID() }&quantity=1&currentPage=${currentPage}"><i
 																class="fa fa-shopping-cart"></i>Thêm</a>
 														</div>
 													</div>

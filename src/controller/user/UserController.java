@@ -3,6 +3,7 @@ package controller.user;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,19 +25,19 @@ public class UserController extends HttpServlet {
 		request.getRequestDispatcher("signin.jsp").forward(request, response);
 		String command = request.getParameter("command");
 		String url = "";
-		User users = new User();
+		User u = new User();
 		HttpSession session = request.getSession();
 		switch (command) {
 		case "insert":
-			users.setUserID(Integer.parseInt(request.getParameter("id")));
-			users.setUsername(request.getParameter("name"));
-			users.setPassword(request.getParameter(("pass")));
-			users.setEmail(request.getParameter("email"));
-			users.setPhone(request.getParameter("phone"));
-			users.setAddress(request.getParameter("address"));
-			users.setRole(false);
-			GetUser.insertUser(users);
-			session.setAttribute("user", users);
+			u.setUserID(Integer.parseInt(request.getParameter("id")));
+			u.setUsername(request.getParameter("name"));
+			u.setPassword(request.getParameter(("pass")));
+			u.setEmail(request.getParameter("email"));
+			u.setPhone(request.getParameter("phone"));
+			u.setAddress(request.getParameter("address"));
+			u.setRole(false);
+			GetUser.insertUser(u);
+			session.setAttribute("user", u);
 			url = "/navigate.jsp";
 			break;
 		case "update":
@@ -53,26 +54,26 @@ public class UserController extends HttpServlet {
 			break;
 		case "logindeal":
 			try {
-				users = GetUser.login(request.getParameter("name"), (request.getParameter("pass")));
+				u = GetUser.login(request.getParameter("name"), (request.getParameter("pass")));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if (users != null) {
-				session.setAttribute("user", users);
+			if (u != null) {
+				session.setAttribute("user", u);
 				url = "/deal.jsp";
 			}
 			break;
 
 		case "login":
 			try {
-				users = GetUser.login(request.getParameter("name"), (request.getParameter("pass")));
+				u = GetUser.login(request.getParameter("name"), (request.getParameter("pass")));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if (users != null) {
-				session.setAttribute("user", users);
+			if (u != null) {
+				session.setAttribute("user", u);
 				url = "/dashboard.jsp";
 			}
 
@@ -94,27 +95,56 @@ public class UserController extends HttpServlet {
 		String url = "";
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String command = request.getParameter("command");
 
 		GetUser getUser = new GetUser();
 		User u = new User();
-		try {
-			u = getUser.login(username, password);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (u != null) {
-			session.setAttribute("user", u);
-			if (u.getRole() == true) {
-				url = "admin/dashboard.jsp";
-			} else {
-				url = "index.jsp";
-			}
-		} else {
-			request.setAttribute("error", "Lỗi tên đăng nhập hoặc mật khẩu");
-			url = "signin.jsp";
-		}
-		response.sendRedirect(url);
-	}
 
+		switch (command) {
+		case "insert":
+			u.setUserID(Integer.parseInt(request.getParameter("id")));
+			u.setUsername(request.getParameter("name"));
+			u.setPassword(request.getParameter(("pass")));
+			u.setEmail(request.getParameter("email"));
+			u.setPhone(request.getParameter("phone"));
+			u.setAddress(request.getParameter("address"));
+			u.setRole(false);
+			GetUser.insertUser(u);
+			session.setAttribute("user", u);
+			url = "/navigate.jsp";
+			break;
+		case "update":
+			int id = Integer.parseInt(request.getParameter("id"));
+			String user = request.getParameter("username");
+			String pass = request.getParameter("pass");
+			String email = request.getParameter("email");
+			String phone = request.getParameter("phone");
+			String address = request.getParameter("address");
+			boolean role = Boolean.parseBoolean(request.getParameter("role"));
+
+			GetUser.updateUser(new User(id, username, password, email, phone, address, role));
+			url = "/my-account.jsp";
+			break;
+		case "login":
+			try {
+				u = getUser.login(username, password);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (u != null) {
+				session.setAttribute("user", u);
+				if (u.getRole() == true) {
+					url = "/admin/dashboard.jsp";
+				} else {
+					url = "/index.jsp";
+				}
+			} else {
+				request.setAttribute("error", "Lỗi tên đăng nhập hoặc mật khẩu");
+				url = "/signin.jsp";
+			}
+		}
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+		dispatcher.forward(request, response);
+	}
 }

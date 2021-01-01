@@ -90,7 +90,8 @@ public class CategoryDAO {
 		return false;
 	}
 
-	public boolean updateCategory(Category category) throws SQLException {
+	public boolean updateCategory (Category category)throws SQLException
+	{
 		Transaction transaction = null;
 		try {
 			// start a transaction
