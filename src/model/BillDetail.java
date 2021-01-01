@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,17 +16,17 @@ public class BillDetail {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "billDetailID")
 	private int billDetailID;
-	@OneToOne
+
+	@ManyToOne
+	@JoinColumn(name = "billID", referencedColumnName = "billID")
 	private Bill bill;
-	@OneToMany
-	@Column(name = "productID")
+
+	@ManyToOne
+	@JoinColumn(name = "productID", referencedColumnName = "productID")
 	private Product product;
+
 	@Column(name = "quantity")
 	private int quantity;
-
-	public BillDetail() {
-
-	}
 
 	public BillDetail(int billDetailID, Bill bill, Product product, int quantity) {
 		super();

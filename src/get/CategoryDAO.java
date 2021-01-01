@@ -1,117 +1,118 @@
-//package get;
-//
-//import java.sql.Connection;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-//import java.util.ArrayList;
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
-//
-//import connect.DBConnect;
-//import model.Category;
-//
-//public class CategoryDAO {
-//
-//	private Connection connection = null;
-//
-//	public CategoryDAO() {
-//		connection = DBConnect.getConnecttion();
-//	}
-//
-//	private String sqlGetAll = "select * from category order by categoryName asc limit ?, ? ";
-//	private String sqlGetNoParams = "select * from category order by categoryName asc";
-//	private String sqlGet = "select * from category where categoryId = ?";
-//	private String sqlInsert = "insert into category values(?,?)";
-//	private String sqlUpdate = "update category set categoryName = ? where categoryID = ?";
-//	private String sqlDelete = "delete from category where categoryID = ?";
-//
-//	public ArrayList<Category> getListCategory() throws SQLException {
-//		PreparedStatement preparedStatement = connection.prepareStatement(sqlGetNoParams);
-//		ResultSet resultSet = preparedStatement.executeQuery();
-//		ArrayList<Category> categories = new ArrayList<>();
-//		Category category = null;
-//		while (resultSet.next()) {
-//			category = new Category();
-//			category.setCategoryID(resultSet.getInt("categoryID"));
-//			category.setCategoryName(resultSet.getString("categoryName"));
-//			categories.add(category);
-//		}
-//		return categories;
-//	}
-//
-//	public ArrayList<Category> getAll(int firesultSettResult, int lastResult) throws SQLException {
-//		PreparedStatement preparedStatement = connection.prepareStatement(sqlGetAll);
-//		preparedStatement.setInt(1, firesultSettResult);
-//		preparedStatement.setInt(2, lastResult);
-//		ResultSet resultSet = preparedStatement.executeQuery();
-//
-//		ArrayList<Category> categories = new ArrayList<>();
-//		Category category = null;
-//		while (resultSet.next()) {
-//			category = new Category();
-//			category.setCategoryID(resultSet.getInt("categoryID"));
-//			category.setCategoryName(resultSet.getString("categoryName"));
-//			categories.add(category);
-//		}
-//		return categories;
-//	}
-//
-//	public Category getByID(int categoryId) throws SQLException {
-//		Category category = null;
-//		try {
-//			PreparedStatement preparedStatement = connection.prepareStatement(sqlGet);
-//			preparedStatement.setInt(1, categoryId);
-//			ResultSet resultSet = preparedStatement.executeQuery();
-//			if (resultSet.next()) {
-//				category = new Category();
-//				category.setCategoryID(resultSet.getInt("categoryID"));
-//				category.setCategoryName(resultSet.getString("categoryName"));
-//			}
-//		} catch (Exception e) {
-//			category = null;
-//		}
-//		return category;
-//	}
-//
-//	public boolean insert(Category c) {
-//		int result = 0;
-//		try {
-//			PreparedStatement preparedStatement = connection.prepareStatement(sqlInsert);
-//			preparedStatement.setInt(1, c.getCategoryID());
-//			preparedStatement.setString(2, c.getCategoryName());
-//			result = preparedStatement.executeUpdate();
-//			return result == 1;
-//		} catch (SQLException ex) {
-//			Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, "Insert category: " + result, ex);
-//		}
-//		return false;
-//	}
-//
-//	public boolean update(int categoryID, Category category) throws SQLException {
-//		int result = 0;
-//		try {
-//			PreparedStatement preparedStatement = connection.prepareStatement(sqlUpdate);
-//			preparedStatement.setString(1, category.getCategoryName());
-//			preparedStatement.setInt(2, categoryID);
-//			result = preparedStatement.executeUpdate();
-//			return result == 1;
-//		} catch (SQLException ex) {
-//			Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, "Update category: " + result, ex);
-//		}
-//		return false;
-//	}
-//
-//	public boolean delete(int categoryID) {
-//		int result = 0;
-//		try {
-//			PreparedStatement preparedStatement = connection.prepareStatement(sqlDelete);
-//			preparedStatement.setInt(1, categoryID);
-//			result = preparedStatement.executeUpdate();
-//			return result == 1;
-//		} catch (SQLException ex) {
-//			Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, "Delete category: " + result, ex);
-//		}
-//		return false;
-//	}
-//}
+package get;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
+import model.Category;
+import util.Utill;
+
+public class CategoryDAO {
+
+	public ArrayList<Category> getListCategory() throws SQLException {
+		Transaction transaction = null;
+		ArrayList<Category> listCategory = new ArrayList<Category>();
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("from Category");
+			listCategory = (ArrayList<Category>) query.getResultList();
+
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return listCategory;
+	}
+
+	public Category getByID(int categoryId) throws SQLException {
+		Transaction transaction = null;
+		Category Category = new Category();
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("select * from Category where categoryID=: cID");
+			query.setParameter("cID", categoryId);
+			Category = (Category) query.list().get(0);
+
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return Category;
+	}
+
+	public boolean insert(Category c) {
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			session.save(c);
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean updateCategory(Category category) throws SQLException {
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("update Category set categoryName = : cName where categoryID: cID");
+			query.setParameter("cName", category.getCategoryName());
+			query.setParameter("cID", category.getCategoryID());
+			if (query.executeUpdate() > 0)
+				return true;
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean delete(int categoryID) {
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("delete from Category where categoryID: cID");
+			query.setParameter("cID", categoryID);
+			if (query.executeUpdate() > 0)
+				return true;
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return false;
+	}
+}

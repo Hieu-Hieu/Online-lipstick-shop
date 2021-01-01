@@ -56,9 +56,8 @@ public class Bill {
 	public void setUserID(User userID) {
 		this.userID = userID;
 	}
-
-	public Bill() {
-	}
+//	@OneToMany(mappedBy="bill",cascade=CascadeType.ALL)
+//	private Set<BillDetail> billDetail;
 
 	public int getBillID() {
 		return billID;
@@ -106,5 +105,27 @@ public class Bill {
 
 	public void setState(boolean state) {
 		this.state = state;
+	}
+
+//	public Set<BillDetail> getBillDetail() {
+//		return billDetail;
+//	}
+//
+//	public void setBillDetail(Set<BillDetail> billDetail) {
+//		this.billDetail = billDetail;
+//	}
+
+	public Bill(int billID, String address, Date date, double total, boolean paid, boolean state) {
+		super();
+		this.billID = billID;
+		this.address = address;
+		this.date = date;
+		this.total = total;
+		this.paid = paid;
+		this.state = state;
+//		this.billDetail = billDetail;
+	}
+
+	public Bill() {
 	}
 }

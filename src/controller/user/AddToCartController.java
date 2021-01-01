@@ -12,6 +12,7 @@
 //
 //import get.GetCart;
 //import model.BillDetail;
+//import model.Cart;
 //import model.User;
 //
 ///**
@@ -104,17 +105,64 @@
 //							url = "/CartController";
 //						}
 //					}
-//				}
-//
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				System.out.print(e);
-////			e.printStackTrace();
-//			}
-//
-//		} else {
-//			url = "/index.jsp";
-//		}
+
+////		if (u != null) {
+////			int userID = u.getUserID();
+////			int productID = Integer.parseInt(request.getParameter("productID"));
+////
+////			GetCart getCart = new GetCart();
+////			Cart cart = new Cart(userID, productID, 1);
+////			try {
+////				switch (command) {
+////				case "add":
+////					int quantity = Integer.parseInt(request.getParameter("quantity"));
+////					if (getCart.checkBillExist(userID)) {
+////						if (getCart.checkProductExist(userID, productID)) {
+////							if (getCart.updateProductQuantity(userID, productID, quantity)) {
+////								if (request.getParameter("cart").equals("no"))
+////									url = "/ProductList?currentPage=" + request.getParameter("currentPage");
+////								else {
+////									url = "/CartController";
+////								}
+////							}
+////						} else {
+////							if (getCart.addNewProductToCart(userID, productID, quantity)) {
+////								url = "/ProductList?currentPage=" + request.getParameter("currentPage");
+////							}
+////						}
+////
+////					} else {
+////						if (getCart.createBill(userID)) {
+////							if (getCart.addNewProductToCart(userID, productID, quantity)) {
+////								url = "/ProductList?currentPage=" + request.getParameter("currentPage");
+////							}
+////						}
+////					}
+////					break;
+////				case "remove":
+////					getCart.delete(userID, productID);
+////					url = "/CartController";
+////					break;
+////				case "update":
+////					int quantity1 = Integer.parseInt(request.getParameter("quantity"));
+////					if (getCart.updateProductQuantityInCart(userID, productID, quantity1) && quantity1 > 0) {
+////						url = "/CartController";
+////					} else {
+////						if (getCart.delete(userID, productID)) {
+////							url = "/CartController";
+////						}
+////					}
+////				}
+////
+////			} catch (SQLException e) {
+////				// TODO Auto-generated catch block
+////				System.out.print(e);
+//////			e.printStackTrace();
+////			}
+////
+////		} else {
+////			url = "/index.jsp";
+////		}
 //		response.sendRedirect(request.getContextPath() + url);
 //	}
 //

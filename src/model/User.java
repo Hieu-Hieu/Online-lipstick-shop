@@ -27,10 +27,6 @@ public class User {
 	@Column(name = "role")
 	private boolean role;
 
-//	@OneToMany(mappedBy="product", cascade=CascadeType.ALL)
-//	private Set<Cart> bill;
-//	@OneToMany(mappedBy="product", cascade=CascadeType.ALL)
-//	private Set<Cart> bill;
 	public User() {
 
 	}

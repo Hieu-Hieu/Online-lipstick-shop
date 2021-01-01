@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <h1>Đăng kí</h1>
-        <form class="form">
+        <form class="form" action="" method="post">
             <input type="text" placeholder="Tên">
             <input type="text" placeholder="Địa chỉ">
             <input type="number" placeholder="Số điện thoại">

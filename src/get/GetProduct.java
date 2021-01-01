@@ -39,14 +39,11 @@ public class GetProduct {
 
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			String sql = "SELECT count(*) as tongTrang FROM Product";
-			Query query = session.createQuery(sql);
-			System.out.println("sdfsdfsd");
+			Query query = session.createQuery("select count(*) as tongTrang from Product");
 			List results = query.list();
 			for (Object tong : results) {
 				result = (float) ((List) tong).get(0);
 			}
-
 			result = (float) (results.get(0));
 			result = (float) total / 9;
 			if (result > (total / 9)) {
@@ -59,15 +56,9 @@ public class GetProduct {
 			if (transaction != null) {
 				transaction.rollback();
 			}
-//			e.printStackTrace();
-			System.out.println(e.toString());
+			e.printStackTrace();
 		}
-		return 0;
-//		PreparedStatement st = conn.prepareStatement("select count(*) as tongTrang from product");
-//		ResultSet rs = st.executeQuery();
-//		while (rs.next()) {
-//			total = rs.getInt("tongTrang");
-//		}
+		return 1;
 
 	}
 
@@ -163,23 +154,17 @@ public class GetProduct {
 //	}
 //
 	public ArrayList<Product> getAllProduct(int firstResult, int lastResult) throws SQLException {
-		ArrayList<Product> list = new ArrayList<Product>();
-
+		ArrayList<Product> listOfProduct = new ArrayList<Product>();
 		Transaction transaction = null;
 		try {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Query query = session.createQuery("from Product");
-
 			query.setFirstResult(firstResult);
 			query.setMaxResults(lastResult);
 
-			list = (ArrayList<Product>) query.getResultList();
-//			;
-//			for (Object results1 : results) {
-//				list.add((Product) results1);
-//			}
+			listOfProduct = (ArrayList<Product>) query.getResultList();
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
@@ -188,7 +173,7 @@ public class GetProduct {
 			}
 			e.printStackTrace();
 		}
-		return list;
+		return listOfProduct;
 	}
 
 //	public Product getProductByID(String productID) throws SQLException {
@@ -209,13 +194,27 @@ public class GetProduct {
 //		}
 //		return product;
 //	}
-	public Product getProductByID(String productID) throws SQLException {
-		Product product = new Product();
 
+	public Product getProductByID(int productID) throws SQLException {
+		Product product = new Product();
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			product = (Product) session.createQuery("from Product").list().get(0);
+
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
 		return product;
 	}
 
-//
 //	public ArrayList<Product> getProductByCategoryID(String categoryID, int firstResult, int lastResult)
 //			throws SQLException {
 //		ArrayList<Product> list = new ArrayList<Product>();

@@ -16,7 +16,6 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "productID")
 	private int productID;
-
 	@Column(name = "name")
 	private String name;
 
@@ -43,32 +42,7 @@ public class Product {
 	@Column(name = "quantity")
 	private int quantity;
 
-	// maping
-
-//	@OneToMany(mappedBy="product", cascade=CascadeType.ALL)
-//	private Set<Bill> bill;
-//	
-//	@OneToMany(mappedBy="product", cascade=CascadeType.ALL)
-//    private Set<Cart> cart;
-
 	public Product() {
-
-	}
-
-	public Product(int productID, String name, Category category, Brand brand, String imgFirst, String imgLast,
-			double price, String description, int quantity) {
-		super();
-		this.productID = productID;
-		this.name = name;
-		this.category = category;
-		this.brand = brand;
-		this.imgFirst = imgFirst;
-		this.imgLast = imgLast;
-		this.price = price;
-		this.description = description;
-		this.quantity = quantity;
-//		this.bill = bill;
-//		this.cart = cart;
 	}
 
 	public int getProductID() {
@@ -142,4 +116,19 @@ public class Product {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+	public Product(int productID, String name, Category category, Brand brand, String imgFirst, String imgLast,
+			double price, String description, int quantity) {
+		super();
+		this.productID = productID;
+		this.name = name;
+		this.category = category;
+		this.brand = brand;
+		this.imgFirst = imgFirst;
+		this.imgLast = imgLast;
+		this.price = price;
+		this.description = description;
+		this.quantity = quantity;
+	}
+
 }

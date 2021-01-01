@@ -1,14 +1,10 @@
 package model;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,15 +14,12 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "categoryID")
 	private int categoryID;
-	
-	
 	@Column(name = "categoryName")
 	private String categoryName;
-	
-	
-	//Mapping
-	@OneToMany(mappedBy="category",cascade=CascadeType.ALL)
-	private Set<Product> product;
+
+	// Mapping
+//	@OneToMany(mappedBy="category",cascade=CascadeType.ALL)
+//	private Set<Product> product;
 
 	public Category() {
 	}
@@ -47,20 +40,10 @@ public class Category {
 		this.categoryName = categoryName;
 	}
 
-	public Set<Product> getProduct() {
-		return product;
-	}
-
-	public void setProduct(Set<Product> product) {
-		this.product = product;
-	}
-
-	public Category(int categoryID, String categoryName, Set<Product> product) {
+	public Category(int categoryID, String categoryNamet) {
 		super();
 		this.categoryID = categoryID;
 		this.categoryName = categoryName;
-		this.product = product;
 	}
-	
 
 }
