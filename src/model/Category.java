@@ -40,7 +40,7 @@ public class Category {
 		this.categoryName = categoryName;
 	}
 
-	public Category(int categoryID, String categoryNamet) {
+	public Category(int categoryID, String categoryName) {
 		super();
 		this.categoryID = categoryID;
 		this.categoryName = categoryName;
