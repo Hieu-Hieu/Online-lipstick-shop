@@ -1,146 +1,115 @@
-//package controller.user;
-//
-//import java.io.IOException;
-//import java.sql.SQLException;
-//
-//import javax.servlet.ServletException;
-//import javax.servlet.annotation.WebServlet;
-//import javax.servlet.http.HttpServlet;
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//import javax.servlet.http.HttpSession;
-//
-//import get.GetCart;
-//import model.Cart;
-//import model.User;
-//
-///**
-// * Servlet implementation class AddToCartController
-// */
-//@WebServlet("/AddToCartController")
-//public class AddToCartController extends HttpServlet {
-//	private static final long serialVersionUID = 1L;
-//
-//	/**
-//	 * @see HttpServlet#HttpServlet()
-//	 */
-//	public AddToCartController() {
-//		super();
-//		// TODO Auto-generated constructor stub
-//	}
-//
-//	/**
-//	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-//	 *      response)
-//	 */
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//		doPost(request, response);
-//		// TODO Auto-generated method stub
-//
-////		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-////		dispatcher.forward(request, response);
-//	}
-//
-//	/**
-//	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-//	 *      response)
-//	 */
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//		// TODO Auto-generated method stub
-////		doGet(request, response);
-//		HttpSession session = request.getSession();
-//		response.setContentType("text/html;charset=UTF-8");
-//		request.setCharacterEncoding("utf-8");
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-//		String command = request.getParameter("command");
-//		User u = new User();
-//		u = (User) session.getAttribute("user");
-//		String url = "";
-//		if (u != null) {
-//			int userID = u.getUserID();
-//			int productID = Integer.parseInt(request.getParameter("productID"));
-////
-//			GetCart getCart = new GetCart();
-//			Cart cart = new Cart();
-//			try {
-//				switch (command) {
-//				case "add":
-//					break;
-//				case "remove":
-//					break;
-//				case "update":
-//					break;
-//				}
-//
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				System.out.print(e);
-////			e.printStackTrace();
-//			}
-//
-//		} else {
-//			url = "/index.jsp";
-//		}
-////		if (u != null) {
-////			int userID = u.getUserID();
-////			int productID = Integer.parseInt(request.getParameter("productID"));
-////
-////			GetCart getCart = new GetCart();
-////			Cart cart = new Cart(userID, productID, 1);
-////			try {
-////				switch (command) {
-////				case "add":
-////					int quantity = Integer.parseInt(request.getParameter("quantity"));
-////					if (getCart.checkBillExist(userID)) {
-////						if (getCart.checkProductExist(userID, productID)) {
-////							if (getCart.updateProductQuantity(userID, productID, quantity)) {
-////								if (request.getParameter("cart").equals("no"))
-////									url = "/ProductList?currentPage=" + request.getParameter("currentPage");
-////								else {
-////									url = "/CartController";
-////								}
-////							}
-////						} else {
-////							if (getCart.addNewProductToCart(userID, productID, quantity)) {
-////								url = "/ProductList?currentPage=" + request.getParameter("currentPage");
-////							}
-////						}
-////
-////					} else {
-////						if (getCart.createBill(userID)) {
-////							if (getCart.addNewProductToCart(userID, productID, quantity)) {
-////								url = "/ProductList?currentPage=" + request.getParameter("currentPage");
-////							}
-////						}
-////					}
-////					break;
-////				case "remove":
-////					getCart.delete(userID, productID);
-////					url = "/CartController";
-////					break;
-////				case "update":
-////					int quantity1 = Integer.parseInt(request.getParameter("quantity"));
-////					if (getCart.updateProductQuantityInCart(userID, productID, quantity1) && quantity1 > 0) {
-////						url = "/CartController";
-////					} else {
-////						if (getCart.delete(userID, productID)) {
-////							url = "/CartController";
-////						}
-////					}
-////				}
-////
-////			} catch (SQLException e) {
-////				// TODO Auto-generated catch block
-////				System.out.print(e);
-//////			e.printStackTrace();
-////			}
-////
-////		} else {
-////			url = "/index.jsp";
-////		}
-//		response.sendRedirect(request.getContextPath() + url);
-//	}
-//
-//}
+package controller.user;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import get.GetCart;
+import get.GetProduct;
+import get.GetUser;
+import model.Cart;
+import model.User;
+
+/**
+ * Servlet implementation class AddToCartController
+ */
+@WebServlet("/AddToCartController")
+public class AddToCartController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public AddToCartController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doPost(request, response);
+		// TODO Auto-generated method stub
+
+//		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+//		dispatcher.forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+//		doGet(request, response);
+		HttpSession session = request.getSession();
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String command = request.getParameter("command");
+		User u = new User();
+		u = (User) session.getAttribute("user");
+		int userID = 0;
+		int productID = 0;
+		int quantity = 0;
+		String url = "";
+		System.out.println("sdfsdfsdfs");
+		userID = u.getUserID();
+		productID = Integer.parseInt(request.getParameter("productID"));
+		if (u != null) {
+			try {
+				System.out.println("abc");
+				GetCart getCart = new GetCart();
+				GetUser getUser = new GetUser();
+				GetProduct getProduct = new GetProduct();
+				switch (command) {
+				case "add":
+					quantity = Integer.parseInt(request.getParameter("quantity"));
+					if (getCart.checkProductExist(userID, productID)) {
+						getCart.updateProductQuantity(userID, productID, quantity);
+					} else {
+						Cart cart = new Cart(quantity, getUser.getUserByID(userID),
+								getProduct.getProductByID(productID));
+						getCart.addToCart(cart);
+					}
+					if (request.getParameter("cart").equals("no")) {
+						int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+						url = "/ProductList?currentPage=" + currentPage;
+					} else {
+						url = "/CartController";
+					}
+					break;
+				case "remove":
+					System.out.println("sdfsdfsdfs");
+					getCart.deleteProductInCart(userID, productID);
+					url = "/CartController";
+					break;
+				case "update":
+					quantity = Integer.parseInt(request.getParameter("quantity"));
+					getCart.updateProductQuantityInCart(userID, productID, quantity);
+					url = "/CartController";
+					break;
+				}
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} else {
+			url = "/index.jsp";
+		}
+		response.sendRedirect(request.getContextPath() + url);
+	}
+
+}

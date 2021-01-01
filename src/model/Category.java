@@ -14,7 +14,6 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "categoryID")
 	private int categoryID;
-
 	@Column(name = "categoryName")
 	private String categoryName;
 
@@ -41,19 +40,10 @@ public class Category {
 		this.categoryName = categoryName;
 	}
 
-//	public Set<Product> getProduct() {
-//		return product;
-//	}
-//
-//	public void setProduct(Set<Product> product) {
-//		this.product = product;
-//	}
-
 	public Category(int categoryID, String categoryNamet) {
 		super();
 		this.categoryID = categoryID;
 		this.categoryName = categoryName;
-//		this.product = product;
 	}
 
 }

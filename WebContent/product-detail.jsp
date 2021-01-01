@@ -73,7 +73,7 @@
 											<span>$149</span>
 										</p>
 									</div>
-									<form action="${pageContext.request.contextPath }/AddToCartController?cart=open&command=add&userID=1&productID=${product.getProductID()}" method="post">
+									<form action="${pageContext.request.contextPath }/AddToCartController?cart=open&command=add&productID=${product.getProductID()}" method="post">
 										<div class="quantity">
 											<h4>Số lượng:</h4>
 											<div class="qty">

@@ -42,19 +42,10 @@ public class Brand {
 		this.brandName = brandName;
 	}
 
-//	public Set<Product> getProducts() {
-//		return products;
-//	}
-//
-//	public void setProducts(Set<Product> products) {
-//		this.products = products;
-//	}
-
 	public Brand(int brandID, String brandName) {
 		super();
 		this.brandID = brandID;
 		this.brandName = brandName;
-//		this.products = products;
 	}
 
 }

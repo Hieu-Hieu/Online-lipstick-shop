@@ -16,15 +16,15 @@ public class BillDetail {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "billDetailID")
 	private int billDetailID;
-	
+
 	@ManyToOne
-	@JoinColumn(name="billID", referencedColumnName="billID")
+	@JoinColumn(name = "billID", referencedColumnName = "billID")
 	private Bill bill;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "productID", referencedColumnName="productID")
+	@JoinColumn(name = "productID", referencedColumnName = "productID")
 	private Product product;
-	
+
 	@Column(name = "quantity")
 	private int quantity;
 

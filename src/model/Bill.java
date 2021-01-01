@@ -1,13 +1,13 @@
 package model;
 
 import java.sql.Date;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,11 +18,15 @@ public class Bill {
 	@Column(name = "billID")
 	private int billID;
 
+	@ManyToOne
+	@Column(name = "userID")
+	private User userID;
+
 	@Column(name = "address")
 	private String address;
 
+//	@Temporal(TemporalType.DATE)
 	@Column(name = "date")
-	// @Temporal(TemporalType.DATE)
 	private Date date;
 
 	@Column(name = "total")
@@ -34,6 +38,24 @@ public class Bill {
 	@Column(name = "state")
 	private boolean state;
 
+	public Bill(int billID, User userID, String address, Date date, double total, boolean paid, boolean state) {
+		super();
+		this.billID = billID;
+		this.userID = userID;
+		this.address = address;
+		this.date = date;
+		this.total = total;
+		this.paid = paid;
+		this.state = state;
+	}
+
+	public User getUserID() {
+		return userID;
+	}
+
+	public void setUserID(User userID) {
+		this.userID = userID;
+	}
 //	@OneToMany(mappedBy="bill",cascade=CascadeType.ALL)
 //	private Set<BillDetail> billDetail;
 

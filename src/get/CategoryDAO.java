@@ -33,23 +33,6 @@ public class CategoryDAO {
 		return listCategory;
 	}
 
-//	public ArrayList<Category> getAll(int firesultSettResult, int lastResult) throws SQLException {
-//		PreparedStatement preparedStatement = connection.prepareStatement(sqlGetAll);
-//		preparedStatement.setInt(1, firesultSettResult);
-//		preparedStatement.setInt(2, lastResult);
-//		ResultSet resultSet = preparedStatement.executeQuery();
-//
-//		ArrayList<Category> categories = new ArrayList<>();
-//		Category category = null;
-//		while (resultSet.next()) {
-//			category = new Category();
-//			category.setCategoryID(resultSet.getInt("categoryID"));
-//			category.setCategoryName(resultSet.getString("categoryName"));
-//			categories.add(category);
-//		}
-//		return categories;
-//	}
-
 	public Category getByID(int categoryId) throws SQLException {
 		Transaction transaction = null;
 		Category Category = new Category();
@@ -90,7 +73,8 @@ public class CategoryDAO {
 		return false;
 	}
 
-	public boolean updateCategory(Category category) throws SQLException {
+	public boolean updateCategory (Category category)throws SQLException
+	{
 		Transaction transaction = null;
 		try {
 			// start a transaction

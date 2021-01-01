@@ -53,28 +53,28 @@
                                         <tr>
                                             <td>
                                                 <div class="img">
-                                                    <a href="#"><img src="${cart.get(1) }" alt="Image"></a>
-                                                    <p>${cart.get(2) }</p>
+                                                    <a href="#"><img src="${cart.getProduct().getImgFirst()}" alt="Image"></a>
+                                                    <p>${cart.getProduct().getName()}</p>
                                                 </div>
                                             </td>
                                             
                                             <td>
-                                            <fmt:formatNumber var="price" type="number" pattern="###,###,###" value="${cart.get(3)}"/>
+                                            <fmt:formatNumber var="price" type="number" pattern="###,###,###" value="${cart.getProduct().getPrice()}"/>
                                             ${price }Đ</td>
                                             <td>
-                                            <form action="${pageContext.request.contextPath }/AddToCartController?command=update&productID=${cart.get(0)}" method="post">
+                                            <form action="${pageContext.request.contextPath }/AddToCartController?command=update&productID=${cart.getProduct().getProductID()}" method="post">
                                                 <div class="qty"">
                                                     <button class="btn-minus" type="button"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="${cart.get(4) }" name="quantity" >
+                                                    <input type="text" value="${cart.getQuantity() }" name="quantity" >
                                                     <button class="btn-plus" type="button"><i class="fa fa-plus"></i></button>
                                                 </div>
                                                     <button class="" type="submit"><i class="far fa-save"></i></button>
                                             </form>
                                             </td>
-                                            <fmt:formatNumber var="totalPrice" type="number" pattern="###,###,###" value="${cart.get(3) * cart.get(4) }"/>
+                                            <fmt:formatNumber var="totalPrice" type="number" pattern="###,###,###" value="${cart.getQuantity() * cart.getProduct().getPrice() }"/>
                                             <td>${totalPrice }Đ</td>
                                             <td>
-												<a href="${pageContext.request.contextPath }/AddToCartController?command=remove&productID=${cart.get(0)}">
+												<a href="${pageContext.request.contextPath }/AddToCartController?command=remove&productID=${cart.getProduct().getProductID() }">
 													<i class="fa fa-trash"></i>
 												</a>
 											</td>

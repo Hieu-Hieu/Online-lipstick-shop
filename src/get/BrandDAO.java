@@ -36,23 +36,6 @@ public class BrandDAO {
 		return listBrand;
 	}
 
-//	public ArrayList<Brand> getAll(int firesultSettResult, int lastResult) throws SQLException {
-//		PreparedStatement preparedStatement = connection.prepareStatement(sqlGetAll);
-//		preparedStatement.setInt(1, firesultSettResult);
-//		preparedStatement.setInt(2, lastResult);
-//		ResultSet resultSet = preparedStatement.executeQuery();
-//
-//		ArrayList<Brand> brandes = new ArrayList<>();
-//		Brand brand = null;
-//		while (resultSet.next()) {
-//			brand = new Brand();
-//			brand.setBrandID(resultSet.getInt("brandID"));
-//			brand.setBrandName(resultSet.getString("brandName"));
-//			brandes.add(brand);
-//		}
-//		return brandes;
-//	}
-
 	public Brand getByID(int brandId) throws SQLException {
 		Transaction transaction = null;
 		Brand Brand = new Brand();
@@ -60,7 +43,7 @@ public class BrandDAO {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("select * from Brand where categoryID=: cID");
+			Query query = session.createQuery("from Brand where categoryID=: cID");
 			query.setParameter("cID", brandId);
 			Brand = (Brand) query.list().get(0);
 //			session.get(Brand.class, brandId);

@@ -36,14 +36,13 @@ public class GetProduct {
 		Transaction transaction = null;
 		try {
 			// start a transaction
+
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Query query = session.createQuery("select count(*) as tongTrang from Product");
-			List results = query.list();
-			for (Object tong : results) {
-				result = (float) ((List) tong).get(0);
-			}
-			result = (float) (results.get(0));
+			List listResult = query.list();
+			Number number = (Number) listResult.get(0);
+			total = (int) number.intValue();
 			result = (float) total / 9;
 			if (result > (total / 9)) {
 				return (int) (result + 1);
@@ -61,6 +60,22 @@ public class GetProduct {
 
 	}
 
+//	public boolean addProduct(Product p) throws SQLException {
+//		PreparedStatement st = conn.prepareStatement("insert into product values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+//		st.setInt(1, p.getProductID());
+//		st.setString(2, p.getName());
+//		st.setInt(3, p.getCategoryID());
+//		st.setString(4, p.getImgFirst());
+//		st.setString(5, p.getImgLast());
+//		st.setDouble(6, p.getPrice());
+//		st.setString(7, p.getDescription());
+//		st.setInt(8, p.getBrandID());
+//		st.setInt(9, p.getQuantity());
+//		if (st.executeUpdate() > 0) {
+//			return true;
+//		}
+//		return false;
+//	}
 	public boolean addProduct(Product p) throws SQLException {
 		Transaction transaction = null;
 		try {
@@ -81,6 +96,15 @@ public class GetProduct {
 		return false;
 	}
 
+//	public boolean deleteProduct(String productID) throws SQLException {
+//		PreparedStatement st = conn.prepareStatement("delete from product where productID = ?");
+//		st.setString(1, productID);
+//
+//		if (st.executeUpdate() > 0) {
+//			return true;
+//		}
+//		return false;
+//	}
 	public boolean deleteProduct(String productID) throws SQLException {
 		Transaction transaction = null;
 		try {
@@ -104,6 +128,29 @@ public class GetProduct {
 		return false;
 	}
 
+//	public ArrayList<Product> getAllProduct(int firstResult, int lastResult) throws SQLException {
+//		ArrayList<Product> list = new ArrayList<Product>();
+//
+//		PreparedStatement st = conn.prepareStatement("select * from product limit ?, ?");
+//		st.setInt(1, firstResult);
+//		st.setInt(2, lastResult);
+//		ResultSet rs = st.executeQuery();
+//		while (rs.next()) {
+//			Product product = new Product();
+//			product.setProductID(rs.getInt("productID"));
+//			product.setName(rs.getString("name"));
+//			product.setCategoryID(rs.getInt("categoryID"));
+//			product.setImgFirst(rs.getString("imgFirst"));
+//			product.setImgLast(rs.getString("imgLast"));
+//			product.setPrice(rs.getDouble("price"));
+//			product.setDescription(rs.getString("description"));
+//			product.setBrandID(rs.getInt("brandID"));
+//			product.setQuantity(rs.getInt("quantity"));
+//			list.add(product);
+//		}
+//		return list;
+//	}
+//
 	public ArrayList<Product> getAllProduct(int firstResult, int lastResult) throws SQLException {
 		ArrayList<Product> listOfProduct = new ArrayList<Product>();
 		Transaction transaction = null;
@@ -115,10 +162,8 @@ public class GetProduct {
 			query.setFirstResult(firstResult);
 			query.setMaxResults(lastResult);
 			listOfProduct = (ArrayList<Product>) query.getResultList();
-
 			// commit transaction
 			transaction.commit();
-			System.out.println(listOfProduct);
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
@@ -127,6 +172,25 @@ public class GetProduct {
 		}
 		return listOfProduct;
 	}
+
+//	public Product getProductByID(String productID) throws SQLException {
+//		Product product = new Product();
+//		PreparedStatement st = conn.prepareStatement("select * from product where productID = ?");
+//		st.setString(1, productID);
+//		ResultSet rs = st.executeQuery();
+//		while (rs.next()) {
+//			product.setProductID(rs.getInt("productID"));
+//			product.setName(rs.getString("name"));
+//			product.setCategoryID(rs.getInt("categoryID"));
+//			product.setImgFirst(rs.getString("imgFirst"));
+//			product.setImgLast(rs.getString("imgLast"));
+//			product.setPrice(rs.getDouble("price"));
+//			product.setDescription(rs.getString("description"));
+//			product.setBrandID(rs.getInt("brandID"));
+//			product.setQuantity(rs.getInt("quantity"));
+//		}
+//		return product;
+//	}
 
 	public Product getProductByID(int productID) throws SQLException {
 		Product product = new Product();
@@ -148,7 +212,6 @@ public class GetProduct {
 		return product;
 	}
 
-//
 //	public ArrayList<Product> getProductByCategoryID(String categoryID, int firstResult, int lastResult)
 //			throws SQLException {
 //		ArrayList<Product> list = new ArrayList<Product>();

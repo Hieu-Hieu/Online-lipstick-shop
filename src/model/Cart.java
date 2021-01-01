@@ -17,7 +17,7 @@ public class Cart {
 	@Column(name = "cartID")
 	private int cartID;
 
-	@Column
+	@Column(name = "quantity")
 	private int quantity;
 
 	@ManyToOne(optional = false)
@@ -61,5 +61,4 @@ public class Cart {
 		this.user = user;
 		this.product = product;
 	}
-
 }
