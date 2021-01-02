@@ -60,13 +60,13 @@ public class AddToCartController extends HttpServlet {
 		User u = new User();
 		u = (User) session.getAttribute("user");
 		int userID = 0;
-		int productID = Integer.parseInt(request.getParameter("productID"));
+		int productID = 0;
 		int quantity = 0;
 		String url = "";
 		if (u != null) {
 			try {
 				userID = u.getUserID();
-//				productID = 
+				productID = Integer.parseInt(request.getParameter("productID"));
 				GetCart getCart = new GetCart();
 				GetUser getUser = new GetUser();
 				GetProduct getProduct = new GetProduct();

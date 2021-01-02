@@ -80,7 +80,7 @@
 												<button class="btn-minus" type="button">
 													<i class="fa fa-minus"></i>
 												</button>
-												<input type="text" value="1" name="quantity">
+												<input type="text" value="1" name="quantity"/>
 												<button class="btn-plus" type="button">
 													<i class="fa fa-plus"></i>
 												</button>
