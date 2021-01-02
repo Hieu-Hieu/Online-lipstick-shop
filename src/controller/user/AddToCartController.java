@@ -37,7 +37,7 @@ public class AddToCartController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		doPost(request, response);
+		doPost(request, response);
 		// TODO Auto-generated method stub
 
 //		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
@@ -108,7 +108,7 @@ public class AddToCartController extends HttpServlet {
 
 		} else {
 			request.setAttribute("LoginRequire", "Bạn vui lòng đăng nhập để mua hàng");
-			url = "/product-detail.jsp?productID=" + productID;
+			url = "/product-detail.jsp";
 //			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 //			dispatcher.forward(request, response);
 		}

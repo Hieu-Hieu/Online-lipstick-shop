@@ -74,7 +74,7 @@
                                             <fmt:formatNumber var="totalPrice" type="number" pattern="###,###,###" value="${cart.getQuantity() * cart.getProduct().getPrice() }"/>
                                             <td>${totalPrice }Đ</td>
                                             <td>
-												<a href="${pageContext.request.contextPath }/AddToCartController?command=remove&productID=${cart.getProduct().getProductID() }">
+												<a href="${pageContext.request.contextPath }/AddToCartController?command=remove&productID=${cart.getProduct().getProductID()}">
 													<i class="fa fa-trash"></i>
 												</a>
 											</td>
