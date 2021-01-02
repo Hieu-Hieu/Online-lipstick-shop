@@ -3,7 +3,6 @@ package controller.user;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +37,7 @@ public class AddToCartController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request, response);
+//		doPost(request, response);
 		// TODO Auto-generated method stub
 
 //		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
@@ -110,10 +109,10 @@ public class AddToCartController extends HttpServlet {
 		} else {
 			request.setAttribute("LoginRequire", "Bạn vui lòng đăng nhập để mua hàng");
 			url = "/product-detail.jsp?productID=" + productID;
+//			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+//			dispatcher.forward(request, response);
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-		dispatcher.forward(request, response);
-//		response.sendRedirect(request.getContextPath() + url);
+		response.sendRedirect(request.getContextPath() + url);
 	}
 
 }
