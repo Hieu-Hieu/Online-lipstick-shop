@@ -12,6 +12,7 @@ import model.User;
 import util.Utill;
 
 public class GetUser {
+
 	public ArrayList<User> getListUser() throws SQLException {
 		ArrayList<User> list = new ArrayList<>();
 		Transaction transaction = null;
@@ -89,6 +90,7 @@ public class GetUser {
 			if (!l.isEmpty()) {
 				u = (User) l.get(0);
 			}
+			System.out.println(u.getUsername());
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {

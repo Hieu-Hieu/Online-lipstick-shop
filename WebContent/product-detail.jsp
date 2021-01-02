@@ -3,6 +3,7 @@
 <%@page import="model.Product"%>
 <%@page import="get.GetProduct"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +49,6 @@
 								<div class="product-slider-single normal-slider">
 									<img src="${product.getImgFirst() }" alt="Product Image">
 									<img src="${product.getImgLast() }" alt="Product Image">
-
 								</div>
 								<div class="product-slider-single-nav normal-slider">
 									<div class="slider-nav-img">
@@ -116,7 +116,16 @@
 			</div>
 		</div>
 	</div>
- 	
+	<c:if test="${!empty LoginRequire }">
+	 	<script type="text/javascript">
+	 	if(confirm("Đăng nhập để tiếp tục")){
+        	window.location = "signin.jsp";
+        }
+	 	else{
+	 		window.location = "index.jsp";
+	 	}
+	 	</script>
+	</c:if>
 	<jsp:include page="footer.jsp"></jsp:include>
 	<!-- Product Detail End -->
 	<!-- JavaScript Libraries -->

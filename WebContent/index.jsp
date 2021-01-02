@@ -151,7 +151,11 @@
 			</div>
 		</div>
 		<!-- Main Slider End -->
-
+		<c:if test="${!empty LoginRequire }">
+		 	<script type="text/javascript">
+		 		alert("Đăng nhập để mua hàng");
+		 	</script>
+		</c:if>
 
 		<jsp:include page="footer.jsp"></jsp:include>
 		<!-- Back to Top -->

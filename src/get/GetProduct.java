@@ -13,23 +13,7 @@ import model.Product;
 import util.Utill;
 
 public class GetProduct {
-//	DBConnect mydb = new DBConnect();
-//	Connection conn = mydb.getConnecttion();
 
-//	public int totalPage() throws SQLException {
-//		int total = 0;
-//		float result = 0;
-//		PreparedStatement st = conn.prepareStatement("select count(*) as tongTrang from product");
-//		ResultSet rs = st.executeQuery();
-//		while (rs.next()) {
-//			total = rs.getInt("tongTrang");
-//		}
-//		result = (float) total / 9;
-//		if (result > (total / 9)) {
-//			return (int) (result + 1);
-//		}
-//		return (int) result;
-//	}
 	public int totalPage() throws SQLException {
 		int total = 0;
 		float result = 0;
@@ -199,8 +183,9 @@ public class GetProduct {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			product = (Product) session.createQuery("from Product").list().get(0);
-
+			Query q = session.createQuery("from Product where productID = :productID");
+			q.setParameter("productID", productID);
+			product = (Product) q.list().get(0);
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {

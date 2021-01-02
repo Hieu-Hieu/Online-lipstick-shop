@@ -46,7 +46,6 @@ public class GetCart {
 			Query query = session.createQuery("from Cart where userID = :userID");
 			query.setParameter("userID", userID);
 			List p = query.list();
-
 			if (!p.isEmpty()) {
 				return true;
 			}
@@ -67,7 +66,6 @@ public class GetCart {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			System.out.println("add to cart");
 			session.save(c);
 			// commit transaction
 			transaction.commit();

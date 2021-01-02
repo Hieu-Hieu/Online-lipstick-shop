@@ -37,6 +37,8 @@ public class UserLogout extends HttpServlet {
 		if (user != null) {
 			session.removeAttribute("user");
 			response.sendRedirect("index.jsp");
+		} else {
+			response.sendRedirect("index.jsp");
 		}
 	}
 

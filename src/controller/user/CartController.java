@@ -52,6 +52,7 @@ public class CartController extends HttpServlet {
 			ArrayList<Cart> listCart = new ArrayList<Cart>();
 			try {
 				listCart = getCart.getCartByUserID(userID);
+//				session.setAttribute("listCart", listCart);
 				request.setAttribute("listCart", listCart);
 				request.setAttribute("totalCart", getCart.totalCart(userID));
 				url = "/cart.jsp";

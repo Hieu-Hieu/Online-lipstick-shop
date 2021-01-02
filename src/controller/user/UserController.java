@@ -22,68 +22,6 @@ public class UserController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("signin.jsp").forward(request, response);
-		String command = request.getParameter("command");
-		String url = "";
-		User u = new User();
-		HttpSession session = request.getSession();
-		switch (command) {
-		case "insert":
-			u.setUserID(Integer.parseInt(request.getParameter("id")));
-			u.setUsername(request.getParameter("name"));
-			u.setPassword(request.getParameter(("pass")));
-			u.setEmail(request.getParameter("email"));
-			u.setPhone(request.getParameter("phone"));
-			u.setAddress(request.getParameter("address"));
-			u.setRole(false);
-			GetUser.insertUser(u);
-			session.setAttribute("user", u);
-			url = "/navigate.jsp";
-			break;
-		case "update":
-			int id = Integer.parseInt(request.getParameter("id"));
-			String username = request.getParameter("username");
-			String password = request.getParameter("pass");
-			String email = request.getParameter("email");
-			String phone = request.getParameter("phone");
-			String address = request.getParameter("address");
-			boolean role = Boolean.parseBoolean(request.getParameter("role"));
-
-			GetUser.updateUser(new User(id, username, password, email, phone, address, role));
-			url = "/my-account.jsp";
-			break;
-		case "logindeal":
-			try {
-				u = GetUser.login(request.getParameter("name"), (request.getParameter("pass")));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if (u != null) {
-				session.setAttribute("user", u);
-				url = "/deal.jsp";
-			}
-			break;
-
-		case "login":
-			try {
-				u = GetUser.login(request.getParameter("name"), (request.getParameter("pass")));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if (u != null) {
-				session.setAttribute("user", u);
-				url = "/dashboard.jsp";
-			}
-
-			else {
-				request.setAttribute("error", "Lỗi tên đăng nhập hoặc mật khẩu");
-				url = "/signin.jsp";
-			}
-			break;
-
-		}
 	}
 
 	@Override
@@ -93,8 +31,7 @@ public class UserController extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		String url = "";
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+
 		String command = request.getParameter("command");
 
 		GetUser getUser = new GetUser();
@@ -102,14 +39,15 @@ public class UserController extends HttpServlet {
 
 		switch (command) {
 		case "register":
-			String passAgain = request.getParameter("passwordAgain");
-			if (password.equals(passAgain)) {
-				u.setUsername(request.getParameter("name"));
+			String pass = request.getParameter("password").trim();
+			String passAgain = request.getParameter("passwordAgain").trim();
+			if (pass.equals(passAgain)) {
+				u.setUsername(request.getParameter("name").trim());
 //				u.setUserID(Integer.parseInt(request.getParameter("id")));
-				u.setPassword(password);
-				u.setEmail(request.getParameter("email"));
-				u.setPhone(request.getParameter("phone"));
-				u.setAddress(request.getParameter("address"));
+				u.setPassword(pass);
+				u.setEmail(request.getParameter("email").trim());
+				u.setPhone(request.getParameter("phone").trim());
+				u.setAddress(request.getParameter("address").trim());
 				u.setRole(false);
 				GetUser.insertUser(u);
 				request.setAttribute("login", "Đăng nhập để mua hàng");
@@ -126,16 +64,18 @@ public class UserController extends HttpServlet {
 		case "update":
 			int id = Integer.parseInt(request.getParameter("id"));
 			String user = request.getParameter("username");
-//			String pass = request.getParameter("pass");
+			String passw = request.getParameter("pass");
 			String email = request.getParameter("email");
 			String phone = request.getParameter("phone");
 			String address = request.getParameter("address");
 			boolean role = Boolean.parseBoolean(request.getParameter("role"));
 
-			GetUser.updateUser(new User(id, username, password, email, phone, address, role));
+			GetUser.updateUser(new User(id, user, passw, email, phone, address, role));
 			url = "/my-account.jsp";
 			break;
 		case "login":
+			String username = request.getParameter("username").trim();
+			String password = request.getParameter("password").trim();
 			try {
 				u = getUser.login(username, password);
 			} catch (SQLException e) {

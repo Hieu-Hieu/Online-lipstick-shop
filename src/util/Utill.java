@@ -44,6 +44,12 @@ public class Utill {
 				settings.put(Environment.SHOW_SQL, "true");
 
 				settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
+
+//				settings.put(Environment.C3P0_MIN_SIZE, "5");
+//				settings.put(Environment.C3P0_MAX_SIZE, "20");
+//				settings.put(Environment.C3P0_TIMEOUT, "300");
+//				settings.put(Environment.C3P0_MAX_STATEMENTS, "50");
+//				settings.put(Environment.C3P0_IDLE_TEST_PERIOD, "3000");
 				settings.put(Environment.POOL_SIZE, "100");
 //				settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 

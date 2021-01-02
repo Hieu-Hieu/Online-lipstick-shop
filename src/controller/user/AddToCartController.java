@@ -3,6 +3,7 @@ package controller.user;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,7 +52,6 @@ public class AddToCartController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		doGet(request, response);
 		HttpSession session = request.getSession();
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
@@ -60,18 +60,19 @@ public class AddToCartController extends HttpServlet {
 		User u = new User();
 		u = (User) session.getAttribute("user");
 		int userID = 0;
-		int productID = 0;
+		int productID = Integer.parseInt(request.getParameter("productID"));
 		int quantity = 0;
 		String url = "";
 		if (u != null) {
 			try {
 				userID = u.getUserID();
-				productID = Integer.parseInt(request.getParameter("productID"));
+//				productID = 
 				GetCart getCart = new GetCart();
 				GetUser getUser = new GetUser();
 				GetProduct getProduct = new GetProduct();
 				switch (command) {
 				case "add":
+					System.out.println(request.getParameter("quantity"));
 					quantity = Integer.parseInt(request.getParameter("quantity"));
 					if (getCart.checkProductExist(userID, productID)) {
 						getCart.updateProductQuantity(userID, productID, quantity);
@@ -109,9 +110,11 @@ public class AddToCartController extends HttpServlet {
 
 		} else {
 			request.setAttribute("LoginRequire", "Bạn vui lòng đăng nhập để mua hàng");
-			url = "/product-detail.jsp";
+			url = "/product-detail.jsp?productID=" + productID;
 		}
-		response.sendRedirect(request.getContextPath() + url);
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+		dispatcher.forward(request, response);
+//		response.sendRedirect(request.getContextPath() + url);
 	}
 
 }
