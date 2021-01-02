@@ -101,22 +101,32 @@ public class UserController extends HttpServlet {
 		User u = new User();
 
 		switch (command) {
-		case "insert":
-			u.setUserID(Integer.parseInt(request.getParameter("id")));
-			u.setUsername(request.getParameter("name"));
-			u.setPassword(request.getParameter(("pass")));
-			u.setEmail(request.getParameter("email"));
-			u.setPhone(request.getParameter("phone"));
-			u.setAddress(request.getParameter("address"));
-			u.setRole(false);
-			GetUser.insertUser(u);
-			session.setAttribute("user", u);
-			url = "/navigate.jsp";
+		case "register":
+			String passAgain = request.getParameter("passwordAgain");
+			if (password.equals(passAgain)) {
+				u.setUsername(request.getParameter("name"));
+//				u.setUserID(Integer.parseInt(request.getParameter("id")));
+				u.setPassword(password);
+				u.setEmail(request.getParameter("email"));
+				u.setPhone(request.getParameter("phone"));
+				u.setAddress(request.getParameter("address"));
+				u.setRole(false);
+				GetUser.insertUser(u);
+				request.setAttribute("login", "Đăng nhập để mua hàng");
+				url = "/register.jsp";
+			} else {
+				request.setAttribute("name", request.getParameter("name"));
+				request.setAttribute("email", request.getParameter("email"));
+				request.setAttribute("address", request.getParameter("address"));
+				request.setAttribute("phone", request.getParameter("phone"));
+				request.setAttribute("errorPass", "Mật khẩu không khớp");
+				url = "/register.jsp";
+			}
 			break;
 		case "update":
 			int id = Integer.parseInt(request.getParameter("id"));
 			String user = request.getParameter("username");
-			String pass = request.getParameter("pass");
+//			String pass = request.getParameter("pass");
 			String email = request.getParameter("email");
 			String phone = request.getParameter("phone");
 			String address = request.getParameter("address");

@@ -93,7 +93,11 @@ public class AddToCartController extends HttpServlet {
 					break;
 				case "update":
 					quantity = Integer.parseInt(request.getParameter("quantity"));
-					getCart.updateProductQuantityInCart(userID, productID, quantity);
+					if (quantity > 0) {
+						getCart.updateProductQuantityInCart(userID, productID, quantity);
+					} else {
+						getCart.deleteProductInCart(userID, productID);
+					}
 					url = "/CartController";
 					break;
 				}
@@ -104,7 +108,8 @@ public class AddToCartController extends HttpServlet {
 			}
 
 		} else {
-			url = "/index.jsp";
+			request.setAttribute("LoginRequire", "Bạn vui lòng đăng nhập để mua hàng");
+			url = "/product-detail.jsp";
 		}
 		response.sendRedirect(request.getContextPath() + url);
 	}

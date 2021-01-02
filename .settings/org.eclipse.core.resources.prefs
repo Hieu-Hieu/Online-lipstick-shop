@@ -1,9 +1,10 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=fdfb67969cefa0545d2eb0e2595d3d85226e9e0e
 eclipse.preferences.version=1
 encoding//src/controller/admin/ProductAddController.java=UTF-8
+encoding//src/controller/user/AddToCartController.java=UTF-8
 encoding//src/controller/user/UserController.java=UTF-8
-<<<<<<< HEAD
-encoding//src/get/GetProduct.java=UTF-8
-=======
 encoding//src/get/GetCart.java=UTF-8
->>>>>>> fdfb67969cefa0545d2eb0e2595d3d85226e9e0e
+encoding//src/get/GetProduct.java=UTF-8
 encoding//src/get/GetUser.java=UTF-8

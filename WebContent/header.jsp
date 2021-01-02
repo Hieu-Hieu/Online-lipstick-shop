@@ -46,7 +46,7 @@
                     	<c:when test="${user.getUsername() == null}">
 		                    <div class="navbar-nav ml-auto">
 		                        <a href="signin.jsp" class="nav-item nav-link">Đăng nhập</a>
-		                       	<a href="signin.jsp" class="nav-item nav-link">Đăng kí</a>
+		                       	<a href="register.jsp" class="nav-item nav-link">Đăng kí</a>
 		                    </div>
                     	</c:when>
                     	<c:otherwise>
