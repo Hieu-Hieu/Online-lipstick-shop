@@ -63,10 +63,10 @@ public class AddToCartController extends HttpServlet {
 		int productID = 0;
 		int quantity = 0;
 		String url = "";
-		userID = u.getUserID();
-		productID = Integer.parseInt(request.getParameter("productID"));
 		if (u != null) {
 			try {
+				userID = u.getUserID();
+				productID = Integer.parseInt(request.getParameter("productID"));
 				GetCart getCart = new GetCart();
 				GetUser getUser = new GetUser();
 				GetProduct getProduct = new GetProduct();
@@ -93,7 +93,11 @@ public class AddToCartController extends HttpServlet {
 					break;
 				case "update":
 					quantity = Integer.parseInt(request.getParameter("quantity"));
-					getCart.updateProductQuantityInCart(userID, productID, quantity);
+					if (quantity > 0) {
+						getCart.updateProductQuantityInCart(userID, productID, quantity);
+					} else {
+						getCart.deleteProductInCart(userID, productID);
+					}
 					url = "/CartController";
 					break;
 				}
@@ -104,7 +108,8 @@ public class AddToCartController extends HttpServlet {
 			}
 
 		} else {
-			url = "/index.jsp";
+			request.setAttribute("LoginRequire", "Bạn vui lòng đăng nhập để mua hàng");
+			url = "/product-detail.jsp";
 		}
 		response.sendRedirect(request.getContextPath() + url);
 	}

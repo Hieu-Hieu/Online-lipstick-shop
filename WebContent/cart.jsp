@@ -65,7 +65,7 @@
                                             <form action="${pageContext.request.contextPath }/AddToCartController?command=update&productID=${cart.getProduct().getProductID()}" method="post">
                                                 <div class="qty"">
                                                     <button class="btn-minus" type="button"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="${cart.getQuantity() }" name="quantity" >
+                                                    <input type="text" value="${cart.getQuantity() }" name="quantity" min="1" >
                                                     <button class="btn-plus" type="button"><i class="fa fa-plus"></i></button>
                                                 </div>
                                                     <button class="" type="submit"><i class="far fa-save"></i></button>

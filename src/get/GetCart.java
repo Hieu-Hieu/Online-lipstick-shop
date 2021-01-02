@@ -159,7 +159,6 @@ public class GetCart {
 			for (Cart l : list) {
 				tong = l.getQuantity() + l.getProduct().getPrice();
 			}
-			System.out.println(tong);
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
