@@ -72,8 +72,7 @@ public class AddToCartController extends HttpServlet {
 				GetProduct getProduct = new GetProduct();
 				switch (command) {
 				case "add":
-					System.out.println("them");
-					System.out.println(request.getParameter("quantity"));
+
 					quantity = Integer.parseInt(request.getParameter("quantity"));
 					if (getCart.checkProductExist(userID, productID)) {
 						getCart.updateProductQuantity(userID, productID, quantity);
