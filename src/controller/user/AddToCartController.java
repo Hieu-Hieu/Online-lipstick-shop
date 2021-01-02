@@ -37,7 +37,7 @@ public class AddToCartController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request, response);
+//		doPost(request, response);
 		// TODO Auto-generated method stub
 
 //		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
