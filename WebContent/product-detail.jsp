@@ -38,6 +38,8 @@
 
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
+		
+	 	
 	<!-- Product Detail Start -->
 	<div class="product-detail">
 		<div class="container-fluid">
@@ -60,6 +62,16 @@
 
 								</div>
 							</div>
+							<c:if test="${empty user}">
+								<script type="text/javascript">
+								 	if(confirm("Đăng nhập để tiếp tục")){
+							        	window.location = "signin.jsp";
+							        }
+								 	else{
+								 		window.location = "index.jsp";
+								 	}	 			
+								 </script>
+							</c:if>
 							<div class="col-md-5">
 								<div class="product-content">
 									<div class="title">
@@ -87,7 +99,7 @@
 											</div>
 										</div>
 										<div class="action">
-											<button class="btn" type="submit"
+											<button class="btn" type="submit" 
 												href=""><i
 												class="fa fa-shopping-cart"></i>Thêm vào giỏ</button>
 										</div>
@@ -96,7 +108,6 @@
 							</div>
 						</div>
 					</div>
-
 					<div class="row product-detail-bottom">
 						<div class="col-lg-12">
 							<ul class="nav nav-pills nav-justified">
@@ -116,16 +127,7 @@
 			</div>
 		</div>
 	</div>
-	<c:if test="${!empty LoginRequire }">
-	 	<script type="text/javascript">
-	 	if(confirm("Đăng nhập để tiếp tục")){
-        	window.location = "signin.jsp";
-        }
-	 	else{
-	 		window.location = "index.jsp";
-	 	}
-	 	</script>
-	</c:if>
+
 	<jsp:include page="footer.jsp"></jsp:include>
 	<!-- Product Detail End -->
 	<!-- JavaScript Libraries -->
