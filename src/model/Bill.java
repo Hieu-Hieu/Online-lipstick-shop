@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -18,15 +19,13 @@ public class Bill {
 	@Column(name = "billID")
 	private int billID;
 
-	@ManyToOne
-	@Column(name = "userID")
-	private User user;
-
 	@Column(name = "address")
 	private String address;
-
-//	@Temporal(TemporalType.DATE)
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "userID", referencedColumnName = "userID")
+	private User user;
 	@Column(name = "date")
+	// @Temporal(TemporalType.DATE)
 	private Date date;
 
 	@Column(name = "total")
@@ -38,23 +37,21 @@ public class Bill {
 	@Column(name = "state")
 	private boolean state;
 
-	public Bill(int billID, User user, String address, Date date, double total, boolean paid, boolean state) {
+//	@OneToMany(mappedBy="bill",cascade=CascadeType.ALL)
+//	private Set<BillDetail> billDetail;
+
+	public Bill() {
+	}
+
+	public Bill(int billID, String address, User user, Date date, double total, boolean paid, boolean state) {
 		super();
 		this.billID = billID;
-		this.user = user;
 		this.address = address;
+		this.user = user;
 		this.date = date;
 		this.total = total;
 		this.paid = paid;
 		this.state = state;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User userID) {
-		this.user = userID;
 	}
 
 	public int getBillID() {
@@ -71,6 +68,14 @@ public class Bill {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Date getDate() {
@@ -104,5 +109,4 @@ public class Bill {
 	public void setState(boolean state) {
 		this.state = state;
 	}
-
 }
