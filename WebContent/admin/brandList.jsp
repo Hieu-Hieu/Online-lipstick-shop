@@ -10,7 +10,7 @@
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>Quản lí nhà sản xuất</title>
+<title>Quản lí nhãn hiệu</title>
 <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no'
 	name='viewport' />
 <!--     Fonts and icons     -->
@@ -34,7 +34,7 @@
 						<div class="col-md-12">
 							<div class="card card-plain">
 								<div class="card-header card-header-primary">
-									<h4 class="card-title mt-0">Quản lí nhà sản xuất</h4>
+									<h4 class="card-title mt-0">Quản lí nhãn hiệu</h4>
 									<p class="card-category"></p>
 								</div>
 								<div class="card-body">
@@ -67,65 +67,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="ttt1">
-							<div class="container">
-								<div class="row">
-									<div class="col-md-12">
-										<div class="card">
-											<div class="card-header card-header-primary">
-												<h4 class="card-title">Thông tin loại sản phẩm</h4>
-											</div>
-											<div class="card-body">
-												<form action="${pageContext.request.contextPath}/admin/brandManager" method="post">
-													<div class="col-md-12">
-														<div class="row">
-															<div class="col-md-12">
-																<div class="form-group">
-																	<input type="hidden" id="brand_id" name="brand_id" class="form-control">
-																</div>
-															</div>
-														</div>
-														<div class="row">
-															<div class="col-md-12">
-																<div class="form-group">
-																	<label class="bmd-label-floating">Nhà sản xuất</label>
-																	<input type="text" id="brand_name" name="brand_name" class="form-control">
-																</div>
-															</div>
-														</div>
-														<button type="submit" class="btn btn-primary pull-right">Lưu</button>
-														<button class="btn btn-primary pull-right">Hủy</button>
-													</div>
-											</div>
-										</div>
-									</div>
-									
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
-	</div>
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-		crossorigin="anonymous"></script>
-	<script src="js/bootstrap.js"></script>
-	<script>
-		function showData (id,name) {
-			$('#brand_id').val(id);
-			$('#brand_name').val(name);
-			
-		}
-	</script>
 </body>
 
 </html>

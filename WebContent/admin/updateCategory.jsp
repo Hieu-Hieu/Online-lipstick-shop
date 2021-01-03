@@ -22,51 +22,15 @@
 </head>
 
 <body class="">
-	<jsp:include page="header.jsp"></jsp:include>
+	
 	<jsp:include page="slidebav.jsp"></jsp:include>
-
-<%
-	List<Category> categories = (ArrayList<Category>)request.getAttribute("categories");
-%>
 	<div class="wrapper ">
 		<div class="main-panel">
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="card card-plain">
-								<div class="card-header card-header-primary">
-									<h4 class="card-title mt-0">Quản lí loại sản phẩm</h4>
-									<p class="card-category"></p>
-								</div>
-								<div class="card-body">
-									<div class="table-responsive">
-										<table class="table table-hover">
-											<thead class="">
-												<th>ID</th>
-												<th>Nhà sản xuất</th>
-												<th>Action</th>
-											</thead>
-											<tbody>
-											<c:forEach items="${categories}" var="item">
-												<tr>
-													<td >${item.getCategoryID()}</td>
-													<td >${item.getCategoryName()}</td>
-													<td>
-														<form action="${pageContext.request.contextPath}/admin/categoryManager" method="get">
-														  <input type="hidden" name="category_id" value="${item.getCategoryID()}">
-														  <input type="hidden" name="delete_id" value="1">
-														  <button type="submit" class="btn btn-primary pull-right">Xóa</button>
-														</form>
-														<button class="btn btn-primary pull-right" onclick="showData('${item.getCategoryID()}','${item.getCategoryName()}')">Update</button>
-													</td>
-												</tr>
-											</c:forEach>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
+							
 						</div>
 					</div>
 					<div class="row">
@@ -76,7 +40,7 @@
 									<div class="col-md-12">
 										<div class="card">
 											<div class="card-header card-header-primary">
-												<h4 class="card-title">Thông tin loại sản phẩm</h4>
+												<h4 class="card-title">Cập nhật loại sản phẩm</h4>
 											</div>
 											<div class="card-body">
 												<form action="${pageContext.request.contextPath}/admin/categoryManager" method="post">
@@ -84,8 +48,7 @@
 														<div class="row">
 															<div class="col-md-12">
 																<div class="form-group">
-																	<label class="bmd-label-floating">ID</label>
-																	<input type="text" id="category_id" name="category_id" class="form-control">
+																	<input type="hidden" id="category_id" name="category_id" class="form-control">
 																</div>
 															</div>
 														</div>
@@ -98,12 +61,14 @@
 															</div>
 														</div>
 														<button type="submit" class="btn btn-primary pull-right">Lưu</button>
-														<button class="btn btn-primary pull-right">Hủy</button>
+														<button  class="btn btn-primary pull-right">Hủy</button>
+														<a href="${pageContext.request.contextPath}/admin/categoryManager"></a>
 													</div>
+													</form>
 											</div>
 										</div>
 									</div>
-									</form>
+									
 								</div>
 							</div>
 						</div>
@@ -112,22 +77,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
-	</div>
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-		crossorigin="anonymous"></script>
-	<script src="js/bootstrap.js"></script>
-	<script>
-		function showData (id, name) {
-			$('#category_id').val(id);
-			$('#category_name').val(name);
-		}
-	</script>
+	
 </body>
 
 </html>

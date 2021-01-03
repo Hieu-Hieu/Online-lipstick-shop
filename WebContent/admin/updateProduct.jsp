@@ -52,8 +52,10 @@
 																<div class="row">
 																	<div class="col-md-12">
 																		<div class="form-group">
+																		<input type="hidden" name="productID" value="<c:out value='${product.productID}'/>" />
 																			<label class="bmd-label-floating">Tên sản
-																				phẩm</label> <input type="text" class="form-control" name="pName">
+																				phẩm</label> <input type="text" class="form-control" name="pName"
+																				value="${product.name }">
 																				
 																				</div>
 																	</div>
@@ -120,8 +122,8 @@
 																				phẩm</label>
 																		</div>
 																		<textarea class="form-control" 
-																		id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
-                                                                </textarea>
+																		id="exampleFormControlTextarea1" rows="3" name="description" >${product.description}</textarea>
+                                                                
 														
 																		
 																		<button type="submit"

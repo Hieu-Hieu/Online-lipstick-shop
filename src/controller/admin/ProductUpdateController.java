@@ -87,27 +87,28 @@ public class ProductUpdateController extends HttpServlet {
 		int categoryId = Integer.parseInt(req.getParameter("categoryID"));
 		
 		try {	
+			
 			product.setBrand(brand.getByID(brandId));
 			product.setCategory(cate.getByID(categoryId));
 			
+			product.setProductID(Integer.parseInt(req.getParameter("productID")));
 			product.setName(req.getParameter("pName"));
 			product.setImgFirst(req.getParameter("imgFirst"));
 			product.setImgLast(req.getParameter("imgLast"));
 			product.setPrice(Float.parseFloat(req.getParameter("price")));
 			product.setDescription(req.getParameter("description"));
 			product.setQuantity(Integer.parseInt(req.getParameter("quantity")));
-			int page = gp.totalPage();
-			if (gp.addProduct(product)) {
-				req.setAttribute("addSuccess", 1);
+			
+			if (gp.updateProduct(product)) {
+				req.setAttribute("updateSuccess", 1);
 				RequestDispatcher dispatcher = req.getServletContext()
-						.getRequestDispatcher("/admin/product/list?currentPage=" + String.valueOf(page));
-
+						.getRequestDispatcher("/admin/product/list?currentPage=1");
 				dispatcher.forward(req, resp);
 			} else {
 
-				req.setAttribute("addSuccess", 0);
+				req.setAttribute("updateSuccess", 0);
 				RequestDispatcher dispatcher = req.getServletContext()
-						.getRequestDispatcher("/admin/product/list?currentPage=" + String.valueOf(page));
+						.getRequestDispatcher("/admin/product/list?currentPage=1");
 
 				dispatcher.forward(req, resp);
 			}

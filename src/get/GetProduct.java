@@ -79,17 +79,32 @@ public class GetProduct {
 		}
 		return false;
 	}
+	
+	public boolean updateProduct(Product p) throws SQLException {
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			// save the student object
+			session.update(p);
+			// commit transaction
+			transaction.commit();
+			System.out.println("update thanh cong");
+			return true;
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return false;
+	}
 
-//	public boolean deleteProduct(String productID) throws SQLException {
-//		PreparedStatement st = conn.prepareStatement("delete from product where productID = ?");
-//		st.setString(1, productID);
-//
-//		if (st.executeUpdate() > 0) {
-//			return true;
-//		}
-//		return false;
-//	}
-	public boolean deleteProduct(String productID) throws SQLException {
+
+
+	public boolean deleteProduct(int productID) throws SQLException {
+
 		Transaction transaction = null;
 		try {
 			// start a transaction
