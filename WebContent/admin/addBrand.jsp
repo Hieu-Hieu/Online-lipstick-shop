@@ -36,7 +36,7 @@
 									<div class="col-md-12">
 										<div class="card">
 											<div class="card-header card-header-primary">
-												<h4 class="card-title">Thông tin loại sản phẩm</h4>
+												<h4 class="card-title">Thêm thương hiệu</h4>
 											</div>
 											<div class="card-body">
 												<form action="${pageContext.request.contextPath}/admin/brand/add" method="post">
@@ -45,7 +45,7 @@
 															<div class="col-md-12">
 																<div class="form-group">
 																	<label class="bmd-label-floating">Thương hiệu</label>
-																	<input type="text" id="brand_name" name="brandName" class="form-control">
+																	<input type="text" name="brandName" class="form-control">
 																</div>
 															</div>
 														</div>

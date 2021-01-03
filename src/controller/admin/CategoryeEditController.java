@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import get.CategoryDAO;
 import model.Category;
 
-@WebServlet(urlPatterns = { "/admin/category/edit" })
+@WebServlet(urlPatterns = { "/admin/category/update" })
 public class CategoryeEditController extends HttpServlet {
 	
 	/**
@@ -29,7 +29,7 @@ public class CategoryeEditController extends HttpServlet {
 		
 		req.setAttribute("category", category);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/category/editCategory.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/editCategory.jsp");
 		dispatcher.forward(req, resp);
 		}
 		catch(Exception ex) {

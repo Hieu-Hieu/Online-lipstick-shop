@@ -18,7 +18,7 @@
 <body>
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
         <div class="logo"><a href="#"></a></div>
-        <div class="sidebar-wrapper">
+        <div class="sidebar-wrapper" >
           <ul class="nav">
             <li class="nav-item active  ">
               <a class="nav-link" href="${pageContext.request.contextPath }/admin/dashboard.jsp">
@@ -33,27 +33,27 @@
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="${pageContext.request.contextPath }/admin/usermanager.jsp">
+              <a class="nav-link" href="${pageContext.request.contextPath }/admin/user/list">
                 <i class="fa fa-address-book" aria-hidden="true"></i>
                 <p>Quản lí người dùng</p>
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="${pageContext.request.contextPath }/admin/odermanager.jsp">
+              <a class="nav-link" href="${pageContext.request.contextPath }/admin/category/list">
                 <i class="fa fa-truck" aria-hidden="true"></i>
-                <p>Quản lí đơn hàng</p>
+                <p>Quản lý loại sản phẩm</p>
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="${pageContext.request.contextPath }/admin/brandManager">
+              <a class="nav-link" href="${pageContext.request.contextPath }/admin/brand/list">
                 <i class="fa fa-university" aria-hidden="true"></i>
-                <p>Quản lí nhà sản xuất</p>
+                <p>Quản lí nhãn hiệu</p>
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="${pageContext.request.contextPath }/admin/categoryManager">
-                <i class="fa fa-adjust" aria-hidden="true"></i>
-                <p>Quản lí loại sản phẩm</p>
+              <a class="nav-link" href="${pageContext.request.contextPath }/admin/category/list">
+                <i class="fa fa-truck" aria-hidden="true"></i>
+                <p>Quản lý đơn hàng</p>
               </a>
             </li>
             <li class="nav-item ">

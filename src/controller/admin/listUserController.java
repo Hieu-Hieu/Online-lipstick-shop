@@ -1,9 +1,7 @@
 package controller.admin;
 
 import java.io.IOException;
-import java.rmi.ServerException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -13,12 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import get.BrandDAO;
-import model.Brand;
-import model.Category;
+import get.GetUser;
+import model.User;
 
-@WebServlet("/admin/brand/list")
-public class listBrand extends HttpServlet {
+@WebServlet({"/admin/user/list"})
+public class listUserController extends HttpServlet {
 	
 	/**
 	 * 
@@ -26,17 +23,18 @@ public class listBrand extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<Brand> brandList;
-		BrandDAO brandDao =new BrandDAO();
+		GetUser user = new GetUser();
+		List<User> userList;
 		try {
-			brandList = brandDao.getListBrand();
-			req.setAttribute("brandList", brandList);
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/brandList.jsp");
-			dispatcher.forward(req, resp);
+			userList = user.getListUser();
+			System.out.println(userList);
+			req.setAttribute("userList", userList);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/listUser.jsp");
+		dispatcher.forward(req, resp);
 	}
 }

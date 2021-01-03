@@ -158,6 +158,7 @@ public class GetProduct {
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Query query = session.createQuery("from Product");
+			
 			query.setFirstResult(firstResult);
 			query.setMaxResults(lastResult);
 			listOfProduct = (ArrayList<Product>) query.getResultList();

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import get.BrandDAO;
 import model.Brand;
 
+@WebServlet("/admin/brand/update")
 public class editBrandController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	BrandDAO brandDao = new BrandDAO();
@@ -21,15 +23,14 @@ public class editBrandController extends HttpServlet {
 		int id = Integer.parseInt(req.getParameter("id"));
 		Brand brand = brandDao.getByID(id);
 		
-		req.setAttribute("category", brand);
+		req.setAttribute("brand", brand);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/brand/editBrand.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/editBrand.jsp");
 		dispatcher.forward(req, resp);
 		}
 		catch(Exception ex) {
 			
 		}
-		
 	}
 
 	@Override

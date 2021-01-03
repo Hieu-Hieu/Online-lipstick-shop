@@ -22,7 +22,6 @@ public class addCategoryController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		CategoryDAO categoryDao = new CategoryDAO();
 		Category category = new Category();
-		category.setCategoryID(Integer.parseInt(req.getParameter("categoryID")));
 		category.setCategoryName(req.getParameter("categoryName"));
 		if(categoryDao.insert(category)) {
 			req.setAttribute("addCategory", 1);

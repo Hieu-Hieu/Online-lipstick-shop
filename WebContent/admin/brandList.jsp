@@ -46,17 +46,13 @@
 												<th>Action</th>
 											</thead>
 											<tbody>
-											<c:forEach items="${brandes}" var="item">
+											<c:forEach items="${brandList}" var="item">
 												<tr>
 													<td >${item.getBrandID()}</td>
 													<td >${item.getBrandName()}</td>
 													<td>
-														<form action="${pageContext.request.contextPath}/admin/brandManager" method="get">
-														  <input type="hidden" name="brand_id" value="${item.getBrandID()}">
-														  <input type="hidden" name="delete_id" value="1">
-														  <button type="submit" class="btn btn-primary pull-right">Xóa</button>
-														</form>
-														<button class="btn btn-primary pull-right" onclick="showData('${item.getBrandID()}','${item.getBrandName()}')">Update</button>
+														<a href="${pageContext.request.contextPath}/admin/brand/update?id=${item.getBrandID()}"><button  class="btn btn-primary pull-right">Cập nhật</button></a>
+														<a href="${pageContext.request.contextPath}/admin/brand/delete?id=${item.getBrandID()}" onclick="return ConfirmDelete();"><button  class="btn btn-primary pull-right">Xóa</button></a>
 													</td>
 												</tr>
 											</c:forEach>
@@ -67,10 +63,26 @@
 							</div>
 						</div>
 					</div>
+					<div class="row">
+            <div class="col-md-6  align-self-sm-end">
+              <div class="border__button">
+                <a href="${pageContext.request.contextPath}/admin/addBrand.jsp"><button class="border__button--button" >Thêm mới</button></a>
+              </div>
+            </div>
+          </div>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
-
+<script>
+    function ConfirmDelete()
+    {
+      var x = confirm("Bạn có muốn xóa mục này?");
+      if (x)
+          return true;
+      else
+        return false;
+    }
+</script> 
 </html>

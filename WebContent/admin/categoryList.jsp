@@ -18,16 +18,13 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <!-- CSS Files -->
-<link href="./static/css/material-dashboard.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/admin/static/css/material-dashboard.css" rel="stylesheet" />
 </head>
 
 <body class="">
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:include page="slidebav.jsp"></jsp:include>
 
-<%
-	List<Category> categories = (ArrayList<Category>)request.getAttribute("categories");
-%>
 	<div class="wrapper ">
 		<div class="main-panel">
 			<div class="content">
@@ -48,17 +45,13 @@
 												<th>Action</th>
 											</thead>
 											<tbody>
-											<c:forEach items="${categories}" var="item">
+											<c:forEach items="${categoryList}" var="item">
 												<tr>
 													<td >${item.getCategoryID()}</td>
 													<td >${item.getCategoryName()}</td>
 													<td>
-														<form action="${pageContext.request.contextPath}/admin/categoryManager" method="get">
-														  <input type="hidden" name="category_id" value="${item.getCategoryID()}">
-														  <input type="hidden" name="delete_id" value="1">
-														  <button type="submit" class="btn btn-primary pull-right">Xóa</button>
-														</form>
-														<button class="btn btn-primary pull-right" onclick="showData('${item.getCategoryID()}','${item.getCategoryName()}')">Update</button>
+													<a href="${pageContext.request.contextPath}/admin/category/update?id=${item.getCategoryID()}"><button  class="btn btn-primary pull-right">Cập nhật</button></a>
+														<a href="${pageContext.request.contextPath}/admin/category/delete?id=${item.getCategoryID()}" onclick="return ConfirmDelete();"><button  class="btn btn-primary pull-right">Xóa</button></a>
 													</td>
 												</tr>
 											</c:forEach>
@@ -69,12 +62,28 @@
 							</div>
 						</div>
 					</div>
-					
+					<div class="row">
+            <div class="col-md-6  align-self-sm-end">
+              <div class="border__button">
+                <a href="${pageContext.request.contextPath}/admin/addCategory.jsp"><button class="border__button--button" >Thêm mới</button></a>
+              </div>
+            </div>
+          </div>
 				</div>
 			</div>
 		</div>
 	</div>
 
 </body>
+<script>
+    function ConfirmDelete()
+    {
+      var x = confirm("Bạn có muốn xóa mục này?");
+      if (x)
+          return true;
+      else
+        return false;
+    }
+</script> 
 
 </html>

@@ -43,7 +43,7 @@
 												<h4 class="card-title">Thêm loại sản phẩm</h4>
 											</div>
 											<div class="card-body">
-												<form action="${pageContext.request.contextPath}/admin/categoryManager" method="post">
+												<form action="${pageContext.request.contextPath}/admin/category/add" method="post">
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-12">
@@ -54,7 +54,7 @@
 															<div class="col-md-12">
 																<div class="form-group">
 																	<label class="bmd-label-floating">Tên loại sản phẩm</label>
-																	<input type="text" id="category_name" name="category_name" class="form-control">
+																	<input type="text"  name="categoryName" class="form-control">
 																</div>
 															</div>
 														</div>

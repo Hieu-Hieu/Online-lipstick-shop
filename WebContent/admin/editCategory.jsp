@@ -18,7 +18,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <!-- CSS Files -->
-<link href="./static/css/material-dashboard.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/admin/static/css/material-dashboard.css" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -43,12 +43,14 @@
 												<h4 class="card-title">Cập nhật loại sản phẩm</h4>
 											</div>
 											<div class="card-body">
-												<form action="${pageContext.request.contextPath}/admin/categoryManager" method="post">
+												<form action="${pageContext.request.contextPath}/admin/category/update" method="post">
 													<div class="col-md-12">
 														<div class="row">
 															<div class="col-md-12">
 																<div class="form-group">
-																	<input type="hidden" id="category_id" name="category_id" class="form-control">
+																<label class="bmd-label-floating">Mã loại sản phẩm</label>
+																	<input type="hidden"  name="categoryID" value="${category.getCategoryID()}" class="form-control">
+																	<input type="text"  disabled="disabled" value="${category.getCategoryID()}" class="form-control">
 																</div>
 															</div>
 														</div>
@@ -56,7 +58,7 @@
 															<div class="col-md-12">
 																<div class="form-group">
 																	<label class="bmd-label-floating">Tên loại sản phẩm</label>
-																	<input type="text" id="category_name" name="category_name" class="form-control">
+																	<input type="text" name="categoryName" value="${category.getCategoryName()}" class="form-control">
 																</div>
 															</div>
 														</div>

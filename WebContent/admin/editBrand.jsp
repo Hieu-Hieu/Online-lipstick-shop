@@ -36,7 +36,7 @@
 									<div class="col-md-12">
 										<div class="card">
 											<div class="card-header card-header-primary">
-												<h4 class="card-title">Thông tin loại sản phẩm</h4>
+												<h4 class="card-title">Cập nhật nhãn hiệu</h4>
 											</div>
 											<div class="card-body">
 												<form action="${pageContext.request.contextPath}/admin/brand/update" method="post">
@@ -44,7 +44,9 @@
 														<div class="row">
 															<div class="col-md-12">
 																<div class="form-group">
-																	<input type="hidden" id="brand_id" name="brandID" class="form-control">
+																<label class="bmd-label-floating">Mã thương hiệu</label>
+																<input type="text" class="form-control" disabled="disabled" value="${brand.brandID }">
+																	<input type="hidden" id="brand_id" name="brandID" value="${brand.brandID }" class="form-control">
 																</div>
 															</div>
 														</div>
@@ -52,7 +54,7 @@
 															<div class="col-md-12">
 																<div class="form-group">
 																	<label class="bmd-label-floating">Nhà sản xuất</label>
-																	<input type="text" id="brand_name" name="brandName" class="form-control">
+																	<input type="text" id="brand_name" name="brandName" value="${brand.brandName }" class="form-control">
 																</div>
 															</div>
 														</div>
