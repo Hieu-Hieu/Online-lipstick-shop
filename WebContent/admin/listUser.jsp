@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +16,7 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
-  <link href="./static/css/material-dashboard.css" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath}/admin/static/css/material-dashboard.css" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -41,84 +44,21 @@
                           Tên người dùng
                         </th>
                         <th>
-                          Số điện thoại
+                          Email
                         </th>
                         <th>
                           Địa chỉ
                         </th>
-                        <th>
-                          Action
-                        </th>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>
-                            123
-                          </td>
-                          <td>
-                            Nguyễn Thị A
-                          </td>
-                          <td>
-                            0333333333
-                          </td>
-                          <td>
-                            Thủ Đức
-                          </td>
-                          <td class="text-primary">
-                            Xem chi tiết
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            123
-                          </td>
-                          <td>
-                            Nguyễn Thị A
-                          </td>
-                          <td>
-                            0333333333
-                          </td>
-                          <td>
-                            Thủ Đức
-                          </td>
-                          <td class="text-primary">
-                            Xem chi tiết
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            123
-                          </td>
-                          <td>
-                            Nguyễn Thị A
-                          </td>
-                          <td>
-                            0333333333
-                          </td>
-                          <td>
-                            Thủ Đức
-                          </td>
-                          <td class="text-primary">
-                            Xem chi tiết
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            123
-                          </td>
-                          <td>
-                            Nguyễn Thị A
-                          </td>
-                          <td>
-                            0333333333
-                          </td>
-                          <td>
-                            Thủ Đức
-                          </td>
-                          <td class="text-primary">
-                            Xem chi tiết
-                          </td>
-                        </tr>
+                      <c:forEach items="${userList}" var="item">
+						<tr>
+							<td >${item.userID}</td>
+							<td >${item.username}</td>
+							<td>${item.email}</td>
+							<td >${item.address}</td>
+						</tr>
+						</c:forEach>
                       </tbody>
                     </table>
                   </div>

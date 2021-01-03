@@ -13,14 +13,18 @@ import util.Utill;
 
 public class GetUser {
 
-	public ArrayList<User> getListUser() throws SQLException {
-		ArrayList<User> list = new ArrayList<>();
+	@SuppressWarnings("unchecked")
+	public List<User> getListUser() throws SQLException {
+
 		Transaction transaction = null;
-		try {
+		List<User> listOfUser = null;
+		try (Session session = Utill.getSessionFactory().openSession()) {
 			// start a transaction
-			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			list = (ArrayList<User>) session.createQuery("From User").getResultList();
+			// get an user object
+			
+			listOfUser = session.createQuery("from User").getResultList();
+			
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
@@ -29,7 +33,7 @@ public class GetUser {
 			}
 			e.printStackTrace();
 		}
-		return list;
+		return listOfUser;
 	}
 
 	public boolean checkEmail(String email) throws SQLException {

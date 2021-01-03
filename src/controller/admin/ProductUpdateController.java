@@ -1,91 +1,120 @@
-//package controller.admin;
-//
-//import java.io.IOException;
-//import java.sql.Connection;
-//import java.sql.PreparedStatement;
-//import java.sql.SQLException;
-//import java.util.ArrayList;
-//
-//import javax.servlet.RequestDispatcher;
-//import javax.servlet.ServletException;
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//
-//import connect.DBConnect;
-//import get.BrandDAO;
-//import get.CategoryDAO;
-//import model.Brand;
-//import model.Category;
-//import model.Product;
-//
-//public class ProductUpdateController {
-//	 protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException { 
-//			ArrayList<Category> cate = new ArrayList<Category>(); 
-//			CategoryDAO getCate = new CategoryDAO();
-//			  
-//			 ArrayList<Brand> brand =new ArrayList<Brand>(); 
-//			 BrandDAO getBrand = new BrandDAO(); 
-//			 
-//			try {
-//				brand = getBrand.getListBrand();
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			} 
-//			
-//			  
-//			  req.setAttribute("ListBrand", brand);
-//			  
-//			  
-//			   try {
-//				cate = getCate.getListCategory();
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			} 
-//			   
-//			  req.setAttribute("ListCategory", cate);
-//			  
-//			  RequestDispatcher dispatch = req.getRequestDispatcher("/admin/addProduct.jsp"); 
-//			  dispatch.forward(req,resp);
-//		}
-//		
-//		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-//			Product product = new Product();
-//			
-//			try {
-//			Connection connection = DBConnect.getConnecttion();
-//				String sql ="update product set categoryID=?, Name=?, brandID=?, imgFirst=?, imgLast=?,price=?, description=?,quantity=? where  productID=? ";
-//				PreparedStatement ps = connection.prepareStatement(sql); 
-//					
-//				 ps.setInt(1, Integer.parseInt(req.getParameter("pID")));
-//				 ps.setInt(2, Integer.parseInt(req.getParameter("categoryID")));
-//				 ps.setString(3, req.getParameter("pName"));
-//				 ps.setInt(4, Integer.parseInt(req.getParameter("brandID")));
-//				 ps.setString(5, req.getParameter("imgFirst"));
-//				 ps.setString(6, req.getParameter("imgLast"));
-//				 ps.setFloat(7, Float.parseFloat(req.getParameter("price")));
-//				 ps.setString(8, req.getParameter("description"));
-//				 ps.setInt(9, Integer.parseInt(req.getParameter("quantity")));
-//	 			 
-//				  int row = ps.executeUpdate(); 
-//				  if (row > 0) {
-//					  req.setAttribute("addSuccess", 1);
-//					  RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher("/admin/product/list?currentPage=1");
-//					  
-//					  dispatcher.forward(req, resp);
-//				  } 
-//				  else {
-//						 
-//						 req.setAttribute("addSuccess", 0);
-//						 RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher( "/admin/product/add");
-//						  
-//						  dispatcher.forward(req, resp);
-//				  }
-//			}
-//			catch (Exception e) {
-//				e.printStackTrace();
-//			} 
-//			
-//		}
-//}
+package controller.admin;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import get.BrandDAO;
+import get.CategoryDAO;
+import get.GetProduct;
+import model.Brand;
+import model.Category;
+import model.Product;
+
+@WebServlet(urlPatterns = { "/admin/product/update" })
+public class ProductUpdateController extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html;charset=UTF-8");
+		req.setCharacterEncoding("utf-8");
+		resp.getWriter().append("Served at: ").append(req.getContextPath());
+		
+		ArrayList<Category> cate = new ArrayList<Category>();
+		CategoryDAO getCate = new CategoryDAO();
+
+		ArrayList<Brand> brand = new ArrayList<Brand>();
+		BrandDAO getBrand = new BrandDAO();
+		
+		try {
+			int productID= Integer.parseInt(req.getParameter("id"));
+			System.out.println("pID:"+productID);
+			GetProduct Gproduct = new GetProduct();
+		Product product = Gproduct.getProductByID(productID);
+		System.out.println(product);
+		req.setAttribute("product", product);
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			brand = getBrand.getListBrand();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		req.setAttribute("ListBrand", brand);
+
+		try {
+			cate = getCate.getListCategory();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		req.setAttribute("ListCategory", cate);
+
+		RequestDispatcher dispatch = req.getRequestDispatcher("/admin/updateProduct.jsp");
+		dispatch.forward(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html;charset=UTF-8");
+		req.setCharacterEncoding("utf-8");
+		resp.getWriter().append("Served at: ").append(req.getContextPath());
+
+		Product product = new Product();
+		GetProduct gp = new GetProduct();
+		CategoryDAO cate = new CategoryDAO();
+		BrandDAO brand = new BrandDAO();
+		int brandId = Integer.parseInt(req.getParameter("brandID"));
+		int categoryId = Integer.parseInt(req.getParameter("categoryID"));
+		
+		try {	
+			
+			product.setBrand(brand.getByID(brandId));
+			product.setCategory(cate.getByID(categoryId));
+			
+			product.setProductID(Integer.parseInt(req.getParameter("productID")));
+			product.setName(req.getParameter("pName"));
+			product.setImgFirst(req.getParameter("imgFirst"));
+			product.setImgLast(req.getParameter("imgLast"));
+			product.setPrice(Float.parseFloat(req.getParameter("price")));
+			product.setDescription(req.getParameter("description"));
+			product.setQuantity(Integer.parseInt(req.getParameter("quantity")));
+			
+			if (gp.updateProduct(product)) {
+				req.setAttribute("updateSuccess", 1);
+				RequestDispatcher dispatcher = req.getServletContext()
+						.getRequestDispatcher("/admin/product/list?currentPage=1");
+				dispatcher.forward(req, resp);
+			} else {
+
+				req.setAttribute("updateSuccess", 0);
+				RequestDispatcher dispatcher = req.getServletContext()
+						.getRequestDispatcher("/admin/product/list?currentPage=1");
+
+				dispatcher.forward(req, resp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+}

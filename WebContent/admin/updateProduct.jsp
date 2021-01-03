@@ -41,18 +41,21 @@
 										<div class="col-md-12">
 											<div class="card">
 												<div class="card-header card-header-primary">
-													<h4 class="card-title">Thông tin chi tiết sản phẩm</h4>
+													<h4 class="card-title">Cập nhật sản phẩm</h4>
+													
 												</div>
 												<div class="card-body">
-													<form method="post" action="${pageContext.request.contextPath}/admin/product/add"  >
+													<form method="post" action="${pageContext.request.contextPath}/admin/product/update"  >
 														<div class="row">
 													
 															<div class="col-md-12">
 																<div class="row">
 																	<div class="col-md-12">
 																		<div class="form-group">
+																		<input type="hidden" name="productID" value="<c:out value='${product.productID}'/>" />
 																			<label class="bmd-label-floating">Tên sản
-																				phẩm</label> <input type="text" class="form-control" name="pName">
+																				phẩm</label> <input type="text" class="form-control" name="pName"
+																				value="${product.name }">
 																				
 																				</div>
 																	</div>
@@ -61,6 +64,7 @@
 																<div class="row">
 																	<div class="col-md-6">
 																		<label class="bmd-label-floating">Nhà sản xuất</label>
+																		
 																		<select class="form-control"
 																			id="exampleFormControlSelect1" name="brandID" >
 																			
@@ -87,13 +91,13 @@
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label class="bmd-label-floating">Giá</label> <input
-																				type="number" class="form-control" name="price">
+																				type="number" class="form-control" name="price" value="${product.price }">
 																		</div>
 																	</div>
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label class="bmd-label-floating">Số lượng</label> <input
-																				type="number" class="form-control" name="quantity">
+																				type="number" class="form-control" name="quantity" value="${product.quantity }">
 																		</div>
 																	</div>
 																</div>
@@ -101,13 +105,13 @@
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label class="bmd-label-floating">Link hình ảnh 1</label> <input
-																				type="text" class="form-control" name="imgFirst">
+																				type="text" class="form-control" name="imgFirst" value="${product.getImgFirst()}">
 																		</div>
 																	</div>
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label class="bmd-label-floating">Link hình ảnh 2</label> <input
-																				type="text" class="form-control" name="imgLast">
+																				type="text" class="form-control" name="imgLast" value="${product.imgLast }">
 																		</div>
 																	</div>
 																</div>
@@ -117,8 +121,9 @@
 																			<label class="bmd-label-floating">Mô tả sản
 																				phẩm</label>
 																		</div>
-																		<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
-                                                                </textarea>
+																		<textarea class="form-control" 
+																		id="exampleFormControlTextarea1" rows="3" name="description" >${product.description}</textarea>
+                                                                
 														
 																		
 																		<button type="submit"

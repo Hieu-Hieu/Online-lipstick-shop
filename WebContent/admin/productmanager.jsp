@@ -30,6 +30,43 @@
   <link href="${root}/admin/static/css/material-dashboard.css" rel="stylesheet" />
 </head>
 
+<%-- <% String update = (request.getAttribute("updateSuccess"));%>
+<% String add = (request.getAttribute("addSuccess").toString());%>
+<% String delete = (request.getAttribute("deleteSuccess").toString());%>
+
+<script type="text/javascript">
+
+    var update = "<%=update%>";
+    var delete1 = "<%=delete%>";
+    var add = "<%=add%>";
+    alert(delete1);
+    if(update!= "null"){
+    	if(update=="1"){
+    		alert("Cập nhật thành công");
+    	}
+    	else{
+    		alert("Cập nhật Không thành công");
+    	}
+   	
+    	if(add!= "null"){
+        	if(add=="1"){
+        		alert("Thêm sản phẩm thành công");
+        	}
+        	else{
+        		alert("Cập nhật sản phẩm Không thành công");
+        	}
+        }
+    	if(delete1!= "null"){
+        	if(delete1=="1"){
+        		alert("Xóa thành công");
+        	}
+        	else{
+        		alert("Xóa sản phẩm Không thành công");
+        	}
+        
+    }
+</script> --%>
+
 <body class="">
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="slidebav.jsp"></jsp:include>
@@ -72,6 +109,7 @@
                       </thead>
                       <tbody>
                       <c:forEach items="${listProduct}" var="p">
+ 
                         <tr>
                           <td>
                             ${p.getProductID()}
@@ -79,7 +117,7 @@
                           <td>
                          
                             <img src="<c:url value = "${p.getImgFirst() }"/>" alt="" width="30px" height="30px">
-                            <img src="https://file1.dangcongsan.vn/DATA/0/2018/10/68___gi%E1%BA%BFng_l%C3%A0ng_qu%E1%BA%A3ng_ph%C3%BA_c%E1%BA%A7u__%E1%BB%A9ng_h%C3%B2a___%E1%BA%A3nh_vi%E1%BA%BFt_m%E1%BA%A1nh-16_51_07_908.jpg" alt="" width="30px" height="30px">
+                            <img src="<c:url value = "${p.getImgLast() }"/>" alt="" width="30px" height="30px">
                           </td>
                           <td>
                             ${p.getName()}
@@ -96,9 +134,11 @@
                             ${p.getQuantity() }
                           </td>
                           <td>
-                            <a href="#">Xem/Sửa</a>
+                            <a href="${pageContext.request.contextPath }/admin/product/update?id=${p.getProductID()}">Sửa/</a>
+                            <a onclick="return ConfirmDelete();" href="${pageContext.request.contextPath }/admin/product/delete?id=${p.getProductID()}">Xóa</a>
                           </td>
                         </tr>
+                       
                         </c:forEach>
                         
                       </tbody>
@@ -162,9 +202,7 @@
           <div class="row">
             <div class="col-md-6  align-self-sm-end">
               <div class="border__button">
-                <a href="${pageContext.request.contextPath}/admin/product/add"><button class="border__button--button" >Thêm</button></a>
-                <button class="border__button--button">Xóa</button>
-                <button class="border__button--button">Chỉnh sửa</button>
+                <a href="${pageContext.request.contextPath}/admin/product/add"><button class="border__button--button" >Thêm sản phẩm mới</button></a>
               </div>
             </div>
           </div>
@@ -174,5 +212,16 @@
   </div>
 
 </body>
+
+<script>
+    function ConfirmDelete()
+    {
+      var x = confirm("Bạn có muốn xóa sản phẩm này?");
+      if (x)
+          return true;
+      else
+        return false;
+    }
+</script>  
 
 </html>

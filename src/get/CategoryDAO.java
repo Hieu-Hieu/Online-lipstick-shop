@@ -12,6 +12,7 @@ import util.Utill;
 
 public class CategoryDAO {
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<Category> getListCategory() throws SQLException {
 		Transaction transaction = null;
 		ArrayList<Category> listCategory = new ArrayList<Category>();
@@ -40,7 +41,7 @@ public class CategoryDAO {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("select * from Category where categoryID=: cID");
+			Query query = session.createQuery("from Category where categoryID=: cID");
 			query.setParameter("cID", categoryId);
 			Category = (Category) query.list().get(0);
 
@@ -64,6 +65,7 @@ public class CategoryDAO {
 			session.save(c);
 			// commit transaction
 			transaction.commit();
+			return true;
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
@@ -80,13 +82,10 @@ public class CategoryDAO {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("update Category set categoryName = : cName where categoryID: cID");
-			query.setParameter("cName", category.getCategoryName());
-			query.setParameter("cID", category.getCategoryID());
-			if (query.executeUpdate() > 0)
-				return true;
+			 session.update(category);
 			// commit transaction
 			transaction.commit();
+			return true;
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
@@ -102,12 +101,14 @@ public class CategoryDAO {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("delete from Category where categoryID: cID");
-			query.setParameter("cID", categoryID);
-			if (query.executeUpdate() > 0)
-				return true;
+			Category cate = new Category();
+			cate = session.get(Category.class, categoryID);
+			if( cate != null) {
+			session.delete(cate);
 			// commit transaction
 			transaction.commit();
+			return true;
+			}
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();

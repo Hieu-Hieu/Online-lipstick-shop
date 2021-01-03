@@ -43,7 +43,52 @@
 							</a>
 						</div>
 						<div class="col-lg-3 col-md-6 col-sm-6">
-							<a href="./usermanager.jsp">
+							<a href="${pageContext.request.contextPath}/admin/category/list">
+								<div class="card card-stats">
+									<div class="card-header card-header-success card-header-icon">
+										<div class="card-icon">
+											<i class="material-icons">store</i>
+										</div>
+										<p class="card-category">Quản loại sản phẩm</p>
+									</div>
+									<div class="card-footer">
+										<div class="stats">Xem thông tin chi tiết loại sản phẩm</div>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-6">
+							<a href="${pageContext.request.contextPath}/admin/brand/list">
+								<div class="card card-stats">
+									<div class="card-header card-header-success card-header-icon">
+										<div class="card-icon">
+											<i class="material-icons">store</i>
+										</div>
+										<p class="card-category">Quản lí nhãn hiệu</p>
+									</div>
+									<div class="card-footer">
+										<div class="stats">Xem thông tin chi tiết nhãn hiệu</div>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-6">
+							<a href="${pageContext.request.contextPath}/admin/order/list">
+								<div class="card card-stats">
+									<div class="card-header card-header-success card-header-icon">
+										<div class="card-icon">
+											<i class="material-icons">store</i>
+										</div>
+										<p class="card-category">Quản lí đơn hàng</p>
+									</div>
+									<div class="card-footer">
+										<div class="stats">Xem thông tin chi tiết đơn hàng</div>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="col-lg-3 col-md-6 col-sm-6">
+							<a href="${pageContext.request.contextPath}/usermanager.jsp">
 								<div class="card card-stats">
 									<div class="card-header card-header-success card-header-icon">
 										<div class="card-icon">
@@ -58,23 +103,7 @@
 							</a>
 						</div>
 						<div class="col-lg-3 col-md-6 col-sm-6">
-							<a href="">
-								<div class="card card-stats">
-									<div class="card-header card-header-success card-header-icon">
-										<div class="card-icon">
-											<i class="material-icons">info_outline</i>
-										</div>
-										<p class="card-category">Quản lí đơn hàng</p>
-									</div>
-									<div class="card-footer">
-										<div class="stats">Xem chi tiết và tình trạng từng đơn
-											hàng</div>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-lg-3 col-md-6 col-sm-6">
-							<a href="./profile.jsp">
+							<a href="${pageContext.request.contextPath}/profile.jsp">
 								<div class="card card-stats">
 									<div class="card-header card-header-success card-header-icon">
 										<div class="card-icon">
