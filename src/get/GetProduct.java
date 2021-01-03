@@ -183,9 +183,9 @@ public class GetProduct {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query q = session.createQuery("from Product where productID = :productID");
-			q.setParameter("productID", productID);
-			product = (Product) q.list().get(0);
+
+			product = session.get(Product.class, productID);
+
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {

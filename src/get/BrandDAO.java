@@ -22,7 +22,7 @@ public class BrandDAO {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("from Bill");
+			Query query = session.createQuery("from Brand");
 			listBrand = (ArrayList<Brand>) query.getResultList();
 
 			// commit transaction
@@ -36,17 +36,16 @@ public class BrandDAO {
 		return listBrand;
 	}
 
+
 	public Brand getByID(int brandId) throws SQLException {
 		Transaction transaction = null;
-		Brand Brand = new Brand();
+		Brand brand = new Brand();
 		try {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("from Brand where categoryID=: cID");
-			query.setParameter("cID", brandId);
-			Brand = (Brand) query.list().get(0);
-//			session.get(Brand.class, brandId);
+
+			brand = session.get(Brand.class, brandId);
 
 			// commit transaction
 			transaction.commit();
@@ -56,7 +55,7 @@ public class BrandDAO {
 			}
 			e.printStackTrace();
 		}
-		return Brand;
+		return brand;
 	}
 
 	public boolean insert(Brand b) {
@@ -84,8 +83,8 @@ public class BrandDAO {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("update Brand set brandName = : bName where brandID: bID");
-			query.setParameter("nName", brand.getBrandName());
+			Query query = session.createQuery("update Brand set brandName = : bName where brandID =: bID");
+			query.setParameter("bName", brand.getBrandName());
 			query.setParameter("bID", brand.getBrandID());
 			if (query.executeUpdate() > 0)
 				return true;
@@ -106,7 +105,7 @@ public class BrandDAO {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("delete from Brand where brandID: bID");
+			Query query = session.createQuery("delete from Brand where brandID =: bID");
 			query.setParameter("bID", brandID);
 			if (query.executeUpdate() > 0)
 				return true;

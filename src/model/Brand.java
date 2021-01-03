@@ -42,5 +42,9 @@ public class Brand {
 		this.brandID = brandID;
 		this.brandName = brandName;
 	}
+	public Brand(String brandName) {
+		super();	
+		this.brandName = brandName;
+	}
 
 }

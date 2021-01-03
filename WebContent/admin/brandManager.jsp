@@ -82,8 +82,7 @@
 														<div class="row">
 															<div class="col-md-12">
 																<div class="form-group">
-																	<label class="bmd-label-floating">ID</label>
-																	<input type="text" id="brand_id" name="brand_id" class="form-control">
+																	<input type="hidden" id="brand_id" name="brand_id" class="form-control">
 																</div>
 															</div>
 														</div>
@@ -101,7 +100,7 @@
 											</div>
 										</div>
 									</div>
-									</form>
+									
 								</div>
 							</div>
 						</div>
@@ -121,9 +120,10 @@
 		crossorigin="anonymous"></script>
 	<script src="js/bootstrap.js"></script>
 	<script>
-		function showData (id, name) {
+		function showData (id,name) {
 			$('#brand_id').val(id);
 			$('#brand_name').val(name);
+			
 		}
 	</script>
 </body>

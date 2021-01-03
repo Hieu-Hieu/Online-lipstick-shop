@@ -12,6 +12,7 @@ import util.Utill;
 
 public class CategoryDAO {
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<Category> getListCategory() throws SQLException {
 		Transaction transaction = null;
 		ArrayList<Category> listCategory = new ArrayList<Category>();
@@ -40,7 +41,7 @@ public class CategoryDAO {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("select * from Category where categoryID=: cID");
+			Query query = session.createQuery("from Category where categoryID=: cID");
 			query.setParameter("cID", categoryId);
 			Category = (Category) query.list().get(0);
 
