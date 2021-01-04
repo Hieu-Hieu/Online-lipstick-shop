@@ -105,7 +105,7 @@ public class AddToCartController extends HttpServlet {
 
 		} else {
 			request.setAttribute("LoginRequire", "Bạn vui lòng đăng nhập để mua hàng");
-			url = "/ProductDetailController?productID=" + productID;
+			url = "/ProductDetailController?productID=" + productID + "&login=login";
 		}
 //		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 //		dispatcher.forward(request, response);

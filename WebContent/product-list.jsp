@@ -38,11 +38,7 @@
     <body>
   
     <jsp:include page="header.jsp"></jsp:include>
-    <%GetProduct getProduct = new GetProduct();
-    int total = getProduct.totalPage();
-    
-    %>
-    <%=total %>
+  
         <!-- Product List Start -->
         <div class="product-view">
             <div class="container-fluid">

@@ -4,6 +4,7 @@
 eclipse.preferences.version=1
 encoding//src/controller/admin/ProductAddController.java=UTF-8
 encoding//src/controller/user/AddToCartController.java=UTF-8
+encoding//src/controller/user/ProductList.java=UTF-8
 encoding//src/controller/user/UserController.java=UTF-8
 encoding//src/get/GetCart.java=UTF-8
 encoding//src/get/GetProduct.java=UTF-8

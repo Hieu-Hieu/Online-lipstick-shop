@@ -1,3 +1,4 @@
+<%@page import="get.GetCart"%>
 <%@page import="model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -75,8 +76,10 @@
                     </div>
                     <div class="col-md-6">
                         <div class="search">
-                            <input type="text" placeholder="Search">
-                            <button><i class="fa fa-search"></i></button>
+	                        <form action="${pageContext.request.contextPath }/ProductList?command=search&currentPage=1" method="post">
+	                            <input type="text" placeholder="Tìm Kiếm" name="input" value="${param.searchkey }">
+	                            <button type="submit"><i class="fa fa-search"></i></button>
+	                        </form>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -86,6 +89,9 @@
 	                            <a href="${pageContext.request.contextPath }/CartController?userID=${user.getUserID()}" class="btn cart">
 	                                <i class="fa fa-shopping-cart"></i>
 	                                <span>
+									<%GetCart gc =new GetCart();
+									User u = (User)session.getAttribute("user");%>
+									<%=gc.totalProduct(u.getUserID())%>
 									
 									</span>
 	                            </a>
