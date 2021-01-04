@@ -190,7 +190,7 @@ public class GetProduct {
 		return product;
 	}
 
-	public ArrayList<Product> getProductByCategoryID(String categoryID, int firstResult, int lastResult)
+	public ArrayList<Product> getProductByCategoryID(int categoryID, int firstResult, int lastResult)
 			throws SQLException {
 		ArrayList<Product> listOfProduct = new ArrayList<Product>();
 		Transaction transaction = null;
@@ -214,7 +214,7 @@ public class GetProduct {
 		return listOfProduct;
 	}
 
-	public ArrayList<Product> getProductByBrandID(String brandID, int firstResult, int lastResult) throws SQLException {
+	public ArrayList<Product> getProductByBrandID(int brandID, int firstResult, int lastResult) throws SQLException {
 		ArrayList<Product> listOfProduct = new ArrayList<Product>();
 		Transaction transaction = null;
 		try {
