@@ -157,7 +157,7 @@ public class GetCart {
 			query.setParameter("userID", userID);
 			list = (ArrayList<Cart>) query.getResultList();
 			for (Cart l : list) {
-				tong = l.getQuantity() + l.getProduct().getPrice();
+				tong = l.getQuantity() * l.getProduct().getPrice();
 			}
 			// commit transaction
 			transaction.commit();
@@ -167,6 +167,7 @@ public class GetCart {
 			}
 			e.printStackTrace();
 		}
+		System.out.println(tong);
 		return tong;
 
 	}
