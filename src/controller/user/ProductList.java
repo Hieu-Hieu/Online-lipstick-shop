@@ -75,6 +75,7 @@ public class ProductList extends HttpServlet {
 			}
 			break;
 		case "filter":
+
 			break;
 
 		case "list":
