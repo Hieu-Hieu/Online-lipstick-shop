@@ -100,7 +100,7 @@ public class GetProduct {
 		return false;
 	}
 
-	public boolean deleteProduct(String productID) throws SQLException {
+	public boolean deleteProduct(int productID) throws SQLException {
 		Transaction transaction = null;
 		try {
 			// start a transaction
