@@ -94,7 +94,7 @@
 		<div class="checkout">
 			<div class="container-fluid">
 				<div class="row">
-					<form action="">
+					<form action="${pageContext.request.contextPath}/BillController" method="post">
 						<div class="col-lg-8">
 							<div class="checkout-inner">
 								<div class="billing-address">
@@ -102,19 +102,19 @@
 									<div class="row">
 										<div class="col-md-6">
 											<label>Tên</label> <input class="form-control" type="text"
-												placeholder="Tên">
+												placeholder="Tên" value="${user.getUsername() }" name="name">
 										</div>
 										<div class="col-md-6">
 											<label>E-mail</label> <input class="form-control" type="text"
-												placeholder="E-mail">
+												placeholder="E-mail" value="${user.getEmail() }" name="email">
 										</div>
 										<div class="col-md-6">
 											<label>Số điện thoại</label> <input class="form-control"
-												type="text" placeholder="Số điện thoại">
+												type="text" placeholder="Số điện thoại" value="${user.getPhone() }" name="phone">
 										</div>
 										<div class="col-md-12">
 											<label>Địa chỉ</label> <input class="form-control" type="text"
-												placeholder="Địa chỉ">
+												placeholder="Địa chỉ" value="${user.getAddress() }" name="address">
 										</div>
 									</div>
 								</div>
@@ -126,18 +126,19 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="cart-summary">
-												<div class="cart-content">
-													<h1>
-														Tổng thanh toán
-														<fmt:formatNumber var="total" type="number" pattern="###,###,###" value="${totalCart }" />
-														<span> ${total }Đ</span>
-													</h1>
-	
-													<hr>
-												</div>
-												<div class="cart-btn">
-													<button>Đặt hàng</button>
-												</div>
+												
+													<div class="cart-content">
+														<h1>
+															Tổng thanh toán
+															<fmt:formatNumber var="total" type="number" pattern="###,###,###" value="${totalCart }" />
+															<span> ${total }Đ</span>
+														</h1>
+		
+														<hr>
+													</div>
+													<div class="cart-btn">
+														<button type="submit">Đặt hàng</button>
+													</div>
 											</div>
 										</div>
 									</div>

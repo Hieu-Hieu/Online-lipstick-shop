@@ -40,62 +40,21 @@
                     </div>
                     <div class="col-md-9">
                         <div class="tab-content">
-                            <div class="tab-pane fade" id="orders-tab" role="tabpanel" aria-labelledby="orders-nav">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th>STT</th>
-                                                <th>ID</th>
-                                                <th>Ngày 1đặt</th>
-                                                <th>Tổng thanh toán</th>
-                                                <th>Tình trạng</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Product Name</td>
-                                                <td>01 Jan 2020</td>
-                                                <td>$99</td>
-                                                <td>Approved</td>
-                                                <td><button class="btn">Xem</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Product Name</td>
-                                                <td>01 Jan 2020</td>
-                                                <td>$99</td>
-                                                <td>Approved</td>
-                                                <td><button class="btn">Xem</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Product Name</td>
-                                                <td>01 Jan 2020</td>
-                                                <td>$99</td>
-                                                <td>Approved</td>
-                                                <td><button class="btn">Xem</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                            
                             <div class="tab-pane fade" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
                                 <h4>Thông tin chi tiết</h4>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Tên">
+                                        <input class="form-control" type="text" placeholder="Tên" value="${user.getUsername() }">
                                     </div>
                                     <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Số điện thoại">
+                                        <input class="form-control" type="text" placeholder="Số điện thoại" value="${user.getPhone() }">
                                     </div>
                                     <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Email">
+                                        <input class="form-control" type="text" placeholder="Email" value="${user.getEmail() }">
                                     </div>
                                     <div class="col-md-12">
-                                        <input class="form-control" type="text" placeholder="Địa chỉ">
+                                        <input class="form-control" type="text" placeholder="Địa chỉ" value="${user.getAddress() }">
                                     </div>
                                     <div class="col-md-12">
                                         <button class="btn">Cập nhật</button>

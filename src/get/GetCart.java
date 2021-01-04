@@ -124,6 +124,27 @@ public class GetCart {
 		return false;
 	}
 
+	public boolean deleteCartByUserID(int userID) throws SQLException {
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("delete from Cart where userID = :userID");
+			query.setParameter("userID", userID);
+			if (query.executeUpdate() > 0)
+				return true;
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 	public ArrayList<Cart> getCartByUserID(int userID) throws SQLException {
 		ArrayList<Cart> ListCart = new ArrayList<Cart>();
 		Transaction transaction = null;
