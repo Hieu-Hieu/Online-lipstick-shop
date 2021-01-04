@@ -75,7 +75,7 @@ public class ProductList extends HttpServlet {
 			}
 			break;
 		case "filter":
-
+			System.out.println("thanh toan 2");
 			break;
 		case "list":
 			try {
