@@ -80,6 +80,7 @@ public class GetCart {
 
 	public int totalProduct(int userID) throws SQLException {
 		Transaction transaction = null;
+		Number number = 0;
 		try {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
@@ -87,17 +88,18 @@ public class GetCart {
 			Query query = session.createQuery("select sum(quantity) as quantity from Cart where userID = :userID");
 			query.setParameter("userID", userID);
 			List p = query.list();
-			Number number = (Number) p.get(0);
+			if (p.get(0) != null) {
+				number = (Number) p.get(0);
+			}
 			// commit transaction
 			transaction.commit();
-			return (int) number.intValue();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 			e.printStackTrace();
 		}
-		return 0;
+		return (int) number.intValue();
 	}
 
 	public boolean deleteProductInCart(int userID, int productID) throws SQLException {

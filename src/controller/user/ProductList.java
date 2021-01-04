@@ -66,17 +66,17 @@ public class ProductList extends HttpServlet {
 				request.setAttribute("searchKey", request.getParameter("searchKey"));
 			}
 			try {
-//				listProduct = gp.search(input, Integer.parseInt(currentPage) * 9 - 9, 9);
+				listProduct = gp.search(input, Integer.parseInt(currentPage) * 9 - 9, 9);
 				sql = "from Product where name LIKE '%" + input + "%'";
 				sql.toString();
-			} catch (NumberFormatException e1) {
+			} catch (NumberFormatException | SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			break;
 		case "filter":
-//			System.out.println("thanh toan 2");
 			break;
+
 		case "list":
 			try {
 				listProduct = gp.getAllProduct(Integer.parseInt(currentPage) * 9 - 9, 9);

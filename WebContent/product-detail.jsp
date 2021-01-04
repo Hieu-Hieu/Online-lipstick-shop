@@ -62,16 +62,7 @@
 
 								</div>
 							</div>
-							<c:if test="${empty user}">
-								<script type="text/javascript">
-								 	if(confirm("Đăng nhập để tiếp tục")){
-							        	window.location = "signin.jsp";
-							        }
-								 	else{
-								 		window.location = "index.jsp";
-								 	}	 			
-								 </script>
-							</c:if>
+							
 							<div class="col-md-5">
 								<div class="product-content">
 									<div class="title">
@@ -99,9 +90,20 @@
 											</div>
 										</div>
 										<div class="action">
+										<c:choose>
+										<c:when test="${!empty user}">
 											<button class="btn" type="submit" 
 												href=""><i
-												class="fa fa-shopping-cart"></i>Thêm vào giỏ</button>
+												class="fa fa-shopping-cart"></i>Thêm vào giỏ
+											</button>
+										</c:when>
+										<c:otherwise>
+											<button class="btn" onclick="handle()" type="button"> 
+											<i class="fa fa-shopping-cart"></i>
+											Thêm vào giỏ
+											</button>										
+										</c:otherwise>
+										</c:choose>
 										</div>
 									</form>
 								</div>
@@ -126,6 +128,19 @@
 				</div>
 			</div>
 		</div>
+		
+			<script type="text/javascript">
+			function handle() {
+				if(confirm("Đăng nhập để tiếp tục")){
+		        	window.location = "signin.jsp";
+		        }
+			 	else{
+			 		window.location = "index.jsp";
+			 	}	 	
+			}
+			 			
+			 </script>
+		
 	</div>
 
 	<jsp:include page="footer.jsp"></jsp:include>
