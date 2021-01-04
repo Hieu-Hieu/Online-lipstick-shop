@@ -43,7 +43,7 @@ public class ProductListController extends HttpServlet {
 		try {
 			listProduct = gp.getAllProduct(Integer.parseInt(currentPage) * 9 - 9, 9);
 			request.setAttribute("currentPage", currentPage);
-			request.setAttribute("totalPage", gp.totalPage());
+//			request.setAttribute("totalPage", gp.totalPage());
 			request.setAttribute("listProduct", listProduct);
 			url = "/admin/productmanager.jsp";
 		} catch (NumberFormatException | SQLException e) {

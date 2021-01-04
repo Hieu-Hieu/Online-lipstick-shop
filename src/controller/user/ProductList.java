@@ -35,20 +35,71 @@ public class ProductList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPost(request, response);
+		/**
+		 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+		 *      response)
+		 */
+	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String currentPage = request.getParameter("currentPage");
+		String command = request.getParameter("command");
+		System.out.println(command);
 		GetProduct gp = new GetProduct();
 		List<Product> listProduct = null;
 		String url = "";
+		String sql = "";
+		switch (command) {
+		case "search":
+			String input = request.getParameter("input");
+			if (input != null) {
+				request.setAttribute("searchKey", request.getParameter("input"));
+			} else {
+				input = request.getParameter("searchKey");
+				request.setAttribute("searchKey", request.getParameter("searchKey"));
+			}
+			try {
+				listProduct = gp.search(input, Integer.parseInt(currentPage) * 9 - 9, 9);
+				sql = "from Product where name LIKE '%" + input + "%'";
+				sql.toString();
+			} catch (NumberFormatException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			break;
+		case "filter":
+
+			break;
+
+		case "list":
+			try {
+				listProduct = gp.getAllProduct(Integer.parseInt(currentPage) * 9 - 9, 9);
+				sql = "from Product";
+			} catch (NumberFormatException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			break;
+
+		}
+
 		try {
-			listProduct = gp.getAllProduct(Integer.parseInt(currentPage) * 9 - 9, 9);
+			request.setAttribute("totalPage", gp.totalPage(sql));
+			request.setAttribute("command", request.getParameter("command"));
 			request.setAttribute("currentPage", currentPage);
-			request.setAttribute("totalPage", gp.totalPage());
-			request.setAttribute("listProduct", listProduct);
+			if (listProduct.size() > 0) {
+				request.setAttribute("listProduct", listProduct);
+			} else {
+				request.setAttribute("EmptyListProduct", "Không có sản phẩm nào");
+			}
 			url = "/index.jsp";
 		} catch (NumberFormatException | SQLException e) {
 			// TODO Auto-generated catch block
@@ -57,15 +108,4 @@ public class ProductList extends HttpServlet {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

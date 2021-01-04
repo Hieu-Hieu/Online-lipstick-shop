@@ -59,6 +59,9 @@
 							<div class="container-fluid">
 								<div class="row">
 									<c:choose>
+										<c:when test="${!empty EmptyListProduct }">
+											<p>Không tìm thấy sản phẩm nào</p>
+										</c:when>
 										<c:when test="${!empty listProduct}">
 											<c:forEach items="${listProduct}" var="p">
 												<div class="col-md-4">
@@ -86,7 +89,7 @@
 											</c:forEach>
 										</c:when>
 										<c:otherwise>
-											<c:redirect url="/ProductList?currentPage=1"></c:redirect>
+											<c:redirect url="/ProductList?command=list&currentPage=1"></c:redirect>
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -98,12 +101,12 @@
 											<c:choose>
 												<c:when test="${currentPage > 1}">
 													<li class="page-item"><a class="page-link"
-														href="${pageContext.request.contextPath }/ProductList?currentPage=${currentPage - 1}"
+														href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&currentPage=${currentPage - 1}"
 														tabindex="-1">Trang trước</a></li>
 												</c:when>
 												<c:otherwise>
 													<li class="page-item disabled"><a class="page-link"
-														href="${pageContext.request.contextPath }/ProductList?currentPage=${currentPage - 1}"
+														href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&currentPage=${currentPage - 1}"
 														tabindex="-1">Trang trước</a></li>
 												</c:otherwise>
 											</c:choose>
@@ -114,12 +117,12 @@
 													<c:choose>
 														<c:when test="${currentPage == page }">
 															<li class="page-item active"><a class="page-link"
-																href="${pageContext.request.contextPath }/ProductList?currentPage=${page}">${page }</a>
+																href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&currentPage=${page}">${page }</a>
 															</li>
 														</c:when>
 														<c:otherwise>
 															<li class="page-item"><a class="page-link"
-																href="${pageContext.request.contextPath }/ProductList?currentPage=${page}">${page }</a>
+																href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&currentPage=${page}">${page }</a>
 															</li>
 														</c:otherwise>
 													</c:choose>
@@ -129,12 +132,12 @@
 											<c:choose>
 												<c:when test="${currentPage < totalPage }">
 													<li class="page-item"><a class="page-link"
-														href="${pageContext.request.contextPath }/ProductList?currentPage=${currentPage +1}">Trang sau</a>
+														href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&currentPage=${currentPage +1}">Trang sau</a>
 													</li>
 												</c:when>
 												<c:otherwise>
 													<li class="page-item disabled"><a class="page-link"
-														href="${pageContext.request.contextPath }/ProductList?currentPage=${currentPage +1}">Trang sau</a>
+														href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&currentPage=${currentPage +1}">Trang sau</a>
 													</li>
 												</c:otherwise>
 											</c:choose>
