@@ -71,33 +71,35 @@ public class ProductAddController extends HttpServlet {
 		BrandDAO brand = new BrandDAO();
 		int brandId = Integer.parseInt(req.getParameter("brandID"));
 		int categoryId = Integer.parseInt(req.getParameter("categoryID"));
-		
-		try {	
+
+		try {
 			product.setBrand(brand.getByID(brandId));
 			product.setCategory(cate.getByID(categoryId));
-			
+
 			product.setName(req.getParameter("pName"));
 			product.setImgFirst(req.getParameter("imgFirst"));
 			product.setImgLast(req.getParameter("imgLast"));
 			product.setPrice(Float.parseFloat(req.getParameter("price")));
 			product.setDescription(req.getParameter("description"));
 			product.setQuantity(Integer.parseInt(req.getParameter("quantity")));
-			int page = gp.totalPage();
-			if (gp.addProduct(product)) {
-				req.setAttribute("addSuccess", 1);
-				RequestDispatcher dispatcher = req.getServletContext()
-						.getRequestDispatcher("/admin/product/list?currentPage=" + String.valueOf(page));
+//			int page = gp.totalPage();
+//			if (gp.addProduct(product)) {
+//				req.setAttribute("addSuccess", 1);
+//				RequestDispatcher dispatcher = req.getServletContext()
+//						.getRequestDispatcher("/admin/product/list?currentPage=" + String.valueOf(page));
+//
+//				dispatcher.forward(req, resp);
+//			} else {
+//
+//				req.setAttribute("addSuccess", 0);
+//				RequestDispatcher dispatcher = req.getServletContext()
+//						.getRequestDispatcher("/admin/product/list?currentPage=" + String.valueOf(page));
+//
+//				dispatcher.forward(req, resp);
+//			}
+		} catch (
 
-				dispatcher.forward(req, resp);
-			} else {
-
-				req.setAttribute("addSuccess", 0);
-				RequestDispatcher dispatcher = req.getServletContext()
-						.getRequestDispatcher("/admin/product/list?currentPage=" + String.valueOf(page));
-
-				dispatcher.forward(req, resp);
-			}
-		} catch (Exception e) {
+		Exception e) {
 			e.printStackTrace();
 		}
 

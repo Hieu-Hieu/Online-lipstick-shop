@@ -14,7 +14,7 @@ import util.Utill;
 
 public class GetProduct {
 
-	public int totalPage() throws SQLException {
+	public int totalPage(String sql) throws SQLException {
 		int total = 0;
 		float result = 0;
 		Transaction transaction = null;
@@ -23,7 +23,7 @@ public class GetProduct {
 
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("select count(*) as tongTrang from Product");
+			Query query = session.createQuery(sql);
 			List listResult = query.list();
 			Number number = (Number) listResult.get(0);
 			total = (int) number.intValue();
@@ -79,7 +79,7 @@ public class GetProduct {
 		}
 		return false;
 	}
-	
+
 	public boolean updateProduct(Product p) throws SQLException {
 		Transaction transaction = null;
 		try {
@@ -100,8 +100,6 @@ public class GetProduct {
 		}
 		return false;
 	}
-
-
 
 	public boolean deleteProduct(int productID) throws SQLException {
 
@@ -158,7 +156,7 @@ public class GetProduct {
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			Query query = session.createQuery("from Product");
-			
+
 			query.setFirstResult(firstResult);
 			query.setMaxResults(lastResult);
 			listOfProduct = (ArrayList<Product>) query.getResultList();
