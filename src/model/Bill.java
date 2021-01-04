@@ -21,6 +21,7 @@ public class Bill {
 
 	@Column(name = "address")
 	private String address;
+
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "userID", referencedColumnName = "userID")
 	private User user;
@@ -43,9 +44,8 @@ public class Bill {
 	public Bill() {
 	}
 
-	public Bill(int billID, String address, User user, Date date, double total, boolean paid, boolean state) {
+	public Bill(String address, User user, Date date, double total, boolean paid, boolean state) {
 		super();
-		this.billID = billID;
 		this.address = address;
 		this.user = user;
 		this.date = date;

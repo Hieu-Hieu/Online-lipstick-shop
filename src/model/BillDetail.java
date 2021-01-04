@@ -17,20 +17,23 @@ public class BillDetail {
 	@Column(name = "billDetailID")
 	private int billDetailID;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "billID", referencedColumnName = "billID")
 	private Bill bill;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "productID", referencedColumnName = "productID")
 	private Product product;
 
 	@Column(name = "quantity")
 	private int quantity;
 
-	public BillDetail(int billDetailID, Bill bill, Product product, int quantity) {
+	public BillDetail() {
+
+	}
+
+	public BillDetail(Bill bill, Product product, int quantity) {
 		super();
-		this.billDetailID = billDetailID;
 		this.bill = bill;
 		this.product = product;
 		this.quantity = quantity;
