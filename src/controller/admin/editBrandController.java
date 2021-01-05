@@ -19,36 +19,39 @@ public class editBrandController extends HttpServlet {
 	BrandDAO brandDao = new BrandDAO();
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html;charset=UTF-8");
+		req.setCharacterEncoding("utf-8");
 		try {
-		int id = Integer.parseInt(req.getParameter("id"));
-		Brand brand = brandDao.getByID(id);
-		
-		req.setAttribute("brand", brand);
-		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/editBrand.jsp");
-		dispatcher.forward(req, resp);
-		}
-		catch(Exception ex) {
-			
+			int id = Integer.parseInt(req.getParameter("id"));
+			Brand brand = brandDao.getByID(id);
+
+			req.setAttribute("brand", brand);
+
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/editBrand.jsp");
+			dispatcher.forward(req, resp);
+		} catch (Exception ex) {
+
 		}
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		resp.setContentType("text/html;charset=UTF-8");
+		req.setCharacterEncoding("utf-8");
+
 		Brand b = new Brand();
 		b.setBrandID(Integer.parseInt(req.getParameter("brandID")));
 		b.setBrandName(req.getParameter("brandName"));
 		try {
-			if(brandDao.update(b)) {
+			if (brandDao.update(b)) {
 				req.setAttribute("updateBrand", 1);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		resp.sendRedirect(req.getContextPath()+"/admin/brand/list");
+
+		resp.sendRedirect(req.getContextPath() + "/admin/brand/list");
 
 	}
 }

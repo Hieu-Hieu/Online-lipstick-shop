@@ -55,7 +55,7 @@ public class ProductList extends HttpServlet {
 		GetProduct gp = new GetProduct();
 		List<Product> listProduct = null;
 		String url = "";
-		String sql = "";
+		String sql = "/index.jsp";
 		switch (command) {
 		case "search":
 			String input = request.getParameter("input");

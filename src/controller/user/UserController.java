@@ -31,53 +31,92 @@ public class UserController extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		String url = "";
-
+		String sql = "";
 		String command = request.getParameter("command");
-
 		GetUser getUser = new GetUser();
 		User u = new User();
-
+		String username = "";
+		String pass = "";
+		String email = "";
+		String phone = "";
+		String address = "";
+		boolean check = true;
 		switch (command) {
 		case "register":
-			String pass = request.getParameter("password").trim();
-			String passAgain = request.getParameter("passwordAgain").trim();
-			if (pass.equals(passAgain)) {
-				u.setUsername(request.getParameter("name").trim());
-//				u.setUserID(Integer.parseInt(request.getParameter("id")));
-				u.setPassword(pass);
-				u.setEmail(request.getParameter("email").trim());
-				u.setPhone(request.getParameter("phone").trim());
-				u.setAddress(request.getParameter("address").trim());
-				u.setRole(false);
-				GetUser.insertUser(u);
-				request.setAttribute("login", "Đăng nhập để mua hàng");
-				url = "/register.jsp";
-			} else {
-				request.setAttribute("name", request.getParameter("name"));
-				request.setAttribute("email", request.getParameter("email"));
-				request.setAttribute("address", request.getParameter("address"));
-				request.setAttribute("phone", request.getParameter("phone"));
-				request.setAttribute("errorPass", "Mật khẩu không khớp");
-				url = "/register.jsp";
+			try {
+				username = request.getParameter("name").trim();
+				sql = "From User where username =" + "'" + username + "'";
+				if (getUser.checkData(sql)) {
+					u.setUsername(username);
+					request.setAttribute("name", request.getParameter("name"));
+				} else {
+					check = false;
+					request.setAttribute("errorName", "Tên đã tồn tại");
+				}
+				// ktra email
+				email = request.getParameter("email").trim();
+				sql = "FROM User where email =" + "'" + email + "'";
+				if (getUser.checkData(sql)) {
+					request.setAttribute("email", request.getParameter("email"));
+					u.setEmail(email);
+				} else {
+					check = false;
+					request.setAttribute("errorEmail", "Email đã tồn tại");
+				}
+				// ktra SĐT
+				phone = request.getParameter("phone").trim();
+				sql = "FROM User where phone =" + "'" + phone + "'";
+				if (getUser.checkData(sql)) {
+					request.setAttribute("phone", request.getParameter("phone"));
+					u.setPhone(phone);
+				} else {
+					check = false;
+					request.setAttribute("errorPhone", "Số điện thoại đã được sử dụng");
+				}
+
+				if (check == true) {
+					pass = request.getParameter("password").trim();
+					String passAgain = request.getParameter("passwordAgain").trim();
+					if (pass.equals(passAgain)) {
+						u.setPassword(pass);
+						u.setAddress(request.getParameter("address").trim());
+						u.setRole(false);
+						GetUser.insertUser(u);
+						request.setAttribute("login", "Đăng nhập để mua hàng");
+						url = "/register.jsp";
+					} else {
+						request.setAttribute("errorPass", "Mật khẩu không khớp");
+						url = "/register.jsp";
+					}
+				} else {
+					url = "/register.jsp";
+				}
+
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println(e);
 			}
+			// ktra tên
+			request.setAttribute("address", request.getParameter("address"));
+
 			break;
 		case "update":
 			int id = Integer.parseInt(request.getParameter("id"));
-			String user = request.getParameter("username");
-			String passw = request.getParameter("pass");
-			String email = request.getParameter("email");
-			String phone = request.getParameter("phone");
-			String address = request.getParameter("address");
+			username = request.getParameter("username");
+			pass = request.getParameter("pass");
+			email = request.getParameter("email");
+			phone = request.getParameter("phone");
+			address = request.getParameter("address");
 			boolean role = Boolean.parseBoolean(request.getParameter("role"));
 
-			GetUser.updateUser(new User(id, user, passw, email, phone, address, role));
+			GetUser.updateUser(new User(id, username, pass, email, phone, address, role));
 			url = "/my-account.jsp";
 			break;
 		case "login":
-			String username = request.getParameter("username").trim();
+			email = request.getParameter("email").trim();
 			String password = request.getParameter("password").trim();
 			try {
-				u = getUser.login(username, password);
+				u = getUser.login(email, password);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

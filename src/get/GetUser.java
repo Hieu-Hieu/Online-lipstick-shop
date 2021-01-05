@@ -1,7 +1,6 @@
 package get;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -22,9 +21,9 @@ public class GetUser {
 			// start a transaction
 			transaction = session.beginTransaction();
 			// get an user object
-			
+
 			listOfUser = session.createQuery("from User").getResultList();
-			
+
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
@@ -45,6 +44,28 @@ public class GetUser {
 			Query query = session.createQuery("FROM User WHERE email = :email");
 			query.setParameter("email", email);
 			if (query.executeUpdate() > 0) {
+				return true;
+			}
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean checkData(String sql) throws SQLException {
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(sql);
+			List l = query.list();
+			if (l.isEmpty()) {
 				return true;
 			}
 			// commit transaction
@@ -80,15 +101,15 @@ public class GetUser {
 		return false;
 	}
 
-	public User login(String username, String password) throws SQLException {
+	public User login(String email, String password) throws SQLException {
 		User u = null;
 		Transaction transaction = null;
 		try {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("from User where username	= :username and password = :password");
-			query.setParameter("username", username);
+			Query query = session.createQuery("from User where email = :email and password = :password");
+			query.setParameter("email", email);
 			query.setParameter("password", password);
 			List l = query.list();
 			if (!l.isEmpty()) {
@@ -131,18 +152,7 @@ public class GetUser {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-//			Query query = session.createQuery(
-//					"update user SET username=:uName, password = :pWord, email = :e,  phone = :p,address = :add WHERE userID = :uID");
-//			query.setParameter("uName", u.getUsername());
-//			query.setParameter("pWord", u.getPassword());
-//			query.setParameter("e", u.getEmail());
-//			query.setParameter("p", u.getPhone());
-//			query.setParameter("add", u.getAddress());
-//			query.setParameter("uID", u.getUserID());
 			session.update(u);
-//			if (query.executeUpdate() > 0) {
-//				return true;
-//			}
 			// commit transaction
 			transaction.commit();
 			if (transaction != null) {

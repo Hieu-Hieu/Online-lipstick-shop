@@ -15,7 +15,7 @@ import model.Category;
 
 @WebServlet(urlPatterns = { "/admin/category/update" })
 public class CategoryeEditController extends HttpServlet {
-	
+
 	/**
 	 * 
 	 */
@@ -23,37 +23,38 @@ public class CategoryeEditController extends HttpServlet {
 	CategoryDAO categoryDao = new CategoryDAO();
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html;charset=UTF-8");
+		req.setCharacterEncoding("utf-8");
 		try {
-		int categoryID = Integer.parseInt(req.getParameter("id"));
-		Category category = categoryDao.getByID(categoryID);
-		
-		req.setAttribute("category", category);
-		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/editCategory.jsp");
-		dispatcher.forward(req, resp);
+			int categoryID = Integer.parseInt(req.getParameter("id"));
+			Category category = categoryDao.getByID(categoryID);
+
+			req.setAttribute("category", category);
+
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/editCategory.jsp");
+			dispatcher.forward(req, resp);
+		} catch (Exception ex) {
+
 		}
-		catch(Exception ex) {
-			
-		}
-		
+
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		Category category = new Category();
 		category.setCategoryID(Integer.parseInt(req.getParameter("categoryID")));
 		category.setCategoryName(req.getParameter("categoryName"));
 		try {
-			if(categoryDao.updateCategory(category)) {
+			if (categoryDao.updateCategory(category)) {
 				req.setAttribute("updateCategory", 1);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		resp.sendRedirect(req.getContextPath()+"/admin/category/list");
+
+		resp.sendRedirect(req.getContextPath() + "/admin/category/list");
 
 	}
 }

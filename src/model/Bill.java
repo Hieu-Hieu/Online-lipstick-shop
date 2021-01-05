@@ -18,13 +18,13 @@ public class Bill {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "billID")
 	private int billID;
-
-	@Column(name = "address")
-	private String address;
-
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "userID", referencedColumnName = "userID")
 	private User user;
+	@Column(name = "address", length = 255)
+	private String address;
+	@Column(name = "phone", length = 11)
+	private String phone;
 	@Column(name = "date")
 	// @Temporal(TemporalType.DATE)
 	private Date date;
@@ -44,10 +44,11 @@ public class Bill {
 	public Bill() {
 	}
 
-	public Bill(String address, User user, Date date, double total, boolean paid, boolean state) {
+	public Bill(User user, String address, String phone, Date date, double total, boolean paid, boolean state) {
 		super();
-		this.address = address;
 		this.user = user;
+		this.address = address;
+		this.phone = phone;
 		this.date = date;
 		this.total = total;
 		this.paid = paid;
@@ -68,6 +69,14 @@ public class Bill {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public User getUser() {
@@ -94,7 +103,7 @@ public class Bill {
 		this.total = total;
 	}
 
-	public boolean isPaid() {
+	public boolean getPaid() {
 		return paid;
 	}
 
@@ -102,7 +111,7 @@ public class Bill {
 		this.paid = paid;
 	}
 
-	public boolean isState() {
+	public boolean getState() {
 		return state;
 	}
 

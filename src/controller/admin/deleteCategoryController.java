@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import get.CategoryDAO;
 
-@WebServlet({"/admin/category/delete"})
+@WebServlet({ "/admin/category/delete" })
 public class deleteCategoryController extends HttpServlet {
 
 	/**
@@ -20,11 +20,13 @@ public class deleteCategoryController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html;charset=UTF-8");
+		req.setCharacterEncoding("utf-8");
 		CategoryDAO ctd = new CategoryDAO();
 		String id = req.getParameter("id");
 		ctd.delete(Integer.parseInt(id));
-		
+
 		resp.sendRedirect(req.getContextPath() + "/admin/category/list");
 	}
-	
+
 }

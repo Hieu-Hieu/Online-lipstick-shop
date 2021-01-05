@@ -22,9 +22,27 @@
         </script>
         </c:if>
             <input type="text" placeholder="Tên" name="name" value="${name }" required >
+            <c:if test="${!empty errorName }">
+	         		<div class="alert alert-danger" role="alert">
+	 					 ${errorName }
+					</div>
+	         	</c:if>
             <input type="text" placeholder="Địa chỉ" name="address" value="${address }" required>
+            
             <input type="number" placeholder="Số điện thoại" name="phone" value="${phone }" required>
+            
+            <c:if test="${!empty errorPhone }">
+	         		<div class="alert alert-danger" role="alert">
+	 					 ${errorPhone }
+					</div>
+	         	</c:if>
             <input type="email" placeholder="Email" name="email" value="${email }" required>
+            <c:if test="${!empty errorEmail }">
+	         		<div class="alert alert-danger" role="alert">
+	 					 ${errorEmail }
+					</div>
+	         	</c:if>
+            
             <input type="password" placeholder="Mật khẩu" name="password" required>
             <input type="password" placeholder="Xác nhận mật khẩu" name="passwordAgain" required>
             	<c:if test="${!empty errorPass }">

@@ -73,7 +73,7 @@ public class BillController extends HttpServlet {
 			String phone = request.getParameter("phone");
 			LocalDate localDate = LocalDate.now();
 			Date d = Date.valueOf(localDate);
-			Bill bill = new Bill(address, u, d, total, false, false);
+			Bill bill = new Bill(u, address, phone, d, total, false, false);
 			if (getBill.addBill(bill)) {
 				Bill b = getBill.getBillNew(u);
 				// thêm sản phẩm vào trong billdetail
@@ -83,12 +83,15 @@ public class BillController extends HttpServlet {
 					detail.setQuantity(cart.getQuantity());
 					billDetail.addBilldetail(detail);
 				}
-				if (getCart.deleteCartByUserID(u.getUserID()))
-					url = "/my-account.jsp";
+				if (getCart.deleteCartByUserID(u.getUserID())) {
+					url = "/OrderHistory";
+				}
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+			url = "/CartController";
 			System.out.println(e.toString());
+
 		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);

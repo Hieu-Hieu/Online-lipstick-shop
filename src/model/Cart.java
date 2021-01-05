@@ -16,10 +16,6 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "cartID")
 	private int cartID;
-
-	@Column(name = "quantity")
-	private int quantity;
-
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "userID", referencedColumnName = "userID")
 	private User user;
@@ -27,6 +23,9 @@ public class Cart {
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "productID", referencedColumnName = "productID")
 	private Product product;
+
+	@Column(name = "quantity")
+	private int quantity;
 
 	public Cart() {
 	}
@@ -55,10 +54,10 @@ public class Cart {
 		this.product = product;
 	}
 
-	public Cart(int quantity, User user, Product product) {
+	public Cart(User user, Product product, int quantity) {
 		super();
-		this.quantity = quantity;
 		this.user = user;
 		this.product = product;
+		this.quantity = quantity;
 	}
 }

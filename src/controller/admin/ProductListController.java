@@ -32,9 +32,6 @@ public class ProductListController extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		response.setContentType("text/html;charset=UTF-8");
-		request.setCharacterEncoding("utf-8");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String currentPage = request.getParameter("currentPage");
 
 		GetProduct gp = new GetProduct();

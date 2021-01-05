@@ -16,7 +16,7 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "productID")
 	private int productID;
-	@Column(name = "name")
+	@Column(name = "name", length = 100, unique = true)
 	private String name;
 
 	@ManyToOne
@@ -27,16 +27,16 @@ public class Product {
 	@JoinColumn(name = "brandID")
 	private Brand brand;
 
-	@Column(name = "imgFirst")
+	@Column(name = "imgFirst", length = 255)
 	private String imgFirst;
 
-	@Column(name = "imgLast")
+	@Column(name = "imgLast", length = 255)
 	private String imgLast;
 
 	@Column(name = "price")
 	private double price;
 
-	@Column(name = "description")
+	@Column(name = "description", columnDefinition = "TEXT")
 	private String description;
 
 	@Column(name = "quantity")

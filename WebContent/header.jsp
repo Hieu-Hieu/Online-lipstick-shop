@@ -86,7 +86,7 @@
                         <div class="user">
                         <c:choose>
                         	<c:when test="${!empty user.getUserID() }">
-	                            <a href="${pageContext.request.contextPath }/CartController?userID=${user.getUserID()}" class="btn cart">
+	                            <a href="${pageContext.request.contextPath }/CartController" class="btn cart">
 	                                <i class="fa fa-shopping-cart"></i>
 	                                <span>
 									<%GetCart gc =new GetCart();

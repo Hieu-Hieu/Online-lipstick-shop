@@ -14,15 +14,15 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "userID")
 	private int userID;
-	@Column(name = "username")
+	@Column(name = "username", length = 50, unique = true)
 	private String username;
-	@Column(name = "password")
+	@Column(name = "password", length = 50)
 	private String password;
-	@Column(name = "email")
+	@Column(name = "email", length = 50, unique = true)
 	private String email;
-	@Column(name = "phone")
+	@Column(name = "phone", length = 11, unique = true)
 	private String phone;
-	@Column(name = "address")
+	@Column(name = "address", length = 255)
 	private String address;
 	@Column(name = "role")
 	private boolean role;
