@@ -82,21 +82,22 @@ public class ProductAddController extends HttpServlet {
 			product.setPrice(Float.parseFloat(req.getParameter("price")));
 			product.setDescription(req.getParameter("description"));
 			product.setQuantity(Integer.parseInt(req.getParameter("quantity")));
-//			int page = gp.totalPage();
-//			if (gp.addProduct(product)) {
-//				req.setAttribute("addSuccess", 1);
-//				RequestDispatcher dispatcher = req.getServletContext()
-//						.getRequestDispatcher("/admin/product/list?currentPage=" + String.valueOf(page));
-//
-//				dispatcher.forward(req, resp);
-//			} else {
-//
-//				req.setAttribute("addSuccess", 0);
-//				RequestDispatcher dispatcher = req.getServletContext()
-//						.getRequestDispatcher("/admin/product/list?currentPage=" + String.valueOf(page));
-//
-//				dispatcher.forward(req, resp);
-//			}
+
+			int page = gp.totalPage("from Product");
+			if (gp.addProduct(product)) {
+				req.setAttribute("addSuccess", 1);
+				RequestDispatcher dispatcher = req.getServletContext()
+						.getRequestDispatcher("/admin/product/list?currentPage=" + String.valueOf(page));
+
+				dispatcher.forward(req, resp);
+			} else {
+
+				req.setAttribute("addSuccess", 0);
+				RequestDispatcher dispatcher = req.getServletContext()
+						.getRequestDispatcher("/admin/product/list?currentPage=" + String.valueOf(page));
+
+				dispatcher.forward(req, resp);
+			}
 		} catch (
 
 		Exception e) {

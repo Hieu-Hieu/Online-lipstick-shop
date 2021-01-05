@@ -108,7 +108,6 @@ public class UserController extends HttpServlet {
 			phone = request.getParameter("phone");
 			address = request.getParameter("address");
 			boolean role = Boolean.parseBoolean(request.getParameter("role"));
-
 			GetUser.updateUser(new User(id, username, pass, email, phone, address, role));
 			url = "/my-account.jsp";
 			break;
@@ -135,5 +134,9 @@ public class UserController extends HttpServlet {
 		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);
+	}
+
+	public void name() {
+
 	}
 }
