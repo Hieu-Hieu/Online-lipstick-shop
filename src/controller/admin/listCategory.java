@@ -25,6 +25,8 @@ public class listCategory extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html;charset=UTF-8");
+		req.setCharacterEncoding("utf-8");
 		List<Category> cateList;
 		try {
 			cateList = categoryDAO.getListCategory();
@@ -35,6 +37,6 @@ public class listCategory extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 }

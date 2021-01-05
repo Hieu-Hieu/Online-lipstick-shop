@@ -72,8 +72,8 @@ public class AddToCartController extends HttpServlet {
 					if (getCart.checkProductExist(userID, productID)) {
 						getCart.updateProductQuantity(userID, productID, quantity);
 					} else {
-						Cart cart = new Cart(quantity, getUser.getUserByID(userID),
-								getProduct.getProductByID(productID));
+						Cart cart = new Cart(getUser.getUserByID(userID), getProduct.getProductByID(productID),
+								quantity);
 						getCart.addToCart(cart);
 					}
 					if (request.getParameter("cart").equals("no")) {

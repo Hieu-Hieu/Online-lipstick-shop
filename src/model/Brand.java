@@ -15,7 +15,7 @@ public class Brand {
 	@Column(name = "brandID")
 	private int brandID;
 
-	@Column(name = "brandName")
+	@Column(name = "brandName", length = 50, unique = true)
 	private String brandName;
 
 	public Brand() {
@@ -42,8 +42,9 @@ public class Brand {
 		this.brandID = brandID;
 		this.brandName = brandName;
 	}
+
 	public Brand(String brandName) {
-		super();	
+		super();
 		this.brandName = brandName;
 	}
 

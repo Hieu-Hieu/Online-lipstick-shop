@@ -19,7 +19,7 @@
 					</div>
 	         	</c:if>
          	<form id="login" action="${pageContext.request.contextPath}/UserController?command=login" method="post">
-                <input type="text" class="input-field" placeholder="Tên đăng nhập" name="username">
+                <input type="email" class="input-field" placeholder="Email" name="email">
                 <input type="password" class="input-field" placeholder="Nhập mật khẩu" name="password">
                 <button type="submit" class="submit-btn">Đăng nhập</button>
          	</form>

@@ -2,7 +2,6 @@ package controller.admin;
 
 import java.io.IOException;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,20 +19,20 @@ public class DeleteProductController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		GetProduct gp =new GetProduct();
+		resp.setContentType("text/html;charset=UTF-8");
+		req.setCharacterEncoding("utf-8");
+		GetProduct gp = new GetProduct();
 		String id = req.getParameter("id");
 
 		try {
-		if(gp.deleteProduct(Integer.parseInt(id))) {
-			req.setAttribute("deleteSuccess", 1);
-		}
-		}
-		catch (Exception e) {
-			
+			if (gp.deleteProduct(Integer.parseInt(id))) {
+				req.setAttribute("deleteSuccess", 1);
+			}
+		} catch (Exception e) {
+
 			System.out.print(e);
 		}
 		req.setAttribute("deleteSuccess", 0);
 		resp.sendRedirect(req.getContextPath() + "/admin/product/list?currentPage=1");
 	}
 }
-	

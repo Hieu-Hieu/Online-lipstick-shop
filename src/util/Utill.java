@@ -51,7 +51,7 @@ public class Utill {
 //				settings.put(Environment.C3P0_MAX_STATEMENTS, "50");
 //				settings.put(Environment.C3P0_IDLE_TEST_PERIOD, "3000");
 				settings.put(Environment.POOL_SIZE, "100");
-				// settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+//				settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 
 				configuration.setProperties(settings);
 				configuration.addAnnotatedClass(User.class);

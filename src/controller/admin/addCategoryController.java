@@ -1,6 +1,7 @@
 package controller.admin;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,17 +18,19 @@ public class addCategoryController extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html;charset=UTF-8");
+		req.setCharacterEncoding("utf-8");
 		CategoryDAO categoryDao = new CategoryDAO();
 		Category category = new Category();
 		category.setCategoryName(req.getParameter("categoryName"));
-		if(categoryDao.insert(category)) {
+		if (categoryDao.insert(category)) {
 			req.setAttribute("addCategory", 1);
 		}
-		
-		resp.sendRedirect(req.getContextPath()+"/admin/category/list");
+
+		resp.sendRedirect(req.getContextPath() + "/admin/category/list");
 
 	}
 

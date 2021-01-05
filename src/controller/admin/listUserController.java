@@ -14,15 +14,17 @@ import javax.servlet.http.HttpServletResponse;
 import get.GetUser;
 import model.User;
 
-@WebServlet({"/admin/user/list"})
+@WebServlet({ "/admin/user/list" })
 public class listUserController extends HttpServlet {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html;charset=UTF-8");
+		req.setCharacterEncoding("utf-8");
 		GetUser user = new GetUser();
 		List<User> userList;
 		try {
@@ -33,7 +35,7 @@ public class listUserController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/listUser.jsp");
 		dispatcher.forward(req, resp);
 	}
