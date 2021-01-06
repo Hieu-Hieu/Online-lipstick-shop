@@ -29,7 +29,7 @@
 	         	</c:if>
             <input type="text" placeholder="Địa chỉ" name="address" value="${address }" required>
             
-            <input type="number" placeholder="Số điện thoại" name="phone" value="${phone }" required>
+            <input type="tel" placeholder="Số điện thoại" name="phone" value="${phone }" required>
             
             <c:if test="${!empty errorPhone }">
 	         		<div class="alert alert-danger" role="alert">

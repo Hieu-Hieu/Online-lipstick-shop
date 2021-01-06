@@ -45,14 +45,7 @@ public class UserController extends HttpServlet {
 		case "register":
 			try {
 				username = request.getParameter("name").trim();
-				sql = "From User where username =" + "'" + username + "'";
-				if (getUser.checkData(sql)) {
-					u.setUsername(username);
-					request.setAttribute("name", request.getParameter("name"));
-				} else {
-					check = false;
-					request.setAttribute("errorName", "Tên đã tồn tại");
-				}
+				u.setUsername(username);
 				// ktra email
 				email = request.getParameter("email").trim();
 				sql = "FROM User where email =" + "'" + email + "'";
@@ -98,18 +91,19 @@ public class UserController extends HttpServlet {
 			}
 			// ktra tên
 			request.setAttribute("address", request.getParameter("address"));
-
+			request.setAttribute("name", request.getParameter("name"));
 			break;
 		case "update":
-			int id = Integer.parseInt(request.getParameter("id"));
+//			int id = Integer.parseInt(request.getParameter("id"));
 			username = request.getParameter("username");
-			pass = request.getParameter("pass");
+//			pass = request.getParameter("pass");
 			email = request.getParameter("email");
 			phone = request.getParameter("phone");
 			address = request.getParameter("address");
-			boolean role = Boolean.parseBoolean(request.getParameter("role"));
-			GetUser.updateUser(new User(id, username, pass, email, phone, address, role));
-			url = "/my-account.jsp";
+//			boolean role = Boolean.parseBoolean(request.getParameter("role"));
+			if (GetUser.updateUserInfo(u.getUserID(), username, phone, email, address)) {
+				url = "/my-account.jsp";
+			}
 			break;
 		case "login":
 			email = request.getParameter("email").trim();
@@ -121,12 +115,15 @@ public class UserController extends HttpServlet {
 				e.printStackTrace();
 			}
 			if (u != null) {
-				session.setAttribute("user", u);
 				if (u.getRole() == true) {
+					session.setAttribute("admin", u);
 					url = "/admin/dashboard.jsp";
 				} else {
+					session.setAttribute("user", u);
 					url = "/index.jsp";
 				}
+				response.sendRedirect(request.getContextPath() + url);
+				return;
 			} else {
 				request.setAttribute("error", "Lỗi tên đăng nhập hoặc mật khẩu");
 				url = "/signin.jsp";
