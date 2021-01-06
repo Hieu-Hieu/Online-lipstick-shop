@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import model.Bill;
 import model.BillDetail;
 import util.Utill;
 
@@ -31,15 +32,15 @@ public class BillDetailDAO {
 		return false;
 	}
 
-	public ArrayList<BillDetail> getAllBilldetail(int billID) {
+	public ArrayList<BillDetail> getBilldetail(Bill bill) {
 		ArrayList<BillDetail> billDetail = new ArrayList<BillDetail>();
 		Transaction transaction = null;
 		try {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query q = session.createQuery("from BillDetail where billID: billID");
-			q.setParameter("billId", billID);
+			Query q = session.createQuery("from BillDetail where bill=: bill");
+			q.setParameter("bill", bill);
 			billDetail = (ArrayList<BillDetail>) q.list();
 			// commit transaction
 			transaction.commit();

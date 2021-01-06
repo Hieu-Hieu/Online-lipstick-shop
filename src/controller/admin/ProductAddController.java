@@ -75,7 +75,6 @@ public class ProductAddController extends HttpServlet {
 		try {
 			product.setBrand(brand.getByID(brandId));
 			product.setCategory(cate.getByID(categoryId));
-
 			product.setName(req.getParameter("pName"));
 			product.setImgFirst(req.getParameter("imgFirst"));
 			product.setImgLast(req.getParameter("imgLast"));

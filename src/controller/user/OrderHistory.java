@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import get.BillDetailDAO;
 import get.GetBill;
 import model.Bill;
+import model.BillDetail;
 import model.User;
 
 /**
@@ -37,7 +39,8 @@ public class OrderHistory extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
@@ -47,17 +50,34 @@ public class OrderHistory extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+//		doGet(request, response);
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
+		String command = request.getParameter("command");
 		ArrayList<Bill> listBill = new ArrayList<Bill>();
+		ArrayList<BillDetail> detailBill = new ArrayList<BillDetail>();
+//		Bill bill = new Bill();
 		GetBill getBill = new GetBill();
+		BillDetailDAO detail = new BillDetailDAO();
 		User u = (User) session.getAttribute("user");
 		listBill = getBill.getListBillByUserID(u.getUserID());
-		request.setAttribute("listBill", listBill);
-		String url = "/order-history.jsp";
+		String url = "";
+		switch (command) {
+		case "list":
+			url = "/order-history.jsp";
+			request.setAttribute("listBill", listBill);
+			break;
+		case "detail":
+			int billID = Integer.parseInt(request.getParameter("billID"));
+			detailBill = detail.getBilldetail(getBill.getBillByID(billID));
+			url = "/order-history.jsp";
+			request.setAttribute("detailBill", detailBill);
+			request.setAttribute("listBill", listBill);
+			request.setAttribute("billID", billID);
+			break;
+		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 	}
