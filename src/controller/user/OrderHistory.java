@@ -62,21 +62,26 @@ public class OrderHistory extends HttpServlet {
 		GetBill getBill = new GetBill();
 		BillDetailDAO detail = new BillDetailDAO();
 		User u = (User) session.getAttribute("user");
-		listBill = getBill.getListBillByUserID(u.getUserID());
 		String url = "";
-		switch (command) {
-		case "list":
-			url = "/order-history.jsp";
-			request.setAttribute("listBill", listBill);
-			break;
-		case "detail":
-			int billID = Integer.parseInt(request.getParameter("billID"));
-			detailBill = detail.getBilldetail(getBill.getBillByID(billID));
-			url = "/order-history.jsp";
-			request.setAttribute("detailBill", detailBill);
-			request.setAttribute("listBill", listBill);
-			request.setAttribute("billID", billID);
-			break;
+		if (u != null) {
+
+			listBill = getBill.getListBillByUserID(u.getUserID());
+			switch (command) {
+			case "list":
+				url = "/order-history.jsp";
+				request.setAttribute("listBill", listBill);
+				break;
+			case "detail":
+				int billID = Integer.parseInt(request.getParameter("billID"));
+				detailBill = detail.getBilldetail(getBill.getBillByID(billID));
+				url = "/order-history.jsp";
+				request.setAttribute("detailBill", detailBill);
+				request.setAttribute("listBill", listBill);
+				request.setAttribute("billID", billID);
+				break;
+			}
+		} else {
+			url = "/signin.jsp";
 		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);
