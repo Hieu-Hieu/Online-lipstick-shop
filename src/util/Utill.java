@@ -38,7 +38,7 @@ public class Utill {
 						"jdbc:mysql://localhost:3306/lipstickshop?allowPublicKeyRetrieval=true&useSSL=false");
 
 				settings.put(Environment.USER, "root");
-				settings.put(Environment.PASS, "123456");
+				settings.put(Environment.PASS, "hieuld007");
 				settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 
 				settings.put(Environment.SHOW_SQL, "true");
