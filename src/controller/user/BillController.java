@@ -84,7 +84,10 @@ public class BillController extends HttpServlet {
 					billDetail.addBilldetail(detail);
 				}
 				if (getCart.deleteCartByUserID(u.getUserID())) {
+					System.out.println("orrrrrrderrrrr");
 					url = "/OrderHistory";
+//					response.sendRedirect(request.getContextPath() + url);
+//					return;
 				}
 			}
 		} catch (Exception e) {

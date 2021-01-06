@@ -103,4 +103,27 @@ public class GetBill {
 		return bill;
 
 	}
+
+	public Bill getBillByID(int billID) {
+		Transaction transaction = null;
+		Bill bill = new Bill();
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+
+			bill = (Bill) session.get(Bill.class, billID);
+//			System.out.println(bill.getBillID());
+
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return bill;
+
+	}
 }

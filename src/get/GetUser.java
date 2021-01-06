@@ -178,6 +178,7 @@ public class GetUser {
 			q.setParameter("phone", phone);
 			q.setParameter("address", address);
 			q.setParameter("email", email);
+			q.setParameter("uID", userID);
 			if (q.executeUpdate() > 0) {
 				return true;
 			}
