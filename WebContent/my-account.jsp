@@ -43,24 +43,26 @@
                             
                             <div class="tab-pane fade" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
                                 <h4>Thông tin chi tiết</h4>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Tên" value="${user.getUsername() }">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Số điện thoại" value="${user.getPhone() }">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Email" value="${user.getEmail() }">
-                                    </div>
-                                    <div class="col-md-12">
-                                        <input class="form-control" type="text" placeholder="Địa chỉ" value="${user.getAddress() }">
-                                    </div>
-                                    <div class="col-md-12">
-                                        <button class="btn">Cập nhật</button>
-                                        <br><br>
-                                    </div>
-                                </div>
+                                <form action="${pageContext.request.contextPath }/UserController?command=update" method="post">
+	                                <div class="row">
+	                                    <div class="col-md-6">
+	                                        <input class="form-control" type="text" placeholder="Tên" value="${user.getUsername() }" name="username">
+	                                    </div>
+	                                    <div class="col-md-6">
+	                                        <input class="form-control" type="tel" placeholder="Số điện thoại" value="${user.getPhone() }" name="phone">
+	                                    </div>
+	                                    <div class="col-md-6">
+	                                        <input class="form-control" type="email" placeholder="Email" value="${user.getEmail() }" name="email">
+	                                    </div>
+	                                    <div class="col-md-12">
+	                                        <input class="form-control" type="text" placeholder="Địa chỉ" value="${user.getAddress() }" name="address">
+	                                    </div>
+	                                    <div class="col-md-12">
+	                                        <button type="submit">Cập nhật</button>
+	                                        <br><br>
+	                                    </div>
+	                                </div>
+                                </form>
                                 <h4>Đổi mật khẩu</h4>
                                 <div class="row">
                                     <div class="col-md-12">

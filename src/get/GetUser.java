@@ -115,7 +115,6 @@ public class GetUser {
 			if (!l.isEmpty()) {
 				u = (User) l.get(0);
 			}
-			System.out.println(u.getUsername());
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
@@ -153,6 +152,35 @@ public class GetUser {
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			session.update(u);
+			// commit transaction
+			transaction.commit();
+			if (transaction != null) {
+				return true;
+			}
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean updateUserInfo(int userID, String username, String phone, String email, String address) {
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query q = session.createQuery(
+					"update User set username = :username, phone = :phone, address = :address, email =: email where userID = :uID");
+			q.setParameter("username", username);
+			q.setParameter("phone", phone);
+			q.setParameter("address", address);
+			q.setParameter("email", email);
+			if (q.executeUpdate() > 0) {
+				return true;
+			}
 			// commit transaction
 			transaction.commit();
 			if (transaction != null) {
