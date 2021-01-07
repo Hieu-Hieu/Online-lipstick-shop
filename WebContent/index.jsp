@@ -46,10 +46,22 @@
 				<div class="col-md-3">
 					<nav class="navbar bg-light" style="align-items: flex-start;">
 						<ul class="navbar-nav">
-							<li class="nav-item"><a class="nav-link" href="#"><i
-									class="fa fa-home"></i>Nhà sản xuất</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"><i
-									class="fa fa-shopping-bag"></i>Loại sản xuất</a></li>
+							<li class="nav-item">
+							<a class="nav-link" href="#"><i class="fa fa-home"></i>Nhà sản xuất</a>
+								<ul>
+									<c:forEach items="${listBrand }" var="brand">
+										<li><a href="${pageContext.request.contextPath }/ProductList?command=filter&currentPage=1&brandID=${brand.getBrandID()}&filter=brand">${brand.getBrandName() }</a></li>
+									</c:forEach>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#"><i class="fa fa-shopping-bag"></i>Loại sản xuất</a>
+								<ul>
+									<c:forEach items="${listCategory }" var="cate">
+										<li><a href="${pageContext.request.contextPath }/ProductList?command=filter&currentPage=1&categoryID=${cate.getCategoryID()}&filter=category">${cate.getCategoryName() }</a></li>
+									</c:forEach>
+								</ul>
+							</li>
 						</ul>
 					</nav>
 				</div>

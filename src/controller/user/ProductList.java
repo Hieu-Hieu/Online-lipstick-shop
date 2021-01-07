@@ -2,6 +2,7 @@ package controller.user;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,7 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import get.BrandDAO;
+import get.CategoryDAO;
 import get.GetProduct;
+import model.Brand;
+import model.Category;
 import model.Product;
 
 /**
@@ -36,6 +41,7 @@ public class ProductList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
 		doPost(request, response);
 		/**
 		 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -54,6 +60,10 @@ public class ProductList extends HttpServlet {
 		System.out.println(command);
 		GetProduct gp = new GetProduct();
 		List<Product> listProduct = null;
+		ArrayList<Category> cate = new ArrayList<Category>();
+		CategoryDAO getCate = new CategoryDAO();
+		ArrayList<Brand> brand = new ArrayList<Brand>();
+		BrandDAO getBrand = new BrandDAO();
 		String url = "";
 		String sql = "/index.jsp";
 		switch (command) {
@@ -75,7 +85,31 @@ public class ProductList extends HttpServlet {
 			}
 			break;
 		case "filter":
-
+			try {
+				String filter = request.getParameter("filter");
+				System.out.println(filter);
+				if (filter.equals("brand")) {
+					String brandID = request.getParameter("brandID");
+//					if (brandID != null) {
+					sql = "from Product where brandID = " + Integer.parseInt(brandID);
+					request.setAttribute("searchKey", request.getParameter("brandID"));
+//					}
+				} else {
+					String categoryID = request.getParameter("categoryID");
+//					if (categoryID != null) {
+					sql = "from Product where category = " + Integer.parseInt(categoryID);
+					request.setAttribute("searchKey", request.getParameter("categoryID"));
+//					}
+				}
+				String key = request.getParameter("searchKey");
+				if (key != null) {
+					request.setAttribute("searchKey", request.getParameter("searchKey"));
+				}
+				listProduct = gp.getProductFilter(sql, Integer.parseInt(currentPage) * 9 - 9, 9);
+			} catch (NumberFormatException | SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 			break;
 
 		case "list":
@@ -91,7 +125,13 @@ public class ProductList extends HttpServlet {
 
 		}
 
-		try {
+		try
+
+		{
+			brand = getBrand.getListBrand();
+			cate = getCate.getListCategory();
+			request.setAttribute("listBrand", brand);
+			request.setAttribute("listCategory", cate);
 			request.setAttribute("totalPage", gp.totalPage(sql));
 			request.setAttribute("command", request.getParameter("command"));
 			request.setAttribute("currentPage", currentPage);
