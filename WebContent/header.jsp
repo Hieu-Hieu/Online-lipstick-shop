@@ -97,7 +97,7 @@
 	                            </a>
                         	</c:when>
                         	<c:otherwise>
-                        		<a href="index.jsp" class="btn cart">
+                        		<a href="${pageContext.request.contextPath }/CartController" class="btn cart">
 	                                <i class="fa fa-shopping-cart"></i>
 	                                <span>
 									0
