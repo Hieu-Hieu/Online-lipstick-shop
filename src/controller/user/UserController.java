@@ -74,9 +74,16 @@ public class UserController extends HttpServlet {
 						u.setPassword(pass);
 						u.setAddress(request.getParameter("address").trim());
 						u.setRole(false);
-						GetUser.insertUser(u);
-						request.setAttribute("login", "Đăng nhập để mua hàng");
-						url = "/register.jsp";
+
+						session.setAttribute("newUser", u);
+//						request.setAttribute("emailNew", email);
+						url = "/CreateAccount?command=new";
+						response.sendRedirect(getServletContext().getContextPath() + url);
+						return;
+//						GetUser.insertUser(u);
+
+//						request.setAttribute("login", "Đăng nhập để mua hàng");
+//						url = "/register.jsp";
 					} else {
 						request.setAttribute("errorPass", "Mật khẩu không khớp");
 						url = "/register.jsp";
@@ -133,7 +140,7 @@ public class UserController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	public void name() {
+	public void sendCode(HttpServletRequest request, HttpServletResponse response) {
 
 	}
 }

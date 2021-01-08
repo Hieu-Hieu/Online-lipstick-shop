@@ -91,7 +91,6 @@ public class BillController extends HttpServlet {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-			url = "/CartController";
 			System.out.println(e.toString());
 
 		}
