@@ -43,11 +43,11 @@ public class GetUser {
 			transaction = session.beginTransaction();
 			Query query = session.createQuery("FROM User WHERE email = :email");
 			query.setParameter("email", email);
-			if (query.executeUpdate() > 0) {
-				return true;
-			}
 			// commit transaction
 			transaction.commit();
+			if (transaction != null) {
+				return true;
+			}
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
@@ -196,4 +196,26 @@ public class GetUser {
 		return false;
 	}
 
+	public boolean updateUserPass(String email, String password) {
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query q = session.createQuery("update User set password=:password where email =: email");
+			q.setParameter("password", password);
+			q.setParameter("email", email);
+			if (q.executeUpdate() > 0) {
+				return true;
+			}
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

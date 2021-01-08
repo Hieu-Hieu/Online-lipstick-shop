@@ -19,12 +19,12 @@
 					</div>
 	         	</c:if>
          	<form id="login" action="${pageContext.request.contextPath}/UserController?command=login" method="post">
-                <input type="email" class="input-field" placeholder="Email" name="email">
-                <input type="password" class="input-field" placeholder="Nhập mật khẩu" name="password">
+                <input type="email" class="input-field" placeholder="Email" name="email" required>
+                <input type="password" class="input-field" placeholder="Nhập mật khẩu" name="password" required>
                 <button type="submit" class="submit-btn">Đăng nhập</button>
          	</form>
         <a href="register.jsp" class="register">Đăng kí</a>
-        <a href="#" class="forget">Quên mật khẩu ?</a>
+        <a href="enter-email.jsp" class="forget">Quên mật khẩu ?</a>
     </div>
 </body>
 </html>
