@@ -28,7 +28,7 @@ public class UserController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
 		String url = "";
 		String sql = "";
@@ -74,7 +74,6 @@ public class UserController extends HttpServlet {
 						u.setPassword(pass);
 						u.setAddress(request.getParameter("address").trim());
 						u.setRole(false);
-
 						session.setAttribute("newUser", u);
 						url = "/CreateAccount?command=new";
 						response.sendRedirect(request.getContextPath() + url);

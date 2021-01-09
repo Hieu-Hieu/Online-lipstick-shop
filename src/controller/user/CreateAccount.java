@@ -67,6 +67,8 @@ public class CreateAccount extends HttpServlet {
 				if (sm.sendMail(email, subject, String.valueOf(code))) {
 					session.setAttribute("codeAuth", code);
 					url = "/code.jsp?command=newUser";
+					response.sendRedirect(request.getContextPath() + url);
+					return;
 				}
 				break;
 			case "again":
