@@ -1,3 +1,5 @@
+<%@page import="model.User"%>
+<%@page import="get.GetUser"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,8 +28,16 @@
     </head>
 
     <body>
+    
     	<jsp:include page="header.jsp"></jsp:include>
         <!-- My Account Start -->
+        
+        <%
+        GetUser getUser = new GetUser();
+        User u = new User();
+        u = (User)session.getAttribute("user");
+        u = getUser.getUserByID(u.getUserID());
+        %>
         <div class="my-account">
             <div class="container-fluid">
                 <div class="row">
@@ -46,16 +56,16 @@
                                 <form action="${pageContext.request.contextPath }/UserController?command=update" method="post">
 	                                <div class="row">
 	                                    <div class="col-md-6">
-	                                        <input class="form-control" type="text" placeholder="Tên" value="${user.getUsername() }" name="username" required>
+	                                        <input class="form-control" type="text" placeholder="Tên" value="${u.getUsername() }" name="username" required>
 	                                    </div>
 	                                    <div class="col-md-6">
-	                                        <input class="form-control" type="tel" placeholder="Số điện thoại" value="${user.getPhone() }" name="phone" required>
+	                                        <input class="form-control" type="tel" placeholder="Số điện thoại" value="${u.getPhone() }" name="phone" required>
 	                                    </div>
 	                                    <div class="col-md-6">
-	                                        <input class="form-control" type="email" placeholder="Email" value="${user.getEmail() }" name="email" required>
+	                                        <input class="form-control" type="email" placeholder="Email" value="${u.getEmail() }" name="email" required>
 	                                    </div>
 	                                    <div class="col-md-12">
-	                                        <input class="form-control" type="text" placeholder="Địa chỉ" value="${user.getAddress() }" name="address" required>
+	                                        <input class="form-control" type="text" placeholder="Địa chỉ" value="${u.getAddress() }" name="address" required>
 	                                    </div>
 	                                    <div class="col-md-12">
 	                                        <button type="submit">Cập nhật</button>
