@@ -57,7 +57,7 @@ public class NewPassword extends HttpServlet {
 					session.removeAttribute("emailAccount");
 					session.removeAttribute("code");
 					url = "/signin.jsp";
-					response.sendRedirect(getServletContext().getContextPath() + url);
+					response.sendRedirect(request.getContextPath() + url);
 					return;
 				}
 			} else {
