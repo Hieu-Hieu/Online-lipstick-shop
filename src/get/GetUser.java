@@ -184,9 +184,7 @@ public class GetUser {
 			}
 			// commit transaction
 			transaction.commit();
-			if (transaction != null) {
-				return true;
-			}
+
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();

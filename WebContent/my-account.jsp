@@ -43,20 +43,19 @@
                                 <form action="${pageContext.request.contextPath }/UserController?command=update" method="post">
 	                                <div class="row">
 	                                    <div class="col-md-6">
-	                                        <input class="form-control" type="text" placeholder="Tên" value="${user.getUsername() }" name="username">
+	                                        <input class="form-control" type="text" placeholder="Tên" value="${user.getUsername() }" name="username" required>
 	                                    </div>
 	                                    <div class="col-md-6">
-	                                        <input class="form-control" type="tel" placeholder="Số điện thoại" value="${user.getPhone() }" name="phone">
+	                                        <input class="form-control" type="tel" placeholder="Số điện thoại" value="${user.getPhone() }" name="phone" required>
 	                                    </div>
 	                                    <div class="col-md-6">
-	                                        <input class="form-control" type="email" placeholder="Email" value="${user.getEmail() }" name="email">
+	                                        <input class="form-control" type="email" placeholder="Email" value="${user.getEmail() }" name="email" required>
 	                                    </div>
 	                                    <div class="col-md-12">
-	                                        <input class="form-control" type="text" placeholder="Địa chỉ" value="${user.getAddress() }" name="address">
+	                                        <input class="form-control" type="text" placeholder="Địa chỉ" value="${user.getAddress() }" name="address" required>
 	                                    </div>
 	                                    <div class="col-md-12">
 	                                        <button type="submit">Cập nhật</button>
-	                                        <br><br>
 	                                    </div>
 	                                </div>
                                 </form>
