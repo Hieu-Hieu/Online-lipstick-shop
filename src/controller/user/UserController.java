@@ -76,14 +76,9 @@ public class UserController extends HttpServlet {
 						u.setRole(false);
 
 						session.setAttribute("newUser", u);
-//						request.setAttribute("emailNew", email);
 						url = "/CreateAccount?command=new";
-						response.sendRedirect(getServletContext().getContextPath() + url);
+						response.sendRedirect(request.getContextPath() + url);
 						return;
-//						GetUser.insertUser(u);
-
-//						request.setAttribute("login", "Đăng nhập để mua hàng");
-//						url = "/register.jsp";
 					} else {
 						request.setAttribute("errorPass", "Mật khẩu không khớp");
 						url = "/register.jsp";
@@ -101,13 +96,10 @@ public class UserController extends HttpServlet {
 			request.setAttribute("name", request.getParameter("name"));
 			break;
 		case "update":
-//			int id = Integer.parseInt(request.getParameter("id"));
 			username = request.getParameter("username");
-//			pass = request.getParameter("pass");
 			email = request.getParameter("email");
 			phone = request.getParameter("phone");
 			address = request.getParameter("address");
-//			boolean role = Boolean.parseBoolean(request.getParameter("role"));
 			if (GetUser.updateUserInfo(u.getUserID(), username, phone, email, address)) {
 				url = "/my-account.jsp";
 			}
