@@ -95,6 +95,7 @@ public class UserController extends HttpServlet {
 			request.setAttribute("name", request.getParameter("name"));
 			break;
 		case "update":
+			u = (User) session.getAttribute("user");
 			username = request.getParameter("username");
 			email = request.getParameter("email");
 			phone = request.getParameter("phone");
