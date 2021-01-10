@@ -51,9 +51,8 @@
 		                    </div>
                     	</c:when>
                     	<c:otherwise>
-                    		<div class="navbar-nav ml-auto">
-		                        ${user.getUsername()}
-		                    </div>
+                    		<a href="register.jsp" class="nav-item nav-link">Chào: ${user.getUsername()}</a>
+		                    <a class="nav-link" href="${pageContext.request.contextPath}/UserLogout"><i class="fa fa-sign-out-alt"></i>Đăng xuất</a>
                     	</c:otherwise>
                     </c:choose>
                 </div>

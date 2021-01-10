@@ -34,15 +34,12 @@
                     <div class="col-md-3">
                         <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
                             <a class="nav-link" href="${pageContext.request.contextPath}/OrderHistory?command=list"><i class="fa fa-shopping-bag"></i>Lịch sử đặt hàng</a>
-                            <a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i class="fa fa-user"></i>Thông tin chi tiết</a>
-                            <a class="nav-link" href="${pageContext.request.contextPath}/UserLogout"><i class="fa fa-sign-out-alt"></i>Đăng xuất</a>
+                           	<a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i class="fa fa-user"></i>Thông tin chi tiết</a>
                         </div>
                     </div>
                     <div class="col-md-9">
                         <div class="tab-content">
-                            
-                            <div class="tab-pane fade" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
-                                <h4>Thông tin chi tiết</h4>
+                             <h4>Thông tin chi tiết</h4>
                                 <form action="${pageContext.request.contextPath }/UserController?command=update" method="post">
 	                                <div class="row">
 	                                    <div class="col-md-6">
@@ -78,7 +75,6 @@
                                         <button class="btn">Lưu thay đổi</button>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>

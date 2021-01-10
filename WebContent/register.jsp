@@ -51,6 +51,8 @@
 					</div>
 	         	</c:if>
             <button type="submit">Đăng kí</button>
+            <br>
+            <a href="index.jsp" class="forget">Quay về</a>
         </form>
     </div>
     
