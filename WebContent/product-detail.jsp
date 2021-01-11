@@ -43,12 +43,12 @@
 	<!-- Product Detail Start -->
 	<div class="product-detail">
 		<div class="container-fluid">
-			<div class="row">
+			<div class="row" >
 				<div class="col-lg-12">
 					<div class="product-detail-top">
-						<div class="row align-items-center">
+						<div class="row align-items-center" style="background-color: #F2F2F2;">
 							<div class="col-md-3"></div>
-							<div class="col-md-3">
+							<div class="col-md-3" style="background-color: white">
 								<div class="product-slider-single normal-slider" >
 									<img src="${product.getImgFirst() }" alt="Product Image" width="250px" height="300px" >
 									<img src="${product.getImgLast() }" alt="Product Image" width="250px" height="300px" >
@@ -73,7 +73,7 @@
 										<h4>Giá:</h4>
 										<fmt:formatNumber var="price" type="number" pattern="###,###,###" value="${product.getPrice() }"/>
 										<p>
-										${price }Đ
+										${price }VNĐ
 										</p>
 									</div>
 									<form action="${pageContext.request.contextPath }/AddToCartController?cart=open&command=add&productID=${product.getProductID()}" method="post">
@@ -110,19 +110,17 @@
 						</div>
 					</div>
 					<div class="row product-detail-bottom">
-						<div class="col-lg-12">
-							<ul class="nav nav-pills nav-justified">
-								<li class="nav-item"><a class="nav-link active"
-									data-toggle="pill" href="#description">Mô tả sản phẩm</a></li>
-							</ul>
-
-							<div class="tab-content">
-								<div id="description" class="container tab-pane active">
-									<h4>Product description</h4>
-									<p>${product.getDescription() }</p>
-								</div>
+						<div class="col-lg-3"></div>
+						<div class="col-lg-6" style="text-align: center">
+							<hr style="border-top: solid 2px ">
+							<h3>Mô tả sản phẩm<h3>
+							<hr style="border-top: solid 2px ">
+							<div id="description" class="container tab-pane active">
+								<h5 style="text-align: left;">${product.getDescription() }</h5>
 							</div>
+							
 						</div>
+						<div class="col-lg-3"></div>
 					</div>
 				</div>
 			</div>

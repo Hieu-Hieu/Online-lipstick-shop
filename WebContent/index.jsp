@@ -88,7 +88,7 @@
 															<h3>
 																<fmt:formatNumber var="price" type="number "
 																	pattern="###,###,###" value="${p.getPrice()}" />
-																${price}<span>Đ</span>
+																${price}<h3>VNĐ</h3>
 															</h3>
 															
 														</div>
