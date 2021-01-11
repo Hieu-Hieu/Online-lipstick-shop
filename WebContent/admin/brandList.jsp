@@ -44,12 +44,12 @@
 											<thead class="">
 												<th>ID</th>
 												<th>Nhà sản xuất</th>
-												<th>Action</th>
+												<th></th>
 											</thead>
 											<tbody>
 											<c:forEach items="${brandList}" var="item">
 												<tr>
-													<td >${item.getBrandID()}</td>
+													<td style="width: 400px">${item.getBrandID()}</td>
 													<td >${item.getBrandName()}</td>
 													<td>
 														<a href="${pageContext.request.contextPath}/admin/brand/update?id=${item.getBrandID()}"><button  class="btn btn-primary pull-right">Cập nhật</button></a>

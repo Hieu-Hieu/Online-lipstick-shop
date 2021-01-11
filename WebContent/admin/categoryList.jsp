@@ -41,9 +41,9 @@
 									<div class="table-responsive">
 										<table class="table table-hover">
 											<thead class="">
-												<th>ID</th>
+												<th style="width: 400px">ID</th>
 												<th>Nhà sản xuất</th>
-												<th>Action</th>
+												<th></th>
 											</thead>
 											<tbody>
 											<c:forEach items="${categoryList}" var="item">

@@ -203,7 +203,7 @@
           <div class="row">
             <div class="col-md-6  align-self-sm-end">
               <div class="border__button">
-                <a href="${pageContext.request.contextPath}/admin/product/add"><button class="border__button--button" >Thêm sản phẩm mới</button></a>
+                <a href="${pageContext.request.contextPath}/admin/product/add"><button class="border__button--button">Thêm mới</button></a>
               </div>
             </div>
           </div>
