@@ -173,30 +173,6 @@ public class GetProduct {
 		return listOfProduct;
 	}
 
-//	public ArrayList<Product> getProductByBrandID(int brandID, int firstResult, int lastResult) throws SQLException {
-//		ArrayList<Product> listOfProduct = new ArrayList<Product>();
-//		Transaction transaction = null;
-//		try {
-//			// start a transaction
-//			Session session = Utill.getSessionFactory().openSession();
-//			transaction = session.beginTransaction();
-//			Query query = session.createQuery("from Product where brandID = :brandID");
-//			query.setParameter("brandID", brandID);
-//			query.setFirstResult(firstResult);
-//			query.setMaxResults(lastResult);
-//			listOfProduct = (ArrayList<Product>) query.getResultList();
-//			// commit transaction
-//			transaction.commit();
-//		} catch (Exception e) {
-//			if (transaction != null) {
-//				transaction.rollback();
-//			}
-//			e.printStackTrace();
-//		}
-//		return listOfProduct;
-//
-//	}
-
 	// search
 	public ArrayList<Product> search(String input, int firstResult, int lastResult) throws SQLException {
 		ArrayList<Product> listOfProduct = new ArrayList<Product>();
@@ -219,6 +195,29 @@ public class GetProduct {
 			e.printStackTrace();
 		}
 		return listOfProduct;
+	}
+
+	public int getQuantityByProductID(int productID) {
+		int total = 0;
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("select quantity FROM Product WHERE productID = :productID");
+			query.setParameter("productID", productID);
+			List p = query.list();
+			Number number = (Number) p.get(0);
+			total = (int) number;
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return total;
 	}
 
 }

@@ -34,6 +34,7 @@
 <link href="./client/static/css/style.css" rel="stylesheet">
 </head>
 
+<<<<<<< HEAD
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<!-- Cart Start -->
@@ -55,7 +56,36 @@
 								</thead>
 								<tbody class="align-middle">
 
-									<c:forEach items="${listCart}" var="cart">
+									
+=======
+    <body>
+    <jsp:include page="header.jsp"></jsp:include>
+        <!-- Cart Start -->
+        <c:if test="${!empty quantityError}">
+        	<script type="text/javascript">
+        		var mess = "${quantityError}";
+        		alert(mess);
+        	</script>
+        </c:if>
+        <div class="cart-page">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="cart-page-inner">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Giá</th>
+                                            <th>Số lượng</th>
+                                            <th>Tổng</th>
+                                            <th>Xóa khỏi giỏ hàng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="align-middle">
+                             
+                                  <c:forEach items="${listCart}" var="cart">
 										<tr>
 											<td>
 												<div class="img">
@@ -86,6 +116,14 @@
 														<i class="far fa-save"></i>
 													</button>
 												</form>
+                                            </td>
+                                            <fmt:formatNumber var="totalPrice" type="number" pattern="###,###,###" value="${cart.getQuantity() * cart.getProduct().getPrice() }"/>
+                                            <td>${totalPrice }Đ</td>
+                                            <td>
+												<a href="${pageContext.request.contextPath }/AddToCartController?command=remove&productID=${cart.getProduct().getProductID()}">
+													<i class="fa fa-trash"></i>
+												</a>
+>>>>>>> 32e4b11 (update)
 											</td>
 											<fmt:formatNumber var="totalPrice" type="number"
 												pattern="###,###,###"
