@@ -47,22 +47,23 @@
 				<div class="col-lg-12">
 					<div class="product-detail-top">
 						<div class="row align-items-center">
-							<div class="col-md-7">
-								<div class="product-slider-single normal-slider">
-									<img src="${product.getImgFirst() }" alt="Product Image">
-									<img src="${product.getImgLast() }" alt="Product Image">
+							<div class="col-md-3"></div>
+							<div class="col-md-3">
+								<div class="product-slider-single normal-slider" >
+									<img src="${product.getImgFirst() }" alt="Product Image" width="250px" height="300px" >
+									<img src="${product.getImgLast() }" alt="Product Image" width="250px" height="300px" >
 								</div>
 								<div class="product-slider-single-nav normal-slider">
 									<div class="slider-nav-img">
-										<img src="${product.getImgFirst() }" alt="Product Image">
+										<img src="${product.getImgFirst() }" alt="Product Image"  >
 									</div>
 									<div class="slider-nav-img">
-										<img src="${product.getImgLast() }" alt="Product Image">
+										<img src="${product.getImgLast() }" alt="Product Image" >
 									</div>
 
 								</div>
 							</div>
-							
+							<div class="col-md-1"></div>
 							<div class="col-md-5">
 								<div class="product-content">
 									<div class="title">
@@ -73,7 +74,6 @@
 										<fmt:formatNumber var="price" type="number" pattern="###,###,###" value="${product.getPrice() }"/>
 										<p>
 										${price }Đ
-											<span>$149</span>
 										</p>
 									</div>
 									<form action="${pageContext.request.contextPath }/AddToCartController?cart=open&command=add&productID=${product.getProductID()}" method="post">
@@ -92,13 +92,12 @@
 										<div class="action">
 										<c:choose>
 										<c:when test="${!empty user}">
-											<button class="btn" type="submit" 
-												href=""><i
+											<button class="btn" type="submit" href="" style="border: solid 3px #FF6F61"><i
 												class="fa fa-shopping-cart"></i>Thêm vào giỏ
 											</button>
 										</c:when>
 										<c:otherwise>
-											<button class="btn" onclick="handle()" type="button"> 
+											<button class="btn" onclick="handle()" type="button" style="border: solid 3px #FF6F61"> 
 											<i class="fa fa-shopping-cart"></i>
 											Thêm vào giỏ
 											</button>										
