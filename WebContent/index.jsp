@@ -80,7 +80,7 @@
 													<div class="product-item">
 														<div class="product-image">
 															<a href="${pageContext.request.contextPath}/ProductDetailController?productID=${p.getProductID() }"> <img
-																src="${p.getImgFirst() }" alt="Product Image">
+																src="${p.getImgFirst() }" alt="Product Image" height="380px" >
 															</a>
 														</div>
 														<div class="product-price">
@@ -90,9 +90,7 @@
 																	pattern="###,###,###" value="${p.getPrice()}" />
 																${price}<span>Đ</span>
 															</h3>
-															<a class="btn"
-																href="${pageContext.request.contextPath}/AddToCartController?cart=no&command=add&productID=${p.getProductID() }&quantity=1&currentPage=${currentPage}"><i
-																class="fa fa-shopping-cart"></i>Thêm</a>
+															
 														</div>
 													</div>
 												</div>
