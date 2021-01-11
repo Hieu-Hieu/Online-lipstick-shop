@@ -59,6 +59,7 @@ public class AddToCartController extends HttpServlet {
 		int userID = 0;
 		int productID = productID = Integer.parseInt(request.getParameter("productID"));
 		int quantity = 0;
+		int quantityStock = 0;
 		String url = "";
 		if (u != null) {
 			try {
@@ -69,8 +70,12 @@ public class AddToCartController extends HttpServlet {
 				switch (command) {
 				case "add":
 					quantity = Integer.parseInt(request.getParameter("quantity"));
+					quantityStock = getProduct.getQuantityByProductID(productID);
+					if (quantity > quantityStock) {
+						request.setAttribute("quantityError", "Số lượng trong kho chỉ còn" + quantityStock);
+						quantity = quantityStock;
+					}
 					if (getCart.checkProductExist(userID, productID)) {
-
 						getCart.updateProductQuantity(userID, productID, quantity);
 					} else {
 						Cart cart = new Cart(getUser.getUserByID(userID), getProduct.getProductByID(productID),
@@ -90,6 +95,11 @@ public class AddToCartController extends HttpServlet {
 					break;
 				case "update":
 					quantity = Integer.parseInt(request.getParameter("quantity"));
+					quantityStock = getProduct.getQuantityByProductID(productID);
+					if (quantity > quantityStock) {
+						request.setAttribute("quantityError", "Số lượng trong kho chỉ còn" + quantityStock);
+						quantity = quantityStock;
+					}
 					if (quantity > 0) {
 						getCart.updateProductQuantityInCart(userID, productID, quantity);
 					} else {
