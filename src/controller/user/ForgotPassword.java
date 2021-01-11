@@ -88,12 +88,12 @@ public class ForgotPassword extends HttpServlet {
 					session.setAttribute("code", code);
 //				request.setAttribute("sended", "Đã gửi mã! Kiểm tra email để tiếp tục");
 					url = "/code.jsp?command=oldUser";
-					response.sendRedirect(getServletContext().getContextPath() + url);
+					response.sendRedirect(request.getContextPath() + url);
 					return;
 				}
 			} else {
 				url = "/enter-email.jsp";
-				response.sendRedirect(getServletContext().getContextPath() + url);
+				response.sendRedirect(request.getContextPath() + url);
 				return;
 			}
 			break;
@@ -109,7 +109,7 @@ public class ForgotPassword extends HttpServlet {
 				}
 			} else {
 				url = "/enter-email.jsp";
-				response.sendRedirect(getServletContext().getContextPath() + url);
+				response.sendRedirect(request.getContextPath() + url);
 				return;
 			}
 			break;

@@ -63,7 +63,7 @@ public class BillController extends HttpServlet {
 		GetBill getBill = new GetBill();
 		BillDetailDAO billDetail = new BillDetailDAO();
 		BillDetail detail = new BillDetail();
-		String url = "";
+		String url = "/cart.jsp";
 		try {
 			ArrayList<Cart> listCart = getCart.getCartByUserID(u.getUserID());
 			double total = getCart.totalCart(u.getUserID());

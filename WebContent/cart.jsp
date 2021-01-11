@@ -31,6 +31,12 @@
     <body>
     <jsp:include page="header.jsp"></jsp:include>
         <!-- Cart Start -->
+        <c:if test="${!empty quantityError}">
+        	<script type="text/javascript">
+        		var mess = "${quantityError}";
+        		alert(mess);
+        	</script>
+        </c:if>
         <div class="cart-page">
             <div class="container-fluid">
                 <div class="row">

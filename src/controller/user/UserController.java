@@ -30,7 +30,7 @@ public class UserController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
-		String url = "";
+		String url = "/my-account.jsp?Error=Dupicate";
 		String sql = "";
 		String command = request.getParameter("command");
 		GetUser getUser = new GetUser();
@@ -42,6 +42,7 @@ public class UserController extends HttpServlet {
 		String address = "";
 		boolean check = true;
 		switch (command) {
+
 		case "register":
 			try {
 				username = request.getParameter("name").trim();
@@ -95,12 +96,25 @@ public class UserController extends HttpServlet {
 			request.setAttribute("name", request.getParameter("name"));
 			break;
 		case "update":
-			username = request.getParameter("username");
-			email = request.getParameter("email");
-			phone = request.getParameter("phone");
-			address = request.getParameter("address");
-			if (GetUser.updateUserInfo(u.getUserID(), username, phone, email, address)) {
+			try {
+				u = (User) session.getAttribute("user");
+				username = request.getParameter("username");
+				email = request.getParameter("email");
+				phone = request.getParameter("phone");
+				address = request.getParameter("address");
+				if (GetUser.updateUserInfo(u.getUserID(), username, phone, email, address)) {
+					request.setAttribute("updateSuccess", "Cập nhật thành công");
+					u = getUser.getUserByID(((User) session.getAttribute("user")).getUserID());
+					session.removeAttribute("user");
+					url = "/my-account.jsp";
+					session.setAttribute("user", u);
+				}
+
+			} catch (Exception e) {
+				// TODO: handle exception
 				url = "/my-account.jsp";
+				session.setAttribute("dupicateError", "Trùng Email hoặc số điện thoại");
+				e.printStackTrace();
 			}
 			break;
 		case "login":
@@ -126,6 +140,29 @@ public class UserController extends HttpServlet {
 				request.setAttribute("error", "Lỗi tên đăng nhập hoặc mật khẩu");
 				url = "/signin.jsp";
 			}
+			break;
+		case "changePass":
+			String oldPass = request.getParameter("oldPass");
+			u = (User) session.getAttribute("user");
+			if (oldPass.equals(u.getPassword()))
+				check = true;
+			else {
+				check = false;
+				request.setAttribute("oldPassError", "Mật khẩu không đúng");
+			}
+			String newPass1 = request.getParameter("newPass1");
+			String newPass2 = request.getParameter("newPass2");
+			if (newPass1.equals(newPass2)) {
+				check = true;
+			} else {
+				check = false;
+				request.setAttribute("newPassError", "Mật khẩu mới không khớp");
+			}
+			if (check == true) {
+				request.setAttribute("updateSuccess", "Cập nhật thành công");
+				getUser.updateUserPass(u.getEmail(), newPass1);
+			}
+			url = "/my-account.jsp";
 		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);

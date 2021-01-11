@@ -1,5 +1,8 @@
+<%@page import="model.User"%>
+<%@page import="get.GetUser"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,6 +29,7 @@
     </head>
 
     <body>
+    
     	<jsp:include page="header.jsp"></jsp:include>
         <!-- My Account Start -->
         <div class="my-account">
@@ -40,43 +44,58 @@
                     </div>
                     <div class="col-md-9">
                         <div class="tab-content">
-                            
+	                         <c:if test="${!empty updateSuccess }">
+		                         <script type="text/javascript">
+		                         	aler("${updateSuccess}")
+		                         </script>
+							</c:if>
                             <div class="tab-pane fade" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
                                 <h4>Thông tin chi tiết</h4>
+	                                <c:if test="${!empty dupicateError }">
+	                                 	<div>${dupicateError}</div>
+							        	<%session.removeAttribute("dupicateError"); %>
+							        </c:if>
                                 <form action="${pageContext.request.contextPath }/UserController?command=update" method="post">
 	                                <div class="row">
 	                                    <div class="col-md-6">
-	                                        <input class="form-control" type="text" placeholder="Tên" value="${user.getUsername() }" name="username">
+	                                        <input class="form-control" type="text" placeholder="Tên" value="${user.getUsername()}" name="username" required>
 	                                    </div>
 	                                    <div class="col-md-6">
-	                                        <input class="form-control" type="tel" placeholder="Số điện thoại" value="${user.getPhone() }" name="phone">
+	                                        <input class="form-control" type="tel" placeholder="Số điện thoại" value="${user.getPhone() }" name="phone" required>
 	                                    </div>
 	                                    <div class="col-md-6">
-	                                        <input class="form-control" type="email" placeholder="Email" value="${user.getEmail() }" name="email">
+	                                        <input class="form-control" type="email" placeholder="Email" value="${user.getEmail() }" name="email" required>
 	                                    </div>
 	                                    <div class="col-md-12">
-	                                        <input class="form-control" type="text" placeholder="Địa chỉ" value="${user.getAddress() }" name="address">
+	                                        <input class="form-control" type="text" placeholder="Địa chỉ" value="${user.getAddress() }" name="address" required>
 	                                    </div>
 	                                    <div class="col-md-12">
 	                                        <button type="submit">Cập nhật</button>
-	                                        <br><br>
 	                                    </div>
 	                                </div>
                                 </form>
                                 <h4>Đổi mật khẩu</h4>
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <input class="form-control" type="password" placeholder="Mật khẩu hiện tại">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Mật khẩu mới">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Xác nhận mật khẩu">
-                                    </div>
-                                    <div class="col-md-12">
-                                        <button class="btn">Lưu thay đổi</button>
-                                    </div>
+	                                <form action="${pageContext.request.contextPath }/UserController?command=changePass" method="post">
+	                                    <div class="col-md-12">
+	                                        <input class="form-control" type="password" placeholder="Mật khẩu hiện tại" name="oldPass">
+	                                    </div>
+	                                    <c:if test="${!empty oldPassError }">
+	                                 		<div>${oldPassError}</div>
+							      	 	</c:if>
+	                                    <div class="col-md-6">
+	                                        <input class="form-control" type="password" placeholder="Mật khẩu mới" name="newPass1">
+	                                    </div>
+	                                    <div class="col-md-6">
+	                                        <input class="form-control" type="password" placeholder="Xác nhận mật khẩu" name="newPass2">
+	                                    </div>
+	                                    <c:if test="${!empty newPassError }">
+	                                 		<div>${newPassError}</div>
+							       		</c:if>
+	                                    <div class="col-md-12">
+	                                        <button class="btn">Lưu thay đổi</button>
+	                                    </div>
+	                                </form>
                                 </div>
                             </div>
                         </div>

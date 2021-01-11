@@ -56,7 +56,7 @@ public class CreateAccount extends HttpServlet {
 		String command = request.getParameter("command");
 		GetUser getUser = new GetUser();
 		SendEmail sm = new SendEmail();
-		String url = "";
+		String url = "/register.jsp";
 		int code;
 		User user = (User) session.getAttribute("newUser");
 		if (user != null) {
@@ -83,6 +83,7 @@ public class CreateAccount extends HttpServlet {
 				String enterCode = request.getParameter("enterCode");
 				code = (int) session.getAttribute("codeAuth");
 				if (enterCode.equals(String.valueOf(code))) {
+					System.out.println("check ok");
 					request.setAttribute("createSuccess", "Đăng ký thành công, Đăng nhập để tiếp tục");
 					if (getUser.insertUser(user)) {
 						session.removeAttribute("newUser");

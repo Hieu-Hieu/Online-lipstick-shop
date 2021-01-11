@@ -36,6 +36,7 @@ public class GetUser {
 	}
 
 	public boolean checkEmail(String email) throws SQLException {
+		System.out.println("checkmail");
 		Transaction transaction = null;
 		try {
 			// start a transaction
@@ -43,11 +44,12 @@ public class GetUser {
 			transaction = session.beginTransaction();
 			Query query = session.createQuery("FROM User WHERE email = :email");
 			query.setParameter("email", email);
-			// commit transaction
-			transaction.commit();
-			if (transaction != null) {
+			List l = query.list();
+			if (!l.isEmpty()) {
 				return true;
 			}
+			// commit transaction
+			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
@@ -168,31 +170,30 @@ public class GetUser {
 
 	public boolean updateUserInfo(int userID, String username, String phone, String email, String address) {
 		Transaction transaction = null;
-		try {
-			// start a transaction
-			Session session = Utill.getSessionFactory().openSession();
-			transaction = session.beginTransaction();
-			Query q = session.createQuery(
-					"update User set username = :username, phone = :phone, address = :address, email =: email where userID = :uID");
-			q.setParameter("username", username);
-			q.setParameter("phone", phone);
-			q.setParameter("address", address);
-			q.setParameter("email", email);
-			q.setParameter("uID", userID);
-			if (q.executeUpdate() > 0) {
-				return true;
-			}
-			// commit transaction
-			transaction.commit();
-			if (transaction != null) {
-				return true;
-			}
-		} catch (Exception e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
-			e.printStackTrace();
+//		try {
+//		start a transaction
+		Session session = Utill.getSessionFactory().openSession();
+		transaction = session.beginTransaction();
+		Query q = session.createQuery(
+				"update User set username = :username, phone = :phone, address = :address, email =: email where userID = :uID");
+		q.setParameter("username", username);
+		q.setParameter("phone", phone);
+		q.setParameter("address", address);
+		q.setParameter("email", email);
+		q.setParameter("uID", userID);
+		if (q.executeUpdate() > 0) {
+			return true;
 		}
+		// commit transaction
+		transaction.commit();
+
+//		} catch (SQLException e) {
+//			if (transaction != null) {
+//				transaction.rollback();
+//			}
+//			e.printStackTrace();
+//
+//		}
 		return false;
 	}
 
