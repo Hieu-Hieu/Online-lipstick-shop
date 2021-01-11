@@ -78,15 +78,13 @@
 											<c:forEach items="${listProduct}" var="p">
 												<div class="col-md-4">
 													<div class="product-item">
-														<div class="product-title">
-															<a href="">${p.getName() }</a>
-														</div>
 														<div class="product-image">
 															<a href="${pageContext.request.contextPath}/ProductDetailController?productID=${p.getProductID() }"> <img
 																src="${p.getImgFirst() }" alt="Product Image">
 															</a>
 														</div>
 														<div class="product-price">
+														<a href="" style="font-family: cursive; font-size: 20px; font-weight: 600; color: white; padding: 15px;">${p.getName() }</a>
 															<h3>
 																<fmt:formatNumber var="price" type="number "
 																	pattern="###,###,###" value="${p.getPrice()}" />

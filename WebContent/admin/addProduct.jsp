@@ -123,12 +123,14 @@
 														
 																		
 																		<button type="submit"
-																			class="btn btn-primary pull-right" value="Upload" >Cập nhật
-																			thông tin</button>
-																		<button type="submit"
-																			class="btn btn-primary pull-right">
-																			<a style="text-decoration:none;" href="#">Quay lại</a>
+																			class="btn btn-primary pull-right" value="Upload" >Thêm /Cập nhật
 																		</button>
+																		<a style="text-decoration:none; color: white" href="productmanager.jsp">
+																		<button
+																			class="btn btn-primary pull-right">
+																			<a style="text-decoration:none; color: white" href="productmanager.jsp">Quay lại</a>
+																		</button>
+																		</a>
 																	</div>
 																</div>
 															</div>
