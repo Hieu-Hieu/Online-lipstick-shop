@@ -43,8 +43,14 @@
                     </div>
                     <div class="col-md-9">
                         <div class="tab-content">
+
                              <h4>Thông tin chi tiết</h4>
 	                        
+	                         <c:if test="${!empty updateSuccess }">
+		                         <script type="text/javascript">
+		                         	aler("${updateSuccess}")
+		                         </script>
+							</c:if>
                             <div class="tab-pane fade" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
                                 <h4>Thông tin chi tiết</h4>
 	                                <c:if test="${!empty dupicateError }">
