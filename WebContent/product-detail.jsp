@@ -1,4 +1,4 @@
-/<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="model.Product"%>
 <%@page import="get.GetProduct"%>
@@ -48,7 +48,7 @@
 					<div class="product-detail-top">
 						<div class="row align-items-center" style="background-color: #F2F2F2;">
 							<div class="col-md-3"></div>
-							<div class="col-md-3" style="background-color: white">
+							<div class="col-md-3" style="background-color: white; margin: 10px 0px;">
 								<div class="product-slider-single normal-slider" >
 									<img src="${product.getImgFirst() }" alt="Product Image" width="250px" height="300px" >
 									<img src="${product.getImgLast() }" alt="Product Image" width="250px" height="300px" >
