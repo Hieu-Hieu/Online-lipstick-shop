@@ -35,7 +35,8 @@ public class UpdateInfo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
 	}
 
 	/**
@@ -46,10 +47,10 @@ public class UpdateInfo extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
-//		String url = "/admin/dashboard.jsp";
 		String url = "";
 		GetUser getUser = new GetUser();
 		User u = new User();
@@ -74,9 +75,7 @@ public class UpdateInfo extends HttpServlet {
 				check = false;
 				request.setAttribute("newPassError", "Mật khẩu mới không khớp");
 			}
-			System.out.println("vào rồi mà ta");
 			if (check == true) {
-				System.out.println("vào rồi mà ta");
 				username = request.getParameter("username");
 				email = request.getParameter("email");
 				if (getUser.updateAdminInfo(u.getUserID(), username, email, newPass1)) {

@@ -53,17 +53,12 @@
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
-                          <c:if test="${!empty oldPassError }">
-	                            <div>${oldPassError}</div>
-				      	 </c:if>
                           <label class="bmd-label-floating">Mật khẩu hiện tại</label>
                           <input type="text" class="form-control" name="oldPass" required="required">
                         </div>
                       </div>
                       <div class="col-md-4">
-                       <c:if test="${!empty newPassError }">
-	                                 		<div>${newPassError}</div>
-							       		</c:if>
+                       
                         <div class="form-group">
                           <label class="bmd-label-floating">Mật khẩu mới</label>
                           <input type="text" class="form-control" name="newPass1" required="required">
@@ -76,6 +71,12 @@
                         </div>
                       </div>
                     </div>
+                    <c:if test="${!empty oldPassError }">
+	                            <div>${oldPassError}</div>
+				      	 </c:if>
+				      	 <c:if test="${!empty newPassError }">
+	                                 		<div>${newPassError}</div>
+							       		</c:if>
                     <button type="submit" class="btn btn-primary pull-right">Cập nhật thông tin</button>
                     <div class="clearfix"></div>
                   </form>
