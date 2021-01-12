@@ -313,7 +313,7 @@ h2 {
 }
 
 .bottom-bar .logo {
-    text-align: left;
+    text-align: center;
     overflow: hidden;
 }
 
@@ -420,7 +420,6 @@ h2 {
 .header .navbar-nav {
     width: 100%;
     padding: 15px 0;
-    height: 100em;
 }
 
 .header .navbar li {

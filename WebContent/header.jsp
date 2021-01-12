@@ -62,10 +62,11 @@
         <div class="bottom-bar">
             <div class="container-fluid">
                 <div class="row align-items-center">
-                    <div class="col-md-3">
+                	<div class="col-md-1"></div>
+                    <div class="col-md-2">
                         <div class="logo">
                             <a href="index.jsp">
-                                <img src="./client/static/img/logo.png" alt="Logo">
+                                <img src="./client/static/img/logo1.png" alt="Logo" >
                             </a>
                         </div>
                     </div>
@@ -77,11 +78,11 @@
 	                        </form>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="user">
                         <c:choose>
                         	<c:when test="${!empty user.getUserID() }">
-	                            <a href="${pageContext.request.contextPath }/CartController" class="btn cart">
+	                            <a href="${pageContext.request.contextPath }/CartController" class="btn cart" style="border: solid 1px #8e24aa;">
 	                                <i class="fa fa-shopping-cart"></i>
 	                                <span>
 									<%GetCart gc =new GetCart();
@@ -92,7 +93,7 @@
 	                            </a>
                         	</c:when>
                         	<c:otherwise>
-                        		<a href="${pageContext.request.contextPath }/CartController" class="btn cart">
+                        		<a href="${pageContext.request.contextPath }/CartController" class="btn cart" style="border: solid 1px #8e24aa;">
 	                                <i class="fa fa-shopping-cart"></i>
 	                                <span>
 									0
@@ -103,11 +104,12 @@
                         </div>
                          
                     </div>
+                    <div class="col-md-1">
                     
                 </div>
             </div>
         </div>
-         <hr style="color: #8e24aa; width: 90%; border-bottom: solid 2px #8e24aa; border-top:none; margin-top: 5px; margin-bottom: 30px">
+         <hr style="color: #8e24aa; width: 90%;">
         
         <!-- Bottom Bar End -->    
 </body>
