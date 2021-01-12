@@ -46,9 +46,9 @@
 			<div class="row" >
 				<div class="col-lg-12">
 					<div class="product-detail-top">
-						<div class="row align-items-center" style="background-color: #F2F2F2;">
+						<div class="row align-items-center" style="background-color: white;">
 							<div class="col-md-3"></div>
-							<div class="col-md-3" style="background-color: white; margin: 10px 0px;">
+							<div class="col-md-3" style="background-color: white; margin: 10px 0px; box-shadow: 5px 5px 10px rgba(0,0,0,0.3);">
 								<div class="product-slider-single normal-slider" >
 									<img src="${product.getImgFirst() }" alt="Product Image" width="250px" height="300px" >
 									<img src="${product.getImgLast() }" alt="Product Image" width="250px" height="300px" >
@@ -67,7 +67,7 @@
 							<div class="col-md-5">
 								<div class="product-content">
 									<div class="title">
-										<h2>${product.getName()}</h2>
+										<h2 style="white-space:wrap; width:300px">${product.getName()}</h2>
 									</div>
 									<div class="price">
 										<h4>Giá:</h4>
@@ -92,12 +92,12 @@
 										<div class="action">
 										<c:choose>
 										<c:when test="${!empty user}">
-											<button class="btn" type="submit" href="" style="border: solid 3px #FF6F61"><i
+											<button class="btn" type="submit" href="" style="border: solid 3px #8e24aa;"><i
 												class="fa fa-shopping-cart"></i>Thêm vào giỏ
 											</button>
 										</c:when>
 										<c:otherwise>
-											<button class="btn" onclick="handle()" type="button" style="border: solid 3px #FF6F61"> 
+											<button class="btn" onclick="handle()" type="button" style="border: solid 3px #8e24aa;"> 
 											<i class="fa fa-shopping-cart"></i>
 											Thêm vào giỏ
 											</button>										
