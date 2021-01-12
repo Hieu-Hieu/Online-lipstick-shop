@@ -96,25 +96,66 @@ public class UserController extends HttpServlet {
 			request.setAttribute("name", request.getParameter("name"));
 			break;
 		case "update":
-			try {
-				u = (User) session.getAttribute("user");
-				username = request.getParameter("username");
-				email = request.getParameter("email");
-				phone = request.getParameter("phone");
-				address = request.getParameter("address");
-				if (GetUser.updateUserInfo(u.getUserID(), username, phone, email, address)) {
-					request.setAttribute("updateSuccess", "Cập nhật thành công");
-					u = getUser.getUserByID(((User) session.getAttribute("user")).getUserID());
-					session.removeAttribute("user");
-					url = "/my-account.jsp";
-					session.setAttribute("user", u);
-				}
+			u = (User) session.getAttribute("user");
+			if (u.getRole() == false) {
+				try {
+					username = request.getParameter("username");
+					email = request.getParameter("email");
+					phone = request.getParameter("phone");
+					address = request.getParameter("address");
+					if (GetUser.updateUserInfo(u.getUserID(), username, phone, email, address)) {
+						request.setAttribute("updateSuccess", "Cập nhật thành công");
+						u = getUser.getUserByID(((User) session.getAttribute("user")).getUserID());
+						session.removeAttribute("user");
+						url = "/my-account.jsp";
+						session.setAttribute("user", u);
+					}
 
-			} catch (Exception e) {
-				// TODO: handle exception
-				url = "/my-account.jsp";
-				session.setAttribute("dupicateError", "Trùng Email hoặc số điện thoại");
-				e.printStackTrace();
+				} catch (Exception e) {
+					// TODO: handle exception
+					url = "/my-account.jsp";
+					session.setAttribute("dupicateError", "Trùng Email hoặc số điện thoại");
+					e.printStackTrace();
+				}
+			} else {
+				try {
+					String oldPass = request.getParameter("oldPass");
+					u = (User) session.getAttribute("user");
+					if (oldPass.equals(u.getPassword()))
+						check = true;
+					else {
+						check = false;
+						request.setAttribute("oldPassError", "Mật khẩu không đúng");
+					}
+					String newPass1 = request.getParameter("newPass1");
+					String newPass2 = request.getParameter("newPass2");
+					if (newPass1.equals(newPass2)) {
+						check = true;
+					} else {
+						check = false;
+						request.setAttribute("newPassError", "Mật khẩu mới không khớp");
+					}
+					if (check == true) {
+//						request.setAttribute("updateSuccess", "Cập nhật thành công");
+						username = request.getParameter("username");
+						email = request.getParameter("email");
+						pass = request.getParameter("password");
+						if (GetUser.updateAdminInfo(u.getUserID(), username, email, pass)) {
+							request.setAttribute("updateSuccess", "Cập nhật thành công");
+							u = getUser.getUserByID(((User) session.getAttribute("user")).getUserID());
+							session.removeAttribute("user");
+							url = "/admin/profile.jsp";
+							session.setAttribute("user", u);
+						}
+
+					}
+
+				} catch (Exception e) {
+					// TODO: handle exception
+					url = "/admin/profile.jsp";
+					session.setAttribute("dupicateError", "Trùng Email");
+					e.printStackTrace();
+				}
 			}
 			break;
 		case "login":
@@ -127,11 +168,11 @@ public class UserController extends HttpServlet {
 				e.printStackTrace();
 			}
 			if (u != null) {
+				session.setAttribute("user", u);
 				if (u.getRole() == true) {
-					session.setAttribute("admin", u);
+//					session.setAttribute("admin", u);
 					url = "/admin/dashboard.jsp";
 				} else {
-					session.setAttribute("user", u);
 					url = "/index.jsp";
 				}
 				response.sendRedirect(request.getContextPath() + url);
