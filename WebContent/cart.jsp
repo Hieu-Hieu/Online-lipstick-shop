@@ -36,33 +36,34 @@
 
 <body>
 
-    <jsp:include page="header.jsp"></jsp:include>
-        <!-- Cart Start -->
-        <c:if test="${!empty quantityError}">
-        	<script type="text/javascript">
-        		var mess = "${quantityError}";
-        		alert(mess);
-        	</script>
-        </c:if>
-        <div class="cart-page">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="cart-page-inner">
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th>Tên sản phẩm</th>
-                                            <th>Giá</th>
-                                            <th>Số lượng</th>
-                                            <th>Tổng</th>
-                                            <th>Xóa khỏi giỏ hàng</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="align-middle">
-                             
-                                  <c:forEach items="${listCart}" var="cart">
+	<jsp:include page="header.jsp"></jsp:include>
+	<!-- Cart Start -->
+	<c:if test="${!empty quantityError}">
+		<script type="text/javascript">
+			var mess = "${quantityError}";
+			alert(mess);
+		</script>
+	</c:if>
+	<div class="cart-page">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-1"></div>
+				<div class="col-lg-10">
+					<div class="cart-page-inner">
+						<div class="table-responsive">
+							<table class="table table-bordered">
+								<thead class="thead-dark">
+									<tr>
+										<th>Tên sản phẩm</th>
+										<th>Giá</th>
+										<th>Số lượng</th>
+										<th>Tổng</th>
+										<th>Xóa khỏi giỏ hàng</th>
+									</tr>
+								</thead>
+								<tbody class="align-middle">
+
+									<c:forEach items="${listCart}" var="cart">
 										<tr>
 											<td>
 												<div class="img">
@@ -93,14 +94,15 @@
 														<i class="far fa-save"></i>
 													</button>
 												</form>
-                                            </td>
-                                            <fmt:formatNumber var="totalPrice" type="number" pattern="###,###,###" value="${cart.getQuantity() * cart.getProduct().getPrice() }"/>
-                                            <td>${totalPrice }Đ</td>
-                                            <td>
-												<a href="${pageContext.request.contextPath }/AddToCartController?command=remove&productID=${cart.getProduct().getProductID()}">
-													<i class="fa fa-trash"></i>
-												</a>
 											</td>
+											<fmt:formatNumber var="totalPrice" type="number"
+												pattern="###,###,###"
+												value="${cart.getQuantity() * cart.getProduct().getPrice() }" />
+											<td>${totalPrice }Đ</td>
+											<td><a
+												href="${pageContext.request.contextPath }/AddToCartController?command=remove&productID=${cart.getProduct().getProductID()}">
+													<i class="fa fa-trash"></i>
+											</a></td>
 										</tr>
 									</c:forEach>
 
@@ -109,6 +111,7 @@
 						</div>
 					</div>
 				</div>
+				<div class="col-lg-1"></div>
 			</div>
 		</div>
 	</div>
@@ -117,9 +120,10 @@
 	<div class="checkout">
 		<div class="container-fluid">
 			<div class="row">
+			<div class="col-lg-1"></div>
 				<form action="${pageContext.request.contextPath}/BillController"
 					method="post" style="display: flex">
-					<div class="col-lg-12">
+					<div class="col-lg-10">
 						<div class="checkout-inner">
 							<div class="billing-address">
 								<h2>Thông tin đặt hàng</h2>
@@ -148,26 +152,28 @@
 					</div>
 					<div class="cart-page">
 						<div class="col-lg-4">
-							<div class="cart-page-inner" style="position: absolute; width: 400px; height: 300px;">
+							<div class="cart-page-inner"
+								style="position: absolute; width: 400px; height: 300px;">
 								<div class="cart-content">
 									<h2>
 										Tổng thanh toán
 										<fmt:formatNumber var="total" type="number"
 											pattern="###,###,###" value="${totalCart }" />
-										<br>
-										<span> ${total }Đ</span>
+										<br> <span> ${total }Đ</span>
 									</h2>
 
 									<hr>
 								</div>
-						
-									<button type="submit" class="btn" style="border: solid 2px #8e24aa; font-size: 18px; font-weight:600; color: white; background-color: #8e24aa;
-									 ">Đặt hàng</button>
-				
+
+								<button type="submit" class="btn"
+									style="border: solid 2px #8e24aa; font-size: 18px; font-weight: 600; color: white; background-color: #8e24aa;">Đặt
+									hàng</button>
+
 							</div>
 						</div>
 					</div>
 				</form>
+				<div class="col-lg-1"></div>
 			</div>
 		</div>
 	</div>

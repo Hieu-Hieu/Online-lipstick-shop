@@ -37,7 +37,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-1"></div>
-				<div class="col-md-2">
+				<div class="col-md-2" style="box-shadow: 2px 0px 2px rgba(142,36,170,0.3);">
 					<div class="nav flex-column nav-pills" role="tablist"
 						aria-orientation="vertical">
 						<a class="nav-link"><i class="fa fa-shopping-bag"></i>Lịch sử
@@ -45,69 +45,77 @@
 							class="fa fa-user"></i>Thông tin chi tiết</a>
 					</div>
 				</div>
-				<div class="col-md-9">
-					<table class="table table-bordered">
-						<thead class="thead-dark">
-							<tr 	>
-								<th>STT</th>
-								<th>Địa chỉ</th>
-								<th>Ngày đặt</th>
-								<th>Tổng thanh toán</th>
-								<th>Tình trạng</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="bill" items="${listBill }">
-								<form
-									action="${pageContext.request.contextPath }/OrderHistory?command=detail&billID=${bill.getBillID()}"
-									method="post">
+				<div class="col-md-8">
+				<div class="cart-page">
+					<div class="cart-page-inner" style="padding-top: 0px">
+						<div class="table-responsive">
+							<table class="table table-bordered">
+								<thead class="thead-dark">
 									<tr>
-										<td>${bill.getBillID()}</td>
-										<td>${bill.getAddress() }</td>
-										<td>${bill.getDate() }</td>
-										<td>${bill.getTotal() }</td>
-										<td>${bill.getState() }</td>
-										<td><button class="btn" type="submit">Xem</button></td>
+										<th>STT</th>
+										<th>Địa chỉ</th>
+										<th>Ngày đặt</th>
+										<th>Tổng thanh toán</th>
+										<th>Tình trạng</th>
+										<th></th>
 									</tr>
-									<tr>
-										<div></div>
-								</form>
-							</c:forEach>
+								</thead>
+								<tbody class="align-middle">
+									<c:forEach var="bill" items="${listBill }">
+										<form
+											action="${pageContext.request.contextPath }/OrderHistory?command=detail&billID=${bill.getBillID()}"
+											method="post">
+											<tr>
+												<td>${bill.getBillID()}</td>
+												<td>${bill.getAddress() }</td>
+												<td>${bill.getDate() }</td>
+												<td>${bill.getTotal() }</td>
+												<td>${bill.getState() }</td>
+												<td><button class="btn" type="submit" style="width:50px;">Xem</button></td>
+											</tr>
+											<tr>
+												<div></div>
+										</form>
+									</c:forEach>
 
-						</tbody>
-					</table>
-					<c:if test="${!empty detailBill}">
-					<h5>Chi tiết đơn hàng: ${detailBill.get(0).getBill().getBillID()}</h5>
-						<table class="table table-bordered">
-							<thead class="thead-dark">
-								<tr>
-									<th>ID</th>
-									<th>Tên sản phẩm</th>
-									<th>Hình ảnh</th>
-									<th>Số lượng</th>
-									<th>Giá</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${detailBill }" var="bd">
-									<tr>
-										<td>${bd.getBill().getBillID()}</td>
-										<td>${bd.getProduct().getName()}</td>
-										<td><img width="50px" height="50px"
-											src="${bd.getProduct().getImgFirst() }" /></td>
-										<td>${bd.getQuantity()}</td>
-										<td>${bd.getProduct().getPrice()}</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</c:if>
+								</tbody>
+							</table>
+							
+							<c:if test="${!empty detailBill}">
+								<h5 style="margin-top: 20px;">Chi tiết đơn hàng:
+									${detailBill.get(0).getBill().getBillID()}</h5>
+								<table class="table table-bordered">
+									<thead class="thead-dark">
+										<tr>
+											<th>ID</th>
+											<th>Tên sản phẩm</th>
+											<th>Hình ảnh</th>
+											<th>Số lượng</th>
+											<th>Giá</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${detailBill }" var="bd">
+											<tr>
+												<td>${bd.getBill().getBillID()}</td>
+												<td>${bd.getProduct().getName()}</td>
+												<td><img width="50px" height="50px"
+													src="${bd.getProduct().getImgFirst() }" /></td>
+												<td>${bd.getQuantity()}</td>
+												<td>${bd.getProduct().getPrice()}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</c:if>
+						</div>
+					</div>
+					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 	</div>
-<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="footer.jsp"></jsp:include>
 	<!-- My Account End -->
 
 </body>

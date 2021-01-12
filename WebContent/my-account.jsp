@@ -42,7 +42,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-1"></div>
-				<div class="col-md-2">
+				<div class="col-md-2" style="box-shadow: 2px 0px 2px rgba(142,36,170,0.3);">
 					<div class="nav flex-column nav-pills" role="tablist"
 						aria-orientation="vertical">
 						<a class="nav-link"
