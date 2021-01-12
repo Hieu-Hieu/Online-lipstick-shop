@@ -36,7 +36,8 @@
 	<div class="my-account">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-1"></div>
+				<div class="col-md-2">
 					<div class="nav flex-column nav-pills" role="tablist"
 						aria-orientation="vertical">
 						<a class="nav-link"><i class="fa fa-shopping-bag"></i>Lịch sử
@@ -47,7 +48,7 @@
 				<div class="col-md-9">
 					<table class="table table-bordered">
 						<thead class="thead-dark">
-							<tr>
+							<tr 	>
 								<th>STT</th>
 								<th>Địa chỉ</th>
 								<th>Ngày đặt</th>
@@ -106,9 +107,8 @@
 			</div>
 		</div>	
 	</div>
-	</div>
+<jsp:include page="footer.jsp"></jsp:include>
 	<!-- My Account End -->
-	<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>

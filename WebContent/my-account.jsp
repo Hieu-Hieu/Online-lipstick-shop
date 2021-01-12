@@ -41,7 +41,8 @@
 	<div class="my-account">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-1"></div>
+				<div class="col-md-2">
 					<div class="nav flex-column nav-pills" role="tablist"
 						aria-orientation="vertical">
 						<a class="nav-link"
@@ -72,45 +73,46 @@
 								action="${pageContext.request.contextPath }/UserController?command=update"
 								method="post">
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<input class="form-control" type="text" placeholder="Tên"
 											value="${user.getUsername()}" name="username" required>
 									</div>
-									<div class="col-md-6">
+									<div class="col-md-4">
 										<input class="form-control" type="tel"
 											placeholder="Số điện thoại" value="${user.getPhone() }"
 											name="phone" required>
 									</div>
-									<div class="col-md-6">
+									<div class="col-md-5">
 										<input class="form-control" type="email" placeholder="Email"
 											value="${user.getEmail() }" name="email" required>
 									</div>
-									<div class="col-md-12">
+									<div class="col-md-8">
 										<input class="form-control" type="text" placeholder="Địa chỉ"
 											value="${user.getAddress() }" name="address" required>
 									</div>
 									<div class="col-md-12">
-										<button type="submit">Cập nhật</button>
+										<button type="submit" class="btn" style=" border: solid 2px #8e24aa; font-size:17px; font-weight: 600;">Cập nhật</button>
 									</div>
 								</div>
 							</form>
-							<h4>Đổi mật khẩu</h4>
-							<div class="row">
+							<h4 style="margin-top: 20px;">Đổi mật khẩu</h4>
+							
 								<form
 									action="${pageContext.request.contextPath }/UserController?command=changePass"
 									method="post">
-									<div class="col-md-12">
+									<div class="row">
+									<div class="col-md-4">
 										<input class="form-control" type="password"
 											placeholder="Mật khẩu hiện tại" name="oldPass">
 									</div>
 									<c:if test="${!empty oldPassError }">
 										<div>${oldPassError}</div>
 									</c:if>
-									<div class="col-md-12">
+									<div class="col-md-4">
 										<input class="form-control" type="password"
 											placeholder="Mật khẩu mới" name="newPass1">
 									</div>
-									<div class="col-md-12">
+									<div class="col-md-5">
 										<input class="form-control" type="password"
 											placeholder="Xác nhận mật khẩu" name="newPass2">
 									</div>
@@ -118,7 +120,7 @@
 										<div>${newPassError}</div>
 									</c:if>
 									<div class="col-md-12">
-										<button class="btn">Lưu thay đổi</button>
+										<button class="btn" style=" border: solid 2px #8e24aa; font-size:17px; font-weight: 600;">Lưu thay đổi</button>
 									</div>
 								</form>
 							</div>
