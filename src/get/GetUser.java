@@ -199,7 +199,6 @@ public class GetUser {
 
 	public boolean updateAdminInfo(int userID, String username, String email, String password) {
 		Transaction transaction = null;
-//		try {
 //		start a transaction
 		Session session = Utill.getSessionFactory().openSession();
 		transaction = session.beginTransaction();
@@ -212,16 +211,7 @@ public class GetUser {
 		if (q.executeUpdate() > 0) {
 			return true;
 		}
-		// commit transaction
 		transaction.commit();
-
-//		} catch (SQLException e) {
-//			if (transaction != null) {
-//				transaction.rollback();
-//			}
-//			e.printStackTrace();
-//
-//		}
 		return false;
 	}
 

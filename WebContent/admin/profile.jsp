@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Profile
@@ -35,41 +35,44 @@
                   <p class="card-category"></p>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form action="${pageContext.request.contextPath }/admin/UpdateInfo" method="post">
                     <div class="row">
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Username</label>
-                          <input type="text" class="form-control" value="${user.getUsername() }" name="username">
+                          <input type="text" class="form-control" value="${user.getUsername() }" name="username" required="required">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating" >Email</label>
-                          <input type="email" class="form-control" value="${user.getEmail() }">
-                          <c:if test="${!empty oldPassError }">
-	                            <div>${oldPassError}</div>
-				      	 </c:if>
+                          <input type="email" class="form-control" value="${user.getEmail() }" required="required" name="email">
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
+                          <c:if test="${!empty oldPassError }">
+	                            <div>${oldPassError}</div>
+				      	 </c:if>
                           <label class="bmd-label-floating">Mật khẩu hiện tại</label>
-                          <input type="text" class="form-control" name="oldPass">
+                          <input type="text" class="form-control" name="oldPass" required="required">
                         </div>
                       </div>
                       <div class="col-md-4">
+                       <c:if test="${!empty newPassError }">
+	                                 		<div>${newPassError}</div>
+							       		</c:if>
                         <div class="form-group">
                           <label class="bmd-label-floating">Mật khẩu mới</label>
-                          <input type="text" class="form-control" name="newPass1">
+                          <input type="text" class="form-control" name="newPass1" required="required">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Xác nhận mật khẩu</label>
-                          <input type="text" class="form-control" name="newPass2">
+                          <input type="text" class="form-control" name="newPass2" required="required">
                         </div>
                       </div>
                     </div>
