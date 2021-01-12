@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,13 +40,16 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Username</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" value="${user.getUsername() }" name="username">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Email</label>
-                          <input type="email" class="form-control">
+                          <label class="bmd-label-floating" >Email</label>
+                          <input type="email" class="form-control" value="${user.getEmail() }">
+                          <c:if test="${!empty oldPassError }">
+	                            <div>${oldPassError}</div>
+				      	 </c:if>
                         </div>
                       </div>
                     </div>
@@ -52,19 +57,19 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Mật khẩu hiện tại</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="oldPass">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Mật khẩu mới</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="newPass1">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Xác nhận mật khẩu</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="newPass2">
                         </div>
                       </div>
                     </div>
@@ -80,5 +85,10 @@
     </div>
   </div>
 </body>
+		<c:if test="${!empty updateSuccess }">
+	            <script type="text/javascript">
+	            	alert("${updateSuccess}")
+	            </script>
+		</c:if>
 
 </html>

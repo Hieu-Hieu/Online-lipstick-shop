@@ -43,7 +43,7 @@ public class Admin implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
-		if (session.getAttribute("admin") != null) {
+		if (session.getAttribute("user") != null) {
 			chain.doFilter(request, response);
 			return;
 		} else {
