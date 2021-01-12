@@ -34,16 +34,16 @@
 <!-- Template Stylesheet -->
 <link href="./client/static/css/style.css" rel="stylesheet">
 </head>
-
-<body>
 <jsp:include page="header.jsp"></jsp:include>
+<body>
+
 	<!-- Main Slider Start -->
-	<div class="header">
-		<div class="container-fluid">
+	<div class="header" >
+		<div class="container-fluid" style="margin-left: 80px;">
 			<div class="row">
 				<div class="col-md-2" >
 					<nav class="navbar bg-light" style="align-items: flex-start;">
-						<ul class="navbar-nav">
+						<ul class="navbar-nav" style="background-color: #F5F5F5; ">
 							<li class="nav-item">
 							<a class="nav-link" href="#"><i class="fa fa-home"></i>Nhà sản xuất</a>
 								<ul>
@@ -64,9 +64,9 @@
 					</nav>
 				</div>
 				<div class="col-md-10" >
-					<div class="row">
-						<div class="product-view">
-							<div class="container-fluid">
+	
+						<div class="product-view" style="padding: 0px;">
+							<div class="container">
 								<div class="row">
 									<c:choose>
 										<c:when test="${!empty EmptyListProduct }">
@@ -74,15 +74,15 @@
 										</c:when>
 										<c:when test="${!empty listProduct}">
 											<c:forEach items="${listProduct}" var="p">
-												<div class="col-md-3" style="box-shadow: 5px 5px 10px rgba(0,0,0,0.3);">
+												<div class="col-md-3" style="box-shadow: 5px 5px 10px rgba(0,0,0,0.3); margin-left:20px; margin-right:20px">
 													<div class="product-item">
 														<div class="product-image" >
-															<a href="${pageContext.request.contextPath}/ProductDetailController?productID=${p.getProductID() }"> <img
-																src="${p.getImgFirst() }" alt="Product Image" height="300px" >
+															<a href="${pageContext.request.contextPath}/ProductDetailController?productID=${p.getProductID() }"> 
+															<img src="${p.getImgFirst() }" alt="Product Image" height="300px" style="border-bottom: solid 2px rgba(0,0,0,0.3)">
 															</a>
 														</div>
 														<div class="product-price" style="text-align: center; background: none;">
-														<p style="font-family: sans-serif; font-size: 18px; font-weight: 600; color: black; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; ">${p.getName() }</p>
+														<p style="font-family: sans-serif; font-size: 18px; font-weight: 600; color: black; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin=0px; ">${p.getName() }</p>
 						
 															<h3 style="color: #8e24aa; font-weight: bold; letter-spacing: 0.5px; font-size: 18px;">
 																<fmt:formatNumber var="price" type="number "
@@ -155,7 +155,7 @@
 							</div>
 						</div>
 						<!-- Product List End -->
-					</div>
+				
 				</div>
 
 			</div>
@@ -169,7 +169,7 @@
 		</c:if>
 		<!-- Back to Top -->
 		<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
- <jsp:include page="footer.jsp"></jsp:include>
+ 
 		<!-- JavaScript Libraries -->
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 		<script
@@ -180,4 +180,5 @@
 		<!-- Template Javascript -->
 		<script src="./client/static/js/main.js"></script>
 </body>
+<jsp:include page="footer.jsp"></jsp:include>
 </html>
