@@ -78,23 +78,19 @@
 											<c:forEach items="${listProduct}" var="p">
 												<div class="col-md-4">
 													<div class="product-item">
-														<div class="product-title">
-															<a href="">${p.getName() }</a>
-														</div>
 														<div class="product-image">
 															<a href="${pageContext.request.contextPath}/ProductDetailController?productID=${p.getProductID() }"> <img
-																src="${p.getImgFirst() }" alt="Product Image">
+																src="${p.getImgFirst() }" alt="Product Image" height="380px" >
 															</a>
 														</div>
 														<div class="product-price">
+														<a href="" style="font-family: cursive; font-size: 20px; font-weight: 600; color: white; padding: 15px;">${p.getName() }</a>
 															<h3>
 																<fmt:formatNumber var="price" type="number "
 																	pattern="###,###,###" value="${p.getPrice()}" />
-																${price}<span>Đ</span>
+																${price}<h3>VNĐ</h3>
 															</h3>
-															<a class="btn"
-																href="${pageContext.request.contextPath}/AddToCartController?cart=no&command=add&productID=${p.getProductID() }&quantity=1&currentPage=${currentPage}"><i
-																class="fa fa-shopping-cart"></i>Thêm</a>
+															
 														</div>
 													</div>
 												</div>

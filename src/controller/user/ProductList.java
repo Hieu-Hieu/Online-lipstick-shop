@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import get.BrandDAO;
 import get.CategoryDAO;
@@ -42,11 +43,10 @@ public class ProductList extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		doPost(request, response);
-		/**
-		 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-		 *      response)
-		 */
+		doPost(request, response);/**
+									 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+									 *      response)
+									 */
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -54,6 +54,7 @@ public class ProductList extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String currentPage = request.getParameter("currentPage");
 		String command = request.getParameter("command");
@@ -86,20 +87,34 @@ public class ProductList extends HttpServlet {
 			break;
 		case "filter":
 			try {
+				int id = 0;
 				String filter = request.getParameter("filter");
+				if (filter != null) {
+					session.setAttribute("filter", filter);
+				} else {
+					id = Integer.parseInt(request.getParameter("searchKey"));
+					filter = (String) session.getAttribute("filter");
+				}
 				System.out.println(filter);
 				if (filter.equals("brand")) {
 					String brandID = request.getParameter("brandID");
-//					if (brandID != null) {
-					sql = "from Product where brandID = " + Integer.parseInt(brandID);
-					request.setAttribute("searchKey", request.getParameter("brandID"));
-//					}
+					if (brandID != null) {
+						sql = "from Product where brandID = " + Integer.parseInt(brandID);
+						request.setAttribute("searchKey", request.getParameter("brandID"));
+					} else {
+						sql = "from Product where brandID = " + id;
+						request.setAttribute("searchKey", request.getParameter("brandID"));
+					}
 				} else {
 					String categoryID = request.getParameter("categoryID");
-//					if (categoryID != null) {
-					sql = "from Product where category = " + Integer.parseInt(categoryID);
-					request.setAttribute("searchKey", request.getParameter("categoryID"));
-//					}
+					if (categoryID != null) {
+						sql = "from Product where category = " + Integer.parseInt(categoryID);
+						request.setAttribute("searchKey", request.getParameter("categoryID"));
+					} else {
+						sql = "from Product where category = " + id;
+						request.setAttribute("searchKey", request.getParameter("categoryID"));
+					}
+
 				}
 				String key = request.getParameter("searchKey");
 				if (key != null) {

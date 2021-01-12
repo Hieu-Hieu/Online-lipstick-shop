@@ -18,6 +18,7 @@
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 <!-- CSS Files -->
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <link href="${root}/admin/static/css/material-dashboard.css" rel="stylesheet" />
@@ -43,12 +44,12 @@
 											<thead class="">
 												<th>ID</th>
 												<th>Nhà sản xuất</th>
-												<th>Action</th>
+												<th></th>
 											</thead>
 											<tbody>
 											<c:forEach items="${brandList}" var="item">
 												<tr>
-													<td >${item.getBrandID()}</td>
+													<td style="width: 400px">${item.getBrandID()}</td>
 													<td >${item.getBrandName()}</td>
 													<td>
 														<a href="${pageContext.request.contextPath}/admin/brand/update?id=${item.getBrandID()}"><button  class="btn btn-primary pull-right">Cập nhật</button></a>

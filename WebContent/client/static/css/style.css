@@ -414,7 +414,6 @@ h2 {
 
 .header .navbar {
     padding: 0;
-    height: 100%;
     overflow: hidden;
     background: #ffffff !important;
 }
@@ -1036,7 +1035,6 @@ h2 {
 .product-detail {
     position: relative;
     width: 100%;
-    padding: 30px 0;
 }
 
 .product-detail .product-detail-top,

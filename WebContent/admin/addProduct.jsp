@@ -18,6 +18,7 @@
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 <!-- CSS Files -->
 <c:set var="root" value="${pageContext.request.contextPath}"/>
    
@@ -122,11 +123,10 @@
 														
 																		
 																		<button type="submit"
-																			class="btn btn-primary pull-right" value="Upload" >Cập nhật
+																			class="btn btn-primary pull-right" value="Upload" >Thêm /Cập nhật
 																			thông tin</button>
-																		<button type="submit"
-																			class="btn btn-primary pull-right">
-																			<a style="text-decoration:none;" href="#">Quay lại</a>
+																		<button type="submit" style="color:white" class="btn btn-primary pull-right">
+																		Quay lại
 																		</button>
 																	</div>
 																</div>

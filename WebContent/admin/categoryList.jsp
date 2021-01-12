@@ -17,6 +17,7 @@
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 <!-- CSS Files -->
 <link href="${pageContext.request.contextPath}/admin/static/css/material-dashboard.css" rel="stylesheet" />
 </head>
@@ -40,9 +41,9 @@
 									<div class="table-responsive">
 										<table class="table table-hover">
 											<thead class="">
-												<th>ID</th>
+												<th style="width: 400px">ID</th>
 												<th>Nhà sản xuất</th>
-												<th>Action</th>
+												<th></th>
 											</thead>
 											<tbody>
 											<c:forEach items="${categoryList}" var="item">

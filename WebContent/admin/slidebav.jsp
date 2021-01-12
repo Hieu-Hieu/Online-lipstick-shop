@@ -14,10 +14,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
         <!-- CSS Files -->
         <link href="./static/css/material-dashboard.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
       </head>
 <body>
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-        <div class="logo"><a href="#"></a></div>
+    <div class="sidebar" data-color="purple" data-background-color="white">
         <div class="sidebar-wrapper" >
           <ul class="nav">
             <li class="nav-item active  ">
@@ -40,7 +40,7 @@
             </li>
             <li class="nav-item ">
               <a class="nav-link" href="${pageContext.request.contextPath }/admin/category/list">
-                <i class="fa fa-truck" aria-hidden="true"></i>
+                <i class="fas fa-align-left"></i>
                 <p>Quản lý loại sản phẩm</p>
               </a>
             </li>

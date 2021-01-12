@@ -38,12 +38,14 @@
                     <div class="col-md-3">
                         <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
                             <a class="nav-link" href="${pageContext.request.contextPath}/OrderHistory?command=list"><i class="fa fa-shopping-bag"></i>Lịch sử đặt hàng</a>
-                            <a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i class="fa fa-user"></i>Thông tin chi tiết</a>
-                            <a class="nav-link" href="${pageContext.request.contextPath}/UserLogout"><i class="fa fa-sign-out-alt"></i>Đăng xuất</a>
+                           	<a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i class="fa fa-user"></i>Thông tin chi tiết</a>
                         </div>
                     </div>
                     <div class="col-md-9">
                         <div class="tab-content">
+
+                             <h4>Thông tin chi tiết</h4>
+	                        
 	                         <c:if test="${!empty updateSuccess }">
 		                         <script type="text/javascript">
 		                         	aler("${updateSuccess}")
@@ -97,12 +99,16 @@
 	                                    </div>
 	                                </form>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <c:if test="${!empty updateSuccess }">
+	            <script type="text/javascript">
+	            	alert("${updateSuccess}")
+	            </script>
+		</c:if>
         <!-- My Account End -->
         <jsp:include page="footer.jsp"></jsp:include>
         
