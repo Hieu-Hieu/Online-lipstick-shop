@@ -36,14 +36,12 @@
 </head>
 
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
-
-
+<jsp:include page="header.jsp"></jsp:include>
 	<!-- Main Slider Start -->
 	<div class="header">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-2" >
 					<nav class="navbar bg-light" style="align-items: flex-start;">
 						<ul class="navbar-nav">
 							<li class="nav-item">
@@ -65,7 +63,7 @@
 						</ul>
 					</nav>
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-10" >
 					<div class="row">
 						<div class="product-view">
 							<div class="container-fluid">
@@ -76,19 +74,20 @@
 										</c:when>
 										<c:when test="${!empty listProduct}">
 											<c:forEach items="${listProduct}" var="p">
-												<div class="col-md-4">
+												<div class="col-md-3" style="box-shadow: 5px 5px 10px rgba(0,0,0,0.3);">
 													<div class="product-item">
-														<div class="product-image">
+														<div class="product-image" >
 															<a href="${pageContext.request.contextPath}/ProductDetailController?productID=${p.getProductID() }"> <img
-																src="${p.getImgFirst() }" alt="Product Image" height="380px" >
+																src="${p.getImgFirst() }" alt="Product Image" height="300px" >
 															</a>
 														</div>
-														<div class="product-price">
-														<a href="" style="font-family: cursive; font-size: 20px; font-weight: 600; color: white; padding: 15px;">${p.getName() }</a>
-															<h3>
+														<div class="product-price" style="text-align: center; background: none;">
+														<p style="font-family: sans-serif; font-size: 18px; font-weight: 600; color: black; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; ">${p.getName() }</p>
+						
+															<h3 style="color: #8e24aa; font-weight: bold; letter-spacing: 0.5px; font-size: 18px;">
 																<fmt:formatNumber var="price" type="number "
 																	pattern="###,###,###" value="${p.getPrice()}" />
-																${price}<h3>VNĐ</h3>
+																${price}VNĐ
 															</h3>
 															
 														</div>
@@ -161,17 +160,16 @@
 
 			</div>
 		</div>
+		
 		<!-- Main Slider End -->
 		<c:if test="${!empty LoginRequire }">
 		 	<script type="text/javascript">
 		 		alert("Đăng nhập để mua hàng");
 		 	</script>
 		</c:if>
-
-		<jsp:include page="footer.jsp"></jsp:include>
 		<!-- Back to Top -->
 		<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-
+ <jsp:include page="footer.jsp"></jsp:include>
 		<!-- JavaScript Libraries -->
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 		<script
