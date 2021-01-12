@@ -101,10 +101,14 @@
                         	</c:otherwise>
                         </c:choose>
                         </div>
+                         
                     </div>
+                    
                 </div>
             </div>
         </div>
+         <hr style="color: #8e24aa; width: 90%; border-bottom: solid 2px #8e24aa; border-top:none; margin-top: 5px; margin-bottom: 30px">
+        
         <!-- Bottom Bar End -->    
 </body>
 </html>

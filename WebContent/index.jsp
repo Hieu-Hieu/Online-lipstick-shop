@@ -35,7 +35,7 @@
 <link href="./client/static/css/style.css" rel="stylesheet">
 </head>
 <jsp:include page="header.jsp"></jsp:include>
-<body>
+<body style="background: white;">
 
 	<!-- Main Slider Start -->
 	<div class="header" >
@@ -43,7 +43,7 @@
 			<div class="row">
 				<div class="col-md-2" >
 					<nav class="navbar bg-light" style="align-items: flex-start;">
-						<ul class="navbar-nav" style="background-color: #F5F5F5; ">
+						<ul class="navbar-nav" style="background-color: white; ">
 							<li class="nav-item">
 							<a class="nav-link" href="#"><i class="fa fa-home"></i>Nhà sản xuất</a>
 								<ul>
@@ -169,7 +169,6 @@
 		</c:if>
 		<!-- Back to Top -->
 		<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
- 
 		<!-- JavaScript Libraries -->
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 		<script
@@ -179,6 +178,7 @@
 
 		<!-- Template Javascript -->
 		<script src="./client/static/js/main.js"></script>
+		<jsp:include page="footer.jsp"></jsp:include>
 </body>
-<jsp:include page="footer.jsp"></jsp:include>
+
 </html>
