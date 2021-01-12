@@ -26,6 +26,7 @@
 									Nhập code</strong>
 								</h3>
 							</div>
+							
 							<c:if test="${!empty error }">
 								<div class="alert alert-danger" role="alert">${error }</div>
 							</c:if>
@@ -72,9 +73,8 @@
 											style="background-color: pink; border-color: white;">
 									</form>
 									<div class="d-flex mb-5 align-items-center">
-										<span class="ml-auto"><a href
-												="${pageContext.request.contextPath}/ForgotPassword?command=again
-												" style="padding-right: 150px;">Gửi lại</a></span>
+										<span class="ml-auto"><a href ="${pageContext.request.contextPath}/ForgotPassword?command=again 
+										" style="padding-right: 150px;" onclick="onsubmit">Gửi lại</a></span>
 								</c:otherwise>
 							</c:choose>
 						</div>
@@ -83,5 +83,11 @@
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		function onsubmit() {
+			alert("Chúng tôi đã gửi mã xác nhận cho bạn");
+		}
+	</script>
 </body>
 </html>

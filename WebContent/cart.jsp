@@ -34,31 +34,8 @@
 <link href="./client/static/css/style.css" rel="stylesheet">
 </head>
 
-<<<<<<< HEAD
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
-	<!-- Cart Start -->
-	<div class="cart-page">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="cart-page-inner">
-						<div class="table-responsive">
-							<table class="table table-bordered">
-								<thead class="thead-dark">
-									<tr>
-										<th>Tên sản phẩm</th>
-										<th>Giá</th>
-										<th>Số lượng</th>
-										<th>Tổng</th>
-										<th>Xóa khỏi giỏ hàng</th>
-									</tr>
-								</thead>
-								<tbody class="align-middle">
 
-									
-=======
-    <body>
     <jsp:include page="header.jsp"></jsp:include>
         <!-- Cart Start -->
         <c:if test="${!empty quantityError}">
@@ -123,16 +100,7 @@
 												<a href="${pageContext.request.contextPath }/AddToCartController?command=remove&productID=${cart.getProduct().getProductID()}">
 													<i class="fa fa-trash"></i>
 												</a>
->>>>>>> 32e4b11 (update)
 											</td>
-											<fmt:formatNumber var="totalPrice" type="number"
-												pattern="###,###,###"
-												value="${cart.getQuantity() * cart.getProduct().getPrice() }" />
-											<td>${totalPrice }Đ</td>
-											<td><a
-												href="${pageContext.request.contextPath }/AddToCartController?command=remove&productID=${cart.getProduct().getProductID()}">
-													<i class="fa fa-trash"></i>
-											</a></td>
 										</tr>
 									</c:forEach>
 

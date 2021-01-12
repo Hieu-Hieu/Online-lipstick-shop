@@ -10,6 +10,14 @@
 <title>Nhập email</title>
 <link rel="stylesheet" href="./client/static/css/login2.css">
 <link rel="stylesheet" href="./client/static/css/bootstrap.min.css">
+<script type="text/javascript">
+		function submit(event) {
+			event.preventDefault()
+		document.getElementById("sended").innerHTML ="Đã gửi đến mail của bạn!";
+		document.getElementById("sendBtn").settAttribute("type", "button")
+		return true;
+		}
+	</script>
 </head>
 <body>
 	<div class="content">
@@ -29,11 +37,13 @@
 				</div>
        		</c:if>
             </div>
-            <form action="${pageContext.request.contextPath}/ForgotPassword?command=new" method="post">
+            <form  action="${pageContext.request.contextPath}/ForgotPassword?command=new" onsubmit="return submit(event)" method="post">
               <div class="form-group first">
-                <input type="email" class="form-control" placeholder="Nhập địa chỉ email" name="email">
+                <input type="email" class="form-control" placeholder="Nhập địa chỉ email" name="email" required>
               </div>
-              <input type="submit" value="Gửi" class="btn text-white btn-block btn-primary" style="background-color: pink; border-color: white;">
+              <div class="alert" role="alert" id="sended">
+				</div>
+              <input id="sendBtn" type="submit" value="Gửi" class="btn text-white btn-block btn-primary" style="background-color: pink; border-color: white;">
             </form>
             </div>
           </div>   
@@ -41,5 +51,6 @@
       </div>
     </div>
   </div>
+  
 </body>
 </html>
