@@ -51,11 +51,12 @@
 							<div class="col-md-2"></div>
 							<div class="col-md-3"
 								style="background-color: white; margin: 10px 0px; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);">
-								<div class="product-slider-single normal-slider">
+								<div class="product-slider-single normal-slider" style="border-bottom: solid 2px rgba(0,0,0,0.3)">
 									<img src="${product.getImgFirst() }" alt="Product Image"
-										width="250px" height="300px"> <img
+										width="250px" height="300px" > 
+									<img
 										src="${product.getImgLast() }" alt="Product Image"
-										width="250px" height="300px">
+										width="250px" height="300px" >
 								</div>
 								<div class="product-slider-single-nav normal-slider">
 									<div class="slider-nav-img">
