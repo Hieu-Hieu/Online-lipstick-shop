@@ -27,12 +27,14 @@
    <div class="grid wide">
    <hr>
         <div class="row no-gutters">
-            <div class="c-12">
+        	<div class="c-1"></div>
+            <div class="c-10">
                 <img class="logo" src="./client/static/img/logo1.png" alt="#">
             </div>
         </div>
         <div class="row no-gutters">
-            <div class="c-6">
+        	<div class="c-1"></div>
+            <div class="c-5">
                 <h2 style="color: #000;"><strong>4guysellingsliptick.com</strong></h2>
                 <ul>
                     <li><i class="fas fa-home"></i></i>Address: Đại học SPKT</li>
@@ -41,9 +43,9 @@
                     <li><i class="fab fa-facebook-messenger"></i><a href="https://www.facebook.com/4guysellinglipstick">Fanpage: 4guysellinglipstick</a></li>
                 </ul>
             </div>
-            <div class="c-6">
+            <div class="c-5">
                 <h2>ĐỊA CHỈ</h2>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.480424582181!2d106.77006551440977!3d10.85101709227095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752763f23816ab%3A0x282f711441b6916f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBTxrAgcGjhuqFtIEvhu7kgdGh14bqtdCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1608783999514!5m2!1svi!2s" width="400" height="180" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.480424582181!2d106.77006551440977!3d10.85101709227095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752763f23816ab%3A0x282f711441b6916f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBTxrAgcGjhuqFtIEvhu7kgdGh14bqtdCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1608783999514!5m2!1svi!2s" width="100%" height="180" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
             </div>
         
     
