@@ -8,5 +8,6 @@
 </head>
 <body>
 
+	<h5>Lipstickshop đã xác nhận đơn hàng </h5>
 </body>
 </html>
