@@ -39,11 +39,7 @@
 
 	<!-- Main Slider Start -->
 	<div class="header" >
-<<<<<<< HEAD
-		<div class="container-fluid" style="padding-left: 180px;">
-=======
 		<div class="container-fluid" style="padding-left: 150px;">
->>>>>>> 0b484bdb2c48bdce2eab8f0eac30a349fb59ec41
 			<div class="row">
 				<div class="col-md-2" style="padding: 0; box-shadow: 5px 5px 10px rgba(0,0,0,0.3);">
 					<nav class="navbar bg-light" style="align-items: flex-start;">
