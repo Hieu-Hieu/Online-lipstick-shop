@@ -39,7 +39,11 @@
 
 	<!-- Main Slider Start -->
 	<div class="header" >
+<<<<<<< HEAD
 		<div class="container-fluid" style="padding-left: 180px;">
+=======
+		<div class="container-fluid" style="padding-left: 150px;">
+>>>>>>> 0b484bdb2c48bdce2eab8f0eac30a349fb59ec41
 			<div class="row">
 				<div class="col-md-2" style="padding: 0; box-shadow: 5px 5px 10px rgba(0,0,0,0.3);">
 					<nav class="navbar bg-light" style="align-items: flex-start;">
@@ -48,7 +52,14 @@
 							<a class="nav-link" href="#"><i class="fa fa-home"></i>Nhà sản xuất</a>
 								<ul>
 									<c:forEach items="${listBrand }" var="brand">
-										<li><a href="${pageContext.request.contextPath }/ProductList?command=filter&currentPage=1&brandID=${brand.getBrandID()}&filter=brand">${brand.getBrandName() }</a></li>
+									<c:choose>
+										<c:when test="${brand.getBrandID() eq param.brandID or brand.getBrandID() eq param.searchKey}">
+											<li><a style="text-decoration: underline;" href="${pageContext.request.contextPath }/ProductList?command=filter&currentPage=1&brandID=${brand.getBrandID()}&filter=brand">${brand.getBrandName() }</a></li>
+										</c:when>
+										<c:otherwise>
+											<li><a href="${pageContext.request.contextPath }/ProductList?command=filter&currentPage=1&brandID=${brand.getBrandID()}&filter=brand">${brand.getBrandName() }</a></li>
+										</c:otherwise>
+									</c:choose>
 									</c:forEach>
 								</ul>
 							</li>
@@ -56,7 +67,15 @@
 								<a class="nav-link" href="#"><i class="fa fa-shopping-bag"></i>Loại sản xuất</a>
 								<ul>
 									<c:forEach items="${listCategory }" var="cate">
+								<c:choose>
+										<c:when test="${cate.getCategoryID() eq param.categoryID or cate.getCategoryID() eq param.searchKey}">
+										<li><a style="text-decoration: underline;" href="${pageContext.request.contextPath }/ProductList?command=filter&currentPage=1&categoryID=${cate.getCategoryID()}&filter=category">${cate.getCategoryName() }</a></li>
+										</c:when>
+										<c:otherwise>
 										<li><a href="${pageContext.request.contextPath }/ProductList?command=filter&currentPage=1&categoryID=${cate.getCategoryID()}&filter=category">${cate.getCategoryName() }</a></li>
+										</c:otherwise>
+									</c:choose>
+										
 									</c:forEach>
 								</ul>
 							</li>

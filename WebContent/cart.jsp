@@ -120,10 +120,16 @@
 	<div class="checkout">
 		<div class="container-fluid">
 			<div class="row">
+<<<<<<< HEAD
 				<div class="col-lg-1"></div>
 				<div class="col-lg-6">
 				<form action="${pageContext.request.contextPath}/BillController"
 					method="post" style="display: flex">
+=======
+			<div class="col-lg-1"></div>
+			<div class="col-lg-6">
+				<form action="${pageContext.request.contextPath}/BillController" method="post" style="display: flex">
+>>>>>>> 0b484bdb2c48bdce2eab8f0eac30a349fb59ec41
 					
 						<div class="checkout-inner">
 							<div class="billing-address">
@@ -153,8 +159,14 @@
 					</div>
 					<div class="col-lg-4">
 					<div class="cart-page">
+<<<<<<< HEAD
 							<div class="cart-page-inner"
 								style="width: 400px; height: 300px;">
+=======
+						
+							<div class="cart-page-inner"
+								style=" width: 400px; height: 300px;">
+>>>>>>> 0b484bdb2c48bdce2eab8f0eac30a349fb59ec41
 								<div class="cart-content">
 									<h2>
 										Tổng thanh toán
