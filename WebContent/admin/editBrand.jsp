@@ -54,8 +54,11 @@
 														<div class="row">
 															<div class="col-md-12">
 																<div class="form-group">
-																	<label class="bmd-label-floating">Nhà sản xuất</label>
-																	<input type="text" id="brand_name" name="brandName" value="${brand.brandName }" class="form-control">
+																	<label class="bmd-label-floating">Tên thương hiệu</label>
+																	<c:if test="${!empty errorName }">
+																		<p style="color: red">Tên này đã tồn tại</p>
+																	</c:if>
+																	<input type="text" id="brand_name" name="brandName" value="${brand.brandName }" class="form-control" required="required"> 
 																</div>
 															</div>
 														</div>

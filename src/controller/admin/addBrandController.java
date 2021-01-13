@@ -1,7 +1,9 @@
 package controller.admin;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,12 +23,31 @@ public class addBrandController extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		BrandDAO brandDAO = new BrandDAO();
 		Brand brand = new Brand();
-		brand.setBrandName(req.getParameter("brandName"));
-		if (brandDAO.insert(brand)) {
-			req.setAttribute("addBrand", 1);
+		String name = req.getParameter("brandName").trim();
+		brand.setBrandName(name);
+		String sql = "FROM Brand where brandName =" + "'" +  name + "'";
+		String url = "/admin/addBrand.jsp";
+		try {
+			System.out.println(brandDAO.checkData(sql));
+			if(brandDAO.checkData(sql)==0)
+			{
+				if (brandDAO.insert(brand)) {
+					req.setAttribute("addBrand", 1);
+					url="/admin/brand/list";
+				}
+			}
+			
+			else {
+				req.setAttribute("brandName", brand.getBrandName());
+				req.setAttribute("errorName", "Tên này đã tồn tại");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
-		resp.sendRedirect(req.getContextPath() + "/admin/brand/list?command=list");
+		RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher(url);
+		dispatcher.forward(req, resp);
 
 	}
 }

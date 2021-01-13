@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -32,7 +33,7 @@ public class sendMail {
             message.setFrom(new InternetAddress("3AELipstickShop"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject(subject);
-            message.setText(text);
+            message.setContent(text,"text/html; charset=UTF-8");
             Transport.send(message);
         } catch (MessagingException e) {
             return false;

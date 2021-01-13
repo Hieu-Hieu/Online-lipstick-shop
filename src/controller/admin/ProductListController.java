@@ -38,7 +38,13 @@ public class ProductListController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String currentPage = request.getParameter("currentPage");
-		String command = request.getParameter("command");
+		
+		String command = "";
+		if(request.getParameter("command")!=null) {
+			command = request.getParameter("command");
+		}
+		
+		
 		//System.out.println(command);
 		GetProduct gp = new GetProduct();
 		List<Product> listProduct = Collections.emptyList();
@@ -62,6 +68,7 @@ public class ProductListController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			System.out.println(input);
 			break;
 		case "filter":
 
@@ -76,6 +83,8 @@ public class ProductListController extends HttpServlet {
 				e1.printStackTrace();
 			}
 
+			break;
+		default:
 			break;
 
 		}

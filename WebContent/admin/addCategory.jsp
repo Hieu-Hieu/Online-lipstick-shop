@@ -19,7 +19,7 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 <!-- CSS Files -->
-<link href="./static/css/material-dashboard.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/admin/static/css/material-dashboard.css" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -55,12 +55,10 @@
 															<div class="col-md-12">
 																<div class="form-group">
 																	<label class="bmd-label-floating">Tên loại sản phẩm</label>
-																	<c:if test="${!empty existsName }">
-														         		<div class="alert alert-danger" role="alert">
-														 					 ${existsName }
-																		</div>
-														         	</c:if>
-																	<input type="text"  name="categoryName" class="form-control" required="required">
+																	<c:if test="${!empty errorName }">
+																		<p style="color: red">Tên này đã tồn tại</p>
+																	</c:if>
+																	<input type="text" value="${categoryName }" name="categoryName" class="form-control" required="required">
 																</div>
 															</div>
 														</div>

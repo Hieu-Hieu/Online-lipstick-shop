@@ -59,7 +59,10 @@
 															<div class="col-md-12">
 																<div class="form-group">
 																	<label class="bmd-label-floating">Tên loại sản phẩm</label>
-																	<input type="text" name="categoryName" value="${category.getCategoryName()}" class="form-control">
+																	<c:if test="${!empty errorName }">
+																		<p style="color: red">Tên này đã tồn tại</p>
+																	</c:if>
+																	<input type="text" name="categoryName" value="${category.getCategoryName()}" class="form-control" required="required">
 																</div>
 															</div>
 														</div>

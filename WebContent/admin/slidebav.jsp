@@ -51,7 +51,7 @@
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="${pageContext.request.contextPath }/admin/category/list">
+              <a class="nav-link" href="${pageContext.request.contextPath }/admin/order/list">
                 <i class="fa fa-truck" aria-hidden="true"></i>
                 <p>Quản lý đơn hàng</p>
               </a>

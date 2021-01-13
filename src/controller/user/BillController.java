@@ -73,7 +73,7 @@ public class BillController extends HttpServlet {
 			String phone = request.getParameter("phone");
 			LocalDate localDate = LocalDate.now();
 			Date d = Date.valueOf(localDate);
-			Bill bill = new Bill(u, address, phone, d, total, false, false);
+			Bill bill = new Bill(u, address, phone, d, total, false, "Chờ duyệt");
 			if (getBill.addBill(bill)) {
 				Bill b = getBill.getBillNew(u);
 				// thêm sản phẩm vào trong billdetail
