@@ -4,6 +4,7 @@
 eclipse.preferences.version=1
 encoding//WebContent/order-history.jsp=UTF-8
 encoding//src/controller/admin/ProductAddController.java=UTF-8
+encoding//src/controller/admin/ProductListController.java=UTF-8
 encoding//src/controller/user/AddToCartController.java=UTF-8
 encoding//src/controller/user/BillController.java=UTF-8
 encoding//src/controller/user/ForgotPassword.java=UTF-8
