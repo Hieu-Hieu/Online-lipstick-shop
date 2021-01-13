@@ -61,21 +61,18 @@ public class UpdateInfo extends HttpServlet {
 		try {
 			String oldPass = request.getParameter("oldPass");
 			u = (User) session.getAttribute("user");
-			if (oldPass.equals(u.getPassword()))
-				check = true;
-			else {
+			if (!oldPass.equals(u.getPassword())) {
 				check = false;
 				request.setAttribute("oldPassError", "Mật khẩu không đúng");
 			}
 			String newPass1 = request.getParameter("newPass1");
 			String newPass2 = request.getParameter("newPass2");
-			if (newPass1.equals(newPass2)) {
-				check = true;
-			} else {
+			if (!newPass1.equals(newPass2)) {
 				check = false;
 				request.setAttribute("newPassError", "Mật khẩu mới không khớp");
 			}
 			if (check == true) {
+				System.out.println(check);
 				username = request.getParameter("username");
 				email = request.getParameter("email");
 				if (getUser.updateAdminInfo(u.getUserID(), username, email, newPass1)) {
@@ -85,7 +82,9 @@ public class UpdateInfo extends HttpServlet {
 				}
 
 			}
-		} catch (Exception e) {
+		} catch (
+
+		Exception e) {
 			// TODO: handle exception
 			session.setAttribute("dupicateError", "Trùng Email");
 			e.printStackTrace();

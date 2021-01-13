@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +70,10 @@
 												<td>${bill.getBillID()}</td>
 												<td>${bill.getAddress() }</td>
 												<td>${bill.getDate() }</td>
-												<td>${bill.getTotal() }</td>
+												<fmt:formatNumber var="total" type="number"
+												pattern="###,###,###"
+												value="${bill.getTotal()}" />
+												<td>${total}Đ</td>
 												<td>${bill.getState() }</td>
 												<td><button class="btn" type="submit" style="width:50px;">Xem</button></td>
 											</tr>
@@ -102,7 +106,10 @@
 												<td><img width="50px" height="50px"
 													src="${bd.getProduct().getImgFirst() }" /></td>
 												<td>${bd.getQuantity()}</td>
-												<td>${bd.getProduct().getPrice()}</td>
+												<fmt:formatNumber var="price" type="number"
+												pattern="###,###,###"
+												value="${bd.getProduct().getPrice()}" />
+												<td>${price}Đ</td>
 											</tr>
 										</c:forEach>
 									</tbody>
