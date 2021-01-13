@@ -25,11 +25,17 @@
 </head>
 
 <body class="">
-	<jsp:include page="header.jsp"></jsp:include>
-	<jsp:include page="slidebav.jsp"></jsp:include>
+
+<jsp:include page="slidebav.jsp"></jsp:include>
+<%-- <jsp:include page="header.jsp"></jsp:include> --%>
 	<div class="wrapper ">
 		<div class="main-panel">
 			<div class="content">
+			
+			<div style="width: 25%" >
+            
+     		 </div>
+     		 
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">

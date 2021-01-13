@@ -36,7 +36,7 @@ public class Bill {
 	private boolean paid;
 
 	@Column(name = "state")
-	private boolean state;
+	private String state;
 
 //	@OneToMany(mappedBy="bill",cascade=CascadeType.ALL)
 //	private Set<BillDetail> billDetail;
@@ -44,7 +44,7 @@ public class Bill {
 	public Bill() {
 	}
 
-	public Bill(User user, String address, String phone, Date date, double total, boolean paid, boolean state) {
+	public Bill(User user, String address, String phone, Date date, double total, boolean paid, String state) {
 		super();
 		this.user = user;
 		this.address = address;
@@ -111,11 +111,11 @@ public class Bill {
 		this.paid = paid;
 	}
 
-	public boolean getState() {
+	public String getState() {
 		return state;
 	}
 
-	public void setState(boolean state) {
+	public void setState(String state) {
 		this.state = state;
 	}
 }

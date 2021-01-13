@@ -75,6 +75,7 @@ public class ProductUpdateController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		resp.setContentType("text/html;charset=UTF-8");
 		req.setCharacterEncoding("utf-8");
 		resp.getWriter().append("Served at: ").append(req.getContextPath());
@@ -83,38 +84,73 @@ public class ProductUpdateController extends HttpServlet {
 		GetProduct gp = new GetProduct();
 		CategoryDAO cate = new CategoryDAO();
 		BrandDAO brand = new BrandDAO();
-		int brandId = Integer.parseInt(req.getParameter("brandID"));
-		int categoryId = Integer.parseInt(req.getParameter("categoryID"));
-		
-		try {	
-			
-			product.setBrand(brand.getByID(brandId));
-			product.setCategory(cate.getByID(categoryId));
+		String url = "/admin/addProduct.jsp";
+
+		try {
+			int brandId = Integer.parseInt(req.getParameter("brandID"));
+			int categoryId = Integer.parseInt(req.getParameter("categoryID"));
 			
 			product.setProductID(Integer.parseInt(req.getParameter("productID")));
-			product.setName(req.getParameter("pName"));
+			product.setBrand(brand.getByID(brandId));
+			product.setCategory(cate.getByID(categoryId));
 			product.setImgFirst(req.getParameter("imgFirst"));
 			product.setImgLast(req.getParameter("imgLast"));
 			product.setPrice(Float.parseFloat(req.getParameter("price")));
 			product.setDescription(req.getParameter("description"));
 			product.setQuantity(Integer.parseInt(req.getParameter("quantity")));
+			int page = gp.totalPage("from Product");
 			
-			if (gp.updateProduct(product)) {
-				req.setAttribute("updateSuccess", 1);
-				RequestDispatcher dispatcher = req.getServletContext()
-						.getRequestDispatcher("/admin/product/list?currentPage=1");
-				dispatcher.forward(req, resp);
-			} else {
+			String pName = req.getParameter("pName").trim();
+			product.setName(pName);
+			String sql = "FROM Product where productID <>"+ product.getProductID()+ " and "+ "name =" + "'" +  pName + "'";
+			if(gp.checkData(sql)==0){
+				if(gp.updateProduct(product)){
+					url = "/admin/product/list?command=list&currentPage=" + String.valueOf(page);
+					System.out.println("1");
+				}
+			}		
+			else {
+				req.setAttribute("errorName", "Tên này đã tồn tại");
+				req.setAttribute("product", product );
+				
+				ArrayList<Category> Listcate = new ArrayList<Category>();
+				CategoryDAO getCate = new CategoryDAO();
 
-				req.setAttribute("updateSuccess", 0);
-				RequestDispatcher dispatcher = req.getServletContext()
-						.getRequestDispatcher("/admin/product/list?currentPage=1");
+				ArrayList<Brand> Listbrand = new ArrayList<Brand>();
+				BrandDAO getBrand = new BrandDAO();
 
-				dispatcher.forward(req, resp);
+				try {
+					Listbrand = getBrand.getListBrand();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				req.setAttribute("ListBrand", Listbrand);
+
+				try {
+					Listcate = getCate.getListCategory();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				req.setAttribute("ListCategory", Listcate);
+				url = "/admin/addProduct.jsp";
+				
+				System.out.println("2");
 			}
-		} catch (Exception e) {
+			
+		} catch (
+
+		Exception e) {
 			e.printStackTrace();
 		}
+		
+		System.out.println("3");
+		RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher(url);
+
+		dispatcher.forward(req, resp);
 
 	}
 }

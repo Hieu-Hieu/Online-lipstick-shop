@@ -2,6 +2,7 @@ package controller.admin;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -25,17 +26,30 @@ public class listBrand extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html;charset=UTF-8");
 		req.setCharacterEncoding("utf-8");
-		List<Brand> brandList;
+		
+		List<Brand> brandList = Collections.emptyList();
 		BrandDAO brandDao = new BrandDAO();
+		//Brand brand = new Brand();
+					
 		try {
 			brandList = brandDao.getListBrand();
-			req.setAttribute("brandList", brandList);
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/brandList.jsp");
-			dispatcher.forward(req, resp);
-		} catch (SQLException e) {
+			if (brandList.size() > 0) {
+				req.setAttribute("brandList", brandList);
+			} else {
+				req.setAttribute("EmptyListBrand", "Không có Brand nào");
+			}
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/brandList.jsp");
+		dispatcher.forward(req, resp);
 
+	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		doGet(req, resp);
 	}
 }

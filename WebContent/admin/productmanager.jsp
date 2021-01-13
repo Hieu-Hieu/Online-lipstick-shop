@@ -109,6 +109,12 @@
                         </th>
                       </thead>
                       <tbody>
+                      <c:choose>
+						<c:when test="${!empty EmptyListProduct }">
+								<p>Không tìm thấy sản phẩm nào</p>
+						</c:when>
+					
+					<c:when test="${!empty listProduct}">
                       <c:forEach items="${listProduct}" var="p">
  
                         <tr>
@@ -141,7 +147,9 @@
                         </tr>
                        
                         </c:forEach>
-                        
+                        </c:when>
+                        </c:choose>
+					
                       </tbody>
                     </table>
                   </div>
@@ -149,19 +157,20 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6   align-self-md-center">
-            <ul class="pagination modal-2">
-              
+          
+           <!-- Pagination Start -->
+                        <div class="col-md-12">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
                                 <c:choose>
                                 	<c:when test="${currentPage > 1}">
                                 		<li class="page-item">
-                                		 <a class="page-link" href="${pageContext.request.contextPath }/admin/product/list?currentPage=${currentPage - 1}" tabindex="-1">Previous</a>
+                                		 <a class="page-link" href="${pageContext.request.contextPath }/admin/product/list?command=list&currentPage=${currentPage - 1}" tabindex="-1">Previous</a>
                                     </li>
                                 	</c:when>
                                 	<c:otherwise>
                                 		<li class="page-item disabled">
-                                		 <a class="page-link" href="${pageContext.request.contextPath }/admin/product/list?currentPage=${currentPage - 1}" tabindex="-1">Previous</a>
+                                		 <a class="page-link" href="${pageContext.request.contextPath }/admin/product/list?command=list&currentPage=${currentPage - 1}" tabindex="-1">Previous</a>
                                     </li>
                                 	</c:otherwise>
                                 </c:choose>
@@ -172,12 +181,12 @@
                                     		<c:choose>
                                     			<c:when test="${currentPage == page }">
                                     				<li class="page-item active">
-                                    					<a class="page-link" href="${pageContext.request.contextPath }/admin/product/list?currentPage=${page}">${page }</a>
+                                    					<a class="page-link" href="${pageContext.request.contextPath }/admin/product/list?command=list&currentPage=${page}">${page }</a>
                                     				</li> 
                                     			</c:when>
                                     			<c:otherwise>
                                     				<li class="page-item">
-                                    					<a class="page-link" href="${pageContext.request.contextPath }/admin/product/list?currentPage=${page}">${page }</a>
+                                    					<a class="page-link" href="${pageContext.request.contextPath }/admin/product/list?command=list&currentPage=${page}">${page }</a>
                                     				</li> 
                                     			</c:otherwise>
                                     		</c:choose>
@@ -187,19 +196,20 @@
                                     <c:choose>
                                     	<c:when test="${currentPage < totalPage }">
                                     		<li class="page-item">
-                                    		<a class="page-link" href="${pageContext.request.contextPath }/admin/product/list?currentPage=${currentPage +1}">Next</a>
+                                    		<a class="page-link" href="${pageContext.request.contextPath }/admin/product/list?command=list&currentPage=${currentPage +1}">Next</a>
                                     </li>
                                     	</c:when>
                                     	<c:otherwise>
                                     		<li class="page-item disabled">
-                                    		<a class="page-link" href="${pageContext.request.contextPath }/admin/product/list?currentPage=${currentPage +1}">Next</a>
+                                    		<a class="page-link" href="${pageContext.request.contextPath }/admin/product/list?command=list&currentPage=${currentPage +1}">Next</a>
                                     </li>
                                     	</c:otherwise>
                                     </c:choose>
                                     
                                 </ul>
-            </div>
-          </div>
+                            </nav>
+                        </div>
+       
           <div class="row">
             <div class="col-md-6  align-self-sm-end">
               <div class="border__button">

@@ -55,8 +55,11 @@ public class ProductAddController extends HttpServlet {
 
 		req.setAttribute("ListCategory", cate);
 
-		RequestDispatcher dispatch = req.getRequestDispatcher("/admin/addProduct.jsp");
-		dispatch.forward(req, resp);
+		
+		RequestDispatcher dispatcher = req.getServletContext()
+				.getRequestDispatcher("/admin/addProduct.jsp");
+
+		dispatcher.forward(req, resp);
 	}
 
 	@Override
@@ -69,39 +72,71 @@ public class ProductAddController extends HttpServlet {
 		GetProduct gp = new GetProduct();
 		CategoryDAO cate = new CategoryDAO();
 		BrandDAO brand = new BrandDAO();
-		int brandId = Integer.parseInt(req.getParameter("brandID"));
-		int categoryId = Integer.parseInt(req.getParameter("categoryID"));
+		String url = "/admin/addProduct.jsp";
 
 		try {
+			int brandId = Integer.parseInt(req.getParameter("brandID"));
+			int categoryId = Integer.parseInt(req.getParameter("categoryID"));
+			
 			product.setBrand(brand.getByID(brandId));
 			product.setCategory(cate.getByID(categoryId));
-			product.setName(req.getParameter("pName"));
 			product.setImgFirst(req.getParameter("imgFirst"));
 			product.setImgLast(req.getParameter("imgLast"));
 			product.setPrice(Float.parseFloat(req.getParameter("price")));
 			product.setDescription(req.getParameter("description"));
 			product.setQuantity(Integer.parseInt(req.getParameter("quantity")));
-
 			int page = gp.totalPage("from Product");
-			if (gp.addProduct(product)) {
-				req.setAttribute("addSuccess", 1);
-				RequestDispatcher dispatcher = req.getServletContext()
-						.getRequestDispatcher("/admin/product/list?currentPage=" + String.valueOf(page));
+			
+			String pName = req.getParameter("pName").trim();
+			product.setName(pName);
+			String sql = "FROM Product where name =" + "'" +  pName + "'";
+			if(gp.checkData(sql)==0){
+				if(gp.addProduct(product)){
+					url = "/admin/product/list?command=list&currentPage=" + String.valueOf(page);
+					System.out.println("1");
+				}
+			}		
+			else {
+				req.setAttribute("errorName", "Tên này đã tồn tại");
+				req.setAttribute("product", product );
+				
+				ArrayList<Category> Listcate = new ArrayList<Category>();
+				CategoryDAO getCate = new CategoryDAO();
 
-				dispatcher.forward(req, resp);
-			} else {
+				ArrayList<Brand> Listbrand = new ArrayList<Brand>();
+				BrandDAO getBrand = new BrandDAO();
 
-				req.setAttribute("addSuccess", 0);
-				RequestDispatcher dispatcher = req.getServletContext()
-						.getRequestDispatcher("/admin/product/list?currentPage=" + String.valueOf(page));
+				try {
+					Listbrand = getBrand.getListBrand();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
-				dispatcher.forward(req, resp);
+				req.setAttribute("ListBrand", Listbrand);
+
+				try {
+					Listcate = getCate.getListCategory();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				req.setAttribute("ListCategory", Listcate);
+				url = "/admin/addProduct.jsp";
+				
+				System.out.println("2");
 			}
+			
 		} catch (
 
 		Exception e) {
 			e.printStackTrace();
 		}
+		
+		System.out.println("3");
+		RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher(url);
 
+		dispatcher.forward(req, resp);
 	}
 }

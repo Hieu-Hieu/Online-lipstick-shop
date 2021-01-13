@@ -41,17 +41,33 @@ public class editBrandController extends HttpServlet {
 
 		Brand b = new Brand();
 		b.setBrandID(Integer.parseInt(req.getParameter("brandID")));
-		b.setBrandName(req.getParameter("brandName"));
+		
+		String name = req.getParameter("brandName").trim();
+		b.setBrandName(name);
+		String sql = "FROM Brand where brandID <>"+ b.getBrandID()+ "and brandName =" + "'" +  name + "'" ;
+		String url="/admin/editBrand.jsp";
+		
 		try {
-			if (brandDao.update(b)) {
-				req.setAttribute("updateBrand", 1);
+			System.out.println(brandDao.checkData(sql));
+				if(brandDao.checkData(sql)==0)
+				{
+					if (brandDao.update(b)) {
+						req.setAttribute("addBrand", 1);
+						url="/admin/brand/list";
+					}
+				}
+				
+				else {
+					req.setAttribute("brand", b);
+					req.setAttribute("errorName", "Tên này đã tồn tại");
+				}	
 			}
-		} catch (SQLException e) {
+		 catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		resp.sendRedirect(req.getContextPath() + "/admin/brand/list");
-
+		RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher(url);
+		dispatcher.forward(req, resp);
 	}
 }

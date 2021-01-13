@@ -3,12 +3,21 @@ package get;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
+import com.google.protobuf.Empty;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 import model.Brand;
+import model.Product;
 import util.Utill;
 
 public class BrandDAO {
@@ -22,7 +31,7 @@ public class BrandDAO {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("from Brand");
+			Query<Brand> query = session.createQuery("from Brand");
 			listBrand = (ArrayList<Brand>) query.getResultList();
 
 			// commit transaction
@@ -83,7 +92,7 @@ public class BrandDAO {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("update Brand set brandName = : bName where brandID =: bID");
+			Query<Brand> query = session.createQuery("update Brand set brandName = : bName where brandID =: bID");
 			query.setParameter("bName", brand.getBrandName());
 			query.setParameter("bID", brand.getBrandID());
 			if (query.executeUpdate() > 0)
@@ -105,7 +114,7 @@ public class BrandDAO {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("delete from Brand where brandID =: bID");
+			Query<Brand> query = session.createQuery("delete from Brand where brandID =: bID");
 			query.setParameter("bID", brandID);
 			if (query.executeUpdate() > 0)
 				return true;
@@ -119,4 +128,71 @@ public class BrandDAO {
 		}
 		return false;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Brand> search(String input) throws SQLException {
+		ArrayList<Brand> listOfBrand = new ArrayList<Brand>();
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			
+		//	Query<Brand> query =	session.createQuery("select at from Brand at where lower(at.brand.brandName) LIKE lower(:keyWord)",Brand.class);  
+
+			Query<Brand> query = session.createQuery("FROM Brand WHERE brandName LIKE :keyWord");
+			query.setParameter("keyWord", "%" + input + "%");
+			
+			listOfBrand = (ArrayList<Brand>) query.getResultList();
+			// commit transaction
+			transaction.commit();
+			System.out.println(listOfBrand);
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		System.out.println(listOfBrand);
+		return listOfBrand;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<Product> getProductListByName(String productName) {
+		// TODO Auto-generated method stub
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		  Session session = sessionFactory.openSession();
+		  @SuppressWarnings("deprecation")
+		Criteria criteria = session.createCriteria(Product.class);
+		  
+		    criteria.add(Restrictions.like("name", "%"+productName+"%"));
+		  
+		  ArrayList<Product> result = (ArrayList<Product>) criteria.list();
+		  session.close();
+		  sessionFactory.close();
+		  return result;
+
+	}
+
+	public int checkData(String sql) throws SQLException {
+		Transaction transaction = null;
+		
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(sql);
+			List l =	query.list();
+			// commit transaction
+			transaction.commit();
+			return l.size();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return 1;
+	}
+	
 }

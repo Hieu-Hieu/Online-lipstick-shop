@@ -8,11 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import get.CategoryDAO;
+import SendMail.sendMail;
 
-@WebServlet({ "/admin/category/delete" })
-public class deleteCategoryController extends HttpServlet {
-
+@WebServlet({"/sendMail"})
+public class testEmail extends HttpServlet {
 	/**
 	 * 
 	 */
@@ -20,13 +19,9 @@ public class deleteCategoryController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html;charset=UTF-8");
-		req.setCharacterEncoding("utf-8");
-		CategoryDAO ctd = new CategoryDAO();
-		String id = req.getParameter("id");
-		ctd.delete(Integer.parseInt(id));
-
-		resp.sendRedirect(req.getContextPath() + "/admin/category/list?command=list");
+		sendMail sm = new sendMail();
+		String subject = "Xác nhận đơn hàng: "+ "BillID";
+		sm.sendMail("18110283@student.hcmute.edu.vn", "LipstickShop", "Payment success. We will contact you soon ! ");
+		System.out.println("ok chua");
 	}
-
 }

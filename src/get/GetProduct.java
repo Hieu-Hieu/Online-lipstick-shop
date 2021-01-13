@@ -220,4 +220,26 @@ public class GetProduct {
 		return total;
 	}
 
+
+	public int checkData(String sql) throws SQLException {
+		Transaction transaction = null;
+		
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(sql);
+			List l =	query.list();
+			// commit transaction
+			transaction.commit();
+			return l.size();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return 1;
+	}
+	
 }
