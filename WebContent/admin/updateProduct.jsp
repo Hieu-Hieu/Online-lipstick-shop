@@ -25,10 +25,7 @@
   <link href="${root}/admin/static/css/material-dashboard.css" rel="stylesheet" />
 </head>
 
-<body class="">
-													   
-	
-	<jsp:include page="header.jsp"></jsp:include>
+<body class="">													  
 	<jsp:include page="slidebav.jsp"></jsp:include>
 	<div class="wrapper ">
 		<div class="main-panel">

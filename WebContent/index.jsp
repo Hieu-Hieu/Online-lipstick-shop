@@ -39,9 +39,9 @@
 
 	<!-- Main Slider Start -->
 	<div class="header" >
-		<div class="container-fluid" style="margin-left: 80px;">
+		<div class="container-fluid" style="padding-left: 180px;">
 			<div class="row">
-				<div class="col-md-2" style="padding: 0; box-shadow: 5px 5px 10px rgba(142,36,170,0.3)" >
+				<div class="col-md-2" style="padding: 0; box-shadow: 5px 5px 10px rgba(0,0,0,0.3);">
 					<nav class="navbar bg-light" style="align-items: flex-start;">
 						<ul class="navbar-nav" style="background-color: white; ">
 							<li class="nav-item">

@@ -20,7 +20,6 @@
 
 </head>
 <body class="">
-	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:include page="slidebav.jsp"></jsp:include>
 	<div class="wrapper ">
 		<div class="main-panel">

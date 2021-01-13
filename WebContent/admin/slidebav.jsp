@@ -56,6 +56,18 @@
                 <p>Quản lý đơn hàng</p>
               </a>
             </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="${pageContext.request.contextPath }/admin/profile.jsp">
+                <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+                <p>Đổi thông tin</p>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="${pageContext.request.contextPath }/UserLogout">
+                <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+                <p>Logout</p>
+              </a>
+            </li>
             
           </ul>
         </div>

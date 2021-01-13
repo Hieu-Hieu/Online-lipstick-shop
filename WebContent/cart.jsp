@@ -120,10 +120,11 @@
 	<div class="checkout">
 		<div class="container-fluid">
 			<div class="row">
-			<div class="col-lg-1"></div>
+				<div class="col-lg-1"></div>
+				<div class="col-lg-6">
 				<form action="${pageContext.request.contextPath}/BillController"
 					method="post" style="display: flex">
-					<div class="col-lg-10">
+					
 						<div class="checkout-inner">
 							<div class="billing-address">
 								<h2>Thông tin đặt hàng</h2>
@@ -150,10 +151,10 @@
 							</div>
 						</div>
 					</div>
+					<div class="col-lg-4">
 					<div class="cart-page">
-						<div class="col-lg-4">
 							<div class="cart-page-inner"
-								style="position: absolute; width: 400px; height: 300px;">
+								style="width: 400px; height: 300px;">
 								<div class="cart-content">
 									<h2>
 										Tổng thanh toán

@@ -21,7 +21,6 @@
 </head>
 
 <body class="">
-<jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="slidebav.jsp"></jsp:include>
   <div class="wrapper ">
     <div class="main-panel">
@@ -29,7 +28,7 @@
         <div class="container-fluid">
         <label for="exampleFormControlSelect1">Chọn loại đơn hàng</label>
         	<form action="${pageContext.request.contextPath}/admin/order/list" method="get">
-			    <select name="status" class="form-control" id="exampleFormControlSelect1" style="width: 25%">
+			    <select name="status" class="form-control" id="exampleFormControlSelect1" style="width: 25%; background-color: #f1f1f1;">
 			    
 			      <option value="pending">Đang chờ duyệt</option>
 			      <c:choose>
@@ -59,7 +58,7 @@
 			      </c:choose>
 			     
 			    </select>
-			    <input type="submit" value="Lọc">
+			    <input type="submit" value="Lọc" style="background-color: #ab47bc; color: white; width: 80px; height: 30px; font-sixe: 18px; border-radius: 5%; border: none; margin-top:5px;">
 			 </form>
           <div class="row">
             <div class="col-md-12">
@@ -89,8 +88,8 @@
                           Tình trạng
                         </th>
                         <th>
-                          Action
-                        </th>
+							Duyệt
+						 </th>
                       </thead>
                       <tbody>
                       <form action="${pageContext.request.contextPath}/admin/order/list" method="get">
@@ -121,7 +120,7 @@
                           	</c:when>
                           	<c:otherwise>
                           <input type="hidden" value="${bill.billID}" name="id">
-                            <select  name="Action">
+                            <select  name="Action" style="font-size: 1.063rem; padding: 8px 4px;vertical-align: middle; border-color: #ddd; border-radius: 5%; padding-right: 10px; background-color: #f1f1f1;" >
                               <c:if test = "${status == 'pending'}">
 							  <option value="Duyet">Duyệt đơn</option>
 							  <option value="Huy">Hủy đơn</option>
@@ -131,7 +130,7 @@
 							  <option value="DaGiao">Đã giao</option>
 							  </c:if>
 							</select>
-							<button type="submit" onclick="return ConfirmClick()">Cập nhật</button>
+							<button type="submit" onclick="return ConfirmClick()"  class="btn btn-primary pull-right"	>Cập nhật</button>
 							</c:otherwise>
 							</c:choose>
                           </td>
