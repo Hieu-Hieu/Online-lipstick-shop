@@ -47,6 +47,7 @@
                         <th>
                           Email
                         </th>
+                        <th>Điện thoại</th>
                         <th>
                           Địa chỉ
                         </th>
@@ -57,6 +58,7 @@
 							<td >${item.userID}</td>
 							<td >${item.username}</td>
 							<td>${item.email}</td>
+							<td >${item.phone}</td>
 							<td >${item.address}</td>
 						</tr>
 						</c:forEach>
@@ -65,23 +67,6 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6   align-self-md-center">
-            <ul class="pagination modal-2">
-              <li><a href="#" class="prev">&laquo </a></li>
-              <li><a href="#">1</a></li>
-              <li> <a href="#">2</a></li>
-              <li> <a href="#" class="active">3</a></li>
-              <li> <a href="#">4</a></li>
-              <li> <a href="#">5</a></li>
-              <li> <a href="#">6</a></li>
-              <li> <a href="#">7</a></li>
-              <li> <a href="#">8</a></li>
-              <li> <a href="#">9</a></li>
-              <li><a href="#" class="next">  &raquo;</a></li>
-            </ul>
             </div>
           </div>
         </div>

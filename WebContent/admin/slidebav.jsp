@@ -23,7 +23,7 @@
             <li class="nav-item active  ">
               <a class="nav-link" href="${pageContext.request.contextPath }/admin/dashboard.jsp">
                 <i class="material-icons"></i>
-					<p>Dashboard</p>
+					Dashboard
               </a>
             </li>
             <li class="nav-item ">
