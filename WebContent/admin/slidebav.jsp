@@ -27,7 +27,7 @@
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="${pageContext.request.contextPath }/admin/product/list?currentPage=1">
+              <a class="nav-link" href="${pageContext.request.contextPath }/admin/product/list?command=list&currentPage=1">
                 <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                 <p>Quản lí sản phẩm</p>
               </a>
@@ -45,7 +45,7 @@
               </a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" href="${pageContext.request.contextPath }/admin/brand/list">
+              <a class="nav-link" href="${pageContext.request.contextPath }/admin/brand/list?command=list">
                 <i class="fa fa-university" aria-hidden="true"></i>
                 <p>Quản lí nhãn hiệu</p>
               </a>
@@ -56,12 +56,7 @@
                 <p>Quản lý đơn hàng</p>
               </a>
             </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="${pageContext.request.contextPath }/admin/profile.jsp">
-                <i class="fa fa-cog" aria-hidden="true"></i>
-                <p>Tài khoản</p>
-              </a>
-            </li>
+            
           </ul>
         </div>
       </div>

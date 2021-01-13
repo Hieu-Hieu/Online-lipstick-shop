@@ -46,7 +46,7 @@
 															<div class="col-md-12">
 																<div class="form-group">
 																	<label class="bmd-label-floating">Thương hiệu</label>
-																	<input type="text" name="brandName" class="form-control">
+																	<input type="text" name="brandName" class="form-control" required="required">
 																</div>
 															</div>
 														</div>

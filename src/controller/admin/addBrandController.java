@@ -26,7 +26,7 @@ public class addBrandController extends HttpServlet {
 			req.setAttribute("addBrand", 1);
 		}
 
-		resp.sendRedirect(req.getContextPath() + "/admin/brand/list");
+		resp.sendRedirect(req.getContextPath() + "/admin/brand/list?command=list");
 
 	}
 }

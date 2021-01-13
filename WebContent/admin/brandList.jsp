@@ -25,11 +25,25 @@
 </head>
 
 <body class="">
-	<jsp:include page="header.jsp"></jsp:include>
-	<jsp:include page="slidebav.jsp"></jsp:include>
+
+<jsp:include page="slidebav.jsp"></jsp:include>
+<%-- <jsp:include page="header.jsp"></jsp:include> --%>
 	<div class="wrapper ">
 		<div class="main-panel">
 			<div class="content">
+			
+			<div style="width: 25%" >
+            <form class="navbar-form" action="${pageContext.request.contextPath }/admin/brand/list?command=search" method="post" >
+              <div class="input-group no-border">
+                <input type="text" value="" class="form-control" value="${param.searchkey }">
+                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                  <i class="material-icons">search</i>
+                  <div class="ripple-container"></div>
+                </button>
+              </div>
+           	 </form>
+     		 </div>
+     		 
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-md-12">

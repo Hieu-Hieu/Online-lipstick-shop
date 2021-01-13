@@ -7,11 +7,16 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import model.Brand;
 import model.Category;
 import util.Utill;
 
 public class CategoryDAO {
 
+	public CategoryDAO() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@SuppressWarnings("unchecked")
 	public ArrayList<Category> getListCategory() throws SQLException {
 		Transaction transaction = null;
@@ -109,6 +114,56 @@ public class CategoryDAO {
 			transaction.commit();
 			return true;
 			}
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public ArrayList<Category> search(String input) throws SQLException {
+		ArrayList<Category> listCategory = new ArrayList<Category>();
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			
+			Query<Category> query = session.createQuery("FROM Category WHERE categoryName LIKE :keyWord");
+			query.setParameter("keyWord", "%" + input + "%");
+			
+			listCategory = (ArrayList<Category>) query.getResultList();
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return listCategory;
+	}
+	
+	public boolean checkName(String name) throws SQLException {
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("FROM Category WHERE categoryName = : name");
+			//Category result = session.get(Category.class, name);
+			query.setParameter("name", name);
+			if (query.executeUpdate() > 0) {
+				return true;
+			}
+			//if(result != null) {
+//				System.out.println("Trung ten brand");
+//				return true;
+//			}
+			// commit transaction
+			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();

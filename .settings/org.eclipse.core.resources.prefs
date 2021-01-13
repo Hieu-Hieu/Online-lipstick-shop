@@ -1,5 +1,6 @@
 
 eclipse.preferences.version=1
+encoding//WebContent/admin/emailForm.jsp=UTF-8
 encoding//WebContent/order-history.jsp=UTF-8
 encoding//src/controller/admin/ProductAddController.java=UTF-8
 encoding//src/controller/admin/ProductListController.java=UTF-8

@@ -51,7 +51,7 @@ public class editBrandController extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		resp.sendRedirect(req.getContextPath() + "/admin/brand/list");
+		resp.sendRedirect(req.getContextPath() + "/admin/brand/list?command=list");
 
 	}
 }
