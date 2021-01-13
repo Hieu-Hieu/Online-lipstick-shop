@@ -42,19 +42,38 @@ public class CategoryeEditController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		CategoryDAO categoryDAO = new CategoryDAO();
 		Category category = new Category();
 		category.setCategoryID(Integer.parseInt(req.getParameter("categoryID")));
-		category.setCategoryName(req.getParameter("categoryName"));
+		
+		String name = req.getParameter("categoryName").trim();
+		category.setCategoryName(name);
+		
+		String sql = "FROM Category where categoryID <> "+category.getCategoryID()+ "and categoryName =" + "'" +  name + "'" ;
+		String url="/admin/editCategory.jsp";
+		
 		try {
-			if (categoryDao.updateCategory(category)) {
-				req.setAttribute("updateCategory", 1);
+			System.out.println(categoryDAO.checkData(sql));
+				if(categoryDAO.checkData(sql)==0)
+				{
+					if (categoryDAO.updateCategory(category)) {
+						url="/admin/category/list";
+					}
+				}
+				
+				else {
+					req.setAttribute("category", category);
+					req.setAttribute("errorName", "Tên này đã tồn tại");
+				}	
 			}
-		} catch (SQLException e) {
+		 catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		resp.sendRedirect(req.getContextPath() + "/admin/category/list");
-
+		RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher(url);
+		dispatcher.forward(req, resp);
 	}
+
+	
 }

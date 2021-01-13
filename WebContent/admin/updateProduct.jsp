@@ -56,7 +56,7 @@
 																		<input type="hidden" name="productID" value="<c:out value='${product.productID}'/>" />
 																			<label class="bmd-label-floating">Tên sản
 																				phẩm</label> <input type="text" class="form-control" name="pName"
-																				value="${product.name }">
+																				value="${product.name }" required="required">
 																				
 																				</div>
 																	</div>
@@ -92,13 +92,13 @@
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label class="bmd-label-floating">Giá</label> <input
-																				type="number" class="form-control" name="price" value="${product.price }">
+																				type="number" class="form-control" name="price" value="${product.price }" required="required">
 																		</div>
 																	</div>
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label class="bmd-label-floating">Số lượng</label> <input
-																				type="number" class="form-control" name="quantity" value="${product.quantity }">
+																				type="number" class="form-control" name="quantity" value="${product.quantity }" required="required">
 																		</div>
 																	</div>
 																</div>
@@ -106,13 +106,13 @@
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label class="bmd-label-floating">Link hình ảnh 1</label> <input
-																				type="text" class="form-control" name="imgFirst" value="${product.getImgFirst()}">
+																				type="text" class="form-control" name="imgFirst" value="${product.getImgFirst()}" required="required">
 																		</div>
 																	</div>
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label class="bmd-label-floating">Link hình ảnh 2</label> <input
-																				type="text" class="form-control" name="imgLast" value="${product.imgLast }">
+																				type="text" class="form-control" name="imgLast" value="${product.imgLast }" required="required">
 																		</div>
 																	</div>
 																</div>
@@ -123,7 +123,7 @@
 																				phẩm</label>
 																		</div>
 																		<textarea class="form-control" 
-																		id="exampleFormControlTextarea1" rows="3" name="description" >${product.description}</textarea>
+																		id="exampleFormControlTextarea1" rows="3" name="description" required="required" >${product.description}</textarea>
                                                                 
 														
 																		

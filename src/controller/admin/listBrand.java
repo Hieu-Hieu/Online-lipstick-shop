@@ -29,44 +29,16 @@ public class listBrand extends HttpServlet {
 		
 		List<Brand> brandList = Collections.emptyList();
 		BrandDAO brandDao = new BrandDAO();
-		String command = req.getParameter("command");
 		//Brand brand = new Brand();
-		switch (command) {
-		case "search":
-			String input = req.getParameter("input");
-			if (input != null) {
-				req.setAttribute("searchKey", req.getParameter("input"));
-			} else {
-				input = req.getParameter("searchKey");
-				req.setAttribute("searchKey", req.getParameter("searchKey"));
-			}
-			try {
-				brandList = brandDao.search(input);
-			} catch (NumberFormatException | SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			break;
-		case "list":
-			try {
-				brandList = brandDao.getListBrand();
-				req.setAttribute("brandList", brandList);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		default:
-			break;
-		}
-		
+					
 		try {
-			req.setAttribute("command", req.getParameter("command"));
+			brandList = brandDao.getListBrand();
 			if (brandList.size() > 0) {
-				req.setAttribute("listProduct", brandList);
+				req.setAttribute("brandList", brandList);
 			} else {
-				req.setAttribute("EmptyListBrand", "KhÙng cÛ Brand n‡o");
+				req.setAttribute("EmptyListBrand", "Kh√¥ng c√≥ Brand n√†o");
 			}
-		} catch (NumberFormatException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

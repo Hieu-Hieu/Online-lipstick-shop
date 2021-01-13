@@ -14,7 +14,7 @@ import util.Utill;
 public class GetBill {
 
 	public boolean addBill(Bill bill) throws SQLException {
-		System.out.println("th�m bill th�nh c�ng");
+		System.out.println("th�m bill th�nh c�ng");
 		Transaction transaction = null;
 		try {
 			// start a transaction
@@ -125,5 +125,112 @@ public class GetBill {
 		}
 		return bill;
 
+	}
+	
+	public ArrayList<Bill> getListBillPending() { //bill chờ duyệt
+		Transaction transaction = null;
+		ArrayList<Bill> listBill = new ArrayList<Bill>();
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("from Bill where state = 'Chờ duyệt'");
+			listBill = (ArrayList<Bill>) query.getResultList();
+			System.out.println("sizeBill: "+listBill.size());
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return listBill;
+	}
+	public ArrayList<Bill> getListBillCancel() { //bill đã hủy
+		Transaction transaction = null;
+		ArrayList<Bill> listBill = new ArrayList<Bill>();
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("from Bill where state = 'Đã hủy'");
+			listBill = (ArrayList<Bill>) query.getResultList();
+
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return listBill;
+	}
+	public ArrayList<Bill> getListBillCensored() { //bill đã duyệt
+		Transaction transaction = null;
+		ArrayList<Bill> listBill = new ArrayList<Bill>();
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("from Bill where state = 'Đã duyệt'");
+			listBill = (ArrayList<Bill>) query.getResultList();
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return listBill;
+	}
+	
+	public ArrayList<Bill> getListBillSuccess() { //bill đã giao
+		Transaction transaction = null;
+		ArrayList<Bill> listBill = new ArrayList<Bill>();
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery("from Bill where state = 'Đã giao'");
+			listBill = (ArrayList<Bill>) query.getResultList();
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return listBill;
+	}
+	
+	public boolean updateStatus(int Id, String status) {
+		String hql = "UPDATE Bill set state = :status "  + 
+	             "WHERE billID = :id";
+		int result = 0;
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(hql);
+			query.setParameter("status", status);
+			query.setParameter("id", Id);
+			 result = query.executeUpdate();
+			transaction.commit();
+			if (result>0)
+				return true;
+			// commit transaction
+			
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

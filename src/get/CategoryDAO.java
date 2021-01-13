@@ -2,6 +2,7 @@ package get;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -171,5 +172,26 @@ public class CategoryDAO {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public int checkData(String sql) throws SQLException {
+		Transaction transaction = null;
+		
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			Query query = session.createQuery(sql);
+			List l =	query.list();
+			// commit transaction
+			transaction.commit();
+			return l.size();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return 1;
 	}
 }

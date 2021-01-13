@@ -2,6 +2,7 @@ package controller.admin;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,7 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import get.BrandDAO;
 import get.CategoryDAO;
+import model.Brand;
 import model.Category;
 
 @WebServlet("/admin/category/list")
@@ -28,50 +31,25 @@ public class listCategory extends HttpServlet {
 		resp.setContentType("text/html;charset=UTF-8");
 		req.setCharacterEncoding("utf-8");
 		resp.getWriter().append("Served at: ").append(req.getContextPath());
-		String command = req.getParameter("command");
-		List<Category> cateList;
-		switch (command) {
-		case "search":
-			String input = req.getParameter("input");
-			if (input != null) {
-				req.setAttribute("searchKey", req.getParameter("input"));
-			} else {
-				input = req.getParameter("searchKey");
-				req.setAttribute("searchKey", req.getParameter("searchKey"));
-			}
-			try {
-				
-				cateList = categoryDAO.search(input);
-			} catch (NumberFormatException | SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			break;
-		case "filter":
-
-			break;
-			
-		case "list":
-			try {
-				cateList = categoryDAO.getListCategory();
-				req.setAttribute("categoryList", cateList);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			break;
-
-		}
-
+		
+		List<Category> categoryList = Collections.emptyList();
+		CategoryDAO categoryDao = new CategoryDAO();
+		//Brand brand = new Brand();
+					
 		try {
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/categoryList.jsp");
-			dispatcher.forward(req, resp);
-		} catch( Exception e) {
+			categoryList = categoryDao.getListCategory();
+			if (categoryList.size() > 0) {
+				req.setAttribute("categoryList", categoryList);
+			} else {
+				req.setAttribute("EmptyListCategory", "Không có loại sản phẩm nào");
+			}
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/categoryList.jsp");
+		dispatcher.forward(req, resp);
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

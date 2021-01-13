@@ -197,13 +197,20 @@ public class GetProduct {
 		return listOfProduct;
 	}
 
+<<<<<<< HEAD
 	public int getQuantityByProductID(int productID) {
 		int total = 0;
 		Transaction transaction = null;
+=======
+	public int checkData(String sql) throws SQLException {
+		Transaction transaction = null;
+		
+>>>>>>> 18164e4... ordermanager
 		try {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
+<<<<<<< HEAD
 			Query query = session.createQuery("select quantity FROM Product WHERE productID = :productID");
 			query.setParameter("productID", productID);
 			List p = query.list();
@@ -211,13 +218,26 @@ public class GetProduct {
 			total = (int) number;
 			// commit transaction
 			transaction.commit();
+=======
+			Query query = session.createQuery(sql);
+			List l =	query.list();
+			// commit transaction
+			transaction.commit();
+			return l.size();
+>>>>>>> 18164e4... ordermanager
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
 		return total;
 	}
 
+=======
+		return 1;
+	}
+	
+>>>>>>> 18164e4... ordermanager
 }

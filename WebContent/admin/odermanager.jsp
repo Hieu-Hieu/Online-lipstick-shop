@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
   <!-- CSS Files -->
-  <link href="./static/css/material-dashboard.css" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath}/admin/static/css/material-dashboard.css" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -24,6 +25,40 @@
     <div class="main-panel">
       <div class="content">
         <div class="container-fluid">
+        <label for="exampleFormControlSelect1">Chọn loại đơn hàng</label>
+        	<form action="${pageContext.request.contextPath}/admin/order/list" method="get">
+			    <select name="status" class="form-control" id="exampleFormControlSelect1" style="width: 25%">
+			    
+			      <option value="pending">Đang chờ duyệt</option>
+			      <c:choose>
+			      	<c:when test="${status=='censored'}">
+			      		<option value="censored" selected="selected">Đã duyệt</option>
+			      	</c:when>
+			      	<c:otherwise>
+			      		<option value="censored" >Đã duyệt</option>
+			      	</c:otherwise>
+			      </c:choose>
+			      <c:choose>
+			      	<c:when test="${status=='cancel'}">
+			      		 <option value="cancel" selected="selected">Đã hủy</option>
+			      	</c:when>
+			      	<c:otherwise>
+			      		<option value="cancel">Đã hủy</option>
+			      	</c:otherwise>
+			      	</c:choose>
+			      	
+			      <c:choose>
+			      	<c:when test="${status=='orderSuccess'}">
+			      		  <option value="orderSuccess" selected="selected">Đã giao</option>
+			      	</c:when>
+			      	<c:otherwise>
+			      		 <option value="orderSuccess">Đã giao</option>
+			      	</c:otherwise>
+			      </c:choose>
+			     
+			    </select>
+			    <input type="submit" value="Lọc">
+			 </form>
           <div class="row">
             <div class="col-md-12">
               <div class="card card-plain">
@@ -55,127 +90,48 @@
                         </th>
                       </thead>
                       <tbody>
+                      <form action="${pageContext.request.contextPath}/admin/order/list" method="get">
+                      <c:forEach var="bill" items="${listBill}">
                         <tr>
                           <td>
-                            123
+                            ${bill.billID}
                           </td>
                           <td>
-                            Nguyễn Văn A 
+                             ${bill.user.username}
                           </td>
                           <td>
-                            Dĩ An
+                             ${bill.address}
                           </td>
                           <td>
-                            300,000 vnđ
+                             ${bill.total}
                           </td>
                           <td>
-                            Đã giao
+                             ${bill.state}
                           </td>
                           <td>
-                            <a>Xem chi tiết</a>
+                          <c:choose>
+  							<c:when test="${status == 'cancel' || status == 'orderSuccess' }">
+                          		<a href="#">Chi tiết</a>
+                          	</c:when>
+                          	<c:otherwise>
+                          <input type="hidden" value="${bill.billID}" name="id">
+                            <select  name="Action">
+                              <c:if test = "${status == 'pending'}">
+							  <option value="Duyet">Duyệt đơn</option>
+							  <option value="Huy">Hủy đơn</option>
+							  </c:if>
+							  <c:if test = "${status == 'censored'}">
+							  <option value="Huy">Hủy đơn</option>
+							  <option value="DaGiao">Đã giao</option>
+							  </c:if>
+							</select>
+							<button type="submit">Cập nhật</button>
+							</c:otherwise>
+							</c:choose>
                           </td>
                         </tr>
-                        <tr>
-                          <td>
-                            123
-                          </td>
-                          <td>
-                            Nguyễn Văn A 
-                          </td>
-                          <td>
-                            Dĩ An
-                          </td>
-                          <td>
-                            300,000 vnđ
-                          </td>
-                          <td>
-                            Đã giao
-                          </td>
-                          <td>
-                            <a>Xem chi tiết</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            123
-                          </td>
-                          <td>
-                            Nguyễn Văn A 
-                          </td>
-                          <td>
-                            Dĩ An
-                          </td>
-                          <td>
-                            300,000 vnđ
-                          </td>
-                          <td>
-                            Đã giao
-                          </td>
-                          <td>
-                            <a>Xem chi tiết</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            123
-                          </td>
-                          <td>
-                            Nguyễn Văn A 
-                          </td>
-                          <td>
-                            Dĩ An
-                          </td>
-                          <td>
-                            300,000 vnđ
-                          </td>
-                          <td>
-                            Đã giao
-                          </td>
-                          <td>
-                            <a>Xem chi tiết</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            123
-                          </td>
-                          <td>
-                            Nguyễn Văn A 
-                          </td>
-                          <td>
-                            Dĩ An
-                          </td>
-                          <td>
-                            300,000 vnđ
-                          </td>
-                          <td>
-                            Đã giao
-                          </td>
-                          <td>
-                            <a>Xem chi tiết</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            123
-                          </td>
-                          <td>
-                            Nguyễn Văn A 
-                          </td>
-                          <td>
-                            Dĩ An
-                          </td>
-                          <td>
-                            300,000 vnđ
-                          </td>
-                          <td>
-                            Đã giao
-                          </td>
-                          <td>
-                            <a>Xem chi tiết</a>
-                          </td>
-                        </tr>
-                        
+                        </c:forEach>
+                        </form>
                       </tbody>
                     </table>
                   </div>
@@ -183,23 +139,7 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-6   align-self-md-center">
-            <ul class="pagination modal-2">
-              <li><a href="#" class="prev">&laquo </a></li>
-              <li><a href="#">1</a></li>
-              <li> <a href="#">2</a></li>
-              <li> <a href="#" class="active">3</a></li>
-              <li> <a href="#">4</a></li>
-              <li> <a href="#">5</a></li>
-              <li> <a href="#">6</a></li>
-              <li> <a href="#">7</a></li>
-              <li> <a href="#">8</a></li>
-              <li> <a href="#">9</a></li>
-              <li><a href="#" class="next">  &raquo;</a></li>
-            </ul>
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>
