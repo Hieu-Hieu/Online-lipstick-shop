@@ -197,6 +197,24 @@ public class GetUser {
 		return false;
 	}
 
+	public boolean updateAdminInfo(int userID, String username, String email, String password) {
+		Transaction transaction = null;
+//		start a transaction
+		Session session = Utill.getSessionFactory().openSession();
+		transaction = session.beginTransaction();
+		Query q = session.createQuery(
+				"update User set username = :username, password = :password, email =: email where userID = :uID");
+		q.setParameter("username", username);
+		q.setParameter("password", password);
+		q.setParameter("email", email);
+		q.setParameter("uID", userID);
+		if (q.executeUpdate() > 0) {
+			return true;
+		}
+		transaction.commit();
+		return false;
+	}
+
 	public boolean updateUserPass(String email, String password) {
 		Transaction transaction = null;
 		try {

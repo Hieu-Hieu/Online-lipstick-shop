@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Profile
@@ -33,18 +35,18 @@
                   <p class="card-category"></p>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form action="${pageContext.request.contextPath }/admin/UpdateInfo" method="post">
                     <div class="row">
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Username</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" value="${user.getUsername() }" name="username" required="required">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Email</label>
-                          <input type="email" class="form-control">
+                          <label class="bmd-label-floating" >Email</label>
+                          <input type="email" class="form-control" value="${user.getEmail() }" required="required" name="email">
                         </div>
                       </div>
                     </div>
@@ -52,22 +54,29 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Mật khẩu hiện tại</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="oldPass" required="required">
                         </div>
                       </div>
                       <div class="col-md-4">
+                       
                         <div class="form-group">
                           <label class="bmd-label-floating">Mật khẩu mới</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="newPass1" required="required">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Xác nhận mật khẩu</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="newPass2" required="required">
                         </div>
                       </div>
                     </div>
+                    <c:if test="${!empty oldPassError }">
+	                            <div>${oldPassError}</div>
+				      	 </c:if>
+				      	 <c:if test="${!empty newPassError }">
+	                                 		<div>${newPassError}</div>
+							       		</c:if>
                     <button type="submit" class="btn btn-primary pull-right">Cập nhật thông tin</button>
                     <div class="clearfix"></div>
                   </form>
@@ -80,5 +89,10 @@
     </div>
   </div>
 </body>
+		<c:if test="${!empty updateSuccess }">
+	            <script type="text/javascript">
+	            	alert("${updateSuccess}")
+	            </script>
+		</c:if>
 
 </html>

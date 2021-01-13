@@ -22,6 +22,8 @@ public class UserController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
 	}
 
 	@Override
@@ -29,6 +31,7 @@ public class UserController extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
 		String url = "/my-account.jsp?Error=Dupicate";
 		String sql = "";
@@ -102,10 +105,9 @@ public class UserController extends HttpServlet {
 				email = request.getParameter("email");
 				phone = request.getParameter("phone");
 				address = request.getParameter("address");
-				if (GetUser.updateUserInfo(u.getUserID(), username, phone, email, address)) {
+				if (getUser.updateUserInfo(u.getUserID(), username, phone, email, address)) {
 					request.setAttribute("updateSuccess", "Cập nhật thành công");
 					u = getUser.getUserByID(((User) session.getAttribute("user")).getUserID());
-					session.removeAttribute("user");
 					url = "/my-account.jsp";
 					session.setAttribute("user", u);
 				}
@@ -116,6 +118,7 @@ public class UserController extends HttpServlet {
 				session.setAttribute("dupicateError", "Trùng Email hoặc số điện thoại");
 				e.printStackTrace();
 			}
+
 			break;
 		case "login":
 			email = request.getParameter("email").trim();
@@ -127,11 +130,11 @@ public class UserController extends HttpServlet {
 				e.printStackTrace();
 			}
 			if (u != null) {
+				session.setAttribute("user", u);
 				if (u.getRole() == true) {
-					session.setAttribute("admin", u);
+//					session.setAttribute("admin", u);
 					url = "/admin/dashboard.jsp";
 				} else {
-					session.setAttribute("user", u);
 					url = "/index.jsp";
 				}
 				response.sendRedirect(request.getContextPath() + url);
@@ -164,6 +167,7 @@ public class UserController extends HttpServlet {
 			}
 			url = "/my-account.jsp";
 		}
+
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 	}
