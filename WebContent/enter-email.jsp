@@ -43,7 +43,7 @@
               </div>
               <div class="alert" role="alert" id="sended">
 				</div>
-              <input id="sendBtn" type="submit" value="Gửi" class="btn text-white btn-block btn-primary" style="background-color: pink; border-color: white;">
+              <input id="sendBtn" type="submit" value="Gửi" class="btn text-white btn-block btn-primary" style="background-color: #8e24aa; border-color: white; font-size: 20px; font-weight: 600;">
             </form>
             </div>
           </div>   

@@ -16,14 +16,14 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 order-md-2">
-					<img src="./client/static/img/bn.jpg" alt="Image" class="img-fluid">
+					<a href="index.jsp"><img src="./client/static/img/bn.jpg" alt="Image" class="img-fluid"></a>
 				</div>
 				<div class="col-md-6 contents">
 					<div class="row justify-content-center">
 						<div class="col-md-8">
 							<div class="mb-4">
 								<h3>
-									Đăng nhập: <br> <strong>4GuysSellingLipstick</strong>
+									Đăng nhập: <br> <strong style="color:#8e24aa;">4GuysSellingLipstick</strong>
 								</h3>
 							</div>
 							<c:if test="${!empty error }">
@@ -47,7 +47,7 @@
 								</div>
 								<input type="submit" value="Đăng nhập"
 									class="btn text-white btn-block btn-primary"
-									style="background-color: pink; border-color: white;">
+									style="background-color: #8e24aa; border-color: white; font-size: 20px; font-weight: 600;">
 							</form>
 						</div>
 					</div>

@@ -72,7 +72,7 @@
               <div class="d-flex mb-5 align-items-center">
                 <span class="ml-auto"><a href="index.jsp" class="forgot-pass">Quay lại</a></span> 
               </div>
-              <input type="submit" value="Đăng kí" class="btn text-white btn-block btn-primary" style="background-color: pink; border-color: white;">
+              <input type="submit" value="Đăng kí" class="btn text-white btn-block btn-primary" style="background-color: #8e24aa; border-color: white; font-size: 20px; font-weight: 600;">
             </form>
             </div>
           </div>   

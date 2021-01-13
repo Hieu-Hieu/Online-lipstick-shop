@@ -70,7 +70,7 @@
 										</div>
 										<input type="submit" value="Tiếp tục"
 											class="btn text-white btn-block btn-primary"
-											style="background-color: pink; border-color: white;">
+											style="background-color: #8e24aa; border-color: white; font-size: 20px; font-weight: 600;">
 									</form>
 									<div class="d-flex mb-5 align-items-center">
 										<span class="ml-auto"><a href ="${pageContext.request.contextPath}/ForgotPassword?command=again 

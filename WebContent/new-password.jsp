@@ -40,7 +40,7 @@
 								</div>
 								<input type="submit" value="Xác nhận"
 									class="btn text-white btn-block btn-primary"
-									style="background-color: pink; border-color: white;">
+									style="background-color: #8e24aa; border-color: white; font-size: 20px; font-weight: 600;">
 							</form>
 						</div>
 					</div>
