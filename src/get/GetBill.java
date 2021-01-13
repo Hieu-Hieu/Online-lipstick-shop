@@ -126,8 +126,8 @@ public class GetBill {
 		return bill;
 
 	}
-	
-	public ArrayList<Bill> getListBillPending() { //bill chờ duyệt
+
+	public ArrayList<Bill> getListBillPending() { // bill chờ duyệt
 		Transaction transaction = null;
 		ArrayList<Bill> listBill = new ArrayList<Bill>();
 		try {
@@ -136,7 +136,7 @@ public class GetBill {
 			transaction = session.beginTransaction();
 			Query query = session.createQuery("from Bill where state = 'Chờ duyệt'");
 			listBill = (ArrayList<Bill>) query.getResultList();
-			System.out.println("sizeBill: "+listBill.size());
+			System.out.println("sizeBill: " + listBill.size());
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {
@@ -147,7 +147,8 @@ public class GetBill {
 		}
 		return listBill;
 	}
-	public ArrayList<Bill> getListBillCancel() { //bill đã hủy
+
+	public ArrayList<Bill> getListBillCancel() { // bill đã hủy
 		Transaction transaction = null;
 		ArrayList<Bill> listBill = new ArrayList<Bill>();
 		try {
@@ -167,7 +168,8 @@ public class GetBill {
 		}
 		return listBill;
 	}
-	public ArrayList<Bill> getListBillCensored() { //bill đã duyệt
+
+	public ArrayList<Bill> getListBillCensored() { // bill đã duyệt
 		Transaction transaction = null;
 		ArrayList<Bill> listBill = new ArrayList<Bill>();
 		try {
@@ -186,15 +188,15 @@ public class GetBill {
 		}
 		return listBill;
 	}
-	
-	public ArrayList<Bill> getListBillSuccess() { //bill đã giao
+
+	public ArrayList<Bill> getListBillSuccess() { // bill đã giao
 		Transaction transaction = null;
 		ArrayList<Bill> listBill = new ArrayList<Bill>();
 		try {
 			// start a transaction
 			Session session = Utill.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-			Query query = session.createQuery("from Bill where state = 'Đã giao'");
+			Query query = session.createQuery("from Bill where state = 'Đã giao hàng'");
 			listBill = (ArrayList<Bill>) query.getResultList();
 			// commit transaction
 			transaction.commit();
@@ -206,10 +208,9 @@ public class GetBill {
 		}
 		return listBill;
 	}
-	
+
 	public boolean updateStatus(int Id, String status) {
-		String hql = "UPDATE Bill set state = :status "  + 
-	             "WHERE billID = :id";
+		String hql = "UPDATE Bill set state = :status " + "WHERE billID = :id";
 		int result = 0;
 		Transaction transaction = null;
 		try {
@@ -219,12 +220,12 @@ public class GetBill {
 			Query query = session.createQuery(hql);
 			query.setParameter("status", status);
 			query.setParameter("id", Id);
-			 result = query.executeUpdate();
+			result = query.executeUpdate();
 			transaction.commit();
-			if (result>0)
+			if (result > 0)
 				return true;
 			// commit transaction
-			
+
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
