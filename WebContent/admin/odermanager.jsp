@@ -125,7 +125,7 @@
 							  <option value="DaGiao">Đã giao</option>
 							  </c:if>
 							</select>
-							<button type="submit">Cập nhật</button>
+							<button type="submit" onclick="return ConfirmClick()">Cập nhật</button>
 							</c:otherwise>
 							</c:choose>
                           </td>
@@ -146,5 +146,14 @@
   </div>
 
 </body>
-
+<script>
+    function ConfirmClick()
+    {
+      var x = confirm("Xác nhận thay đổi?");
+      if (x)
+          return true;
+      else
+        return false;
+    }
+</script> 
 </html>
