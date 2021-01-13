@@ -109,6 +109,12 @@
                         </th>
                       </thead>
                       <tbody>
+                      <c:choose>
+						<c:when test="${!empty EmptyListProduct }">
+								<p>Không tìm thấy sản phẩm nào</p>
+						</c:when>
+					
+					<c:when test="${!empty listProduct}">
                       <c:forEach items="${listProduct}" var="p">
  
                         <tr>
@@ -141,7 +147,9 @@
                         </tr>
                        
                         </c:forEach>
-                        
+                        </c:when>
+                        </c:choose>
+					
                       </tbody>
                     </table>
                   </div>

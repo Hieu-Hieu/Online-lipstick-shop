@@ -33,6 +33,6 @@ public class DeleteProductController extends HttpServlet {
 			System.out.print(e);
 		}
 		req.setAttribute("deleteSuccess", 0);
-		resp.sendRedirect(req.getContextPath() + "/admin/product/list?currentPage=1");
+		resp.sendRedirect(req.getContextPath() + "/admin/product/list?command=list&currentPage=1");
 	}
 }

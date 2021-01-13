@@ -53,7 +53,7 @@
 																	<div class="col-md-12">
 																		<div class="form-group">
 																			<label class="bmd-label-floating">Tên sản
-																				phẩm</label> <input type="text" class="form-control" name="pName">
+																				phẩm</label> <input type="text" class="form-control" name="pName" required="required">
 																				
 																				</div>
 																	</div>
@@ -63,7 +63,7 @@
 																	<div class="col-md-6">
 																		<label class="bmd-label-floating">Nhà sản xuất</label>
 																		<select class="form-control"
-																			id="exampleFormControlSelect1" name="brandID" >
+																			id="exampleFormControlSelect1" name="brandID" required="required">
 																			
 																			<c:forEach items="${ListBrand}" var= "b">
 																			<option value="${b.getBrandID()}">${b.getBrandName() }</option>
@@ -74,7 +74,7 @@
 																	<div class="col-md-6">
 																		<label class="bmd-label-floating">Loại sản phẩm</label>
 																		<select class="form-control"
-																			id="exampleFormControlSelect1" name="categoryID">
+																			id="exampleFormControlSelect1" name="categoryID" required="required">
 																			<c:forEach items="${ListCategory }" var="cate">
 																			
 																			<option value="${cate.getCategoryID()}">${cate.getCategoryName()}</option>
@@ -88,13 +88,13 @@
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label class="bmd-label-floating">Giá</label> <input
-																				type="number" class="form-control" name="price">
+																				type="number" class="form-control" name="price" required="required">
 																		</div>
 																	</div>
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label class="bmd-label-floating">Số lượng</label> <input
-																				type="number" class="form-control" name="quantity">
+																				type="number" class="form-control" name="quantity" required="required">
 																		</div>
 																	</div>
 																</div>
@@ -108,7 +108,7 @@
 																	<div class="col-md-6">
 																		<div class="form-group">
 																			<label class="bmd-label-floating">Link hình ảnh 2</label> <input
-																				type="text" class="form-control" name="imgLast">
+																				type="text" class="form-control" name="imgLast" required="required">
 																		</div>
 																	</div>
 																</div>
@@ -118,7 +118,7 @@
 																			<label class="bmd-label-floating">Mô tả sản
 																				phẩm</label>
 																		</div>
-																		<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+																		<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" required="required"></textarea>
                                                                 </textarea>
 														
 																		

@@ -69,10 +69,12 @@ public class ProductAddController extends HttpServlet {
 		GetProduct gp = new GetProduct();
 		CategoryDAO cate = new CategoryDAO();
 		BrandDAO brand = new BrandDAO();
-		int brandId = Integer.parseInt(req.getParameter("brandID"));
-		int categoryId = Integer.parseInt(req.getParameter("categoryID"));
+		
 
 		try {
+			int brandId = Integer.parseInt(req.getParameter("brandID"));
+			int categoryId = Integer.parseInt(req.getParameter("categoryID"));
+			
 			product.setBrand(brand.getByID(brandId));
 			product.setCategory(cate.getByID(categoryId));
 			product.setName(req.getParameter("pName"));

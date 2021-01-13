@@ -26,12 +26,19 @@ public class addCategoryController extends HttpServlet {
 		CategoryDAO categoryDao = new CategoryDAO();
 		Category category = new Category();
 		category.setCategoryName(req.getParameter("categoryName"));
-		if (categoryDao.insert(category)) {
-			req.setAttribute("addCategory", 1);
-		}
-
-		resp.sendRedirect(req.getContextPath() + "/admin/category/list");
-
+		try {
+			if(categoryDao.checkName(req.getParameter("categoryName"))){
+				req.setAttribute("existsName", "Trùng tên");
+				//resp.sendRedirect(req.getContextPath() + "/admin/addCategory.jsp");
+			}
+			else if (categoryDao.insert(category)) {
+				req.setAttribute("addCategory", 1);
+				resp.sendRedirect(req.getContextPath() + "/admin/category/list?command=list");
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}	
+		resp.sendRedirect(req.getContextPath() + "/admin/addCategory.jsp");
 	}
 
 }

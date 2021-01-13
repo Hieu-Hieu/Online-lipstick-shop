@@ -26,6 +26,6 @@ public class deleteBrandController extends HttpServlet {
 		String id = req.getParameter("id");
 		b.delete(Integer.parseInt(id));
 
-		resp.sendRedirect(req.getContextPath() + "/admin/brand/list");
+		resp.sendRedirect(req.getContextPath() + "/admin/brand/list?command=list");
 	}
 }

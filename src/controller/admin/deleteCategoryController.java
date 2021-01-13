@@ -26,7 +26,7 @@ public class deleteCategoryController extends HttpServlet {
 		String id = req.getParameter("id");
 		ctd.delete(Integer.parseInt(id));
 
-		resp.sendRedirect(req.getContextPath() + "/admin/category/list");
+		resp.sendRedirect(req.getContextPath() + "/admin/category/list?command=list");
 	}
 
 }

@@ -27,16 +27,55 @@ public class listCategory extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html;charset=UTF-8");
 		req.setCharacterEncoding("utf-8");
+		resp.getWriter().append("Served at: ").append(req.getContextPath());
+		String command = req.getParameter("command");
 		List<Category> cateList;
+		switch (command) {
+		case "search":
+			String input = req.getParameter("input");
+			if (input != null) {
+				req.setAttribute("searchKey", req.getParameter("input"));
+			} else {
+				input = req.getParameter("searchKey");
+				req.setAttribute("searchKey", req.getParameter("searchKey"));
+			}
+			try {
+				
+				cateList = categoryDAO.search(input);
+			} catch (NumberFormatException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			break;
+		case "filter":
+
+			break;
+			
+		case "list":
+			try {
+				cateList = categoryDAO.getListCategory();
+				req.setAttribute("categoryList", cateList);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			break;
+
+		}
+
 		try {
-			cateList = categoryDAO.getListCategory();
-			req.setAttribute("categoryList", cateList);
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/categoryList.jsp");
 			dispatcher.forward(req, resp);
-		} catch (SQLException e) {
+		} catch( Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(req, resp);
 	}
 }
