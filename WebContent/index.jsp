@@ -97,7 +97,8 @@
 															</a>
 														</div>
 														<div class="product-price" style="text-align: center; background: none;">
-														<p style="font-family: sans-serif; font-size: 18px; font-weight: 600; color: black; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin=0px; ">${p.getName() }</p>
+														<p style="font-family: sans-serif; font-size: 18px; font-weight: 600; color: black; overflow: hidden; text-overflow: ellipsis; 
+														display: -webkit-box; -webkit-box-orient: vertical;-webkit-line-clamp: 2;">${p.getName() }</p>
 						
 															<h3 style="color: #8e24aa; font-weight: bold; letter-spacing: 0.5px; font-size: 18px;">
 																<fmt:formatNumber var="price" type="number "
