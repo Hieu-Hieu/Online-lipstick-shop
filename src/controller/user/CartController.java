@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import get.GetCart;
+import dao.CartDAO;
 import model.Cart;
 import model.User;
 
@@ -48,7 +48,7 @@ public class CartController extends HttpServlet {
 		u = (User) session.getAttribute("user");
 		if (u != null) {
 			int userID = u.getUserID();
-			GetCart getCart = new GetCart();
+			CartDAO getCart = new CartDAO();
 			ArrayList<Cart> listCart = new ArrayList<Cart>();
 			try {
 				listCart = getCart.getCartByUserID(userID);

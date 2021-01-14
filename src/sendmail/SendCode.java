@@ -1,4 +1,4 @@
-package mail;
+package sendmail;
 
 import java.util.Properties;
 
@@ -10,7 +10,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class SendEmail {
+public class SendCode {
 	public static boolean sendMail(String to, String subject, String text) {
 		String recipient = to;
 		String sender = "tranquangdai5012@gmail.com";

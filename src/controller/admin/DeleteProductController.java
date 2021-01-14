@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import get.GetProduct;
+import dao.ProductDAO;
 
 @WebServlet(urlPatterns = { "/admin/product/delete" })
 public class DeleteProductController extends HttpServlet {
@@ -21,7 +21,7 @@ public class DeleteProductController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html;charset=UTF-8");
 		req.setCharacterEncoding("utf-8");
-		GetProduct gp = new GetProduct();
+		ProductDAO gp = new ProductDAO();
 		String id = req.getParameter("id");
 
 		try {

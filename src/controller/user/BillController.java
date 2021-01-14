@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import get.BillDetailDAO;
-import get.GetBill;
-import get.GetCart;
+import dao.BillDAO;
+import dao.BillDetailDAO;
+import dao.CartDAO;
 import model.Bill;
 import model.BillDetail;
 import model.Cart;
@@ -57,10 +57,10 @@ public class BillController extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		GetCart getCart = new GetCart();
+		CartDAO getCart = new CartDAO();
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
-		GetBill getBill = new GetBill();
+		BillDAO getBill = new BillDAO();
 		BillDetailDAO billDetail = new BillDetailDAO();
 		BillDetail detail = new BillDetail();
 		String url = "/cart.jsp";

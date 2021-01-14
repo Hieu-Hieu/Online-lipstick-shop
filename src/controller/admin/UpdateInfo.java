@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import get.GetUser;
+import dao.UserDAO;
 import model.User;
 
 /**
@@ -52,7 +52,7 @@ public class UpdateInfo extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession();
 		String url = "";
-		GetUser getUser = new GetUser();
+		UserDAO getUser = new UserDAO();
 		User u = new User();
 		String username = "";
 		String pass = "";

@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import get.GetUser;
+import dao.UserDAO;
 import model.User;
 
 @WebServlet("/UserController")
 public class UserController extends HttpServlet {
 
-	GetUser GetUser = new GetUser();
+	UserDAO GetUser = new UserDAO();
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,7 +36,7 @@ public class UserController extends HttpServlet {
 		String url = "/my-account.jsp?Error=Dupicate";
 		String sql = "";
 		String command = request.getParameter("command");
-		GetUser getUser = new GetUser();
+		UserDAO getUser = new UserDAO();
 		User u = new User();
 		String username = "";
 		String pass = "";
@@ -147,17 +147,13 @@ public class UserController extends HttpServlet {
 		case "changePass":
 			String oldPass = request.getParameter("oldPass");
 			u = (User) session.getAttribute("user");
-			if (oldPass.equals(u.getPassword()))
-				check = true;
-			else {
+			if (!oldPass.equals(u.getPassword())) {
 				check = false;
 				request.setAttribute("oldPassError", "Mật khẩu không đúng");
 			}
 			String newPass1 = request.getParameter("newPass1");
 			String newPass2 = request.getParameter("newPass2");
-			if (newPass1.equals(newPass2)) {
-				check = true;
-			} else {
+			if (!newPass1.equals(newPass2)) {
 				check = false;
 				request.setAttribute("newPassError", "Mật khẩu mới không khớp");
 			}

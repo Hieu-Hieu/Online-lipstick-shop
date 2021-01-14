@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
 
-import get.GetProduct;
+import dao.ProductDAO;
 import model.Product;
 
 @WebServlet(urlPatterns = { "/admin/product/list" })
@@ -46,7 +46,7 @@ public class ProductListController extends HttpServlet {
 		
 		
 		//System.out.println(command);
-		GetProduct gp = new GetProduct();
+		ProductDAO gp = new ProductDAO();
 		List<Product> listProduct = Collections.emptyList();
 		
 		String sql = "";

@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import get.BrandDAO;
-import get.CategoryDAO;
-import get.GetProduct;
+import dao.BrandDAO;
+import dao.CategoryDAO;
+import dao.ProductDAO;
 import model.Brand;
 import model.Category;
 import model.Product;
@@ -41,7 +41,7 @@ public class ProductUpdateController extends HttpServlet {
 		try {
 			int productID= Integer.parseInt(req.getParameter("id"));
 			System.out.println("pID:"+productID);
-			GetProduct Gproduct = new GetProduct();
+			ProductDAO Gproduct = new ProductDAO();
 		Product product = Gproduct.getProductByID(productID);
 		System.out.println(product);
 		req.setAttribute("product", product);
@@ -81,7 +81,7 @@ public class ProductUpdateController extends HttpServlet {
 		resp.getWriter().append("Served at: ").append(req.getContextPath());
 
 		Product product = new Product();
-		GetProduct gp = new GetProduct();
+		ProductDAO gp = new ProductDAO();
 		CategoryDAO cate = new CategoryDAO();
 		BrandDAO brand = new BrandDAO();
 		String url = "/admin/addProduct.jsp";

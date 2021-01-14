@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import get.GetCart;
-import get.GetProduct;
-import get.GetUser;
+import dao.CartDAO;
+import dao.ProductDAO;
+import dao.UserDAO;
 import model.Cart;
 import model.User;
 
@@ -64,9 +64,9 @@ public class AddToCartController extends HttpServlet {
 		if (u != null) {
 			try {
 				userID = u.getUserID();
-				GetCart getCart = new GetCart();
-				GetUser getUser = new GetUser();
-				GetProduct getProduct = new GetProduct();
+				CartDAO getCart = new CartDAO();
+				UserDAO getUser = new UserDAO();
+				ProductDAO getProduct = new ProductDAO();
 				switch (command) {
 				case "add":
 					quantity = Integer.parseInt(request.getParameter("quantity"));

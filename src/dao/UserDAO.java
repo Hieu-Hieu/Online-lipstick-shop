@@ -1,4 +1,4 @@
-package get;
+package dao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.hibernate.query.Query;
 import model.User;
 import util.Utill;
 
-public class GetUser {
+public class UserDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<User> getListUser() throws SQLException {

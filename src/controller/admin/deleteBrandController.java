@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import get.BrandDAO;
+import dao.BrandDAO;
 
 @WebServlet({ "/admin/brand/delete" })
 public class deleteBrandController extends HttpServlet {

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import get.GetUser;
+import dao.UserDAO;
 import model.User;
 
 @WebServlet({ "/admin/user/list" })
@@ -25,7 +25,7 @@ public class listUserController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html;charset=UTF-8");
 		req.setCharacterEncoding("utf-8");
-		GetUser user = new GetUser();
+		UserDAO user = new UserDAO();
 		List<User> userList;
 		try {
 			userList = user.getListUser();

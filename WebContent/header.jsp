@@ -1,4 +1,4 @@
-<%@page import="get.GetCart"%>
+<%@page import="dao.CartDAO"%>
 <%@page import="model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -85,8 +85,10 @@
 	                            <a href="${pageContext.request.contextPath }/CartController" class="btn cart" style="border: solid 1px #8e24aa;">
 	                                <i class="fa fa-shopping-cart"></i>
 	                                <span>
-									<%GetCart gc =new GetCart();
-									User u = (User)session.getAttribute("user");%>
+									<%
+										CartDAO gc =new CartDAO();
+																User u = (User)session.getAttribute("user");
+									%>
 									<%=gc.totalProduct(u.getUserID())%>
 									
 									</span>

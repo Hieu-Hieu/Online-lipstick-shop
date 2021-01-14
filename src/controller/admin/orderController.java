@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import get.BillDetailDAO;
-import get.GetBill;
 import model.Bill;
 import model.BillDetail;
-import SendMail.sendMail;
+import sendmail.sendMail;
+import dao.BillDAO;
+import dao.BillDetailDAO;
 
 @WebServlet({ "/admin/order/list" })
 public class orderController extends HttpServlet {
@@ -32,7 +32,7 @@ public class orderController extends HttpServlet {
 		System.out.println("ahh");
 		ArrayList<Bill> listBill = new ArrayList<Bill>();
 		ArrayList<BillDetail> detailBill = new ArrayList<BillDetail>();
-		GetBill getBill = new GetBill();
+		BillDAO getBill = new BillDAO();
 		BillDetailDAO detail = new BillDetailDAO();
 		String command = "";
 		String Action = "";

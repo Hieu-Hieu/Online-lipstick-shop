@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import get.BrandDAO;
-import get.CategoryDAO;
+import dao.BrandDAO;
+import dao.CategoryDAO;
 import model.Brand;
 import model.Category;
 

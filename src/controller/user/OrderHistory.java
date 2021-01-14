@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import get.BillDetailDAO;
-import get.GetBill;
+import dao.BillDAO;
+import dao.BillDetailDAO;
 import model.Bill;
 import model.BillDetail;
 import model.User;
@@ -59,7 +59,7 @@ public class OrderHistory extends HttpServlet {
 		ArrayList<Bill> listBill = new ArrayList<Bill>();
 		ArrayList<BillDetail> detailBill = new ArrayList<BillDetail>();
 //		Bill bill = new Bill();
-		GetBill getBill = new GetBill();
+		BillDAO getBill = new BillDAO();
 		BillDetailDAO detail = new BillDetailDAO();
 		User u = (User) session.getAttribute("user");
 		String url = "";

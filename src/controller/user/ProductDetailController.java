@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import get.GetProduct;
+import dao.ProductDAO;
 import model.Product;
 
 /**
@@ -42,7 +42,7 @@ public class ProductDetailController extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String productID = request.getParameter("productID");
 		Product p = new Product();
-		GetProduct getProduct = new GetProduct();
+		ProductDAO getProduct = new ProductDAO();
 		String url = "";
 
 		try {

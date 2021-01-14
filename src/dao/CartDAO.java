@@ -1,4 +1,4 @@
-package get;
+package dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import org.hibernate.query.Query;
 import model.Cart;
 import util.Utill;
 
-public class GetCart {
+public class CartDAO {
 
 	public boolean checkProductExist(int userID, int productID) throws SQLException {
 		Transaction transaction = null;

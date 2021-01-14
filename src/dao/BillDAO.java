@@ -1,4 +1,4 @@
-package get;
+package dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import model.Bill;
 import model.User;
 import util.Utill;
 
-public class GetBill {
+public class BillDAO {
 
 	public boolean addBill(Bill bill) throws SQLException {
 		System.out.println("th�m bill th�nh c�ng");

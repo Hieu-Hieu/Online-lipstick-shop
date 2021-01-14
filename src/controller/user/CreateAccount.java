@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import get.GetUser;
-import mail.SendEmail;
+import dao.UserDAO;
 import model.User;
+import sendmail.SendCode;
 
 /**
  * Servlet implementation class CreateAccount
@@ -54,8 +54,8 @@ public class CreateAccount extends HttpServlet {
 		HttpSession session = request.getSession();
 		String subject = "Mã xác thực đăng ký tài khoản";
 		String command = request.getParameter("command");
-		GetUser getUser = new GetUser();
-		SendEmail sm = new SendEmail();
+		UserDAO getUser = new UserDAO();
+		SendCode sm = new SendCode();
 		String url = "/register.jsp";
 		int code;
 		User user = (User) session.getAttribute("newUser");
