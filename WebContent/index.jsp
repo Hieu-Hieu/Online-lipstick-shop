@@ -50,10 +50,10 @@
 									<c:forEach items="${listBrand }" var="brand">
 									<c:choose>
 										<c:when test="${brand.getBrandID() eq param.brandID or brand.getBrandID() eq param.filterID}">
-											<li><a style="text-decoration: underline;" href="${pageContext.request.contextPath }/ProductList?command=filter&currentPage=1&brandID=${brand.getBrandID()}&filter=brand">${brand.getBrandName() }</a></li>
+											<li style="padding: 0px;"><a style="text-decoration: underline; padding:0px;" href="${pageContext.request.contextPath }/ProductList?command=filter&currentPage=1&brandID=${brand.getBrandID()}&filter=brand">${brand.getBrandName() }</a></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="${pageContext.request.contextPath }/ProductList?command=filter&currentPage=1&brandID=${brand.getBrandID()}&filter=brand">${brand.getBrandName() }</a></li>
+											<li style="padding: 0px;"><a style="padding:0px;"href="${pageContext.request.contextPath }/ProductList?command=filter&currentPage=1&brandID=${brand.getBrandID()}&filter=brand">${brand.getBrandName() }</a></li>
 										</c:otherwise>
 									</c:choose>
 									</c:forEach>
@@ -65,10 +65,10 @@
 									<c:forEach items="${listCategory }" var="cate">
 								<c:choose>
 										<c:when test="${cate.getCategoryID() eq param.categoryID or cate.getCategoryID() eq param.filterID}">
-										<li><a style="text-decoration: underline;" href="${pageContext.request.contextPath }/ProductList?command=filter&currentPage=1&categoryID=${cate.getCategoryID()}&filter=category">${cate.getCategoryName() }</a></li>
+										<li style="padding: 0px;"><a style="text-decoration: underline;" href="${pageContext.request.contextPath }/ProductList?command=filter&currentPage=1&categoryID=${cate.getCategoryID()}&filter=category">${cate.getCategoryName() }</a></li>
 										</c:when>
 										<c:otherwise>
-										<li><a href="${pageContext.request.contextPath }/ProductList?command=filter&currentPage=1&categoryID=${cate.getCategoryID()}&filter=category">${cate.getCategoryName() }</a></li>
+										<li style="padding: 0px;"><a  href="${pageContext.request.contextPath }/ProductList?command=filter&currentPage=1&categoryID=${cate.getCategoryID()}&filter=category">${cate.getCategoryName() }</a></li>
 										</c:otherwise>
 									</c:choose>
 										
@@ -170,7 +170,6 @@
 							</div>
 						</div>
 						<!-- Product List End -->
-				
 				</div>
 
 			</div>
