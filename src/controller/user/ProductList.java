@@ -92,7 +92,7 @@ public class ProductList extends HttpServlet {
 				if (filter != null) {
 					session.setAttribute("filter", filter);
 				} else {
-					id = Integer.parseInt(request.getParameter("searchKey"));
+					id = Integer.parseInt(request.getParameter("filterID"));
 					filter = (String) session.getAttribute("filter");
 				}
 				System.out.println(filter);
@@ -100,25 +100,25 @@ public class ProductList extends HttpServlet {
 					String brandID = request.getParameter("brandID");
 					if (brandID != null) {
 						sql = "from Product where brandID = " + Integer.parseInt(brandID);
-						request.setAttribute("searchKey", request.getParameter("brandID"));
+						request.setAttribute("filterID", request.getParameter("brandID"));
 					} else {
 						sql = "from Product where brandID = " + id;
-						request.setAttribute("searchKey", request.getParameter("brandID"));
+						request.setAttribute("filterID", request.getParameter("brandID"));
 					}
 				} else {
 					String categoryID = request.getParameter("categoryID");
 					if (categoryID != null) {
 						sql = "from Product where category = " + Integer.parseInt(categoryID);
-						request.setAttribute("searchKey", request.getParameter("categoryID"));
+						request.setAttribute("filterID", request.getParameter("categoryID"));
 					} else {
 						sql = "from Product where category = " + id;
-						request.setAttribute("searchKey", request.getParameter("categoryID"));
+						request.setAttribute("filterID", request.getParameter("categoryID"));
 					}
 
 				}
-				String key = request.getParameter("searchKey");
+				String key = request.getParameter("filterID");
 				if (key != null) {
-					request.setAttribute("searchKey", request.getParameter("searchKey"));
+					request.setAttribute("filterID", request.getParameter("filterID"));
 				}
 				listProduct = gp.getProductFilter(sql, Integer.parseInt(currentPage) * 9 - 9, 9);
 			} catch (NumberFormatException | SQLException e2) {

@@ -49,7 +49,7 @@
 								<ul>
 									<c:forEach items="${listBrand }" var="brand">
 									<c:choose>
-										<c:when test="${brand.getBrandID() eq param.brandID or brand.getBrandID() eq param.searchKey}">
+										<c:when test="${brand.getBrandID() eq param.brandID or brand.getBrandID() eq param.filterID}">
 											<li><a style="text-decoration: underline;" href="${pageContext.request.contextPath }/ProductList?command=filter&currentPage=1&brandID=${brand.getBrandID()}&filter=brand">${brand.getBrandName() }</a></li>
 										</c:when>
 										<c:otherwise>
@@ -64,7 +64,7 @@
 								<ul>
 									<c:forEach items="${listCategory }" var="cate">
 								<c:choose>
-										<c:when test="${cate.getCategoryID() eq param.categoryID or cate.getCategoryID() eq param.searchKey}">
+										<c:when test="${cate.getCategoryID() eq param.categoryID or cate.getCategoryID() eq param.filterID}">
 										<li><a style="text-decoration: underline;" href="${pageContext.request.contextPath }/ProductList?command=filter&currentPage=1&categoryID=${cate.getCategoryID()}&filter=category">${cate.getCategoryName() }</a></li>
 										</c:when>
 										<c:otherwise>
@@ -123,12 +123,12 @@
 											<c:choose>
 												<c:when test="${currentPage > 1}">
 													<li class="page-item"><a class="page-link"
-														href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&currentPage=${currentPage - 1}"
+														href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&filterID=${filterID}&currentPage=${currentPage - 1}"
 														tabindex="-1">Trang trước</a></li>
 												</c:when>
 												<c:otherwise>
 													<li class="page-item disabled"><a class="page-link"
-														href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&currentPage=${currentPage - 1}"
+														href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&filterID=${filterID}&currentPage=${currentPage - 1}"
 														tabindex="-1">Trang trước</a></li>
 												</c:otherwise>
 											</c:choose>
@@ -139,12 +139,12 @@
 													<c:choose>
 														<c:when test="${currentPage == page }">
 															<li class="page-item active"><a class="page-link"
-																href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&currentPage=${page}">${page }</a>
+																href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&filterID=${filterID}&currentPage=${page}">${page }</a>
 															</li>
 														</c:when>
 														<c:otherwise>
 															<li class="page-item"><a class="page-link"
-																href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&currentPage=${page}">${page }</a>
+																href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&filterID=${filterID}&currentPage=${page}">${page }</a>
 															</li>
 														</c:otherwise>
 													</c:choose>
@@ -154,12 +154,12 @@
 											<c:choose>
 												<c:when test="${currentPage < totalPage }">
 													<li class="page-item"><a class="page-link"
-														href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&currentPage=${currentPage +1}">Trang sau</a>
+														href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&filterID=${filterID}&currentPage=${currentPage +1}">Trang sau</a>
 													</li>
 												</c:when>
 												<c:otherwise>
 													<li class="page-item disabled"><a class="page-link"
-														href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&currentPage=${currentPage +1}">Trang sau</a>
+														href="${pageContext.request.contextPath }/ProductList?command=${command}&searchKey=${searchKey}&filterID=${filterID}&currentPage=${currentPage +1}">Trang sau</a>
 													</li>
 												</c:otherwise>
 											</c:choose>
