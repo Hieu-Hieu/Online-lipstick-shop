@@ -1,4 +1,4 @@
-package SendMail;
+package sendmail;
 
 import java.util.Properties;
 

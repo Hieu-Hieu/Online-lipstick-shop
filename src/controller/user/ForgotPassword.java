@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import get.GetUser;
-import mail.SendEmail;
+import dao.UserDAO;
+import sendmail.SendCode;
 
 /**
  * Servlet implementation class ForgotPassWord
@@ -52,12 +52,12 @@ public class ForgotPassword extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		String command = request.getParameter("command");
-		SendEmail sm = new SendEmail();
+		SendCode sm = new SendCode();
 		String subject = "Mã quên mật khẩu";
 		String url = "";
 		String recipient = "";
 		int code;
-		GetUser getUser = new GetUser();
+		UserDAO getUser = new UserDAO();
 		switch (command) {
 		case "new":
 			try {

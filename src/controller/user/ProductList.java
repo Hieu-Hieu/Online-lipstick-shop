@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import get.BrandDAO;
-import get.CategoryDAO;
-import get.GetProduct;
+import dao.BrandDAO;
+import dao.CategoryDAO;
+import dao.ProductDAO;
 import model.Brand;
 import model.Category;
 import model.Product;
@@ -59,7 +59,7 @@ public class ProductList extends HttpServlet {
 		String currentPage = request.getParameter("currentPage");
 		String command = request.getParameter("command");
 		System.out.println(command);
-		GetProduct gp = new GetProduct();
+		ProductDAO gp = new ProductDAO();
 		List<Product> listProduct = null;
 		ArrayList<Category> cate = new ArrayList<Category>();
 		CategoryDAO getCate = new CategoryDAO();

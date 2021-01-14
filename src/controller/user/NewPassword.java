@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import get.GetUser;
+import dao.UserDAO;
 
 /**
  * Servlet implementation class NewPassword
@@ -49,7 +49,7 @@ public class NewPassword extends HttpServlet {
 		String passAgain = request.getParameter("passAgain");
 		HttpSession session = request.getSession();
 		String url = "";
-		GetUser getUser = new GetUser();
+		UserDAO getUser = new UserDAO();
 		String email = (String) session.getAttribute("emailAccount");
 		if (email != null) {
 			if (pass.equals(passAgain)) {

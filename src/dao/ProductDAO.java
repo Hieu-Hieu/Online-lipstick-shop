@@ -1,4 +1,4 @@
-package get;
+package dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import org.hibernate.query.Query;
 import model.Product;
 import util.Utill;
 
-public class GetProduct {
+public class ProductDAO {
 
 	public int totalPage(String sql) throws SQLException {
 		int total = 0;
