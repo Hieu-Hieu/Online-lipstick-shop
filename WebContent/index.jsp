@@ -45,7 +45,7 @@
 					<nav class="navbar bg-light" style="align-items: flex-start;">
 						<ul class="navbar-nav" style="background-color: white; ">
 							<li class="nav-item">
-							<a class="nav-link" href="#"><i class="fa fa-home"></i>Nhà sản xuất</a>
+							<a class="nav-link" href="#"><i class="fas fa-filter"></i>Nhà sản xuất</a>
 								<ul>
 									<c:forEach items="${listBrand }" var="brand">
 									<c:choose>
@@ -60,7 +60,7 @@
 								</ul>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#"><i class="fa fa-shopping-bag"></i>Loại sản xuất</a>
+								<a class="nav-link" href="#"><i class="fas fa-filter"></i>Loại sản xuất</a>
 								<ul>
 									<c:forEach items="${listCategory }" var="cate">
 								<c:choose>
