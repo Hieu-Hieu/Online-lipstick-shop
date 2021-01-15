@@ -144,9 +144,9 @@
 																		<button type="submit"
 																			class="btn btn-primary pull-right" value="Upload">Thêm
 																			/Cập nhật thông tin</button>
-																		<button type="submit"
-																			class="btn btn-primary pull-right">
-																			<a style="text-decoration: none;" href="">Làm mới</a>
+																		<button type="button"
+																			class="btn btn-primary pull-right" onclick=" return refreshPage();">
+																			Làm mới
 																		</button>
 																	</div>
 																</div>
@@ -166,5 +166,9 @@
 		</div>
 	</div>
 </body>
-
+<script>
+function refreshPage(){
+    window.location.reload();
+} 
+</script>
 </html>

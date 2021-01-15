@@ -149,7 +149,11 @@
       </div>
     </div>
   </div>
-
+<c:if test="${HetHang != null}">
+	<script type="text/javascript">
+		alert("Không đử số lượng hàng");
+	</script>
+</c:if>
 </body>
 <script>
     function ConfirmClick()

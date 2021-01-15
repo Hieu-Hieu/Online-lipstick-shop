@@ -63,7 +63,7 @@
 															</div>
 														</div>
 														<button type="submit" class="btn btn-primary pull-right">Lưu</button>
-														<button class="btn btn-primary pull-right">Hủy</button>
+														<button class="btn btn-primary pull-right" type="button" onclick="refreshPage();">Làm mới</button>
 													</div>
 													</form>
 											</div>
@@ -81,5 +81,9 @@
 
 	
 </body>
-
+<script>
+function refreshPage(){
+    window.location.reload();
+} 
+</script>
 </html>
