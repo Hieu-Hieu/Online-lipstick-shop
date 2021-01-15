@@ -33,9 +33,11 @@
 								<table class="table table-bordered">
 									<thead class="thead-dark">
 										<tr>
-											<th>ID</th>
+											<th>Mã đơn</th>
+											<th>Mã sản phẩm</th>
 											<th>Tên sản phẩm</th>
 											<th>Hình ảnh</th>
+											<th>Thương hiệu</th>
 											<th>Số lượng</th>
 											<th>Giá</th>
 										</tr>
@@ -44,9 +46,11 @@
 										<c:forEach items="${detailBill }" var="bd">
 											<tr>
 												<td>${bd.getBill().getBillID()}</td>
+												<td>${bd.getProduct().getProductID()}</td>
 												<td>${bd.getProduct().getName()}</td>
 												<td><img width="50px" height="50px"
 													src="${bd.getProduct().getImgFirst() }" /></td>
+												<td>${bd.getProduct().getBrand().getBrandName()}</td>
 												<td>${bd.getQuantity()}</td>
 												<fmt:formatNumber var="price" type="number"
 												pattern="###,###,###"
