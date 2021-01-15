@@ -162,7 +162,14 @@
 										<fmt:formatNumber var="total" type="number"
 											pattern="###,###,###" value="${totalCart }" />
 											<c:if test="${totalCart>0 }">
-												<br> <span> ${total }Đ</span>
+												<br><span> ${total }Đ</span>
+											<div>
+											  <input type="radio" id="huey" name="drone" value="huey"
+											         checked>
+											  <label for="huey" style="font-size: 14px;">Thanh toán khi nhận hàng</label>
+											</div>
+											
+											
 											</c:if>
 									</h2>
 
