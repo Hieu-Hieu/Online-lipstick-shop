@@ -161,7 +161,9 @@
 										Tổng thanh toán
 										<fmt:formatNumber var="total" type="number"
 											pattern="###,###,###" value="${totalCart }" />
-										<br> <span> ${total }Đ</span>
+											<c:if test="${totalCart>0 }">
+												<br> <span> ${total }Đ</span>
+											</c:if>
 									</h2>
 
 									<hr>
