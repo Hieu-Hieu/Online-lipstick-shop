@@ -113,10 +113,10 @@
                           <td>
                              ${bill.state}
                           </td>
-                          <td>
+	                          <td>
                           <c:choose>
   							<c:when test="${status == 'cancel' || status == 'orderSuccess' }">
-                          		<a href="#">Chi tiết</a>
+                          		<a href="${pageContext.request.contextPath }/admin/BillDetail?billID=${bill.billID}">Chi tiết</a>
                           	</c:when>
                           	<c:otherwise>
                           <input type="hidden" value="${bill.billID}" name="id">
@@ -130,7 +130,8 @@
 							  <option value="DaGiao">Đã giao</option>
 							  </c:if>
 							</select>
-							<button type="submit" onclick="return ConfirmClick()"  class="btn btn-primary pull-right"	>Cập nhật</button>
+							<button type="submit" onclick="return ConfirmClick()"  class="btn btn-primary pull-right">Cập nhật</button>
+							<a href="${pageContext.request.contextPath }/admin/BillDetail?billID=${bill.billID}">Chi tiết đơn hàng</a>
 							</c:otherwise>
 							</c:choose>
                           </td>

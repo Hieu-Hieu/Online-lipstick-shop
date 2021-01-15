@@ -72,7 +72,7 @@
 							<div class="col-md-5">
 								<div class="product-content">
 									<div class="title">
-										<h2 style="word-wrap: break-word;">${product.getName()}</h2>
+										<h2 style="word-wrap: break-word;font-family: serif;">${product.getName()}</h2>
 									</div>
 									<div class="price">
 										<h4>Giá:</h4>

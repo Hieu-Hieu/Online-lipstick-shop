@@ -166,10 +166,11 @@
 
 									<hr>
 								</div>
-
-								<button type="submit" class="btn"
+								<c:if test="${!empty listCart }">
+									<button type="submit" class="btn"
 									style="border: solid 2px #8e24aa; font-size: 18px; font-weight: 600; color: white; background-color: #8e24aa;">Đặt
 									hàng</button>
+								</c:if>
 
 							</div>
 						</div>
