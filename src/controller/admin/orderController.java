@@ -115,8 +115,8 @@ public class orderController extends HttpServlet {
 					}
 					else {
 						check =0;
-					}
-								req.setAttribute("HetHang", "Không đủ số lượng");
+					
+								
 							
 							try {
 								ProductDAO dao = new ProductDAO();
@@ -125,10 +125,15 @@ public class orderController extends HttpServlet {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-				}
+						}
+					}
 				
+					if(check == 0) {
+						req.setAttribute("HetHang", "Không đủ số lượng");
+					}
 					if(check !=0)
 						{
+						
 						if(getBill.updateStatus(billID, "Đã duyệt")) {
 							req.setAttribute("statusUpdateSuccess", "Cập nhật thành công");
 							
