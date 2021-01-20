@@ -13,8 +13,7 @@ import javax.mail.internet.MimeMessage;
 public class SendCode {
 	public static boolean sendMail(String to, String subject, String text) {
 		String recipient = to;
-//		String sender = "tranquangdai5012@gmail.com";
-//		String password = "tranquangdai501";
+
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
