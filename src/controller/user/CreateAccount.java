@@ -58,13 +58,15 @@ public class CreateAccount extends HttpServlet {
 		SendCode sm = new SendCode();
 		String url = "/register.jsp";
 		int code;
+		String message = "";
 		User user = (User) session.getAttribute("newUser");
 		if (user != null) {
 			String email = user.getEmail();
 			switch (command) {
 			case "new":
 				code = randomCode();
-				if (sm.sendMail(email, subject, String.valueOf(code))) {
+				message = "Mã xác thực của bạn là: <b>" + String.valueOf(code) + "</b>";
+				if (sm.sendMail(email, subject, message)) {
 					session.setAttribute("codeAuth", code);
 					url = "/code.jsp?command=newUser";
 					response.sendRedirect(request.getContextPath() + url);
@@ -73,7 +75,8 @@ public class CreateAccount extends HttpServlet {
 				break;
 			case "again":
 				code = randomCode();
-				if (sm.sendMail(email, subject, String.valueOf(code))) {
+				message = "Mã xác thực của bạn là: <b>" + String.valueOf(code) + "</b>";
+				if (sm.sendMail(email, subject, message)) {
 					session.setAttribute("codeAuth", code);
 					request.setAttribute("sended", "Đã gửi lại mã cho bạn!");
 					url = "/code.jsp?command=newUser";
