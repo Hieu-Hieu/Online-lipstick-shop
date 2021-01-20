@@ -34,9 +34,10 @@ public class Utill {
 				Properties settings = new Properties();
 
 				settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
+				//settings.put(Environment.URL,
+				//		"jdbc:mysql://localhost:3306/lipstickshop?autoReconnect=true&useSSL=false");
 				settings.put(Environment.URL,
-						"jdbc:mysql://localhost:3306/lipstickshop?autoReconnect=true&useSSL=false");
-
+						"jdbc:mysql://localhost:3306/lipstickshop?allowPublicKeyRetrieval=true&useSSL=false");
 				settings.put(Environment.USER, "root");
 				settings.put(Environment.PASS, "123456");
 				settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
