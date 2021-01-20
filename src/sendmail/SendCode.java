@@ -32,7 +32,7 @@ public class SendCode {
 			message.setFrom(new InternetAddress("3AELipstickShop"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
 			message.setSubject(subject);
-			message.setText(text);
+			message.setContent(text, "text/html; charset=UTF-8");
 			Transport.send(message);
 		} catch (MessagingException e) {
 			return false;
