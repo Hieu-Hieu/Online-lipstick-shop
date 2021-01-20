@@ -57,6 +57,7 @@ public class ForgotPassword extends HttpServlet {
 		String url = "";
 		String recipient = "";
 		int code;
+		String message = "";
 		UserDAO getUser = new UserDAO();
 		switch (command) {
 		case "new":
@@ -64,10 +65,11 @@ public class ForgotPassword extends HttpServlet {
 				recipient = request.getParameter("email");
 				if (getUser.checkEmail(recipient)) {
 					code = randomCode();
-					if (sm.sendMail(recipient, subject, String.valueOf(code))) {
+					message = "Mã xác thực quên mật khẩu của bạn là: <b>" + String.valueOf(code) + "</b>";
+					if (sm.sendMail(recipient, subject, message)) {
 						session.setAttribute("emailAccount", recipient);
 						session.setAttribute("code", code);
-//				session.setAttribute("sended", "Đã gửi mã! Kiểm tra email để tiếp tục");
+//				session.setAttribute("sended", "Đã gửi mã! Kiểm tra email để tiếp tục");/
 						url = "/code.jsp?command=oldUser";
 					}
 				} else {
@@ -84,7 +86,8 @@ public class ForgotPassword extends HttpServlet {
 			if (recipient != null) {
 				session.removeAttribute("code");
 				code = randomCode();
-				if (sm.sendMail(recipient, subject, String.valueOf(code))) {
+				message = "Mã xác thực quên mật khẩu của bạn là: <b>" + String.valueOf(code) + "</b>";
+				if (sm.sendMail(recipient, subject, message)) {
 					session.setAttribute("code", code);
 //				request.setAttribute("sended", "Đã gửi mã! Kiểm tra email để tiếp tục");
 					url = "/code.jsp?command=oldUser";
