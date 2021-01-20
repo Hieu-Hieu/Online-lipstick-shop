@@ -1,6 +1,7 @@
 package controller.admin;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -12,9 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Bill;
 import model.BillDetail;
+import model.Product;
 import sendmail.sendMail;
 import dao.BillDAO;
 import dao.BillDetailDAO;
+import dao.ProductDAO;
 
 @WebServlet({ "/admin/order/list" })
 public class orderController extends HttpServlet {
@@ -93,23 +96,65 @@ public class orderController extends HttpServlet {
 			}
 			else if(Action.equals("Duyet")) {
 				
-				if(getBill.updateStatus(billID, "Đã duyệt")) {
-					req.setAttribute("statusUpdateSuccess", "Cập nhật thành công");
+				detailBill = detail.getListBilldetail(billID);
+				ProductDAO pDao = new ProductDAO();
+				
+				int check = 1;
+				for(BillDetail bd : detailBill) {
+					int soLuong=0;
+					soLuong = bd.getQuantity();
+					Product p = new Product();
+					p = bd.getProduct();
+					int conLai= p.getQuantity()-soLuong;
+					System.out.print("ConLai: "+ soLuong);
 					
-					if(getBill.getBillByID(billID).getUser().getEmail()!=null) {
-						String mail = getBill.getBillByID(billID).getUser().getEmail();
-						String userName = getBill.getBillByID(billID).getUser().getUsername();
-						String title = "Lipsticshop đã xác nhận đơn hàng của bạn rồi nhé!";
-						//<h5><a href="+ req.getServletContext().getContextPath()+"/OrderHistory?command=detail&billID="+billID+'"'+">" +"</a>"
-						//+ billID +  "</h5>";
-						String mailText = "<h4>Xin chào " + userName+ " </h4>"+
-								"<h3>Lipsticshop đã xác nhận đơn hàng #"+ billID 
-								+ " của bạn và sẽ gửi hàng cho bạn sớm nhất có thể nhé!"
-								+ " Rất cảm ơn bạn đã mua hàng tại Lipsticshop. </h3>";
-						sendMail.sendMail(mail, title, mailText);
+					if(conLai>0) {
+						p.setQuantity(conLai);
+						System.out.println(p.getQuantity());
+						
+					}
+					else {
+						check =0;
+					
+								
+							
+							try {
+								ProductDAO dao = new ProductDAO();
+								dao.updateProduct(p);
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}
+				
+					if(check == 0) {
+						req.setAttribute("HetHang", "Không đủ số lượng");
+					}
+					if(check !=0)
+						{
+						
+						if(getBill.updateStatus(billID, "Đã duyệt")) {
+							req.setAttribute("statusUpdateSuccess", "Cập nhật thành công");
+							
+							if(getBill.getBillByID(billID).getUser().getEmail()!=null) {
+								String mail = getBill.getBillByID(billID).getUser().getEmail();
+								String userName = getBill.getBillByID(billID).getUser().getUsername();
+								String title = "Lipsticshop đã xác nhận đơn hàng của bạn rồi nhé!";
+								//<h5><a href="+ req.getServletContext().getContextPath()+"/OrderHistory?command=detail&billID="+billID+'"'+">" +"</a>"
+								//+ billID +  "</h5>";
+								String mailText = "<h4>Xin chào " + userName+ " </h4>"+
+										"<h3>Lipsticshop đã xác nhận đơn hàng #"+ billID 
+										+ " của bạn và sẽ gửi hàng cho bạn sớm nhất có thể nhé!"
+										+ " Rất cảm ơn bạn đã mua hàng tại Lipsticshop. </h3>";
+								sendMail.sendMail(mail, title, mailText);
+								
+								
+								}
+						}
 					}
 					
-				}
+				
 				listBill = getBill.getListBillPending();
 				req.setAttribute("listBill", listBill);
 				req.setAttribute("status", "pending");

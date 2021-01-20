@@ -185,7 +185,7 @@ public class BrandDAO {
 			List l =	query.list();
 			// commit transaction
 			transaction.commit();
-			return l.size();
+			return l.size(); 
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();

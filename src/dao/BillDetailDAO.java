@@ -52,4 +52,26 @@ public class BillDetailDAO {
 		}
 		return billDetail;
 	}
+	
+	public ArrayList<BillDetail> getListBilldetail(int id ) {
+		ArrayList<BillDetail> billDetail = new ArrayList<BillDetail>();
+		Transaction transaction = null;
+		try {
+			// start a transaction
+			Session session = Utill.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			
+			Query q = session.createQuery("from BillDetail where bill=: bill");
+			q.setParameter("bill", session.get(Bill.class, id));
+			billDetail = (ArrayList<BillDetail>) q.list();
+			// commit transaction
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return billDetail;
+	}
 }
