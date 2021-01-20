@@ -26,6 +26,7 @@ public class CategoryeEditController extends HttpServlet {
 		resp.setContentType("text/html;charset=UTF-8");
 		req.setCharacterEncoding("utf-8");
 		try {
+			//lấy category
 			int categoryID = Integer.parseInt(req.getParameter("id"));
 			Category category = categoryDao.getByID(categoryID);
 
@@ -49,6 +50,7 @@ public class CategoryeEditController extends HttpServlet {
 		String name = req.getParameter("categoryName").trim();
 		category.setCategoryName(name);
 		
+		// tìm xem có trùng ko
 		String sql = "FROM Category where categoryID <> "+category.getCategoryID()+ "and categoryName =" + "'" +  name + "'" ;
 		String url="/admin/editCategory.jsp";
 		
@@ -58,12 +60,16 @@ public class CategoryeEditController extends HttpServlet {
 				{
 					if (categoryDAO.updateCategory(category)) {
 						url="/admin/category/list";
+						resp.sendRedirect(req.getContextPath() + url);
 					}
 				}
 				
 				else {
 					req.setAttribute("category", category);
 					req.setAttribute("errorName", "Tên này đã tồn tại");
+					
+					RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher(url);
+					dispatcher.forward(req, resp);
 				}	
 			}
 		 catch (SQLException e) {
@@ -71,8 +77,7 @@ public class CategoryeEditController extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		RequestDispatcher dispatcher = req.getServletContext().getRequestDispatcher(url);
-		dispatcher.forward(req, resp);
+		
 	}
 
 	

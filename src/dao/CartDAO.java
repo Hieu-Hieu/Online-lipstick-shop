@@ -188,7 +188,7 @@ public class CartDAO {
 			}
 			e.printStackTrace();
 		}
-		System.out.println(tong);
+		System.out.println("cart:" +tong);
 		return tong;
 
 	}

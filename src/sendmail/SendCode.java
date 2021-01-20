@@ -13,8 +13,8 @@ import javax.mail.internet.MimeMessage;
 public class SendCode {
 	public static boolean sendMail(String to, String subject, String text) {
 		String recipient = to;
-		String sender = "tranquangdai5012@gmail.com";
-		String password = "tranquangdai501";
+//		String sender = "tranquangdai5012@gmail.com";
+//		String password = "tranquangdai501";
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
@@ -23,7 +23,7 @@ public class SendCode {
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(sender, password);
+				return new PasswordAuthentication("hieuld.it@gmail.com", "matkhaulacaigivay");
 			}
 		});
 		try {
