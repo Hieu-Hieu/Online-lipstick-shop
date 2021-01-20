@@ -80,11 +80,15 @@
 											pattern="###,###,###" value="${product.getPrice() }" />
 										<p>${price }VNĐ</p>
 									</div>
+									<div>
+										<h4 style="word-wrap: break-word; font-weight: bold; font-size: 18px;">Thương hiệu: ${product.getBrand().getBrandName()}</h4>									
+									</div>
 									<form
 										action="${pageContext.request.contextPath }/AddToCartController?cart=open&command=add&productID=${product.getProductID()}"
 										method="post">
-										<div class="quantity">
-											<h4>Số lượng:</h4>
+										<div class="quantity pt-2 pb-2">
+											<h4 style="width: 100px;" >Số lượng:</h4>
+							
 											<div class="qty">
 												<button class="btn-minus" type="button">
 													<i class="fa fa-minus"></i>

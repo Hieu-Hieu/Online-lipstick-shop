@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.User;
+
 /**
  * Servlet Filter implementation class Admin
  */
@@ -43,7 +45,8 @@ public class Admin implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
-		if (session.getAttribute("user") != null) {
+		User u = (User) session.getAttribute("user");
+		if (u != null && u.getRole() == true) {
 			chain.doFilter(request, response);
 			return;
 		} else {

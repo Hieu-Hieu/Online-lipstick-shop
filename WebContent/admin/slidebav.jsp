@@ -58,7 +58,7 @@
             </li>
             <li class="nav-item ">
               <a class="nav-link" href="${pageContext.request.contextPath }/admin/profile.jsp">
-                <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+                <i class="fa fa-user" aria-hidden="true"></i>
                 <p>Đổi thông tin</p>
               </a>
             </li>
