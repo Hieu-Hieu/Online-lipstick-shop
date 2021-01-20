@@ -30,8 +30,8 @@
           <c:if test="${!empty detailBill}">
 								<h5 style="margin-top: 20px;">Chi tiết đơn hàng:
 									${detailBill.get(0).getBill().getBillID()}</h5>
-								<table class="table table-bordered">
-									<thead class="thead-dark">
+								<table class="table table-borderless">
+									<thead class="thead">
 										<tr>
 											<th>Mã đơn</th>
 											<th>Mã sản phẩm</th>
