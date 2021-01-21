@@ -39,31 +39,26 @@
 											}
 										</script>
 									</c:if>
-									<form id="login"
-										action="${pageContext.request.contextPath}/CreateAccount?command=check"
-										method="post">
+									<form action="${pageContext.request.contextPath}/CreateAccount?command=check" method="post">
 										<div class="form-group first">
 											<input type="text" class="form-control"
 												placeholder="Nhập mã code" name="enterCode" required>
 										</div>
 										<input type="submit" value="Tiếp tục"
 											class="btn text-white btn-block btn-primary"
-											style="background-color: pink; border-color: white;">
+											style="background-color: #8e24aa; border-color: white;font-size: 20px; font-weight: 600;"/>
 										<c:if test="${!empty sended }">
 											<p>Đã gửi lại mã cho bạn</p>
 										</c:if>
 
 									</form>
 									<div class="d-flex mb-5 align-items-center">
-										<span class="ml-auto"><a
-											href="${pageContext.request.contextPath}/CreateAccount?command=again"
-											style="padding-right: 150px;">Gửi lại</a></span>
+										<span class="ml-auto">
+										<a href="${pageContext.request.contextPath}/CreateAccount?command=again" style="padding-right: 150px;">Gửi lại</a></span>
 									</div>
 								</c:when>
 								<c:otherwise>
-									<form id="login"
-										action="${pageContext.request.contextPath}/ForgotPassword?command=check"
-										method="post">
+									<form id="login" action="${pageContext.request.contextPath}/ForgotPassword?command=check" method="post">
 										<div class="form-group first">
 											<input type="text" class="form-control"
 												placeholder="Nhập mã code" name="codeNumber" required>
