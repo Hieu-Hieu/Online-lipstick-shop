@@ -36,9 +36,11 @@ public class CreateAccount extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		// TODO Auto-generated method stub
+//		response.setContentType("text/html;charset=UTF-8");
+//		request.setCharacterEncoding("utf-8");
+		System.out.println("doget nè");
 		doPost(request, response);
 
 	}
@@ -84,7 +86,9 @@ public class CreateAccount extends HttpServlet {
 				break;
 			case "check":
 				String enterCode = request.getParameter("enterCode");
+				System.out.println(enterCode);
 				code = (int) session.getAttribute("codeAuth");
+				System.out.println(code);
 				if (enterCode.equals(String.valueOf(code))) {
 					System.out.println("check ok");
 					request.setAttribute("createSuccess", "Đăng ký thành công, Đăng nhập để tiếp tục");
@@ -94,6 +98,9 @@ public class CreateAccount extends HttpServlet {
 						request.setAttribute("login", "Đăng nhập để mua hàng");
 						url = "/code.jsp?command=newUser";
 					}
+				} else {
+					request.setAttribute("error", "Mã không chính xác");
+					url = "/code.jsp?command=newUser";
 				}
 				break;
 			}
@@ -101,7 +108,7 @@ public class CreateAccount extends HttpServlet {
 			url = "/register.jsp";
 		}
 
-		RequestDispatcher dispatch = getServletContext().getRequestDispatcher(url);
+		RequestDispatcher dispatch = request.getServletContext().getRequestDispatcher(url);
 		dispatch.forward(request, response);
 	}
 
